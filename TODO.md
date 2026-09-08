@@ -9,7 +9,7 @@ independent reviewer has returned no unresolved blocker.
 | 1 | Clean-history, allowlisted extraction | passed | `docs/release/gate-1-evidence.md` |
 | 2 | Universal token and package architecture | passed | `docs/release/gate-2-evidence.md` |
 | 3 | Adoption documentation and examples | passed | `docs/release/gate-3-evidence.md` |
-| 4 | Cross-consumer QA and reproducibility | not started | pending |
+| 4 | Cross-consumer QA and reproducibility | awaiting independent review | `docs/release/gate-4-evidence.md` |
 | 5 | Security, licensing and public-repo controls | not started | pending |
 | 6 | Independent Claude first-commit review | held for maintainer | pending Emberline handoff |
 | 7 | GitHub and release-candidate readiness | not started | no public action authorised |
@@ -76,3 +76,18 @@ independent reviewer has returned no unresolved blocker.
   core API until their contracts are separately specified and reviewed.
 - Creating a remote, pushing, publishing a package, tagging a public release or
   changing the personal website remains explicitly unauthorised.
+
+## Gate 4 checklist
+
+- [x] Pin Playwright and axe browser QA dependencies exactly.
+- [x] Enforce deterministic builds, extracted-pack parity and size budgets.
+- [x] Install packed core consumers for plain HTML and Astro.
+- [x] Install packed adapter consumers against React 18.3.1 and 19.2.8.
+- [x] Record current Node evidence and an honest Node 20/22.12/24 matrix.
+- [x] Exercise Chromium, Firefox and Playwright WebKit at five viewports.
+- [x] Check keyboard, no-JavaScript, reduced-motion, contrast and axe contracts.
+- [x] Commit per-engine visual regression baselines.
+- [x] Smoke the fixture in locally installed Google Chrome.
+- [x] Run an immutable, hash-checked personal-website canary.
+- [ ] Receive independent Gate 4 review.
+- [ ] Resolve every blocking finding and re-review.

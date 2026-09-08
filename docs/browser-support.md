@@ -30,3 +30,7 @@ browser globals into the core.
 
 Any feature that breaks core reading or operation in the supported range must
 be removed, guarded or progressively enhanced before release.
+
+Gate 4's currently observed engines, viewports and explicitly unrun cells are
+listed in the [compatibility matrix](release/gate-4-matrix.md). Playwright
+WebKit evidence must never be described as Safari evidence.
