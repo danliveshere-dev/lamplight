@@ -21,7 +21,10 @@
     "qa:packages": "node scripts/gate4/package-qa.mjs",
     "qa:browsers": "playwright test --project=chromium --project=firefox --project=webkit",
     "qa:chrome": "playwright test --project=local-chrome",
-    "qa:website": "node scripts/gate4/website-canary.mjs --commit 37bef99e6d32c55aea395fdcdbe0a2331c88e4ee"
+    "qa:website": "node scripts/gate4/website-canary.mjs --commit 37bef99e6d32c55aea395fdcdbe0a2331c88e4ee",
+    "gate5:licence": "node scripts/gate5/licence-check.mjs",
+    "gate5:security": "node scripts/gate5/public-repo-check.mjs",
+    "gate5:check": "npm run gate5:licence && npm run gate5:security && npm run privacy"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

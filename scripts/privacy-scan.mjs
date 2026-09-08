@@ -11,6 +11,8 @@ const provenanceFiles = new Set([
   'docs/release/source-allowlist.md',
   'docs/release/reference-classification.md',
   'docs/release/gate-1-evidence.md',
+  'docs/release/gate-5-evidence.md',
+  'docs/release/action-pin-provenance.md',
   'docs/release/public-safe-identities.txt',
 ]);
 const localQaAddressFiles = new Set([
@@ -44,6 +46,17 @@ const checks = [
     name: 'private email domain',
     pattern: new RegExp('@i' + 'cloud\\.com\\b', 'i'),
   },
+  {
+    name: 'credential token signature',
+    pattern: new RegExp([
+      'g' + 'hp_[A-Za-z0-9]{20,}',
+      'github_' + 'pat_[A-Za-z0-9_]{20,}',
+      'A' + 'KIA[A-Z0-9]{16}',
+      's' + 'k-[A-Za-z0-9_-]{20,}',
+      'n' + 'pm_[A-Za-z0-9]{20,}',
+      'xox[baprs]-[A-Za-z0-9-]{10,}',
+    ].join('|')),
+  },
 ];
 
 const allowedIdentityEmails = new Set(readFileSync(
@@ -70,7 +83,16 @@ const generatedPackageFiles = [
   ...filesWithin('packages/react/dist'),
   ...filesWithin('packages/react/docs'),
 ];
-const files = [...new Set([...trackedOrCandidateFiles, ...generatedPackageFiles])];
+const publicControlFiles = [
+  'LICENSE',
+  'NOTICE',
+  'REUSE.toml',
+  'SECURITY.md',
+  ...filesWithin('LICENSES'),
+  ...filesWithin('.github'),
+  ...filesWithin('docs/release'),
+];
+const files = [...new Set([...trackedOrCandidateFiles, ...generatedPackageFiles, ...publicControlFiles])];
 
 const findings = [];
 
@@ -127,4 +149,4 @@ if (findings.length) {
   process.exit(1);
 }
 
-console.log(`Lamplight privacy scan passed (${files.length} files and ${historyRecords.length} commits checked).`);
+console.log(`Lamplight privacy scan passed (${files.length} source, generated and public-control files plus ${historyRecords.length} commits checked).`);
