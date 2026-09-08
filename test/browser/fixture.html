@@ -1,0 +1,129 @@
+<!doctype html>
+<html class="l-document" lang="en-AU">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lamplight compatibility room</title>
+    <link rel="stylesheet" href="/packages/core/dist/tokens.css">
+    <link rel="stylesheet" href="/packages/core/dist/components.css">
+    <style>
+      body { min-width: 0; }
+      .qa-shell { width: min(72rem, calc(100% - 2rem)); margin-inline: auto; padding-block: var(--lamp-space-6); }
+      .qa-heading { max-width: 16ch; margin: 0; font-family: var(--lamp-font-serif); font-size: clamp(2rem, 7vw, 4.5rem); letter-spacing: -.025em; line-height: 1.02; text-wrap: balance; }
+      .qa-copy { max-width: 68ch; color: var(--lamp-text-secondary); }
+      .qa-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(16rem, .85fr); gap: var(--lamp-space-5); margin-block-start: var(--lamp-space-5); }
+      .qa-panel { padding: var(--lamp-space-5); }
+      .qa-stack { display: grid; gap: var(--lamp-space-4); }
+      .qa-tabs { margin-block-start: var(--lamp-space-5); }
+      .qa-nested { margin-block-start: var(--lamp-space-5); padding: var(--lamp-space-4); }
+      .qa-outcome { min-height: 1.55em; margin: 0; color: var(--lamp-success); font-family: var(--lamp-font-serif); font-style: italic; }
+      @media (max-width: 50rem) {
+        .qa-grid { grid-template-columns: minmax(0, 1fr); }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="l-room" data-testid="room">
+      <div class="qa-shell">
+        <section class="l-focal-catch" data-state="active" aria-labelledby="qa-title">
+          <span class="l-focal-source" aria-hidden="true"></span>
+          <div class="l-focal-subject">
+            <div class="l-focal-heading">
+              <p class="l-etched l-focal-label">Compatibility room</p>
+              <span class="l-focal-state">Ready to inspect</span>
+            </div>
+            <div class="l-focal-content">
+              <h1 class="qa-heading" id="qa-title">One calm surface, at every width.</h1>
+              <p class="qa-copy">This synthetic fixture exercises Lamplight’s public structure without borrowing a consumer’s content or application state.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="qa-grid">
+          <section class="l-panel l-sheen qa-panel qa-stack" data-depth="focal" aria-labelledby="controls-title">
+            <p class="l-etched" id="controls-title">A small decision</p>
+            <div class="l-field">
+              <label class="l-field-label" for="qa-note">Note</label>
+              <span class="l-field-description" id="qa-note-description">One line is enough.</span>
+              <input class="l-input" id="qa-note" aria-describedby="qa-note-description" placeholder="A useful thought">
+            </div>
+            <label class="l-toggle">
+              <span class="l-etched">Keep the room quiet</span>
+              <input type="checkbox" checked>
+              <span class="l-toggle-track"></span>
+            </label>
+            <div class="l-actions">
+              <button class="l-btn" data-kind="primary" type="button" id="qa-keep">Keep note</button>
+              <button class="l-btn" data-kind="quiet" type="button">Let it rest</button>
+            </div>
+            <p class="qa-outcome" aria-live="polite" id="qa-outcome"></p>
+          </section>
+
+          <aside class="l-panel qa-panel qa-stack" aria-labelledby="presence-title">
+            <p class="l-etched" id="presence-title">Presence</p>
+            <div class="l-presence">
+              <span class="l-orb" aria-hidden="true"></span>
+            </div>
+            <hr class="l-wire" data-voice="live">
+            <p class="l-note">The light reports state without making urgency.</p>
+          </aside>
+        </div>
+
+        <section class="l-tabs qa-tabs" aria-labelledby="windows-title">
+          <p class="l-etched" id="windows-title">Reading windows</p>
+          <div class="l-tablist" role="tablist" aria-label="Reading windows">
+            <button role="tab" id="qa-tab-reading" aria-controls="qa-panel-reading" aria-selected="true" tabindex="0" type="button">Reading</button>
+            <button role="tab" id="qa-tab-notes" aria-controls="qa-panel-notes" aria-selected="false" tabindex="-1" type="button">Notes</button>
+            <button role="tab" id="qa-tab-sources" aria-controls="qa-panel-sources" aria-selected="false" tabindex="-1" type="button">Sources</button>
+            <span class="l-carrier" aria-hidden="true"></span>
+          </div>
+          <div role="tabpanel" id="qa-panel-reading" aria-labelledby="qa-tab-reading">A single readable passage stays in front.</div>
+          <div role="tabpanel" id="qa-panel-notes" aria-labelledby="qa-tab-notes" hidden>Notes remain close without crowding the page.</div>
+          <div role="tabpanel" id="qa-panel-sources" aria-labelledby="qa-tab-sources" hidden>Sources keep their ordinary semantic links.</div>
+        </section>
+
+        <section class="l-room l-panel qa-nested" data-motion="reduced" data-testid="reduced-room" aria-labelledby="reduced-title">
+          <p class="l-etched">Nested Room</p>
+          <h2 id="reduced-title">Motion can become still without losing meaning.</h2>
+          <div class="l-actions">
+            <button class="l-btn l-sheen" data-kind="bezel" data-testid="reduced-button" type="button">Settle here</button>
+          </div>
+        </section>
+
+        <noscript><p class="l-note" data-testid="no-js-note">Core content remains available without JavaScript.</p></noscript>
+      </div>
+    </main>
+
+    <script type="module">
+      import { initLivingLight } from '/packages/core/dist/living-light.js';
+
+      initLivingLight();
+      document.querySelector('#qa-keep').addEventListener('click', () => {
+        document.querySelector('#qa-outcome').textContent = 'Kept. The note remains here.';
+      });
+
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      function selectTab(next) {
+        tabs.forEach((tab) => {
+          const selected = tab === next;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          document.querySelector(`#${tab.getAttribute('aria-controls')}`).hidden = !selected;
+        });
+        next.focus();
+      }
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectTab(tab));
+        tab.addEventListener('keydown', (event) => {
+          const keys = { ArrowRight: 1, ArrowLeft: -1 };
+          let next = keys[event.key] === undefined ? null : (index + keys[event.key] + tabs.length) % tabs.length;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = tabs.length - 1;
+          if (next === null) return;
+          event.preventDefault();
+          selectTab(tabs[next]);
+        });
+      });
+    </script>
+  </body>
+</html>

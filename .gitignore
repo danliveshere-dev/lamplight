@@ -7,3 +7,5 @@ packages/react/docs/
 .DS_Store
 coverage/
 dist/
+playwright-report/
+test-results/

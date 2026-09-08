@@ -15,9 +15,16 @@
     "examples:build": "npm run build && npm run examples:build:only",
     "examples:build:only": "npm run build --prefix examples/vanilla && npm run build --prefix examples/astro && npm run build --prefix examples/react",
     "test": "npm run build && npm run tokens:check && npm run tokens:ecosystem-check && npm run examples:build:only && node --test test/*.test.mjs && npm test --workspace @lamplight-internal/react",
-    "privacy": "node scripts/privacy-scan.mjs"
+    "privacy": "node scripts/privacy-scan.mjs",
+    "qa:size": "node scripts/gate4/package-qa.mjs --skip-consumers",
+    "qa:packages": "node scripts/gate4/package-qa.mjs",
+    "qa:browsers": "playwright test --project=chromium --project=firefox --project=webkit",
+    "qa:chrome": "playwright test --project=local-chrome",
+    "qa:website": "node scripts/gate4/website-canary.mjs --commit 37bef99e6d32c55aea395fdcdbe0a2331c88e4ee"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.62.1",
     "@types/react": "19.2.18",
     "astro": "7.3.1",
     "react": "19.2.8",

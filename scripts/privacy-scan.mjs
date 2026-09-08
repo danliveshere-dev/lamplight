@@ -13,6 +13,12 @@ const provenanceFiles = new Set([
   'docs/release/gate-1-evidence.md',
   'docs/release/public-safe-identities.txt',
 ]);
+const localQaAddressFiles = new Set([
+  'playwright.config.mjs',
+  'scripts/gate4/static-server.mjs',
+  'scripts/gate4/website-canary.mjs',
+  'test/browser/compatibility.spec.mjs',
+]);
 
 const productWords = ['Da' + 'ius', 'Gl' + 'im', 'Sker' + 'rick', 'Or' + 'rery',
   'd' + 'anliveshere', 'D' + 'an', 'Second' + ' Brain'];
@@ -98,6 +104,7 @@ for (const file of files) {
   if (binaryExtensions.has(extname(file).toLowerCase())) continue;
   const text = readFileSync(file, 'utf8');
   for (const check of checks) {
+    if (check.name === 'local service address' && localQaAddressFiles.has(file)) continue;
     if (check.pattern.test(text)) findings.push(`${file}: ${check.name}`);
   }
   if (!provenanceFiles.has(file)) {

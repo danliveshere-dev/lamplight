@@ -10,4 +10,5 @@ References were classified by meaning rather than removed blindly.
 | consumer domain colour tokens | remove | Host branding belongs in consumer extensions, not core tokens |
 | personal assistant, surface and project names | replace | Examples and API prose must be usable without knowledge of the originating system |
 | DAS and MLA | do not add | Undefined future consumers or adapters must not shape core implementation prematurely |
+| loopback test addresses | retain only in named Gate 4 QA harness files | Public, local-only browser fixtures need a non-routable origin; the privacy allowlist is path-exact |
 | private paths, hosts, ports and personal data | forbid | They have no place in source, packages, examples or public documentation |
