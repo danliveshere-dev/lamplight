@@ -7,7 +7,7 @@ independent reviewer has returned no unresolved blocker.
 | Gate | Outcome | Status | Evidence |
 | --- | --- | --- | --- |
 | 1 | Clean-history, allowlisted extraction | passed | `docs/release/gate-1-evidence.md` |
-| 2 | Universal token and package architecture | awaiting independent review | `docs/release/gate-2-evidence.md` |
+| 2 | Universal token and package architecture | passed | `docs/release/gate-2-evidence.md` |
 | 3 | Adoption documentation and examples | not started | pending |
 | 4 | Cross-consumer QA and reproducibility | not started | pending |
 | 5 | Security, licensing and public-repo controls | not started | pending |
@@ -39,8 +39,8 @@ independent reviewer has returned no unresolved blocker.
 - [x] Preserve the `Room` and `l-document` scoping contracts.
 - [x] Add token, drift, package, export, dependency, opt-in and breakpoint tests.
 - [x] Preserve the existing 17 React binding contracts.
-- [ ] Receive independent Gate 2 review.
-- [ ] Resolve every blocking finding and re-review.
+- [x] Receive independent Gate 2 review.
+- [x] Resolve every blocking finding and re-review.
 
 ## Gates 3 to 5 acceptance outline
 

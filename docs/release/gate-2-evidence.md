@@ -1,6 +1,6 @@
 # Gate 2 evidence: universal token and package architecture
 
-Status: awaiting independent review.
+Status: passed.
 
 Base: `a00b7a545f0fb08a14634b8af658ae4da56d8ae7`.
 
@@ -92,3 +92,30 @@ formatter must preserve the alias graph and unsupported CSS projections.
    separated at package and tarball boundaries?
 5. Are `Room`, `l-document`, reduced-motion ancestry and SSR contracts intact?
 6. Have consumer-specific tokens, DAS and MLA remained outside executable API?
+
+## Independent review outcome
+
+- Reviewed target: `5f4cc8cee495a7f2a0a5cc3d2564f2d260f9f39b`.
+- Verdict: **PASS**, with no findings.
+- Reviewer live dependency check: `npm audit` reported zero vulnerabilities.
+
+## Visual-parity evidence boundary
+
+Gate 2 visual parity rests on exact source equivalence, not appearance-based
+assertion:
+
+- all 161 generated custom-property values were mechanically compared with the
+  Gate 1 stylesheet, with 161 matches and zero differences;
+- `components.css` and the reviewed living-light source were moved without
+  executable changes;
+- the IBM Plex font files and font-face stylesheet were moved without content
+  changes; and
+- React remains a structural binding over the same Lamplight class contract.
+
+No browser screenshot or cross-browser visual capture was performed at Gate 2.
+The source-equivalence evidence supports the architecture migration, but it is
+not a claim of witnessed visual acceptance. Browser capture and regression
+evidence remain Gate 4 work.
+
+Gate 2 is closed by independent review. This close-out changes documentation
+only; the reviewed target above remains the implementation evidence.
