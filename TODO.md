@@ -12,7 +12,7 @@ independent reviewer has returned no unresolved blocker.
 | 4 | Cross-consumer QA and reproducibility | passed | `docs/release/gate-4-evidence.md` |
 | 5 | Security, licensing and public-repo controls | passed | `docs/release/gate-5-evidence.md` |
 | 6 | Independent Claude first-commit review | held for maintainer | Emberline handoff prepared |
-| 7 | GitHub and release-candidate readiness | preparing local release pack | no public action authorised |
+| 7 | GitHub and release-candidate readiness | local preparation ready; hosted work open | `docs/release/gate-7-preparation-evidence.md` |
 
 ## Gate 1 checklist
 
