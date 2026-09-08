@@ -7,7 +7,7 @@ independent reviewer has returned no unresolved blocker.
 | Gate | Outcome | Status | Evidence |
 | --- | --- | --- | --- |
 | 1 | Clean-history, allowlisted extraction | passed | `docs/release/gate-1-evidence.md` |
-| 2 | Universal token and package architecture | not started | pending |
+| 2 | Universal token and package architecture | awaiting independent review | `docs/release/gate-2-evidence.md` |
 | 3 | Adoption documentation and examples | not started | pending |
 | 4 | Cross-consumer QA and reproducibility | not started | pending |
 | 5 | Security, licensing and public-repo controls | not started | pending |
@@ -27,10 +27,23 @@ independent reviewer has returned no unresolved blocker.
 - [x] Receive independent review against the Gate 1 evidence.
 - [x] Resolve every blocking finding and re-review.
 
-## Gates 2 to 5 acceptance outline
+## Gate 2 checklist
 
-- Gate 2: one token authority, generated CSS, dependency-free core, optional
-  fonts and living-light behaviour, and a separate React adapter.
+- [x] Make the root npm workspace private.
+- [x] Define exactly two private, internal future package workspaces.
+- [x] Move all 161 tokens into one canonical DTCG 2025.10 JSON document.
+- [x] Generate CSS deterministically with strict alias and type validation.
+- [x] Pin and verify Style Dictionary 5.5.2 without using a lossy formatter.
+- [x] Keep core CSS dependency-free and fonts and living light opt-in.
+- [x] Keep the React adapter structural, peer-only and free of copied assets.
+- [x] Preserve the `Room` and `l-document` scoping contracts.
+- [x] Add token, drift, package, export, dependency, opt-in and breakpoint tests.
+- [x] Preserve the existing 17 React binding contracts.
+- [ ] Receive independent Gate 2 review.
+- [ ] Resolve every blocking finding and re-review.
+
+## Gates 3 to 5 acceptance outline
+
 - Gate 3: plain HTML, Astro and React adoption paths, API guidance,
   accessibility contract, browser support, migration notes and explicit
   non-goals.
