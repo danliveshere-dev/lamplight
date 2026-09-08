@@ -59,7 +59,8 @@ function filesWithin(root) {
 }
 
 const generatedPackageFiles = [
-  ...filesWithin('packages/react/pkg'),
+  ...filesWithin('packages/core/dist'),
+  ...filesWithin('packages/react/dist'),
   ...filesWithin('packages/react/docs'),
 ];
 const files = [...new Set([...trackedOrCandidateFiles, ...generatedPackageFiles])];

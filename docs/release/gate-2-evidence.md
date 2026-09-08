@@ -79,8 +79,8 @@ formatter must preserve the alias graph and unsupported CSS projections.
   dependencies.
 - React dry-run package: three entries (`package.json`, JavaScript and types),
   with no CSS, fonts, runtime copy or bundled dependency.
-- Privacy scan: passes across current source, generated package surfaces and
-  all pre-Gate-2 commits; it will be rerun against the final Gate 2 commits.
+- Privacy scan: passes across current source, both generated package surfaces
+  and all Gate 2 commits.
 
 ## Independent review questions
 
