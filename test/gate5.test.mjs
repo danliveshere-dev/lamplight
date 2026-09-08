@@ -63,4 +63,8 @@ test('licence boundary remains explicit in machine-readable and human-readable f
   assert.doesNotMatch(reuse, /fonts\/\*\*/);
   assert.match(reuse, /fonts\/\*\.woff2/);
   assert.match(notice, /IBM Plex[\s\S]*not licensed under Apache-2\.0/);
+  for (const packageDirectory of ['core', 'react']) {
+    assert.equal(readFileSync(join(repository, 'packages', packageDirectory, 'LICENSE'), 'utf8'), readFileSync(join(repository, 'LICENSE'), 'utf8'));
+    assert.equal(readFileSync(join(repository, 'packages', packageDirectory, 'NOTICE'), 'utf8'), notice);
+  }
 });

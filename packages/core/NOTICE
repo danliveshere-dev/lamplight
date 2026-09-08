@@ -1,0 +1,13 @@
+Lamplight
+Copyright 2026 Daniel Livesey
+
+Lamplight source code and documentation are licensed under the Apache
+License, Version 2.0. See LICENSE and LICENSES/Apache-2.0.txt.
+
+IBM Plex font files under packages/core/fonts/ and their generated packaged
+copies are not licensed under Apache-2.0. They remain licensed under the SIL
+Open Font License, Version 1.1, with Copyright 2017 IBM Corp. and Reserved Font
+Name "Plex". See packages/core/fonts/OFL.txt and LICENSES/OFL-1.1.txt.
+
+The Apache-2.0 licence for Lamplight does not replace, broaden or otherwise
+alter the licence that applies to the IBM Plex font files.

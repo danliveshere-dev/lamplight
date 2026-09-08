@@ -48,6 +48,10 @@ for (const packagePath of ['package.json', 'packages/core/package.json', 'packag
 }
 
 expect(digest('packages/core/fonts/OFL.txt') === digest('LICENSES/OFL-1.1.txt'), 'packaged font licence and REUSE OFL-1.1 text differ');
+for (const packageDirectory of ['packages/core', 'packages/react']) {
+  expect(digest(`${packageDirectory}/LICENSE`) === digest('LICENSE'), `${packageDirectory}/LICENSE drifted from the canonical root licence`);
+  expect(digest(`${packageDirectory}/NOTICE`) === digest('NOTICE'), `${packageDirectory}/NOTICE drifted from the canonical root notice`);
+}
 const sourceFonts = readdirSync(join(root, 'packages/core/fonts')).filter((name) => /\.woff2?$/.test(name));
 expect(sourceFonts.length > 0, 'no IBM Plex font assets were found');
 for (const name of sourceFonts) {

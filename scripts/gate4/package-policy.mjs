@@ -1,5 +1,7 @@
 export const expectedPackagePaths = Object.freeze({
   core: Object.freeze([
+    'LICENSE',
+    'NOTICE',
     'dist/components.css',
     'dist/fonts/IBMPlexMono-Medium.woff2',
     'dist/fonts/IBMPlexMono-Regular.woff2',
@@ -19,6 +21,8 @@ export const expectedPackagePaths = Object.freeze({
     'package.json',
   ]),
   react: Object.freeze([
+    'LICENSE',
+    'NOTICE',
     'dist/index.d.ts',
     'dist/index.js',
     'package.json',

@@ -38,16 +38,20 @@ test('package QA fixes install isolation and every published size budget', () =>
 
 test('exact package path allowlists reject missing and rogue generated files', () => {
   assert.deepEqual(validatePackageFileList('core', expectedPackagePaths.core, expectedPackagePaths.core), {
-    expected: 17,
-    actual: 17,
+    expected: 19,
+    actual: 19,
   });
-  assert.equal(expectedPackagePaths.react.length, 3);
+  assert.equal(expectedPackagePaths.react.length, 5);
+  for (const paths of [expectedPackagePaths.core, expectedPackagePaths.react]) {
+    assert.ok(paths.includes('LICENSE'));
+    assert.ok(paths.includes('NOTICE'));
+  }
   assert.throws(
     () => validatePackageFileList('core', [...expectedPackagePaths.core, 'dist/rogue-generated.js'], expectedPackagePaths.core),
     /extra: dist\/rogue-generated\.js/,
   );
   assert.throws(
-    () => validatePackageFileList('React', expectedPackagePaths.react.slice(1), expectedPackagePaths.react),
+    () => validatePackageFileList('React', expectedPackagePaths.react.filter((path) => path !== 'dist/index.d.ts'), expectedPackagePaths.react),
     /missing: dist\/index\.d\.ts/,
   );
 });
