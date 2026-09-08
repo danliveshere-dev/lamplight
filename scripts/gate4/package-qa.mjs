@@ -15,6 +15,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
+import { expectedPackagePaths, validatePackageFileList } from './package-policy.mjs';
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const skipConsumers = process.argv.includes('--skip-consumers');
@@ -85,11 +86,12 @@ function packageRecord(output) {
   return Array.isArray(parsed) ? parsed[0] : Object.values(parsed)[0];
 }
 
-function pack(workspace, destination, label) {
+function pack(workspace, destination, label, expectedPaths) {
   mkdirSync(destination, { recursive: true });
   const record = packageRecord(run('npm', [
     'pack', '--json', '--workspace', workspace, '--pack-destination', destination,
   ], { env: npmEnvironment }));
+  validatePackageFileList(label, record.files.map((file) => file.path), expectedPaths);
   const tarball = join(destination, record.filename);
   expect(existsSync(tarball), `${label} tarball was not created`);
   const extracted = join(destination, 'extracted');
@@ -189,16 +191,16 @@ try {
     core: directoryDigest(join(root, 'packages/core/dist')),
     react: directoryDigest(join(root, 'packages/react/dist')),
   };
-  const firstCore = pack('@lamplight-internal/core', join(work, 'pack-first-core'), 'core');
-  const firstReact = pack('@lamplight-internal/react', join(work, 'pack-first-react'), 'React');
+  const firstCore = pack('@lamplight-internal/core', join(work, 'pack-first-core'), 'core', expectedPackagePaths.core);
+  const firstReact = pack('@lamplight-internal/react', join(work, 'pack-first-react'), 'React', expectedPackagePaths.react);
 
   run('npm', ['run', 'build'], { capture: false });
   const secondBuild = {
     core: directoryDigest(join(root, 'packages/core/dist')),
     react: directoryDigest(join(root, 'packages/react/dist')),
   };
-  const secondCore = pack('@lamplight-internal/core', join(work, 'pack-second-core'), 'core');
-  const secondReact = pack('@lamplight-internal/react', join(work, 'pack-second-react'), 'React');
+  const secondCore = pack('@lamplight-internal/core', join(work, 'pack-second-core'), 'core', expectedPackagePaths.core);
+  const secondReact = pack('@lamplight-internal/react', join(work, 'pack-second-react'), 'React', expectedPackagePaths.react);
 
   expect(JSON.stringify(firstBuild) === JSON.stringify(secondBuild), 'two clean builds produced different package content');
   expect(firstCore.contentDigest === secondCore.contentDigest, 'two core packs produced different extracted content');
@@ -236,6 +238,7 @@ try {
     installScripts: 'disabled',
     buildDigests: firstBuild,
     packContentDigests: { core: firstCore.contentDigest, react: firstReact.contentDigest },
+    packagePathCounts: { core: expectedPackagePaths.core.length, react: expectedPackagePaths.react.length },
     sizes,
     consumers: skipConsumers ? 'skipped' : ['vanilla', 'astro@7.3.1', 'react@18.3.1', 'react@19.2.8'],
   }, null, 2));

@@ -24,15 +24,22 @@ Observed on Node 24.17.0 with npm 12.0.1:
 
 | Tarball | Packed | Unpacked | Packed budget | Unpacked budget |
 | --- | ---: | ---: | ---: | ---: |
-| core | 529,150 B | 615,732 B | 600 KiB | 700 KiB |
-| React | 11,776 B | 41,913 B | 20 KiB | 60 KiB |
+| core | 529,173 B | 615,906 B | 600 KiB | 700 KiB |
+| React | 11,781 B | 41,945 B | 20 KiB | 60 KiB |
 
-Two build digests and two extracted-pack digests matched for each package. Both
-manifests have no runtime or optional dependencies and no install, packing or
-preparation lifecycle hooks. Static inspection of both JavaScript surfaces
-found no network-capable call. Install smoke uses the tarballs rather than
-workspace resolution and passes for vanilla, Astro 7.3.1, React 18.3.1 and
-React 19.2.8.
+Two build digests and two extracted-pack digests matched for each package. The
+pack harness enforces an exact bidirectional file allowlist for every pack: 17
+core paths including `package.json`, and three React paths. Any missing, extra
+or duplicate path fails. A negative regression directly supplies a deterministic
+`dist/rogue-generated.js` path and proves rejection without changing generated
+repository files. Package manifests also name exported files and the font
+directory explicitly rather than admitting the whole distribution directory.
+
+Both manifests have no runtime or optional dependencies and no install,
+packing or preparation lifecycle hooks. Static inspection of both JavaScript
+surfaces found no network-capable call. Install smoke uses the allowlisted
+tarballs rather than workspace resolution and passes for vanilla, Astro 7.3.1,
+React 18.3.1 and React 19.2.8.
 
 ## Browser and accessibility evidence
 

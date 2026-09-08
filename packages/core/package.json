@@ -4,7 +4,13 @@
   "private": true,
   "type": "module",
   "files": [
-    "dist"
+    "dist/components.css",
+    "dist/fonts",
+    "dist/lamplight.css",
+    "dist/lamplight.tokens.json",
+    "dist/living-light.d.ts",
+    "dist/living-light.js",
+    "dist/tokens.css"
   ],
   "exports": {
     "./styles.css": "./dist/lamplight.css",

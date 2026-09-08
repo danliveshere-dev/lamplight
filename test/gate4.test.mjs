@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import test from 'node:test';
+import { expectedPackagePaths, validatePackageFileList } from '../scripts/gate4/package-policy.mjs';
 
 const repository = resolve(new URL('..', import.meta.url).pathname);
 const manifest = JSON.parse(readFileSync(join(repository, 'package.json'), 'utf8'));
@@ -33,6 +34,22 @@ test('package QA fixes install isolation and every published size budget', () =>
   for (const threshold of ['8 * 1024', '2.5 * 1024', '36 * 1024', '7 * 1024', '45 * 1024', '10 * 1024', '25 * 1024', '6 * 1024', '600 * 1024', '700 * 1024', '20 * 1024', '60 * 1024']) {
     assert.match(source, new RegExp(threshold.replace('*', '\\*')));
   }
+});
+
+test('exact package path allowlists reject missing and rogue generated files', () => {
+  assert.deepEqual(validatePackageFileList('core', expectedPackagePaths.core, expectedPackagePaths.core), {
+    expected: 17,
+    actual: 17,
+  });
+  assert.equal(expectedPackagePaths.react.length, 3);
+  assert.throws(
+    () => validatePackageFileList('core', [...expectedPackagePaths.core, 'dist/rogue-generated.js'], expectedPackagePaths.core),
+    /extra: dist\/rogue-generated\.js/,
+  );
+  assert.throws(
+    () => validatePackageFileList('React', expectedPackagePaths.react.slice(1), expectedPackagePaths.react),
+    /missing: dist\/index\.d\.ts/,
+  );
 });
 
 test('compatibility documentation cannot turn unrun cells into passes', () => {
