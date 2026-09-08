@@ -9,7 +9,7 @@ independent reviewer has returned no unresolved blocker.
 | 1 | Clean-history, allowlisted extraction | passed | `docs/release/gate-1-evidence.md` |
 | 2 | Universal token and package architecture | passed | `docs/release/gate-2-evidence.md` |
 | 3 | Adoption documentation and examples | passed | `docs/release/gate-3-evidence.md` |
-| 4 | Cross-consumer QA and reproducibility | awaiting independent review | `docs/release/gate-4-evidence.md` |
+| 4 | Cross-consumer QA and reproducibility | passed | `docs/release/gate-4-evidence.md` |
 | 5 | Security, licensing and public-repo controls | not started | pending |
 | 6 | Independent Claude first-commit review | held for maintainer | pending Emberline handoff |
 | 7 | GitHub and release-candidate readiness | not started | no public action authorised |
@@ -89,5 +89,5 @@ independent reviewer has returned no unresolved blocker.
 - [x] Commit per-engine visual regression baselines.
 - [x] Smoke the fixture in locally installed Google Chrome.
 - [x] Run an immutable, hash-checked personal-website canary.
-- [ ] Receive independent Gate 4 review.
-- [ ] Resolve every blocking finding and re-review.
+- [x] Receive independent Gate 4 review.
+- [x] Resolve every blocking finding and re-review.

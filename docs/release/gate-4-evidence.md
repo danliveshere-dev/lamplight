@@ -1,6 +1,6 @@
 # Gate 4 evidence: cross-consumer QA and reproducibility
 
-Status: awaiting independent review.
+Status: passed.
 
 Base: `6df41fe637b80f28a37956fc3c483120afd3c856`.
 
@@ -94,3 +94,21 @@ were not run and are not inferred from automation.
 5. Does the canary prove exact copied assets and run wholly outside the live
    website checkout?
 6. Do any tests or fixtures introduce a consumer-specific or DAS/MLA contract?
+
+## Independent review outcome
+
+- Reviewed target: `25bff99a651dfd2fbe9f65e6fba77fd67925433d`.
+- Initial verdict: one P2 packaging finding. Package contents were observed and
+  size-checked, but the pack harness did not fail on an unexpected extra path.
+- Fix: `6aef4486865e5fbf2ed84e6d643ffc69d5ec30a2` adds exact bidirectional
+  allowlists for all 17 core and three React tarball paths, narrows both package
+  manifests and proves rogue and missing paths fail without dirtying generated
+  files.
+- Independent re-review verdict: **PASS**, with no findings.
+
+Gate 4 is closed by independent review. Its pass applies to the observed cells,
+not the full declared support policy. Node 20 and 22.12, Safari, VoiceOver,
+other assistive technology and maintainer-held acceptance remain unrun. The
+Impeccable detector remains `DEGRADED`, so its empty finding set remains an
+undercount rather than a pass. These are open evidence limitations for release
+readiness and must not be inferred away from the Gate 4 verdict.
