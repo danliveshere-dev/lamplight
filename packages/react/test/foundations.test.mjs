@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Field, FocalCatch, Input, Menu, Room, Status, Tabs } from '../pkg/dist/index.js';
+import { Field, FocalCatch, Input, Menu, Room, Status, Tabs } from '../dist/index.js';
 
 const h = React.createElement;
 const tabs = [
@@ -80,19 +80,11 @@ test('Room is a pure scoped boundary with no automatic document runtime', () => 
   assert.doesNotMatch(source, /initLivingLight|living-light/);
 });
 
-test('living light is an explicit typed package subpath', async () => {
-  const pkg = JSON.parse(readFileSync(new URL('../pkg/package.json', import.meta.url), 'utf8'));
-  const root = readFileSync(new URL('../pkg/dist/index.js', import.meta.url), 'utf8');
-  const runtime = readFileSync(new URL('../pkg/dist/living-light.js', import.meta.url), 'utf8');
-  const types = readFileSync(new URL('../pkg/dist/living-light.d.ts', import.meta.url), 'utf8');
-  assert.deepEqual(pkg.exports['./living-light'], {
-    types: './dist/living-light.d.ts', default: './dist/living-light.js',
-  });
-  assert.doesNotMatch(root, /initLivingLight|data-press-phase|DWELL_DELAY/);
-  assert.match(runtime, /export function initLivingLight\(\)/);
-  assert.match(runtime, /lamplight\.living-light\.v1/);
-  assert.doesNotMatch(runtime, /__livingLightLit/);
-  assert.match(types, /export declare function initLivingLight\(\): void/);
-  const livingLight = await import('../pkg/dist/living-light.js');
-  assert.doesNotThrow(() => livingLight.initLivingLight(), 'SSR call is a safe no-op');
+test('React adapter exports structure without copying core assets or runtime', () => {
+  const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+  const root = readFileSync(new URL('../dist/index.js', import.meta.url), 'utf8');
+  assert.deepEqual(Object.keys(pkg.exports), ['.']);
+  assert.deepEqual(pkg.peerDependencies, { react: '>=18' });
+  assert.equal(pkg.dependencies, undefined);
+  assert.doesNotMatch(root, /import\s+['"][^'"]+\.css|initLivingLight|data-press-phase|DWELL_DELAY/);
 });

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Gauge, ModeDial } from '../pkg/dist/index.js';
+import { Gauge, ModeDial } from '../dist/index.js';
 
 const h = React.createElement;
 const modes = [
