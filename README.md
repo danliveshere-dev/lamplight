@@ -29,7 +29,8 @@ Lamplight is currently dark-only. It expects modern CSS custom properties,
 `color-mix()`, gradients and standard accessibility media queries. Its optional
 living-light module uses contemporary DOM observers and pointer APIs. Browsers
 without those APIs still receive the CSS surface, but not every light effect.
-The React adapter supports React 18 or newer. See the
+The React adapter declares a `react >=18` peer contract. Gate 3 has observed
+React 19.2.8 only; React 18 remains a Gate 4 compatibility-matrix check. See the
 [browser policy](docs/browser-support.md) for the tested-versus-supported rule.
 
 ## Quick start before public release

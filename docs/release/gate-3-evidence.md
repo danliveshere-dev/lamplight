@@ -39,7 +39,7 @@ the root workspace list:
 | --- | --- | --- |
 | plain HTML and vanilla JavaScript | direct framework-neutral core CSS | static HTML generated |
 | Astro 7.3.1 | framework-neutral core imported by an Astro page | one static page generated |
-| React 19 test host | React adapter rendered with the shared core styles | static SSR HTML generated |
+| React 19.2.8 test host | React adapter rendered with the shared core styles | static SSR HTML generated |
 
 All examples use invented content. The root retains exactly two future
 publishable workspaces, `packages/core` and `packages/react`; examples cannot be
@@ -51,7 +51,7 @@ workspace member.
 - Root build generates tokens, core and React output.
 - Token drift and Style Dictionary compatibility checks pass.
 - Vanilla, Astro and React example builds pass.
-- Root suite: 20 tests cover the existing architecture plus documentation
+- Root suite: 21 tests cover the existing architecture plus documentation
   links, private example boundaries, synthetic-content scanning, build output
   and core-versus-adapter adoption.
 - React suite: the existing 17 component and semantic contracts pass.
@@ -71,13 +71,15 @@ or visual parity. Specifically:
 - no browser capture, axe run or keyboard interaction session was performed;
 - the React example demonstrates deterministic server rendering, not hydration
   or client interaction;
+- the adapter declares a `react >=18` peer contract, but Gate 3 observed React
+  19.2.8 only; React 18 validation remains an explicit Gate 4 matrix item;
 - browser support is a policy at this gate, not an observed browser matrix;
 - no packed-tarball consumer install or personal-website canary was run; and
 - package names remain internal and no remote, tag, publication or namespace
   decision exists.
 
-Those reproducibility, browser, accessibility, visual-regression, package-size
-and canary checks remain Gate 4 work.
+Those reproducibility, browser, React-version, accessibility, visual-regression,
+package-size and canary checks remain Gate 4 work.
 
 ## Independent review questions
 

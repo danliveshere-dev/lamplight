@@ -32,3 +32,10 @@ the same release gates.
 
 Until those contracts exist, their names must not appear in executable tokens,
 classes, package exports or runtime branches.
+
+## Declared and observed React compatibility
+
+The current React adapter declares `react >=18` as its peer contract. That range
+states compatibility intent, not completed matrix evidence. Gate 3 builds and
+tests observed React 19.2.8 only. Gate 4 must exercise supported React 18 and 19
+versions before a release candidate can claim the full declared range.
