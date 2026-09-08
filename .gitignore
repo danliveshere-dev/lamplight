@@ -1,7 +1,9 @@
 node_modules/
+.astro/
 packages/*/dist/
 packages/react/docs/
 *.tgz
+.packs/
 .DS_Store
 coverage/
 dist/

@@ -1,0 +1,33 @@
+---
+import '../../../../packages/core/generated/tokens.css';
+import '../../../../packages/core/src/components.css';
+
+const passages = [
+  { title: 'The window seat', state: 'ready' },
+  { title: 'Notes on winter light', state: 'resting' },
+];
+---
+
+<!doctype html>
+<html lang="en" class="l-document">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Lamplight Astro reading room</title>
+  </head>
+  <body>
+    <main class="l-room" style="min-height: 100vh; padding: 2rem;">
+      <article class="l-panel" data-depth="focal" style="padding: 1.5rem;">
+        <p class="l-etched">Reading shelf</p>
+        <h1>Two passages, no rush.</h1>
+        <div class="l-reading">
+          <ul>
+            {passages.map((passage) => (
+              <li><strong>{passage.title}</strong> <span class="l-chip">{passage.state}</span></li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

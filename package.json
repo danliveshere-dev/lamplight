@@ -12,11 +12,14 @@
     "tokens:check": "node scripts/build-tokens.mjs --check",
     "tokens:ecosystem-check": "style-dictionary build --config style-dictionary.config.mjs",
     "build": "npm run tokens:build && npm run build --workspace @lamplight-internal/core && npm run build --workspace @lamplight-internal/react",
-    "test": "npm run build && npm run tokens:check && npm run tokens:ecosystem-check && node --test test/*.test.mjs && npm test --workspace @lamplight-internal/react",
+    "examples:build": "npm run build && npm run examples:build:only",
+    "examples:build:only": "npm run build --prefix examples/vanilla && npm run build --prefix examples/astro && npm run build --prefix examples/react",
+    "test": "npm run build && npm run tokens:check && npm run tokens:ecosystem-check && npm run examples:build:only && node --test test/*.test.mjs && npm test --workspace @lamplight-internal/react",
     "privacy": "node scripts/privacy-scan.mjs"
   },
   "devDependencies": {
     "@types/react": "19.2.18",
+    "astro": "7.3.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "style-dictionary": "5.5.2"
