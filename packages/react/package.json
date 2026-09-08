@@ -1,13 +1,24 @@
 {
-  "name": "lamplight-kit-deps",
+  "name": "@lamplight-internal/react",
+  "version": "0.0.0-private.0",
   "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "node generate.mjs",
     "test": "node generate.mjs && node --test test/*.test.mjs"
   },
-  "dependencies": {
-    "@types/react": "^19.2.18",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+  "peerDependencies": {
+    "react": ">=18"
   }
 }

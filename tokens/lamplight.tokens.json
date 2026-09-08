@@ -1,0 +1,1800 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "$extensions": {
+    "org.lamplight": {
+      "formatVersion": "2025.10",
+      "cssPrefix": "lamp",
+      "note": "CSS-bound strings carry an explicit org.lamplight.css syntax because lossless CSS projection takes precedence over lossy generic transforms."
+    }
+  },
+  "primitive": {
+    "$description": "Raw material values. Semantic and component tokens alias these rather than repeating them.",
+    "soot-0": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.058823529411764705,
+          0.050980392156862744,
+          0.07058823529411765
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-soot-0"
+        }
+      }
+    },
+    "soot-1": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0784313725490196,
+          0.06666666666666667,
+          0.09411764705882353
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-soot-1"
+        }
+      }
+    },
+    "soot-2": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.10196078431372549,
+          0.08627450980392157,
+          0.12549019607843137
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-soot-2"
+        }
+      }
+    },
+    "soot-3": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.13725490196078433,
+          0.10980392156862745,
+          0.16862745098039217
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-soot-3"
+        }
+      }
+    },
+    "soot-4": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1803921568627451,
+          0.1450980392156863,
+          0.2196078431372549
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-soot-4"
+        }
+      }
+    },
+    "parchment": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9098039215686274,
+          0.8627450980392157,
+          0.7686274509803922
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-parchment"
+        }
+      }
+    },
+    "parchment-2": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.796078431372549,
+          0.7490196078431373,
+          0.6509803921568628
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-parchment-2"
+        }
+      }
+    },
+    "parchment-3": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6588235294117647,
+          0.611764705882353,
+          0.5215686274509804
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-parchment-3"
+        }
+      }
+    },
+    "parchment-4": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.43529411764705883,
+          0.403921568627451,
+          0.34901960784313724
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-parchment-4"
+        }
+      }
+    },
+    "candle": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647058823529412,
+          0.9254901960784314,
+          0.8509803921568627
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-candle"
+        }
+      }
+    },
+    "tallow": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8745098039215686,
+          0.788235294117647,
+          0.6078431372549019
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-tallow"
+        }
+      }
+    },
+    "brass": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.788235294117647,
+          0.6588235294117647,
+          0.41568627450980394
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-brass"
+        }
+      }
+    },
+    "umber": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5411764705882353,
+          0.43529411764705883,
+          0.27058823529411763
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-umber"
+        }
+      }
+    },
+    "dusk": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6392156862745098,
+          0.6470588235294118,
+          0.8392156862745098
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-dusk"
+        }
+      }
+    },
+    "phosphor": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5607843137254902,
+          0.8627450980392157,
+          0.803921568627451
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-phosphor"
+        }
+      }
+    },
+    "moss": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6588235294117647,
+          0.7647058823529411,
+          0.596078431372549
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-moss"
+        }
+      }
+    },
+    "ember": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9176470588235294,
+          0.6588235294117647,
+          0.4627450980392157
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ember"
+        }
+      }
+    },
+    "hearth": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8901960784313725,
+          0.6039215686274509,
+          0.6039215686274509
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-hearth"
+        }
+      }
+    },
+    "ink": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1411764705882353,
+          0.11372549019607843,
+          0.07058823529411765
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink"
+        }
+      }
+    }
+  },
+  "semantic": {
+    "$description": "Meaningful interface roles and shared scales.",
+    "surface-page": {
+      "$value": "{primitive.soot-1}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-surface-page"
+        }
+      }
+    },
+    "surface-panel": {
+      "$value": "{primitive.soot-2}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-surface-panel"
+        }
+      }
+    },
+    "surface-raised": {
+      "$value": "{primitive.soot-3}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-surface-raised"
+        }
+      }
+    },
+    "surface-sunken": {
+      "$value": "{primitive.soot-0}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-surface-sunken"
+        }
+      }
+    },
+    "surface-reading": {
+      "$value": "{primitive.soot-0}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-surface-reading"
+        }
+      }
+    },
+    "text": {
+      "$value": "{primitive.parchment}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text"
+        }
+      }
+    },
+    "text-secondary": {
+      "$value": "{primitive.parchment-2}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-secondary"
+        }
+      }
+    },
+    "text-muted": {
+      "$value": "{primitive.parchment-3}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-muted"
+        }
+      }
+    },
+    "text-on-fill": {
+      "$value": "{primitive.ink}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-on-fill"
+        }
+      }
+    },
+    "accent": {
+      "$value": "{primitive.tallow}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-accent"
+        }
+      }
+    },
+    "accent-hover": {
+      "$value": "{primitive.candle}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-accent-hover"
+        }
+      }
+    },
+    "link": {
+      "$value": "{primitive.dusk}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-link"
+        }
+      }
+    },
+    "info": {
+      "$value": "{primitive.dusk}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-info"
+        }
+      }
+    },
+    "success": {
+      "$value": "{primitive.moss}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-success"
+        }
+      }
+    },
+    "caution": {
+      "$value": "{primitive.ember}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-caution"
+        }
+      }
+    },
+    "danger": {
+      "$value": "{primitive.hearth}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-danger"
+        }
+      }
+    },
+    "runway-ample": {
+      "$value": "{primitive.phosphor}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-runway-ample"
+        }
+      }
+    },
+    "runway-near": {
+      "$value": "{primitive.dusk}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-runway-near"
+        }
+      }
+    },
+    "runway-now": {
+      "$value": "{primitive.ember}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-runway-now"
+        }
+      }
+    },
+    "glass-bg": {
+      "$type": "string",
+      "$value": "rgba(26, 22, 31, 0.82)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-glass-bg",
+          "syntax": "<color>"
+        }
+      }
+    },
+    "glass-hairline": {
+      "$type": "string",
+      "$value": "rgba(246, 236, 217, 0.07)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-glass-hairline",
+          "syntax": "<color>"
+        }
+      }
+    },
+    "glass-grain": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E\")",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-glass-grain",
+          "syntax": "<image>"
+        }
+      }
+    },
+    "grain-opacity": {
+      "$type": "number",
+      "$value": 0.05,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-grain-opacity"
+        }
+      }
+    },
+    "sheen-rest": {
+      "$type": "string",
+      "$value": "linear-gradient(165deg, rgba(246,236,217,0.09) 0%, rgba(246,236,217,0.02) 22%, transparent 45%)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-rest",
+          "syntax": "<image>"
+        }
+      }
+    },
+    "sheen-follow": {
+      "$type": "string",
+      "$value": "rgba(246, 236, 217, 0.11)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-follow",
+          "syntax": "<color>"
+        }
+      }
+    },
+    "sheen-focus": {
+      "$type": "string",
+      "$value": "rgba(246, 236, 217, 0.16)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-focus",
+          "syntax": "<color>"
+        }
+      }
+    },
+    "sheen-follow-size": {
+      "$type": "dimension",
+      "$value": {
+        "value": 300,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-follow-size"
+        }
+      }
+    },
+    "sheen-channel": {
+      "$type": "string",
+      "$value": "246, 236, 217",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-channel",
+          "syntax": "<number>#"
+        }
+      }
+    },
+    "sheen-size-min": {
+      "$type": "dimension",
+      "$value": {
+        "value": 140,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-size-min"
+        }
+      }
+    },
+    "sheen-size-max": {
+      "$type": "dimension",
+      "$value": {
+        "value": 460,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-size-max"
+        }
+      }
+    },
+    "sheen-alpha": {
+      "$type": "number",
+      "$value": 0.11,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-alpha"
+        }
+      }
+    },
+    "sheen-alpha-lift": {
+      "$type": "number",
+      "$value": 0.05,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-sheen-alpha-lift"
+        }
+      }
+    },
+    "dwell-delay": {
+      "$type": "duration",
+      "$value": {
+        "value": 1200,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-dwell-delay"
+        }
+      }
+    },
+    "dwell-ease": {
+      "$type": "duration",
+      "$value": {
+        "value": 1600,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-dwell-ease"
+        }
+      }
+    },
+    "dwell-pool": {
+      "$type": "dimension",
+      "$value": {
+        "value": 130,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-dwell-pool"
+        }
+      }
+    },
+    "dwell-alpha-add": {
+      "$type": "number",
+      "$value": 0.05,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-dwell-alpha-add"
+        }
+      }
+    },
+    "bezel-face": {
+      "$type": "string",
+      "$value": "linear-gradient(180deg, #262030, #1c1723)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-bezel-face",
+          "syntax": "<image>"
+        }
+      }
+    },
+    "bezel-edge": {
+      "$type": "string",
+      "$value": "inset 0 1px 0 rgba(246,236,217,0.08), 0 2px 5px rgba(0,0,0,0.45)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-bezel-edge",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "bezel-well": {
+      "$type": "string",
+      "$value": "inset 0 2px 6px rgba(0,0,0,0.55), inset 0 -1px 0 rgba(246,236,217,0.04)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-bezel-well",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "wire-warm": {
+      "$type": "string",
+      "$value": "rgba(246, 236, 217, 0.55)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-wire-warm",
+          "syntax": "<color>"
+        }
+      }
+    },
+    "wire-warm-halo": {
+      "$type": "string",
+      "$value": "0 0 8px rgba(246, 236, 217, 0.35)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-wire-warm-halo",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "wire-live": {
+      "$type": "string",
+      "$value": "rgba(143, 220, 205, 0.75)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-wire-live",
+          "syntax": "<color>"
+        }
+      }
+    },
+    "wire-live-halo": {
+      "$type": "string",
+      "$value": "0 0 9px rgba(143, 220, 205, 0.45)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-wire-live-halo",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "wire-ember": {
+      "$type": "string",
+      "$value": "rgba(234, 168, 118, 0.8)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-wire-ember",
+          "syntax": "<color>"
+        }
+      }
+    },
+    "wire-ember-halo": {
+      "$type": "string",
+      "$value": "0 0 9px rgba(234, 168, 118, 0.45)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-wire-ember-halo",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "wire-gleam-radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 140,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-wire-gleam-radius"
+        }
+      }
+    },
+    "focal-pool": {
+      "$type": "string",
+      "$value": "radial-gradient(340px 220px at 30% 0%, rgba(246,236,217,0.10), transparent 70%)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-pool",
+          "syntax": "<image>"
+        }
+      }
+    },
+    "panel-inner-edge": {
+      "$type": "string",
+      "$value": "inset 0 1px 0 rgba(246, 236, 217, 0.055)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-panel-inner-edge",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "focal-halo": {
+      "$type": "string",
+      "$value": "0 18px 38px -30px rgba(246, 236, 217, 0.28)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-halo",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "focal-halo-hover": {
+      "$type": "string",
+      "$value": "0 20px 44px -32px rgba(246, 236, 217, 0.34)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-halo-hover",
+          "syntax": "*"
+        }
+      }
+    },
+    "node-glow": {
+      "$type": "string",
+      "$value": "0 0 22px 6px rgba(246, 236, 217, 0.4), 0 0 70px 26px rgba(246, 236, 217, 0.12)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-node-glow",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "node-glow-attention": {
+      "$type": "string",
+      "$value": "0 0 22px 6px rgba(234, 168, 118, 0.4), 0 0 70px 26px rgba(234, 168, 118, 0.12)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-node-glow-attention",
+          "syntax": "*"
+        }
+      }
+    },
+    "focal-source-x": {
+      "$type": "string",
+      "$value": "18%",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-source-x",
+          "syntax": "*"
+        }
+      }
+    },
+    "focal-source-y": {
+      "$type": "string",
+      "$value": "0%",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-source-y",
+          "syntax": "*"
+        }
+      }
+    },
+    "focal-catch-rest": {
+      "$value": "{semantic.wire-warm}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-catch-rest"
+        }
+      }
+    },
+    "focal-catch-active": {
+      "$value": "{semantic.wire-live}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-catch-active"
+        }
+      }
+    },
+    "focal-catch-attention": {
+      "$value": "{semantic.wire-ember}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-catch-attention"
+        }
+      }
+    },
+    "focal-catch-settled": {
+      "$type": "string",
+      "$value": "color-mix(in srgb, {primitive.moss} 75%, transparent)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-catch-settled",
+          "syntax": "<color>"
+        }
+      }
+    },
+    "focal-catch-settled-halo": {
+      "$type": "string",
+      "$value": "0 0 9px color-mix(in srgb, {primitive.moss} 42%, transparent)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focal-catch-settled-halo",
+          "syntax": "<shadow>"
+        }
+      }
+    },
+    "font-sans": {
+      "$type": "fontFamily",
+      "$value": [
+        "IBM Plex Sans",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "system-ui",
+        "sans-serif"
+      ],
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-font-sans"
+        }
+      }
+    },
+    "font-serif": {
+      "$type": "fontFamily",
+      "$value": [
+        "IBM Plex Serif",
+        "Iowan Old Style",
+        "Palatino",
+        "Georgia",
+        "serif"
+      ],
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-font-serif"
+        }
+      }
+    },
+    "font-mono": {
+      "$type": "fontFamily",
+      "$value": [
+        "BlexMono Nerd Font Mono",
+        "IBM Plex Mono",
+        "ui-monospace",
+        "SF Mono",
+        "Menlo",
+        "monospace"
+      ],
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-font-mono"
+        }
+      }
+    },
+    "text-xs": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.75,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-xs"
+        }
+      }
+    },
+    "text-sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.8125,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-sm"
+        }
+      }
+    },
+    "text-md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.875,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-md"
+        }
+      }
+    },
+    "text-base": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-base"
+        }
+      }
+    },
+    "text-lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.1875,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-lg"
+        }
+      }
+    },
+    "text-xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.375,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-xl"
+        }
+      }
+    },
+    "text-2xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.75,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-2xl"
+        }
+      }
+    },
+    "text-3xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2.125,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-text-3xl"
+        }
+      }
+    },
+    "weight-regular": {
+      "$type": "fontWeight",
+      "$value": 400,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-weight-regular"
+        }
+      }
+    },
+    "weight-medium": {
+      "$type": "fontWeight",
+      "$value": 500,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-weight-medium"
+        }
+      }
+    },
+    "weight-semibold": {
+      "$type": "fontWeight",
+      "$value": 600,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-weight-semibold"
+        }
+      }
+    },
+    "weight-display": {
+      "$type": "fontWeight",
+      "$value": 650,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-weight-display"
+        }
+      }
+    },
+    "tracking-etched": {
+      "$type": "string",
+      "$value": "0.16em",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-tracking-etched",
+          "syntax": "*"
+        }
+      }
+    },
+    "space-1": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.25,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-1"
+        }
+      }
+    },
+    "space-2": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.5,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-2"
+        }
+      }
+    },
+    "space-3": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.75,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-3"
+        }
+      }
+    },
+    "space-4": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-4"
+        }
+      }
+    },
+    "space-5": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.25,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-5"
+        }
+      }
+    },
+    "space-6": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.5,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-6"
+        }
+      }
+    },
+    "space-8": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-8"
+        }
+      }
+    },
+    "space-10": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2.5,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-10"
+        }
+      }
+    },
+    "space-12": {
+      "$type": "dimension",
+      "$value": {
+        "value": 3,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-12"
+        }
+      }
+    },
+    "radius-xs": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.25,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-radius-xs"
+        }
+      }
+    },
+    "radius-sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.5,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-radius-sm"
+        }
+      }
+    },
+    "radius-md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.75,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-radius-md"
+        }
+      }
+    },
+    "radius-lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-radius-lg"
+        }
+      }
+    },
+    "radius-xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.25,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-radius-xl"
+        }
+      }
+    },
+    "radius-full": {
+      "$type": "dimension",
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-radius-full"
+        }
+      }
+    },
+    "size-control": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2.75,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-size-control"
+        }
+      }
+    },
+    "motion-instant": {
+      "$type": "duration",
+      "$value": {
+        "value": 50,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-instant"
+        }
+      }
+    },
+    "motion-press": {
+      "$type": "duration",
+      "$value": {
+        "value": 80,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-press"
+        }
+      }
+    },
+    "motion-fast": {
+      "$type": "duration",
+      "$value": {
+        "value": 150,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-fast"
+        }
+      }
+    },
+    "motion-base": {
+      "$type": "duration",
+      "$value": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-base"
+        }
+      }
+    },
+    "motion-slow": {
+      "$type": "duration",
+      "$value": {
+        "value": 400,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-slow"
+        }
+      }
+    },
+    "motion-sheen": {
+      "$type": "duration",
+      "$value": {
+        "value": 900,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-sheen"
+        }
+      }
+    },
+    "motion-ambient": {
+      "$type": "duration",
+      "$value": {
+        "value": 2000,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-ambient"
+        }
+      }
+    },
+    "motion-breath": {
+      "$type": "duration",
+      "$value": {
+        "value": 10000,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-breath"
+        }
+      }
+    },
+    "motion-cooling": {
+      "$type": "duration",
+      "$value": {
+        "value": 1600,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-cooling"
+        }
+      }
+    },
+    "motion-carry": {
+      "$type": "duration",
+      "$value": {
+        "value": 700,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-carry"
+        }
+      }
+    },
+    "motion-press-hold": {
+      "$type": "duration",
+      "$value": {
+        "value": 150,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-press-hold"
+        }
+      }
+    },
+    "motion-press-release": {
+      "$type": "duration",
+      "$value": {
+        "value": 900,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-press-release"
+        }
+      }
+    },
+    "motion-press-trace": {
+      "$type": "duration",
+      "$value": {
+        "value": 1200,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-press-trace"
+        }
+      }
+    },
+    "motion-beam": {
+      "$type": "duration",
+      "$value": {
+        "value": 700,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-motion-beam"
+        }
+      }
+    },
+    "ease-out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.22,
+        1,
+        0.36,
+        1
+      ],
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ease-out"
+        }
+      }
+    },
+    "ease-in-out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.65,
+        0,
+        0.35,
+        1
+      ],
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ease-in-out"
+        }
+      }
+    },
+    "ease-settle": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.16,
+        1,
+        0.3,
+        1
+      ],
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ease-settle"
+        }
+      }
+    },
+    "focus-ring": {
+      "$type": "string",
+      "$value": "2px solid {primitive.dusk}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focus-ring",
+          "syntax": "<border>"
+        }
+      }
+    },
+    "focus-offset": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-focus-offset"
+        }
+      }
+    },
+    "bp-narrow": {
+      "$type": "dimension",
+      "$value": {
+        "value": 520,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-bp-narrow"
+        }
+      }
+    },
+    "bp-phone": {
+      "$type": "dimension",
+      "$value": {
+        "value": 600,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-bp-phone"
+        }
+      }
+    },
+    "bp-tablet": {
+      "$type": "dimension",
+      "$value": {
+        "value": 834,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-bp-tablet"
+        }
+      }
+    },
+    "bp-desk": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1024,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-bp-desk"
+        }
+      }
+    },
+    "bp-mirror": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2200,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-bp-mirror"
+        }
+      }
+    },
+    "size-control-touch": {
+      "$type": "dimension",
+      "$value": {
+        "value": 3,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-size-control-touch"
+        }
+      }
+    },
+    "space-touch": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.5,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-space-touch"
+        }
+      }
+    },
+    "press-pool": {
+      "$type": "string",
+      "$value": "radial-gradient(120px circle at var(--lx,50%) var(--ly,50%), rgba(246,236,217,0.16), transparent 60%)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-press-pool",
+          "syntax": "<image>"
+        }
+      }
+    }
+  },
+  "component": {
+    "$description": "Narrow component contracts consumed by Lamplight CSS or host applications.",
+    "btn-radius": {
+      "$value": "{semantic.radius-md}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-btn-radius"
+        }
+      }
+    },
+    "card-radius": {
+      "$value": "{semantic.radius-lg}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-card-radius"
+        }
+      }
+    },
+    "list-cap": {
+      "$type": "number",
+      "$value": 7,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-list-cap"
+        }
+      }
+    },
+    "dial-tick": {
+      "$value": "{semantic.wire-warm}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-dial-tick"
+        }
+      }
+    },
+    "dial-tick-halo": {
+      "$value": "{semantic.wire-warm-halo}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-dial-tick-halo"
+        }
+      }
+    },
+    "gauge-needle-live": {
+      "$value": "{semantic.wire-live}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-gauge-needle-live"
+        }
+      }
+    },
+    "gauge-quiet": {
+      "$value": "{primitive.phosphor}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-gauge-quiet"
+        }
+      }
+    },
+    "gauge-warming": {
+      "$value": "{primitive.tallow}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-gauge-warming"
+        }
+      }
+    },
+    "gauge-attention": {
+      "$value": "{primitive.ember}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-gauge-attention"
+        }
+      }
+    },
+    "presence-orb": {
+      "$value": "{primitive.candle}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-presence-orb"
+        }
+      }
+    },
+    "presence-attention": {
+      "$value": "{primitive.ember}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-presence-attention"
+        }
+      }
+    },
+    "tab-wire": {
+      "$value": "{semantic.wire-live}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-tab-wire"
+        }
+      }
+    },
+    "tab-wire-halo": {
+      "$value": "{semantic.wire-live-halo}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-tab-wire-halo"
+        }
+      }
+    },
+    "disclosure-mark": {
+      "$value": "{semantic.wire-warm}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-disclosure-mark"
+        }
+      }
+    },
+    "disclosure-halo": {
+      "$value": "{semantic.wire-warm-halo}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-disclosure-halo"
+        }
+      }
+    },
+    "row-height": {
+      "$value": "{semantic.size-control}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-row-height"
+        }
+      }
+    },
+    "row-rule": {
+      "$value": "{semantic.glass-hairline}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-row-rule"
+        }
+      }
+    },
+    "header-rule": {
+      "$value": "{semantic.wire-warm}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-header-rule"
+        }
+      }
+    },
+    "crumb-wire": {
+      "$value": "{semantic.wire-warm}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-crumb-wire"
+        }
+      }
+    },
+    "annot-ink": {
+      "$value": "{primitive.dusk}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-annot-ink"
+        }
+      }
+    },
+    "annot-rule": {
+      "$value": "{semantic.wire-warm}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-annot-rule"
+        }
+      }
+    },
+    "running-node": {
+      "$value": "{semantic.wire-live}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-running-node"
+        }
+      }
+    },
+    "kbd-face": {
+      "$value": "{semantic.bezel-face}",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-kbd-face"
+        }
+      }
+    },
+    "skeleton-fill": {
+      "$type": "string",
+      "$value": "rgba(246,236,217,0.06)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-skeleton-fill",
+          "syntax": "<color>"
+        }
+      }
+    }
+  }
+}

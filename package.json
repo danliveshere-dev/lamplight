@@ -1,0 +1,24 @@
+{
+  "name": "lamplight-workspace",
+  "version": "0.0.0-private.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/core",
+    "packages/react"
+  ],
+  "scripts": {
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:check": "node scripts/build-tokens.mjs --check",
+    "tokens:ecosystem-check": "style-dictionary build --config style-dictionary.config.mjs",
+    "build": "npm run tokens:build && npm run build --workspace @lamplight-internal/core && npm run build --workspace @lamplight-internal/react",
+    "test": "npm run build && npm run tokens:check && npm run tokens:ecosystem-check && node --test test/*.test.mjs && npm test --workspace @lamplight-internal/react",
+    "privacy": "node scripts/privacy-scan.mjs"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "style-dictionary": "5.5.2"
+  }
+}

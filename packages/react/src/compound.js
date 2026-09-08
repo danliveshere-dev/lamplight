@@ -1,9 +1,9 @@
 import React from 'react';
 import { h, cx } from './runtime.js';
 
-/* Lamplight parts with real internal structure. Each mirrors the markup in
-   ../../index.html, which is the living reference the CSS was written against.
-   Structure here is not a choice - components.css selects on it. */
+/* Lamplight parts with real internal structure. Each mirrors the documented
+   class contract the core CSS was written against. Structure here is not a
+   choice: the presentation layer selects on it. */
 
 export function Room({ children, className, ...rest }) {
   return h('div', { ...rest, className: cx('l-room', className) }, children);
@@ -157,10 +157,9 @@ export function Tabs({ tabs = [], value, defaultValue, onChange, label, classNam
   const panelId = (index) => `lamp-tabs-${instance}-panel-${index}`;
 
   // The carrier is the light being carried between windows, so its position has
-  // to be measured, not guessed. components.css declares --carrier-x and
-  // --carrier-width with fallbacks and expects someone to set them;
-  // theme/styleguide.js does it for the styleguide's markup, and the binding
-  // owns it here so Tabs works outside that page.
+  // to be measured, not guessed. The core CSS declares --carrier-x and
+  // --carrier-width with fallbacks; the binding owns their measurements so
+  // Tabs works in any consumer.
   React.useLayoutEffect(() => {
     const list = listRef.current;
     const carrier = carrierRef.current;

@@ -1,0 +1,27 @@
+{
+  "name": "@lamplight-internal/core",
+  "version": "0.0.0-private.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./styles.css": "./dist/lamplight.css",
+    "./tokens.json": "./dist/lamplight.tokens.json",
+    "./tokens.css": "./dist/tokens.css",
+    "./components.css": "./dist/components.css",
+    "./fonts.css": "./dist/fonts/lamplight-fonts.css",
+    "./fonts/*": "./dist/fonts/*",
+    "./living-light": {
+      "types": "./dist/living-light.d.ts",
+      "import": "./dist/living-light.js"
+    }
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  }
+}

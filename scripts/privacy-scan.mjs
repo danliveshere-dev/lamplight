@@ -45,7 +45,7 @@ const allowedIdentityEmails = new Set(readFileSync(
 
 const trackedOrCandidateFiles = execFileSync('git', [
   'ls-files', '--cached', '--others', '--exclude-standard', '-z',
-], { encoding: 'utf8' }).split('\0').filter(Boolean);
+], { encoding: 'utf8' }).split('\0').filter((file) => file && existsSync(file));
 
 function filesWithin(root) {
   if (!existsSync(root)) return [];

@@ -1,5 +1,5 @@
 node_modules/
-packages/react/pkg/
+packages/*/dist/
 packages/react/docs/
 *.tgz
 .DS_Store
