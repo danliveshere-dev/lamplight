@@ -10,7 +10,7 @@ independent reviewer has returned no unresolved blocker.
 | 2 | Universal token and package architecture | passed | `docs/release/gate-2-evidence.md` |
 | 3 | Adoption documentation and examples | passed | `docs/release/gate-3-evidence.md` |
 | 4 | Cross-consumer QA and reproducibility | passed | `docs/release/gate-4-evidence.md` |
-| 5 | Security, licensing and public-repo controls | not started | pending |
+| 5 | Security, licensing and public-repo controls | awaiting independent review and formal security scan | `docs/release/gate-5-evidence.md` |
 | 6 | Independent Claude first-commit review | held for maintainer | pending Emberline handoff |
 | 7 | GitHub and release-candidate readiness | not started | no public action authorised |
 
@@ -91,3 +91,19 @@ independent reviewer has returned no unresolved blocker.
 - [x] Run an immutable, hash-checked personal-website canary.
 - [x] Receive independent Gate 4 review.
 - [x] Resolve every blocking finding and re-review.
+
+## Gate 5 checklist
+
+- [x] Licence Lamplight code and documentation under Apache-2.0.
+- [x] Preserve IBM Plex font assets under OFL-1.1 in NOTICE and REUSE metadata.
+- [x] Define security scope, trust boundaries, invariants and honest exclusions.
+- [x] Add current-file and Git-history secret checks without exposing matches.
+- [x] Review the dependency lock, install scripts and runtime network boundary.
+- [x] Add least-permission CI, CodeQL and dependency-review workflows.
+- [x] Pin every external action to a reviewed full commit SHA.
+- [x] Add npm and GitHub Actions Dependabot configuration.
+- [x] Prove mutable refs, risky triggers and excess permissions are rejected.
+- [x] Run a live npm advisory audit and proportional Gate 4 regression matrix.
+- [ ] Receive the formal Codex Security repository scan.
+- [ ] Receive independent Gate 5 review.
+- [ ] Resolve every blocking finding and re-review.
