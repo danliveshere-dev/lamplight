@@ -1,6 +1,6 @@
 # Gate 3 evidence: adoption documentation and examples
 
-Status: awaiting independent review.
+Status: passed.
 
 Base: `54672b44799bb2e3324a376268ede2b51eb9744f`.
 
@@ -96,3 +96,18 @@ package-size and canary checks remain Gate 4 work.
    surface?
 7. Are DAS and MLA still future consumers or adapters rather than executable
    Lamplight contracts?
+
+## Independent review outcome
+
+- Initial reviewed target: `5a2d607338dda9504791eacc415e4b2885cfe390`.
+- Initial verdict: one P2 documentation finding. The README described React 18
+  or newer as supported even though Gate 3 had observed only React 19.2.8.
+- Fix: `d51d3ffefa7bbbc2ff72f47311a1608ed712d75e` distinguishes the declared
+  `react >=18` peer intent from observed compatibility, records React 18 as an
+  explicit Gate 4 matrix item and adds a documentation regression test.
+- Independent re-review verdict: **PASS**, with no findings.
+
+Gate 3 is closed by independent review. The evidence boundary above remains in
+force: passing adoption builds do not substitute for Gate 4 browser,
+accessibility, React-version, visual-regression, packed-package or canary
+evidence.

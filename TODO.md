@@ -8,7 +8,7 @@ independent reviewer has returned no unresolved blocker.
 | --- | --- | --- | --- |
 | 1 | Clean-history, allowlisted extraction | passed | `docs/release/gate-1-evidence.md` |
 | 2 | Universal token and package architecture | passed | `docs/release/gate-2-evidence.md` |
-| 3 | Adoption documentation and examples | awaiting independent review | `docs/release/gate-3-evidence.md` |
+| 3 | Adoption documentation and examples | passed | `docs/release/gate-3-evidence.md` |
 | 4 | Cross-consumer QA and reproducibility | not started | pending |
 | 5 | Security, licensing and public-repo controls | not started | pending |
 | 6 | Independent Claude first-commit review | held for maintainer | pending Emberline handoff |
@@ -66,8 +66,8 @@ independent reviewer has returned no unresolved blocker.
 - [x] Add contribution, adoption and versioning guidance.
 - [x] Build synthetic plain HTML, Astro and React examples.
 - [x] Add documentation-link and example smoke tests.
-- [ ] Receive independent Gate 3 review.
-- [ ] Resolve every blocking finding and re-review.
+- [x] Receive independent Gate 3 review.
+- [x] Resolve every blocking finding and re-review.
 
 ## Held decisions
 
