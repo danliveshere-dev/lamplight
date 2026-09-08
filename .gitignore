@@ -1,0 +1,7 @@
+node_modules/
+packages/react/pkg/
+packages/react/docs/
+*.tgz
+.DS_Store
+coverage/
+dist/

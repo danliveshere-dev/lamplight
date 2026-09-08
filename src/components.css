@@ -1,0 +1,598 @@
+/* Lamplight components: reusable visual and interaction patterns.
+   Raw colour values live in tokens.css; this layer composes them. Bare host
+   elements are never styled: .l-document is the explicit optional page shell,
+   while .l-room is the safe embedded composition boundary. */
+
+html.l-document,
+html.l-document *,
+html.l-document *::before,
+html.l-document *::after { box-sizing: border-box; }
+
+html.l-document { color-scheme: dark; scroll-behavior: smooth; }
+
+html.l-document body {
+  margin: 0;
+  background: var(--lamp-surface-page);
+  color: var(--lamp-text);
+  font-family: var(--lamp-font-sans);
+  font-size: var(--lamp-text-base);
+  line-height: 1.55;
+}
+
+html.l-document button,
+html.l-document input,
+html.l-document select,
+html.l-document textarea { font: inherit; }
+html.l-document a { color: var(--lamp-link); }
+
+html.l-document :focus-visible {
+  outline: var(--lamp-focus-ring);
+  outline-offset: var(--lamp-focus-offset);
+}
+
+/* The room is the scoped component boundary. It carries the ground, ink,
+   voice and reliable sizing at any depth without restyling the host document. */
+.l-room,
+.l-room *,
+.l-room *::before,
+.l-room *::after { box-sizing: border-box; }
+
+.l-room {
+  position: relative;
+  background: var(--lamp-surface-page);
+  color: var(--lamp-text);
+  color-scheme: dark;
+  font-family: var(--lamp-font-sans);
+  font-size: var(--lamp-text-base);
+  line-height: 1.55;
+}
+
+.l-room button,
+.l-room input,
+.l-room select,
+.l-room textarea { font: inherit; }
+.l-room a { color: var(--lamp-link); }
+
+.l-room :focus-visible {
+  outline: var(--lamp-focus-ring);
+  outline-offset: var(--lamp-focus-offset);
+}
+
+.l-etched {
+  margin: 0;
+  color: var(--lamp-text-muted);
+  font-family: var(--lamp-font-mono);
+  font-size: var(--lamp-text-xs);
+  font-weight: var(--lamp-weight-medium);
+  letter-spacing: var(--lamp-tracking-etched);
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.l-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--lamp-glass-hairline);
+  border-radius: var(--lamp-card-radius);
+  background: var(--lamp-glass-bg);
+  box-shadow: var(--lamp-panel-inner-edge);
+  isolation: isolate;
+}
+
+.l-panel::after {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background-image: var(--lamp-glass-grain);
+  content: "";
+  opacity: var(--lamp-grain-opacity);
+  pointer-events: none;
+}
+
+.l-panel[data-depth="focal"] {
+  background-image: var(--lamp-focal-pool);
+  box-shadow: var(--lamp-panel-inner-edge), var(--lamp-focal-halo);
+}
+
+.l-sheen {
+  --ldwell: 0;
+  --lx: 28%;
+  --ly: 0%;
+  --lsize: var(--lamp-sheen-follow-size);
+  position: relative;
+  isolation: isolate;
+}
+.l-sheen::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    calc(var(--lsize) + (var(--lamp-dwell-pool) - var(--lsize)) * var(--ldwell)) circle
+    at var(--lx) var(--ly),
+    color-mix(in srgb, var(--lamp-sheen-follow), var(--lamp-sheen-focus) calc(var(--ldwell) * 100%)),
+    transparent 70%);
+  content: "";
+  opacity: calc(var(--ldwell) * .82);
+  pointer-events: none;
+  transition: opacity var(--lamp-motion-sheen) var(--lamp-ease-in-out);
+}
+
+.l-wire {
+  --wx: 50%;
+  --wglow: 0;
+  --l-wire-core: var(--lamp-wire-warm);
+  --l-wire-halo: var(--lamp-wire-warm-halo);
+  width: 100%;
+  height: 1px;
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent calc(var(--wx) - 18%),
+      color-mix(in srgb, var(--lamp-candle) calc(var(--wglow) * 72%), transparent) var(--wx),
+      transparent calc(var(--wx) + 18%)
+    ),
+    var(--l-wire-core);
+  box-shadow: var(--l-wire-halo);
+}
+.l-wire::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--lamp-candle), transparent);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-100%);
+}
+.l-wire[data-press-trace="spending"]::after {
+  animation: l-spend-trace var(--lamp-motion-press-trace) var(--lamp-ease-out) 1;
+}
+.l-wire[data-voice="live"] { --l-wire-core: var(--lamp-wire-live); --l-wire-halo: var(--lamp-wire-live-halo); }
+.l-wire[data-voice="attention"] { --l-wire-core: var(--lamp-wire-ember); --l-wire-halo: var(--lamp-wire-ember-halo); }
+
+.l-actions { display: flex; flex-wrap: wrap; gap: var(--lamp-space-3); align-items: center; }
+
+.l-btn,
+.l-segmented button,
+.l-menu-trigger,
+.l-menu [role="menuitem"] {
+  position: relative;
+  min-height: var(--lamp-size-control);
+  border: 1px solid transparent;
+  border-radius: var(--lamp-btn-radius);
+  padding: var(--lamp-space-2) var(--lamp-space-4);
+  color: var(--lamp-text);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color var(--lamp-motion-base) var(--lamp-ease-out),
+    border-color var(--lamp-motion-base) var(--lamp-ease-out),
+    background var(--lamp-motion-base) var(--lamp-ease-out),
+    transform var(--lamp-motion-press) var(--lamp-ease-out);
+}
+
+.l-btn:hover,
+.l-menu-trigger:hover { color: var(--lamp-candle); }
+.l-btn:active,
+.l-menu-trigger:active { transform: translateY(1px); }
+.l-btn[data-kind="primary"] { background: var(--lamp-accent); color: var(--lamp-text-on-fill); font-weight: var(--lamp-weight-semibold); }
+.l-btn[data-kind="quiet"] { border-color: var(--lamp-glass-hairline); color: var(--lamp-text-secondary); }
+.l-btn[data-kind="ghost"] { color: var(--lamp-text-muted); }
+.l-btn[data-kind="danger"] { border-color: color-mix(in srgb, var(--lamp-danger) 48%, transparent); color: var(--lamp-danger); }
+.l-btn[data-kind="bezel"],
+.l-menu-trigger { background: var(--lamp-bezel-face); box-shadow: var(--lamp-bezel-edge); font-family: var(--lamp-font-mono); font-size: var(--lamp-text-sm); letter-spacing: .08em; }
+.l-btn { overflow: hidden; isolation: isolate; }
+.l-btn::after {
+  position: absolute;
+  z-index: 0;
+  top: var(--ly, 50%);
+  left: var(--lx, 50%);
+  width: 9rem;
+  aspect-ratio: 1;
+  border-radius: var(--lamp-radius-full);
+  background: radial-gradient(circle, color-mix(in srgb, var(--lamp-candle) 30%, transparent), transparent 68%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.25);
+}
+.l-btn[data-press-phase="held"]::after {
+  opacity: .62;
+  transform: translate(-50%, -50%) scale(.72);
+  transition: opacity var(--lamp-motion-press-hold) var(--lamp-ease-out), transform var(--lamp-motion-press-hold) var(--lamp-ease-out);
+}
+.l-btn[data-press-phase="released"]::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.6);
+  transition: opacity var(--lamp-motion-press-release) var(--lamp-ease-out), transform var(--lamp-motion-press-release) var(--lamp-ease-out);
+}
+.l-btn:disabled { cursor: not-allowed; opacity: .55; }
+.l-btn:disabled::after { display: none; }
+
+.l-field { display: grid; gap: var(--lamp-space-2); }
+.l-field-label { color: var(--lamp-text-secondary); }
+.l-field-description,
+.l-field-error { color: var(--lamp-text-muted); font-size: var(--lamp-text-sm); }
+.l-field-error { color: var(--lamp-danger); }
+.l-input,
+.l-select,
+.l-textarea {
+  width: 100%;
+  min-height: var(--lamp-size-control);
+  border: 1px solid var(--lamp-glass-hairline);
+  border-radius: var(--lamp-radius-md);
+  padding: var(--lamp-space-2) var(--lamp-space-3);
+  color: var(--lamp-text);
+  background: var(--lamp-surface-sunken);
+  box-shadow: var(--lamp-bezel-well);
+  transition:
+    border-color var(--lamp-motion-cooling) var(--lamp-ease-in-out),
+    background var(--lamp-motion-cooling) var(--lamp-ease-in-out),
+    box-shadow var(--lamp-motion-cooling) var(--lamp-ease-in-out);
+}
+.l-input[aria-invalid="true"],
+.l-select[aria-invalid="true"],
+.l-textarea[aria-invalid="true"] {
+  border-color: var(--lamp-danger);
+  background: color-mix(in srgb, var(--lamp-danger) 6%, var(--lamp-surface-sunken));
+  box-shadow: var(--lamp-bezel-well), 0 0 18px color-mix(in srgb, var(--lamp-danger) 12%, transparent);
+}
+.l-input::placeholder,
+.l-textarea::placeholder { color: var(--lamp-text-muted); font-style: italic; }
+.l-textarea { min-height: 7rem; resize: vertical; }
+
+.l-check { display: flex; min-height: var(--lamp-size-control); gap: var(--lamp-space-3); align-items: center; cursor: pointer; }
+.l-check input { width: 1.2rem; height: 1.2rem; accent-color: var(--lamp-tallow); }
+
+.l-toggle { position: relative; display: inline-flex; min-width: 3rem; min-height: var(--lamp-size-control); align-items: center; cursor: pointer; }
+.l-toggle input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.l-toggle .l-toggle-track { position: relative; width: 3rem; height: 1.55rem; border-radius: var(--lamp-radius-full); background: var(--lamp-surface-sunken); box-shadow: var(--lamp-bezel-well); }
+.l-toggle .l-toggle-track::after { position: absolute; top: .2rem; left: .2rem; width: 1.15rem; height: 1.15rem; border-radius: var(--lamp-radius-full); background: var(--lamp-text-muted); content: ""; transition: transform var(--lamp-motion-base) var(--lamp-ease-settle), background var(--lamp-motion-base) var(--lamp-ease-out), box-shadow var(--lamp-motion-base) var(--lamp-ease-out); }
+.l-toggle input:checked + .l-toggle-track::after { background: var(--lamp-candle); box-shadow: var(--lamp-node-glow); transform: translateX(1.45rem); }
+.l-toggle input:focus-visible + .l-toggle-track { outline: var(--lamp-focus-ring); outline-offset: var(--lamp-focus-offset); }
+
+.l-segmented {
+  display: inline-flex;
+  max-width: 100%;
+  gap: var(--lamp-space-1);
+  border-radius: var(--lamp-radius-lg);
+  padding: var(--lamp-space-1);
+  background: var(--lamp-surface-sunken);
+  box-shadow: var(--lamp-bezel-well);
+}
+.l-segmented button { min-width: 4.5rem; color: var(--lamp-text-muted); }
+.l-segmented button[aria-pressed="true"] { background: var(--lamp-bezel-face); box-shadow: var(--lamp-bezel-edge); color: var(--lamp-candle); }
+
+.l-disclosure { border-top: 1px solid var(--lamp-glass-hairline); }
+.l-disclosure:last-child { border-bottom: 1px solid var(--lamp-glass-hairline); }
+.l-disclosure summary { display: flex; min-height: var(--lamp-size-control); gap: var(--lamp-space-3); align-items: center; color: var(--lamp-text-secondary); cursor: pointer; list-style: none; }
+.l-disclosure summary::-webkit-details-marker { display: none; }
+.l-disclosure .l-mark { position: relative; width: .9rem; height: .9rem; flex: 0 0 auto; }
+.l-disclosure .l-mark::before,
+.l-disclosure .l-mark::after { position: absolute; inset: calc(50% - .5px) 0 auto; height: 1px; background: var(--lamp-disclosure-mark); box-shadow: var(--lamp-disclosure-halo); content: ""; transition: transform var(--lamp-motion-base) var(--lamp-ease-settle); }
+.l-disclosure .l-mark::after { transform: rotate(90deg); }
+.l-disclosure[open] .l-mark::after { transform: rotate(0); }
+.l-disclosure .l-disclosure-body { padding: 0 0 var(--lamp-space-4) calc(.9rem + var(--lamp-space-3)); color: var(--lamp-text-secondary); }
+
+.l-tabs .l-tablist { position: relative; display: grid; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; gap: 0; overflow: hidden; border: 1px solid var(--lamp-glass-hairline); border-radius: var(--lamp-radius-md); padding: var(--lamp-space-1); background: var(--lamp-surface-sunken); box-shadow: var(--lamp-bezel-well); }
+.l-tabs [role="tab"] { position: relative; z-index: 1; min-width: 0; min-height: var(--lamp-size-control); border: 0; border-radius: var(--lamp-radius-sm); padding: 0 var(--lamp-space-3); color: var(--lamp-text-muted); background: transparent; cursor: pointer; font-size: var(--lamp-text-sm); font-weight: var(--lamp-weight-medium); letter-spacing: .02em; transition: color var(--lamp-motion-carry) var(--lamp-ease-out), background var(--lamp-motion-carry) var(--lamp-ease-out); }
+.l-tabs [role="tab"][aria-selected="true"] { background: color-mix(in srgb, var(--lamp-candle) 5%, transparent); color: var(--lamp-candle); }
+.l-tabs .l-carrier { position: absolute; z-index: 2; bottom: var(--lamp-space-1); left: 0; width: var(--carrier-width, 3rem); height: 1px; background: linear-gradient(90deg, transparent, var(--lamp-tab-wire) 50%, transparent); box-shadow: var(--lamp-tab-wire-halo); pointer-events: none; transform: translateX(var(--carrier-x, 0)); transition: transform var(--lamp-motion-carry) var(--lamp-ease-out); }
+.l-tabs [role="tabpanel"] { padding-top: var(--lamp-space-4); color: var(--lamp-text-secondary); }
+.l-tabs [role="tabpanel"][hidden] { display: none; }
+
+[data-copy-status],
+[data-copy-source-field] { position: fixed; top: 0; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+[data-copy-state="copied"] { outline: 1px solid var(--lamp-success); outline-offset: 2px; }
+[data-copy-state="failed"] { outline: 1px solid var(--lamp-danger); outline-offset: 2px; }
+
+.l-crumbs { display: flex; flex-wrap: wrap; gap: var(--lamp-space-2); align-items: center; color: var(--lamp-text-muted); font-size: var(--lamp-text-sm); }
+.l-crumbs a { color: var(--lamp-text-secondary); text-decoration: none; }
+.l-crumbs .l-seam { width: 1.5rem; height: 1px; background: var(--lamp-crumb-wire); box-shadow: var(--lamp-wire-warm-halo); }
+.l-crumbs [aria-current="page"] { color: var(--lamp-phosphor); }
+
+.l-menu { position: relative; display: inline-block; }
+.l-menu .l-menu-sheet { position: absolute; z-index: 8; top: calc(100% + var(--lamp-space-2)); right: 0; min-width: 15rem; overflow: hidden; border: 1px solid var(--lamp-glass-hairline); border-radius: var(--lamp-radius-lg); padding: var(--lamp-space-2); background: var(--lamp-glass-bg); box-shadow: var(--lamp-focal-halo-hover); }
+.l-menu [role="menuitem"] { display: flex; width: 100%; align-items: center; text-align: left; color: var(--lamp-text-secondary); }
+.l-menu [role="menuitem"]:hover,
+.l-menu [role="menuitem"]:focus-visible { background: color-mix(in srgb, var(--lamp-candle) 6%, transparent); color: var(--lamp-candle); }
+
+.l-ask { display: grid; gap: var(--lamp-space-4); }
+.l-ask p { margin: 0; }
+.l-ask .l-outcome { color: var(--lamp-success); font-family: var(--lamp-font-serif); font-style: italic; }
+
+.l-toast { display: flex; gap: var(--lamp-space-3); align-items: flex-start; border-left: 1px solid var(--lamp-success); padding: var(--lamp-space-4); background: color-mix(in srgb, var(--lamp-success) 7%, transparent); color: var(--lamp-text-secondary); }
+.l-toast[data-state="error"] { border-left-color: var(--lamp-danger); background: color-mix(in srgb, var(--lamp-danger) 7%, transparent); }
+
+.l-reading { border-radius: var(--lamp-radius-lg); padding: clamp(var(--lamp-space-6), 5vw, var(--lamp-space-12)); background: var(--lamp-surface-reading); color: var(--lamp-text-secondary); font-family: var(--lamp-font-serif); font-size: var(--lamp-text-lg); line-height: 1.75; }
+
+.l-table-wrap { overflow-x: auto; }
+.l-table { width: 100%; border-collapse: collapse; font-family: var(--lamp-font-mono); font-size: var(--lamp-text-sm); font-variant-numeric: tabular-nums; }
+.l-table th { border-bottom: 1px solid var(--lamp-header-rule); padding: var(--lamp-space-3); color: var(--lamp-text-muted); font-size: var(--lamp-text-xs); letter-spacing: .12em; text-align: left; text-transform: uppercase; }
+.l-table td { height: var(--lamp-row-height); border-bottom: 1px solid var(--lamp-row-rule); padding: var(--lamp-space-3); color: var(--lamp-text-secondary); }
+.l-table .is-live { color: var(--lamp-phosphor); }
+
+.l-chip { display: inline-flex; min-height: 1.75rem; align-items: center; border: 1px solid var(--lamp-glass-hairline); border-radius: var(--lamp-radius-full); padding: 0 var(--lamp-space-3); color: var(--lamp-text-secondary); font-family: var(--lamp-font-mono); font-size: var(--lamp-text-xs); }
+.l-chip[data-state="live"] { border-color: color-mix(in srgb, var(--lamp-phosphor) 48%, transparent); color: var(--lamp-phosphor); }
+.l-chip[data-state="attention"] { border-color: color-mix(in srgb, var(--lamp-ember) 48%, transparent); color: var(--lamp-ember); }
+
+.l-status { display: inline-flex; gap: var(--lamp-space-2); align-items: center; color: var(--lamp-text-secondary); font-family: var(--lamp-font-mono); font-size: var(--lamp-text-xs); }
+.l-status::before { width: .48rem; height: .48rem; border-radius: var(--lamp-radius-full); background: var(--lamp-running-node); box-shadow: var(--lamp-wire-live-halo); content: ""; }
+.l-status[data-state="settled"]::before { background: var(--lamp-success); box-shadow: none; }
+.l-status[data-state="error"]::before { background: var(--lamp-danger); box-shadow: none; }
+
+.l-note { border-left: 1px solid var(--lamp-annot-rule); padding-left: var(--lamp-space-4); color: var(--lamp-annot-ink); font-family: var(--lamp-font-serif); font-style: italic; }
+html.l-document kbd,
+.l-room kbd { border: 1px solid var(--lamp-glass-hairline); border-radius: var(--lamp-radius-xs); padding: .12rem .36rem; background: var(--lamp-kbd-face); color: var(--lamp-text-secondary); box-shadow: var(--lamp-bezel-edge); font-family: var(--lamp-font-mono); font-size: var(--lamp-text-xs); }
+
+.l-kv { display: grid; grid-template-columns: minmax(7rem, auto) 1fr; gap: var(--lamp-space-2) var(--lamp-space-5); margin: 0; }
+.l-kv dt { color: var(--lamp-text-muted); font-family: var(--lamp-font-mono); font-size: var(--lamp-text-xs); letter-spacing: .08em; text-transform: uppercase; }
+.l-kv dd { margin: 0; color: var(--lamp-text-secondary); }
+
+.l-skeleton { display: grid; gap: var(--lamp-space-3); }
+.l-skeleton span { display: block; height: .75rem; border-radius: var(--lamp-radius-full); background: var(--lamp-skeleton-fill); }
+.l-skeleton span:nth-child(2) { width: 78%; }
+.l-skeleton span:nth-child(3) { width: 54%; }
+
+.l-dial { position: relative; width: 9rem; aspect-ratio: 1; border-radius: var(--lamp-radius-full); background: var(--lamp-bezel-face); box-shadow: var(--lamp-bezel-well); }
+.l-dial::before { position: absolute; inset: 9%; border: 1px solid var(--lamp-glass-hairline); border-radius: inherit; content: ""; }
+.l-dial .l-hand { position: absolute; left: calc(50% - 1px); bottom: 50%; width: 2px; height: 36%; border-radius: var(--lamp-radius-full); background: var(--lamp-brass); box-shadow: var(--lamp-wire-warm-halo); transform: rotate(var(--dial-turn, 38deg)); transform-origin: bottom; transition: transform var(--lamp-motion-slow) var(--lamp-ease-settle); }
+.l-dial .l-hub { position: absolute; top: calc(50% - .35rem); left: calc(50% - .35rem); width: .7rem; height: .7rem; border-radius: var(--lamp-radius-full); background: var(--lamp-candle); box-shadow: var(--lamp-node-glow); }
+.l-mode-dial { display: grid; gap: var(--lamp-space-3); justify-items: center; }
+
+/* Ticks around a face: the detents a mode dial turns between, and the scale a
+   gauge is read against. Each tick is placed by --tick-turn; the origin is
+   pushed down to the centre of the face so a rotation swings it around the
+   dial rather than about itself. The lit one is where the hand is pointing. */
+.l-dial .l-ticks { position: absolute; inset: 0; }
+.l-dial .l-tick { position: absolute; top: 7%; left: calc(50% - .5px); width: 1px; height: 7%; background: var(--lamp-dial-tick); box-shadow: var(--lamp-dial-tick-halo); opacity: .5; transform-origin: 50% 614%; transform: rotate(var(--tick-turn, 0deg)); transition: opacity var(--lamp-motion-base) var(--lamp-ease-out); }
+.l-dial .l-tick[data-on] { opacity: 1; }
+
+/* A mode dial is turned, not pressed. The face is the control. */
+.l-dial[data-turnable] { border: 0; padding: 0; cursor: pointer; }
+.l-dial[data-turnable][aria-disabled="true"],
+.l-dial[data-turnable]:disabled { cursor: not-allowed; opacity: .55; }
+.l-dial[data-unavailable] .l-hand { opacity: 0; }
+.l-dial[data-unavailable] .l-hub { background: var(--lamp-text-muted); box-shadow: none; }
+
+/* Gauge heat. The hand stays instrument metal; the hub is the LED, and it warms
+   slowly as things gather - ambient timing, eased, never a pulse. State is a
+   change of light, and the ramp stops at ember. */
+.l-dial[data-reading] { --gauge: var(--lamp-gauge-quiet); }
+.l-dial[data-reading="warming"] { --gauge: var(--lamp-gauge-warming); }
+.l-dial[data-reading="attention"] { --gauge: var(--lamp-gauge-attention); }
+.l-dial[data-reading] .l-hub { background: var(--gauge); box-shadow: 0 0 22px 6px color-mix(in srgb, var(--gauge) 42%, transparent), 0 0 70px 26px color-mix(in srgb, var(--gauge) 13%, transparent); transition: background var(--lamp-motion-ambient) var(--lamp-ease-in-out), box-shadow var(--lamp-motion-ambient) var(--lamp-ease-in-out); }
+
+/* A needle reading live data is lit; one reading a stale or held value stays
+   brass. The difference is the whole point of a truthful instrument. */
+.l-dial[data-live] .l-hand { background: var(--lamp-gauge-needle-live); box-shadow: var(--lamp-wire-live-halo); }
+
+.l-runway { display: grid; grid-template-columns: auto minmax(5rem, 1fr) auto; gap: var(--lamp-space-3); align-items: center; color: var(--lamp-text-secondary); font-size: var(--lamp-text-sm); }
+.l-runway .l-flame { width: .55rem; height: .55rem; border-radius: var(--lamp-radius-full); background: var(--runway-colour, var(--lamp-phosphor)); box-shadow: 0 0 9px var(--runway-colour, var(--lamp-phosphor)); }
+.l-runway .l-track { height: 2px; background: var(--lamp-glass-hairline); }
+.l-runway .l-oil { width: var(--runway-fill, 68%); height: 100%; background: var(--runway-colour, var(--lamp-phosphor)); box-shadow: 0 0 7px var(--runway-colour, var(--lamp-phosphor)); }
+.l-runway[data-nearness="near"] { --runway-colour: var(--lamp-dusk); --runway-fill: 42%; }
+.l-runway[data-nearness="now"] { --runway-colour: var(--lamp-ember); --runway-fill: 18%; }
+.l-runway b { color: var(--runway-colour, var(--lamp-phosphor)); font-family: var(--lamp-font-mono); font-size: var(--lamp-text-xs); font-weight: var(--lamp-weight-medium); }
+
+.l-presence { position: relative; min-height: 10rem; }
+.l-orb { position: absolute; top: 50%; left: 50%; width: 1.1rem; height: 1.1rem; border-radius: var(--lamp-radius-full); background: var(--lamp-presence-orb); box-shadow: var(--lamp-node-glow); transform: translate(-50%, -50%); animation: l-breathe var(--lamp-motion-breath) var(--lamp-ease-in-out) infinite; }
+.l-orb::after { position: absolute; inset: -2.3rem; border-radius: inherit; background: radial-gradient(circle, color-mix(in srgb, var(--lamp-candle) 22%, transparent), transparent 68%); content: ""; }
+/* A presence with something waiting on you: ember body, ember halo, same breath.
+   Attention is a change of light, not a change of behaviour - nothing here
+   pulses, flashes or speeds up to be noticed. */
+.l-orb[data-state="attention"] { background: var(--lamp-presence-attention); box-shadow: var(--lamp-node-glow-attention); }
+.l-orb[data-state="attention"]::after { background: radial-gradient(circle, color-mix(in srgb, var(--lamp-ember) 22%, transparent), transparent 68%); }
+
+/* Focal Catch composes one presence source with one foreground subject. The
+   local source coordinates drive both the orb and the light caught by the
+   surface. State colour lives in the source corona and at the edge; the
+   presence core stays warm. */
+.l-focal-catch {
+  --l-focal-x: var(--lamp-focal-source-x);
+  --l-focal-y: var(--lamp-focal-source-y);
+  --l-focal-edge: var(--lamp-focal-catch-rest);
+  --l-focal-edge-halo: var(--lamp-wire-warm-halo);
+  --l-focal-source-corona: var(--lamp-focal-catch-rest);
+  position: relative;
+  isolation: isolate;
+}
+.l-focal-catch[data-state="active"] { --l-focal-edge: var(--lamp-focal-catch-active); --l-focal-edge-halo: var(--lamp-wire-live-halo); --l-focal-source-corona: var(--lamp-focal-catch-active); }
+.l-focal-catch[data-state="attention"] { --l-focal-edge: var(--lamp-focal-catch-attention); --l-focal-edge-halo: var(--lamp-wire-ember-halo); --l-focal-source-corona: var(--lamp-focal-catch-attention); }
+.l-focal-catch[data-state="settled"] { --l-focal-edge: var(--lamp-focal-catch-settled); --l-focal-edge-halo: var(--lamp-focal-catch-settled-halo); --l-focal-source-corona: var(--lamp-focal-catch-settled); }
+.l-focal-catch[data-focal-suppressed="true"] .l-focal-source { display: none; }
+.l-focal-catch[data-focal-suppressed="true"] .l-focal-subject {
+  border-color: var(--lamp-glass-hairline);
+  background: var(--lamp-glass-bg);
+  box-shadow: none;
+}
+.l-focal-catch[data-focal-suppressed="true"] .l-focal-subject::before { display: none; }
+.l-focal-catch[data-focal-suppressed="true"] .l-focal-label,
+.l-focal-catch[data-focal-suppressed="true"] .l-focal-state { color: var(--lamp-text-muted); }
+.l-focal-catch .l-focal-source {
+  position: absolute;
+  z-index: 3;
+  top: var(--l-focal-y);
+  left: var(--l-focal-x);
+  width: .8rem;
+  height: .8rem;
+  border-radius: var(--lamp-radius-full);
+  background: var(--l-focal-source-corona);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--l-focal-source-corona) 78%, var(--lamp-candle)),
+    0 0 20px 6px color-mix(in srgb, var(--l-focal-source-corona) 48%, transparent),
+    0 0 54px 22px color-mix(in srgb, var(--l-focal-source-corona) 16%, transparent);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.l-focal-catch .l-focal-source::before {
+  position: absolute;
+  inset: 31%;
+  border-radius: inherit;
+  background: var(--lamp-presence-orb);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--lamp-candle) 46%, transparent);
+  content: "";
+}
+.l-focal-catch .l-focal-subject {
+  position: relative;
+  overflow: hidden;
+  min-height: 14rem;
+  border: 1px solid transparent;
+  border-radius: var(--lamp-card-radius);
+  padding: var(--lamp-space-6);
+  background:
+    radial-gradient(360px 240px at var(--l-focal-x) var(--l-focal-y), color-mix(in srgb, var(--l-focal-edge) 13%, transparent), transparent 70%),
+    var(--lamp-glass-bg);
+  box-shadow: var(--lamp-panel-inner-edge), var(--lamp-focal-halo);
+}
+.l-focal-catch .l-focal-subject::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  background: radial-gradient(220px 90px at var(--l-focal-x) var(--l-focal-y), var(--l-focal-edge), transparent 72%) border-box;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--l-focal-edge) 36%, transparent), var(--l-focal-edge-halo);
+  content: "";
+  pointer-events: none;
+  transition: opacity var(--lamp-motion-sheen) var(--lamp-ease-out);
+  -webkit-mask: linear-gradient(var(--lamp-candle) 0 0) padding-box, linear-gradient(var(--lamp-candle) 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.l-focal-catch[data-state="settled"] .l-focal-subject::before { opacity: .55; }
+.l-focal-catch .l-focal-heading { position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--lamp-space-3); align-items: center; }
+.l-focal-catch .l-focal-label { position: relative; z-index: 2; color: var(--l-focal-edge); }
+.l-focal-catch .l-focal-state { color: var(--l-focal-edge); font-family: var(--lamp-font-mono); font-size: var(--lamp-text-xs); }
+.l-focal-catch .l-focal-content { position: relative; z-index: 2; }
+
+.l-focus-beam {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  width: var(--beam-length, 0);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lamp-dusk), var(--lamp-candle));
+  box-shadow: 0 0 9px color-mix(in srgb, var(--lamp-dusk) 38%, transparent);
+  opacity: var(--beam-visible, 0);
+  pointer-events: none;
+  transform: translate(var(--beam-x, 0), var(--beam-y, 0)) rotate(var(--beam-angle, 0deg)) scaleX(var(--beam-scale, 0));
+  transform-origin: left center;
+  transition: transform var(--lamp-motion-beam) var(--lamp-ease-out), opacity var(--lamp-motion-base) var(--lamp-ease-out);
+}
+.l-field[data-beam-focus="true"] .l-input,
+.l-field[data-beam-focus="true"] .l-select,
+.l-field[data-beam-focus="true"] .l-textarea { box-shadow: var(--lamp-bezel-well), 0 0 18px color-mix(in srgb, var(--lamp-dusk) 16%, transparent); }
+
+@keyframes l-breathe { 0%, 100% { opacity: .78; } 50% { opacity: 1; } }
+@keyframes l-spend-trace { 0% { opacity: 0; transform: translateX(-100%); } 18% { opacity: .8; } 100% { opacity: 0; transform: translateX(100%); } }
+
+body[data-motion="reduced"] .l-sheen::before,
+.l-room[data-motion="reduced"] .l-sheen::before { transition: none; }
+body[data-motion="reduced"] .l-btn,
+body[data-motion="reduced"] .l-segmented button,
+body[data-motion="reduced"] .l-menu-trigger,
+body[data-motion="reduced"] .l-menu [role="menuitem"],
+.l-room[data-motion="reduced"] .l-btn,
+.l-room[data-motion="reduced"] .l-segmented button,
+.l-room[data-motion="reduced"] .l-menu-trigger,
+.l-room[data-motion="reduced"] .l-menu [role="menuitem"] {
+  transition:
+    color var(--lamp-motion-instant) var(--lamp-ease-out),
+    border-color var(--lamp-motion-instant) var(--lamp-ease-out),
+    background var(--lamp-motion-instant) var(--lamp-ease-out);
+}
+body[data-motion="reduced"] .l-btn:active,
+body[data-motion="reduced"] .l-menu-trigger:active,
+.l-room[data-motion="reduced"] .l-btn:active,
+.l-room[data-motion="reduced"] .l-menu-trigger:active { transform: none; }
+body[data-motion="reduced"] .l-toggle .l-toggle-track::after,
+.l-room[data-motion="reduced"] .l-toggle .l-toggle-track::after {
+  transition: background var(--lamp-motion-instant) var(--lamp-ease-out), box-shadow var(--lamp-motion-instant) var(--lamp-ease-out);
+}
+body[data-motion="reduced"] .l-input,
+body[data-motion="reduced"] .l-select,
+body[data-motion="reduced"] .l-textarea,
+.l-room[data-motion="reduced"] .l-input,
+.l-room[data-motion="reduced"] .l-select,
+.l-room[data-motion="reduced"] .l-textarea { transition: none; }
+body[data-motion="reduced"] .l-focal-subject::before,
+.l-room[data-motion="reduced"] .l-focal-subject::before { transition: none; }
+body[data-motion="reduced"] .l-disclosure .l-mark::after,
+body[data-motion="reduced"] .l-tabs .l-carrier,
+body[data-motion="reduced"] .l-tabs [role="tab"],
+body[data-motion="reduced"] .l-dial .l-hand,
+body[data-motion="reduced"] .l-dial .l-tick,
+body[data-motion="reduced"] .l-dial[data-reading] .l-hub,
+.l-room[data-motion="reduced"] .l-disclosure .l-mark::after,
+.l-room[data-motion="reduced"] .l-tabs .l-carrier,
+.l-room[data-motion="reduced"] .l-tabs [role="tab"],
+.l-room[data-motion="reduced"] .l-dial .l-hand,
+.l-room[data-motion="reduced"] .l-dial .l-tick,
+.l-room[data-motion="reduced"] .l-dial[data-reading] .l-hub,
+body[data-motion="reduced"] .l-focus-beam,
+.l-room[data-motion="reduced"] .l-focus-beam { transition: none; }
+body[data-motion="reduced"] .l-focus-beam,
+.l-room[data-motion="reduced"] .l-focus-beam { --beam-visible: 0; --beam-scale: 0; }
+body[data-motion="reduced"] .l-btn::after,
+.l-room[data-motion="reduced"] .l-btn::after,
+body[data-motion="reduced"] .l-wire::after,
+.l-room[data-motion="reduced"] .l-wire::after { display: none; }
+body[data-motion="reduced"] .l-orb,
+.l-room[data-motion="reduced"] .l-orb { animation: none; opacity: 1; }
+html.l-document[data-motion="reduced"] { scroll-behavior: auto; }
+
+@media (pointer: coarse) {
+  .l-btn,
+  .l-segmented button,
+  .l-menu-trigger,
+  .l-menu [role="menuitem"],
+  .l-input,
+  .l-select,
+  .l-check,
+  .l-disclosure summary,
+  .l-tabs [role="tab"] { min-height: var(--lamp-size-control-touch); }
+}
+
+@media (max-width: 37.5rem) {
+  .l-focal-catch { --l-focal-x: 3.25rem; }
+  .l-focal-catch .l-focal-subject { min-height: 12rem; padding: var(--lamp-space-5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.l-document { scroll-behavior: auto; }
+  .l-sheen::before { transition: none; }
+  .l-btn,
+  .l-segmented button,
+  .l-menu-trigger,
+  .l-menu [role="menuitem"] {
+    transition:
+      color var(--lamp-motion-instant) var(--lamp-ease-out),
+      border-color var(--lamp-motion-instant) var(--lamp-ease-out),
+      background var(--lamp-motion-instant) var(--lamp-ease-out);
+  }
+  .l-btn:active,
+  .l-menu-trigger:active { transform: none; }
+  .l-toggle .l-toggle-track::after {
+    transition: background var(--lamp-motion-instant) var(--lamp-ease-out), box-shadow var(--lamp-motion-instant) var(--lamp-ease-out);
+  }
+  .l-input,
+  .l-select,
+  .l-textarea,
+  .l-focal-subject::before,
+  .l-focus-beam { transition: none; }
+  .l-focus-beam { --beam-visible: 0; --beam-scale: 0; }
+  .l-btn::after,
+  .l-wire::after { display: none; }
+  .l-disclosure .l-mark::after,
+  .l-tabs .l-carrier,
+  .l-tabs [role="tab"],
+  .l-dial .l-hand,
+  .l-dial .l-tick,
+  .l-dial[data-reading] .l-hub { transition: none; }
+  .l-orb { animation: none; opacity: 1; }
+}

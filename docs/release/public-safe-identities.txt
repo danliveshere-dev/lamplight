@@ -1,0 +1,2 @@
+# Public-safe Git author and committer email allowlist, one address per line.
+danliveshere-dev@users.noreply.github.com

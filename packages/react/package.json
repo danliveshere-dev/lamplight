@@ -1,0 +1,13 @@
+{
+  "name": "lamplight-kit-deps",
+  "private": true,
+  "scripts": {
+    "build": "node generate.mjs",
+    "test": "node generate.mjs && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@types/react": "^19.2.18",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  }
+}
