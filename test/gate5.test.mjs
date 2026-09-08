@@ -52,6 +52,8 @@ test('Node 20 is limited to the packed-consumer contract', () => {
   assert.match(ci, /matrix:\s*\n\s+node: \["22\.12", "24"\]/);
   assert.match(ci, /node20-smoke:[\s\S]*node-version: "20"[\s\S]*node20-consumer-smoke\.mjs/);
   assert.doesNotMatch(ci.match(/node20-smoke:[\s\S]*?(?=\n  \S|$)/)?.[0] ?? '', /npm test/);
+  const smoke = readFileSync(join(repository, 'scripts/gate5/node20-consumer-smoke.mjs'), 'utf8');
+  assert.match(smoke, /process\.versions\.node[\s\S]*!== 20/);
 });
 
 test('licence boundary remains explicit in machine-readable and human-readable files', () => {

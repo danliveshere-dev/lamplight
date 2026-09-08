@@ -7,7 +7,7 @@ Gate 4 review target. A row marked **not run** is not a pass.
 
 | Cell | Status | Evidence |
 | --- | --- | --- |
-| Node 20.x | not run locally | CI-ready: `npm ci && npm test && npm run qa:packages` |
+| Node 20.x | not run locally | CI-ready packed-consumer-only smoke: workspace build, exact packs, React 18 install and core/adapter imports |
 | Node 22.12.x | not run locally | CI-ready: `npm ci && npm test && npm run qa:packages` |
 | Node 24.17.0 | passed | root suite, deterministic packs, size gates and all packed consumers |
 | Plain HTML / vanilla | passed | core tarball installed with scripts disabled; CSS exports resolved |
@@ -15,9 +15,11 @@ Gate 4 review target. A row marked **not run** is not a pass.
 | React 18.3.1 | passed | core and adapter tarballs installed; server-rendered markup verified |
 | React 19.2.8 | passed | core and adapter tarballs installed; server-rendered markup verified |
 
-The Node commands use the same locked repository and package QA harness at each
-version. Node 20 and 22.12 remain unobserved until a runner executes those rows;
-their presence here is a matrix definition, not release evidence.
+Node 22.12 and 24 run the full source and example suite. Node 20 is deliberately
+limited to the packed core and React consumer contract because the development
+suite includes Astro 7 and requires Node 22.12 or newer. Node 20 and 22.12
+remain unobserved until a runner executes those rows; their presence here is a
+matrix definition, not release evidence.
 
 ## Browser matrix
 

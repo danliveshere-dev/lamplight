@@ -7,6 +7,9 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
+if (Number.parseInt(process.versions.node, 10) !== 20) {
+  throw new Error(`Node 20 packed consumer smoke must run on Node 20, received ${process.version}`);
+}
 const work = mkdtempSync(join(tmpdir(), 'lamplight-node20-smoke-'));
 const cache = join(work, 'npm-cache');
 const environment = {
