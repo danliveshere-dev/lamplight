@@ -107,3 +107,24 @@ independent reviewer has returned no unresolved blocker.
 - [x] Receive the formal Codex Security repository scan.
 - [x] Receive independent Gate 5 review.
 - [x] Resolve every blocking finding and re-review.
+
+## Gate 7 preparation checklist
+
+- [x] Prepare governance, support, conduct, issue and pull-request templates.
+- [x] Prepare the GitHub initialisation and repository-settings runbook.
+- [x] Prepare the first-release and npm trusted-publishing sequence.
+- [x] Add an explicit current-and-history binary allowlist and metadata check.
+- [x] Classify every reachable blob by content and enforce the policy in CI.
+- [x] Add a release-manifest gate that stays red while names and public metadata
+      remain placeholders.
+- [x] Close unrestricted issue intake and separate conduct from vulnerability
+      reporting.
+- [x] Receive independent review of the Gate 7 preparation pack.
+- [ ] Complete the Gate 6 Claude review.
+- [ ] Choose and verify GitHub owner/name, visibility and npm namespace.
+- [ ] Initialise the GitHub repository and witness hosted checks.
+- [ ] Configure and verify branch, tag and security settings.
+- [ ] Rename packages, run the final release matrix and receive maintainer-held
+      acceptance.
+- [ ] Obtain explicit authority for every public push, visibility change, tag,
+      package publication and GitHub release.

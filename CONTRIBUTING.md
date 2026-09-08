@@ -15,12 +15,14 @@ alternative, the compatibility cost and how the result will be tested.
 ```sh
 npm ci
 npm test
-npm run privacy
+npm run gate5:check
+npm run gate7:prepare
 ```
 
 The root test builds both packages and the vanilla, Astro and React examples.
-Changes to appearance also need the Gate 4 browser and visual evidence once
-that machinery is present.
+Changes to appearance also need the Gate 4 browser, visual and website-canary
+evidence. A new or changed binary needs independent visual or provenance review
+before its digest enters the public allowlist.
 
 ## Boundaries
 

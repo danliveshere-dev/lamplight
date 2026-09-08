@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "reviewEvidence": "Gate 4 independent visual review and Gate 5 binary metadata review, 2026-09-08",
+  "fonts": [
+    { "sha256": "33faf307fa6031fb4062276d7320a6d632de890cbb347576fd80cfa01077bc25", "bytes": 50400, "paths": ["packages/core/fonts/IBMPlexMono-Medium.woff2"], "historicalPaths": ["assets/fonts/IBMPlexMono-Medium.woff2"] },
+    { "sha256": "ba204497f16b6d334cee9d1e963a831b73e3a56e1d6300a8489d18df7214b350", "bytes": 49248, "paths": ["packages/core/fonts/IBMPlexMono-Regular.woff2"], "historicalPaths": ["assets/fonts/IBMPlexMono-Regular.woff2"] },
+    { "sha256": "13284fab1821ba6e3652c1580fcf2bbfd8c9309520c69b3d1224dab40b37c597", "bytes": 67220, "paths": ["packages/core/fonts/IBMPlexSans-Italic.woff2"], "historicalPaths": ["assets/fonts/IBMPlexSans-Italic.woff2"] },
+    { "sha256": "5660f8a658f8bb50dbc005232f885eadffd2bc1c235c4f6fbb63469d1f9cde6d", "bytes": 66740, "paths": ["packages/core/fonts/IBMPlexSans-Medium.woff2"], "historicalPaths": ["assets/fonts/IBMPlexSans-Medium.woff2"] },
+    { "sha256": "ba711a3085ff9f27440b6b9c4550cfc47c97bf36591d5da958b975bb3add8c1a", "bytes": 63020, "paths": ["packages/core/fonts/IBMPlexSans-Regular.woff2"], "historicalPaths": ["assets/fonts/IBMPlexSans-Regular.woff2"] },
+    { "sha256": "f78048030eab62e860efa39a0df79e2e5581bf122eb95b9bc42c0b8a4988d205", "bytes": 67060, "paths": ["packages/core/fonts/IBMPlexSans-SemiBold.woff2"], "historicalPaths": ["assets/fonts/IBMPlexSans-SemiBold.woff2"] },
+    { "sha256": "ba5feed9ebae36e3b6ae3486052c90f4f42a294fa67a7c9415985175d19c4c82", "bytes": 73852, "paths": ["packages/core/fonts/IBMPlexSerif-Italic.woff2"], "historicalPaths": ["assets/fonts/IBMPlexSerif-Italic.woff2"] },
+    { "sha256": "024ebce13cec984b46e350dd85fa7c01105c777e116bfe95f097ad7fa93f39f2", "bytes": 69400, "paths": ["packages/core/fonts/IBMPlexSerif-Regular.woff2"], "historicalPaths": ["assets/fonts/IBMPlexSerif-Regular.woff2"] }
+  ],
+  "screenshots": [
+    { "path": "test/browser/__screenshots__/surface-1440x900-chromium.png", "sha256": "bcb9e70fef7d46442371953a6f8379620139ed6d310acf1767ba65c37e505daf", "bytes": 325067 },
+    { "path": "test/browser/__screenshots__/surface-1440x900-firefox.png", "sha256": "f65e59182030eb0f0426afef26ecafa2b64c810715e4d55bd20a195fac502359", "bytes": 371779 },
+    { "path": "test/browser/__screenshots__/surface-1440x900-webkit.png", "sha256": "c7bbedbf245ea2950a664928aa36d5c12314a2e0e8f09892d98a72fa05a3530c", "bytes": 469031 },
+    { "path": "test/browser/__screenshots__/surface-2200x1200-chromium.png", "sha256": "903847afe3347a57fbb91496a6df6e91a18688c5d7b9ac52d82eaa92d43b0615", "bytes": 337916 },
+    { "path": "test/browser/__screenshots__/surface-2200x1200-firefox.png", "sha256": "af450cec8e2577c52c7261a1a90ccf81a2cf0f62316db20df92bcc15461d6b4e", "bytes": 391124 },
+    { "path": "test/browser/__screenshots__/surface-2200x1200-webkit.png", "sha256": "ca15af09c6bb7f68eeaf25d42fb21b9376bae890bb6cb198ba459e8dd2246014", "bytes": 504270 },
+    { "path": "test/browser/__screenshots__/surface-320x568-chromium.png", "sha256": "54b5b5af8f49a98c2715e8fff61c69096cd35a027cbeb9748b60ebece7ce1b90", "bytes": 291894 },
+    { "path": "test/browser/__screenshots__/surface-320x568-firefox.png", "sha256": "f06df5d36f34a89cd6f7202d0eb107823e13456760f04c3bae4e065163551520", "bytes": 329013 },
+    { "path": "test/browser/__screenshots__/surface-320x568-webkit.png", "sha256": "0368defea6083e7ab051626addb65ec1d1d221e936c09b18b55363681e170861", "bytes": 398055 },
+    { "path": "test/browser/__screenshots__/surface-390x844-chromium.png", "sha256": "8082852ebfac7a6ea5d2f8e541db9bf9c501375c06d7b7e55b9a9aded6378159", "bytes": 296300 },
+    { "path": "test/browser/__screenshots__/surface-390x844-firefox.png", "sha256": "c4cc4db343127a953ea9a7a0c721d3eee13c97ea99b721131207fb74bb78363c", "bytes": 339752 },
+    { "path": "test/browser/__screenshots__/surface-390x844-webkit.png", "sha256": "51fadedfa84317fe739c68162fca6e16e11cae36a42a0900dfe7e5f401620d0f", "bytes": 407141 },
+    { "path": "test/browser/__screenshots__/surface-834x1112-chromium.png", "sha256": "5e7f289525fb70b12cf1e7a1bc20d6d1d18f84a229075cbd871da428b496d53a", "bytes": 301299 },
+    { "path": "test/browser/__screenshots__/surface-834x1112-firefox.png", "sha256": "ac4bc9117749814ab16553a248167b6c6334dfbcb7af5848e515ddc069217bd8", "bytes": 338521 },
+    { "path": "test/browser/__screenshots__/surface-834x1112-webkit.png", "sha256": "9c0361279ce79fdd8544d770a4ec3abc29ac3ad120c7de97c344567e1ba2c32e", "bytes": 425878 }
+  ]
+}

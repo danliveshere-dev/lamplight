@@ -31,20 +31,27 @@ test('README links every required Gate 3 guide and runnable example', () => {
 test('React peer intent is distinct from observed compatibility evidence', () => {
   const readme = readFileSync(join(repository, 'README.md'), 'utf8');
   const adapters = readFileSync(join(repository, 'docs/adapters.md'), 'utf8');
-  const evidence = readFileSync(join(repository, 'docs/release/gate-3-evidence.md'), 'utf8');
+  const gate3 = readFileSync(join(repository, 'docs/release/gate-3-evidence.md'), 'utf8');
+  const gate4 = readFileSync(join(repository, 'docs/release/gate-4-evidence.md'), 'utf8');
 
   assert.doesNotMatch(readme, /supports React 18 or newer/i);
   assert.match(readme, /declares a `react >=18` peer contract/);
-  for (const source of [readme, adapters, evidence]) {
-    assert.match(source, /observed\s+React\s+19\.2\.8\s+only/);
-  }
-  assert.match(adapters, /React 18 and 19/);
-  assert.match(evidence, /React 18 validation remains an explicit Gate 4 matrix item/);
+  assert.match(gate3, /observed\s+React\s+19\.2\.8\s+only/);
+  assert.match(readme, /observed against React 18\.3\.1 and 19\.2\.8/);
+  assert.match(gate4, /React 18\.3\.1 and React 19\.2\.8/);
+  assert.match(adapters, /React\s+18\.3\.1 and 19\.2\.8/);
+  assert.match(gate3, /React 18 validation remains an explicit Gate 4 matrix item/);
 });
 
-test('local Markdown links resolve to repository files', () => {
-  const markdown = [join(repository, 'README.md'), join(repository, 'CONTRIBUTING.md'),
-    ...filesWithin(join(repository, 'docs')).filter((path) => extname(path) === '.md')];
+test('local Markdown links resolve across public documentation', () => {
+  const rootMarkdown = readdirSync(repository, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && extname(entry.name) === '.md')
+    .map((entry) => join(repository, entry.name));
+  const markdown = [
+    ...rootMarkdown,
+    join(repository, '.github/PULL_REQUEST_TEMPLATE.md'),
+    ...filesWithin(join(repository, 'docs')).filter((path) => extname(path) === '.md'),
+  ];
   const missing = [];
   for (const file of markdown) {
     const source = readFileSync(file, 'utf8');

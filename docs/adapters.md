@@ -36,6 +36,7 @@ classes, package exports or runtime branches.
 ## Declared and observed React compatibility
 
 The current React adapter declares `react >=18` as its peer contract. That range
-states compatibility intent, not completed matrix evidence. Gate 3 builds and
-tests observed React 19.2.8 only. Gate 4 must exercise supported React 18 and 19
-versions before a release candidate can claim the full declared range.
+states compatibility intent, not an evergreen claim about every future React
+release. Gate 3 builds and tests observed React 19.2.8 only. Gate 4 subsequently
+installed and rendered the packed adapter in synthetic consumers using React
+18.3.1 and 19.2.8. Those exact observations are the current release evidence.

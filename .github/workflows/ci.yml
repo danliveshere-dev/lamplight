@@ -37,6 +37,9 @@ jobs:
         run: npm test
       - name: Check public-repository controls
         run: npm run gate5:check
+      - name: Check public-history binary policy
+        if: matrix.node == '24'
+        run: npm run gate7:prepare
       - name: Check package size
         run: npm run qa:size
 

@@ -13,10 +13,12 @@ later repair.
 
 ## Status
 
-This is a clean-history, pre-release repository. Gates 1 and 2 have passed.
-Gate 3 adoption material is awaiting independent review. The packages are
-private, use deliberately internal names and have not been published. See the
-[release programme](TODO.md) and [Gate 3 evidence](docs/release/gate-3-evidence.md).
+This is a clean-history, pre-release repository. Gates 1 through 5 have passed
+with independent reviews. Gate 6 is held for the maintainer's separate Claude
+review, and Gate 7 public hosting and release decisions remain open. The
+packages are private, use deliberately internal names and have not been
+published. See the [release programme](TODO.md), [Gate 5 evidence](docs/release/gate-5-evidence.md)
+and [Gate 7 readiness pack](docs/release/gate-7-readiness.md).
 
 ## Honest portability boundary
 
@@ -29,9 +31,9 @@ Lamplight is currently dark-only. It expects modern CSS custom properties,
 `color-mix()`, gradients and standard accessibility media queries. Its optional
 living-light module uses contemporary DOM observers and pointer APIs. Browsers
 without those APIs still receive the CSS surface, but not every light effect.
-The React adapter declares a `react >=18` peer contract. Gate 3 has observed
-React 19.2.8 only; React 18 remains a Gate 4 compatibility-matrix check. See the
-[browser policy](docs/browser-support.md) for the tested-versus-supported rule.
+The React adapter declares a `react >=18` peer contract. Packed consumers have
+been observed against React 18.3.1 and 19.2.8. See the [browser policy](docs/browser-support.md)
+for the tested-versus-supported rule.
 
 ## Quick start before public release
 
@@ -129,6 +131,9 @@ ancestor Room.
 - [Adoption guide](docs/adoption.md)
 - [Versioning and compatibility](docs/versioning.md)
 - [Contributing](CONTRIBUTING.md)
+- [Governance](GOVERNANCE.md)
+- [Support](SUPPORT.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
 - [Origin](docs/ORIGIN.md)
 
 ## Non-goals for 1.0
@@ -145,7 +150,8 @@ they must not fork the visual authority.
 ```sh
 npm ci
 npm test
-npm run privacy
+npm run gate5:check
+npm run gate7:prepare
 ```
 
 `npm test` builds both packages and all three synthetic examples, checks the
