@@ -4,7 +4,7 @@ References were classified by meaning rather than removed blindly.
 
 | Reference | Decision | Rationale |
 | --- | --- | --- |
-| Daius | retain only in `docs/ORIGIN.md` and release provenance | Honest origin, not a runtime or API dependency |
+| Daius | retain only in `docs/ORIGIN.md`, the internal-package migration guide and release provenance | Honest origin and bounded transition guidance, not a runtime or API dependency |
 | tallow, phosphor, ember, hearth | retain | Stable material and semantic colour names in Lamplight's public vocabulary |
 | Presence, Orb and FocalCatch | retain provisionally | Their component semantics stand without the original consumer; Gate 2 must confirm API placement |
 | consumer domain colour tokens | remove | Host branding belongs in consumer extensions, not core tokens |

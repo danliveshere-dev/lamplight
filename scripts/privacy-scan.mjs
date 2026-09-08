@@ -7,6 +7,7 @@ import { extname, join } from 'node:path';
 const binaryExtensions = new Set(['.woff', '.woff2', '.png', '.jpg', '.jpeg', '.gif', '.webp']);
 const provenanceFiles = new Set([
   'docs/ORIGIN.md',
+  'docs/migration-internal-package.md',
   'docs/release/source-allowlist.md',
   'docs/release/reference-classification.md',
   'docs/release/gate-1-evidence.md',
