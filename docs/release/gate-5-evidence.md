@@ -10,6 +10,8 @@ Implementation commits:
   repository security policy.
 - `466e166a24624a23c72d15434ae71f9c4ecd4082` adds pinned workflows, supply-chain
   controls and negative policy tests.
+- `f4845245f8c67b1e39e9838e5f4b3bf7001fe01c` makes Node 20 evidence
+  runtime-enforced and corrects the compatibility matrix.
 
 No remote, tag, package publication, release workflow or registry credential
 was created.
