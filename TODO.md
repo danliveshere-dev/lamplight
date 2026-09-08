@@ -10,9 +10,9 @@ independent reviewer has returned no unresolved blocker.
 | 2 | Universal token and package architecture | passed | `docs/release/gate-2-evidence.md` |
 | 3 | Adoption documentation and examples | passed | `docs/release/gate-3-evidence.md` |
 | 4 | Cross-consumer QA and reproducibility | passed | `docs/release/gate-4-evidence.md` |
-| 5 | Security, licensing and public-repo controls | awaiting independent review and formal security scan | `docs/release/gate-5-evidence.md` |
-| 6 | Independent Claude first-commit review | held for maintainer | pending Emberline handoff |
-| 7 | GitHub and release-candidate readiness | not started | no public action authorised |
+| 5 | Security, licensing and public-repo controls | passed | `docs/release/gate-5-evidence.md` |
+| 6 | Independent Claude first-commit review | held for maintainer | Emberline handoff prepared |
+| 7 | GitHub and release-candidate readiness | preparing local release pack | no public action authorised |
 
 ## Gate 1 checklist
 
@@ -104,6 +104,6 @@ independent reviewer has returned no unresolved blocker.
 - [x] Add npm and GitHub Actions Dependabot configuration.
 - [x] Prove mutable refs, risky triggers and excess permissions are rejected.
 - [x] Run a live npm advisory audit and proportional Gate 4 regression matrix.
-- [ ] Receive the formal Codex Security repository scan.
-- [ ] Receive independent Gate 5 review.
-- [ ] Resolve every blocking finding and re-review.
+- [x] Receive the formal Codex Security repository scan.
+- [x] Receive independent Gate 5 review.
+- [x] Resolve every blocking finding and re-review.

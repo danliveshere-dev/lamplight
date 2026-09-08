@@ -108,12 +108,13 @@ materially amplifies a security impact:
 
 ## Current limitations
 
-The repository has local policy, package, privacy, browser and audit checks, but
-hosted GitHub workflows cannot be exercised before a remote exists. A formal
-Codex Security scan and independent Gate 5 review remain required. The current
-QA record also leaves unrun Node 20, Node 22, Safari, assistive-technology and
-maintainer-held acceptance cells open. Playwright WebKit evidence is not Safari
-acceptance.
+The repository has local policy, package, privacy, browser and audit checks. A
+formal Codex Security scan and independent Gate 5 review were completed against
+the clean-history candidate, and every accepted finding was remediated and
+re-reviewed. Hosted GitHub workflows cannot be exercised before a remote exists.
+The current QA record also leaves unrun Node 20, Node 22.12, Safari,
+assistive-technology and maintainer-held acceptance cells open. Playwright
+WebKit evidence is not Safari acceptance.
 
 No published-version support window exists yet. Until the first release, a
 commit hash is the only precise identifier for a report.

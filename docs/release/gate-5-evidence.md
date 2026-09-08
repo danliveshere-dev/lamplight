@@ -1,6 +1,6 @@
 # Gate 5 evidence: security, licensing and public-repository controls
 
-Status: awaiting independent review and a formal Codex Security scan.
+Status: passed locally. Public hosting and publication remain separately held.
 
 Base: `23a1f9528e8e3e114a07191923744d4b781eec64`.
 
@@ -14,6 +14,8 @@ Implementation commits:
   runtime-enforced and corrects the compatibility matrix.
 - `064993dd9224d227eb411b9a752f739850d62ef9` makes both npm archives
   self-contained with canonical Apache licence and notice copies.
+- `06f28dab6aaa1ba010f2f091da643d349f7025a2` remediates every accepted formal
+  scan finding and every concrete bypass found by the independent fix review.
 
 No remote, tag, package publication, release workflow or registry credential
 was created.
@@ -61,6 +63,12 @@ exists and the feature is enabled and verified.
 - no first-party runtime or optional dependencies and no first-party install,
   preparation or packing lifecycle script;
 - no network-capable operation in the packaged browser and React JavaScript;
+- grammar-aware CSS string projection, one exact reviewed inline image and no
+  declaration escape, at-rule, comment, remote URL or string-valued image source;
+- non-shallow, fully materialised Git objects reachable from local refs, with
+  replacement refs and legacy grafts rejected and replacement semantics disabled;
+- parsed workflow inputs requiring checkout credential persistence to be
+  disabled, plus full history for the Gate 5 job;
   and
 - credential-like filenames and secret signatures across every Git commit,
   while emitting filenames rather than matched content.
@@ -70,10 +78,33 @@ package surfaces, licences, workflows, repository controls and release
 evidence. It continues to validate every author and committer identity in Git
 history against the explicit public-safe allowlist.
 
-Six Gate 5 regression tests pass. The negative cases prove rejection of a
-floating action tag, excess contents permission, `pull_request_target`, a
-secret expression and an npm publish command. A separate assertion prevents
-the Astro-dependent full test suite being assigned to Node 20.
+Gate 5 regression tests include real shallow-clone, replacement-ref and legacy
+graft repositories, a simulated missing-object inventory, YAML scalar and
+duplicate-key spoofs, and CSS declaration, rule, at-rule, comment, remote URL,
+string-image and syntax-drift cases. The ordinary test suite constructs its own
+full temporary repository, so a developer's shallow clone is not rejected
+unless they explicitly run the history-sensitive Gate 5 check.
+
+## Formal scan and independent remediation review
+
+Codex Security scan `7e223f02-348b-4611-b7a7-58636cbd8f35` completed against
+candidate `d015a40647aef24d06d25c6be06a7665c7f14bf2`, covering all 110 tracked
+paths. It accepted three findings: incomplete history inspection in hosted
+shallow clones, persisted checkout credentials and unsafe CSS string
+projection. The scan was sealed complete with one medium and two low findings.
+
+The fix review then found four concrete gaps in the first remediation: Git
+replacement and graft semantics, CSS string sources in `image()` and
+`image-set()`, a YAML block-scalar spoof, and an unintended requirement for
+ordinary tests to run in a complete clone. The reviewer re-read the repaired
+boundaries and returned no residual actionable finding. The final bounded
+graft-path re-review also returned closed. No severity was downgraded to obtain
+closure.
+
+The current 15 PNG baselines and IBM Plex font binaries were separately
+inspected and did not establish a present vulnerability. Binary privacy remains
+a Gate 7 repository-policy control: public binaries require an explicit
+allowlist, deterministic metadata rules and independent visual review.
 
 ## Workflow pins
 
@@ -102,14 +133,13 @@ version, so a local Node 24 execution cannot be mistaken for Node 20 evidence.
 
 Observed on Node 24.17.0 with npm 12.0.1:
 
-- `npm test`: passed, including 33 root tests and all 17 React contracts;
+- `npm test`: passed, including 42 root tests and all 17 React contracts;
 - `npm run gate5:check`: passed licence, security/history and privacy checks;
 - `npm ls --all`: completed successfully against the locked dependency tree;
-- live `npm audit --audit-level=high --json`: zero info, low, moderate, high or
-  critical vulnerabilities across 405 reported dependencies;
+- live `npm audit --audit-level=high`: zero vulnerabilities;
 - `npm run qa:size`: passed deterministic double builds and packs, exact 19-path
   core and five-path React archive allowlists and every size budget. Core is
-  532,615 B packed and 627,934 B unpacked; React is 15,906 B packed and 53,973 B
+  532,624 B packed and 627,977 B unpacked; React is 15,906 B packed and 53,973 B
   unpacked, within the existing 600/700 KiB and 20/60 KiB budgets respectively;
 - `npm run qa:packages`: passed isolated packed consumers for vanilla, Astro
   7.3.1, React 18.3.1 and React 19.2.8 with lifecycle scripts disabled;
@@ -126,11 +156,10 @@ test port. Each was rerun with the narrow approved network or local-browser
 permission and then passed. These were environment restrictions rather than
 product-test failures.
 
-## Open evidence and review gates
+## Evidence that remains external or maintainer-held
 
 The following are not claimed as passes:
 
-- the formal Codex Security repository scan and its independent finding review;
 - any GitHub-hosted CI, CodeQL, dependency-review or Dependabot run;
 - the Node 20 packed-consumer and Node 22.12 full-suite workflow cells;
 - GitHub private vulnerability reporting, which cannot be enabled before the
@@ -140,19 +169,5 @@ The following are not claimed as passes:
 - the Gate 4 Impeccable detector, which remains `DEGRADED` and therefore an
   undercount rather than a pass.
 
-Gate 5 must remain awaiting review until the formal scan and independent review
-return with no unresolved blocker.
-
-## Independent review questions
-
-1. Does the REUSE override classify only IBM Plex assets and their OFL text,
-   leaving Lamplight's font stylesheet under Apache-2.0?
-2. Does `SECURITY.md` describe realistic trust boundaries, reportable findings
-   and limitations without inventing a reporting route?
-3. Can any workflow obtain broader permission, use a mutable action, execute a
-   risky trigger or gain a release credential?
-4. Do lock and history checks fail closed without printing secret values?
-5. Is Node 20 honestly restricted to the packed-consumer contract while the
-   Astro-dependent source suite remains on supported development runtimes?
-6. Do local green tests avoid implying that hosted GitHub, Safari, assistive
-   technology, formal security scan or maintainer acceptance has run?
+Gate 5 is closed on local evidence. None of these external or user-held cells
+may be inferred from that result.
