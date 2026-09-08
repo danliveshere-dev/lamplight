@@ -5,9 +5,12 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { basename, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { approvedActions, validateWorkflow } from './workflow-policy.mjs';
+import { assertCompleteGitHistory, gitHistoryEnvironment } from './git-history.mjs';
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const findings = [];
+
+assertCompleteGitHistory(root);
 
 function read(path) {
   return readFileSync(join(root, path), 'utf8');
@@ -87,11 +90,18 @@ const secretPatterns = [
   'n' + 'pm_[A-Za-z0-9]{20,}',
   'xox[baprs]-[A-Za-z0-9-]{10,}',
 ].join('|');
-const commits = execFileSync('git', ['rev-list', '--all'], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/).filter(Boolean);
+const historyEnvironment = gitHistoryEnvironment();
+const commits = execFileSync('git', ['rev-list', '--all'], {
+  cwd: root, encoding: 'utf8', env: historyEnvironment,
+}).trim().split(/\r?\n/).filter(Boolean);
 for (const commit of commits) {
-  const names = execFileSync('git', ['ls-tree', '-r', '--name-only', commit], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/).filter(Boolean);
+  const names = execFileSync('git', ['ls-tree', '-r', '--name-only', commit], {
+    cwd: root, encoding: 'utf8', env: historyEnvironment,
+  }).trim().split(/\r?\n/).filter(Boolean);
   for (const path of names) if (forbiddenNames.test(path)) findings.push(`${commit}: forbidden credential-like path ${path}`);
-  const result = spawnSync('git', ['grep', '-I', '-l', '-E', '-e', secretPatterns, commit, '--'], { cwd: root, encoding: 'utf8' });
+  const result = spawnSync('git', ['grep', '-I', '-l', '-E', '-e', secretPatterns, commit, '--'], {
+    cwd: root, encoding: 'utf8', env: historyEnvironment,
+  });
   if (result.status === 0) {
     for (const match of result.stdout.trim().split(/\r?\n/).filter(Boolean)) findings.push(`${commit}: secret-like content in ${match.split(':').slice(1).join(':')}`);
   } else if (result.status !== 1) {

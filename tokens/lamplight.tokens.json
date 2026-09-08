@@ -803,7 +803,7 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-focal-halo-hover",
-          "syntax": "*"
+          "syntax": "<shadow>"
         }
       }
     },
@@ -823,7 +823,7 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-node-glow-attention",
-          "syntax": "*"
+          "syntax": "<shadow>"
         }
       }
     },
@@ -833,7 +833,7 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-focal-source-x",
-          "syntax": "*"
+          "syntax": "<percentage>"
         }
       }
     },
@@ -843,7 +843,7 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-focal-source-y",
-          "syntax": "*"
+          "syntax": "<percentage>"
         }
       }
     },
@@ -1076,7 +1076,7 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-tracking-etched",
-          "syntax": "*"
+          "syntax": "<length>"
         }
       }
     },

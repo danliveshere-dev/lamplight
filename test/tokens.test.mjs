@@ -47,6 +47,42 @@ test('validator fails closed on unknown aliases, cycles and unclassified CSS str
   assert.throws(() => validateTokenDocument(unclassified), /CSS-bound string must declare/);
 });
 
+test('validator rejects CSS breakout, at-rules, comments, remote URLs and syntax drift', () => {
+  const cases = [
+    ['rgba(0,0,0,.5); --lamp-stolen: red', /declaration, rule/],
+    ['red} body { color: red', /declaration, rule/],
+    ['red; @import url("https://example.invalid/a.css")', /declaration, rule/],
+    ['red/**/', /comment/],
+    ['url("https://example.invalid/track.png")', /URL outside/],
+    ['image-set("https://example.invalid/track.png" 1x)', /string-valued image source/],
+    ['image("https://example.invalid/track.png")', /string-valued image source/],
+    ['url("data:text/html,unsafe")', /URL outside/],
+    ['{primitive.moss}; color: red', /declaration, rule/],
+  ];
+  for (const [value, expected] of cases) {
+    const unsafe = structuredClone(document);
+    unsafe.semantic['glass-bg'].$value = value;
+    if (value.startsWith('url(')) unsafe.semantic['glass-bg'].$extensions['org.lamplight.css'].syntax = '<image>';
+    assert.throws(() => validateTokenDocument(unsafe), expected, value);
+  }
+
+  const unknownSyntax = structuredClone(document);
+  unknownSyntax.semantic['glass-bg'].$extensions['org.lamplight.css'].syntax = '*';
+  assert.throws(() => validateTokenDocument(unknownSyntax), /unsupported CSS syntax/);
+
+  const mismatchedSyntax = structuredClone(document);
+  mismatchedSyntax.semantic['glass-bg'].$value = '2px solid red';
+  assert.throws(() => validateTokenDocument(mismatchedSyntax), /does not match <color>/);
+});
+
+test('all current CSS strings have precise syntax and retain the reviewed inline image', () => {
+  const strings = flattenTokens(document).filter(({ token }) => token.$type === 'string');
+  assert.equal(strings.length, 30);
+  assert.equal(strings.some(({ token }) => token.$extensions['org.lamplight.css'].syntax === '*'), false);
+  assert.doesNotThrow(() => validateTokenDocument(document));
+  assert.match(document.semantic['glass-grain'].$value, /^url\("data:image\/svg\+xml,/);
+});
+
 test('typed values and CSS-bound projections are explicitly distinguishable', () => {
   const entries = flattenTokens(document);
   for (const { token, path } of entries) {

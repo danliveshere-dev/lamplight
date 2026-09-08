@@ -3,6 +3,7 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { extname, join } from 'node:path';
+import { assertCompleteGitHistory, gitHistoryEnvironment } from './gate5/git-history.mjs';
 
 const binaryExtensions = new Set(['.woff', '.woff2', '.png', '.jpg', '.jpeg', '.gif', '.webp']);
 const provenanceFiles = new Set([
@@ -96,6 +97,8 @@ const files = [...new Set([...trackedOrCandidateFiles, ...generatedPackageFiles,
 
 const findings = [];
 
+assertCompleteGitHistory(process.cwd());
+
 const configuredEmail = execFileSync('git', ['config', '--local', '--get', 'user.email'], {
   encoding: 'utf8',
 }).trim();
@@ -108,7 +111,7 @@ if (/@icloud\.com$/i.test(configuredEmail)) {
 
 const historyRecords = execFileSync('git', [
   'log', '--all', '--format=%H%x09%ae%x09%ce',
-], { encoding: 'utf8' }).trim().split(/\r?\n/).filter(Boolean).map((line) => {
+], { encoding: 'utf8', env: gitHistoryEnvironment() }).trim().split(/\r?\n/).filter(Boolean).map((line) => {
   const [commit, authorEmail, committerEmail] = line.split('\t');
   return { commit, authorEmail, committerEmail };
 });

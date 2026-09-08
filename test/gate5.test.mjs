@@ -2,11 +2,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import test from 'node:test';
+import { load as parseYaml } from 'js-yaml';
 import { approvedActions, validateWorkflow } from '../scripts/gate5/workflow-policy.mjs';
 
 const repository = resolve(new URL('..', import.meta.url).pathname);
 
-function fixture({ trigger = 'pull_request', permissions = '  contents: read', revision = approvedActions.get('actions/checkout'), extra = '' } = {}) {
+function fixture({ trigger = 'pull_request', permissions = '  contents: read', revision = approvedActions.get('actions/checkout'), checkoutWith = '        with:\n          fetch-depth: 0\n          persist-credentials: false\n', extra = '' } = {}) {
   return `name: Fixture
 on:
   ${trigger}:
@@ -17,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@${revision}
+${checkoutWith}
 ${extra}`;
 }
 
@@ -40,11 +42,49 @@ test('workflow policy rejects secret and release capabilities', () => {
   assert.ok(errors.some((error) => error.includes('release or publish capability')));
 });
 
+test('workflow policy rejects persisted credentials and incomplete Gate 5 history', () => {
+  const missingCredentialControl = fixture({ checkoutWith: '        with:\n          fetch-depth: 0\n' });
+  assert.ok(validateWorkflow('ci.yml', missingCredentialControl)
+    .some((error) => error.includes('persist-credentials: false')));
+
+  const persistedCredential = fixture({ checkoutWith: '        with:\n          fetch-depth: 0\n          persist-credentials: true\n' });
+  assert.ok(validateWorkflow('ci.yml', persistedCredential)
+    .some((error) => error.includes('persist-credentials: false')));
+
+  const scalarSpoof = fixture({ checkoutWith: '        with:\n          fetch-depth: 0\n          persist-credentials: true\n          sparse-checkout: |\n            persist-credentials: false\n' });
+  assert.ok(validateWorkflow('ci.yml', scalarSpoof)
+    .some((error) => error.includes('persist-credentials: false')));
+
+  const duplicateInput = fixture({ checkoutWith: '        with:\n          fetch-depth: 0\n          persist-credentials: true\n          persist-credentials: false\n' });
+  assert.ok(validateWorkflow('ci.yml', duplicateInput)
+    .some((error) => error.includes('invalid or ambiguous')));
+
+  const shallowGate = fixture({
+    checkoutWith: '        with:\n          persist-credentials: false\n',
+    extra: '      - run: npm run gate5:check\n',
+  });
+  assert.ok(validateWorkflow('ci.yml', shallowGate)
+    .some((error) => error.includes('fetch-depth: 0')));
+
+  const nonHistoryJob = fixture({ checkoutWith: '        with:\n          persist-credentials: false\n' });
+  assert.deepEqual(validateWorkflow('ci.yml', nonHistoryJob), []);
+});
+
 test('checked-in workflows satisfy the exact action and permission policy', () => {
   for (const name of ['ci.yml', 'codeql.yml', 'dependency-review.yml']) {
     const source = readFileSync(join(repository, '.github/workflows', name), 'utf8');
     assert.deepEqual(validateWorkflow(name, source), []);
   }
+});
+
+test('all checked-in checkouts disable credential persistence', () => {
+  const sources = ['ci.yml', 'codeql.yml'].map((name) => readFileSync(
+    join(repository, '.github/workflows', name), 'utf8',
+  ));
+  const checkouts = sources.flatMap((source) => Object.values(parseYaml(source).jobs)
+    .flatMap((job) => job.steps ?? []).filter((step) => step.uses?.startsWith('actions/checkout@')));
+  assert.equal(checkouts.length, 5);
+  assert.equal(checkouts.every((step) => step.with?.['persist-credentials'] === false), true);
 });
 
 test('Node 20 is limited to the packed-consumer contract', () => {

@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import * as csstree from 'css-tree';
 
 export const TOKEN_DOCUMENT = new URL('../tokens/lamplight.tokens.json', import.meta.url);
 export const GROUPS = ['primitive', 'semantic', 'component'];
@@ -7,6 +8,10 @@ const ALLOWED_TYPES = new Set([
   'color', 'dimension', 'duration', 'cubicBezier', 'fontFamily', 'fontWeight', 'number', 'string',
 ]);
 const REFERENCE = /\{(primitive|semantic|component)\.([a-z0-9-]+)\}/g;
+const CSS_STRING_SYNTAXES = new Set([
+  '<border>', '<color>', '<image>', '<length>', '<number>#', '<percentage>', '<shadow>',
+]);
+const REVIEWED_INLINE_DATA_URL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E";
 
 export function loadTokenDocument() {
   return JSON.parse(readFileSync(TOKEN_DOCUMENT, 'utf8'));
@@ -21,6 +26,109 @@ export function flattenTokens(document) {
 function referencesIn(value) {
   if (typeof value !== 'string') return [];
   return [...value.matchAll(REFERENCE)].map((match) => `${match[1]}.${match[2]}`);
+}
+
+function replaceAliases(value, byPath) {
+  return value.replace(REFERENCE, (_, group, name) => {
+    const target = byPath.get(`${group}.${name}`);
+    return `var(${target.token.$extensions['org.lamplight.css'].property})`;
+  });
+}
+
+function representativeValue(value, syntax) {
+  const replacement = ['<color>', '<border>', '<shadow>'].includes(syntax) ? '#000' : '50%';
+  const ast = csstree.parse(value, { context: 'value', positions: true });
+  const ranges = [];
+  csstree.walk(ast, (node) => {
+    if (node.type === 'Function' && node.name.toLowerCase() === 'var') {
+      ranges.push([node.loc.start.offset, node.loc.end.offset]);
+    }
+  });
+  let represented = value;
+  for (const [start, end] of ranges.sort((a, b) => b[0] - a[0])) {
+    represented = `${represented.slice(0, start)}${replacement}${represented.slice(end)}`;
+  }
+  return represented;
+}
+
+function validateCssStringProjection(entry, byPath) {
+  const syntax = entry.token.$extensions?.['org.lamplight.css']?.syntax;
+  if (!CSS_STRING_SYNTAXES.has(syntax)) throw new Error(`unsupported CSS syntax ${syntax}`);
+  const resolved = replaceAliases(entry.token.$value, byPath);
+  if (/[;{}]|\/\*|\*\/|[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(resolved)) {
+    throw new Error('CSS projection contains a declaration, rule, comment or control-character boundary');
+  }
+  if (/[{}]/.test(resolved)) throw new Error('CSS projection contains an unresolved alias or rule boundary');
+
+  let ast;
+  try {
+    ast = csstree.parse(resolved, { context: 'value', positions: true });
+  } catch (error) {
+    throw new Error(`CSS projection cannot be parsed: ${error.message}`);
+  }
+  let raw = false;
+  let stringSource = false;
+  const urls = [];
+  const variableRanges = [];
+  csstree.walk(ast, (node) => {
+    if (node.type === 'Function' && node.name.toLowerCase() === 'var') {
+      variableRanges.push([node.loc.start.offset, node.loc.end.offset]);
+    }
+  });
+  csstree.walk(ast, (node) => {
+    if (node.type === 'Raw' && !variableRanges.some(([start, end]) => (
+      node.loc.start.offset >= start && node.loc.end.offset <= end
+    ))) raw = true;
+    if (node.type === 'Atrule') raw = true;
+    if (node.type === 'String') stringSource = true;
+    if (node.type === 'Url') urls.push(node.value);
+  });
+  if (raw) throw new Error('CSS projection contains an unsupported raw value or at-rule');
+  if (stringSource) throw new Error('CSS projection contains a string-valued image source');
+  if (urls.some((url) => entry.path !== 'semantic.glass-grain' || url !== REVIEWED_INLINE_DATA_URL)) {
+    throw new Error('CSS projection contains a URL outside the reviewed inline image allowance');
+  }
+  if (entry.path === 'semantic.glass-grain'
+    && (urls.length !== 1 || urls[0] !== REVIEWED_INLINE_DATA_URL)) {
+    throw new Error('reviewed inline image changed');
+  }
+
+  if (syntax === '<number>#') {
+    if (!/^[-+]?(?:\d+\.?\d*|\.\d+)(?:\s*,\s*[-+]?(?:\d+\.?\d*|\.\d+))+$/.test(resolved)) {
+      throw new Error('CSS projection does not match <number>#');
+    }
+    return;
+  }
+  const property = {
+    '<border>': 'outline',
+    '<color>': 'color',
+    '<image>': 'background-image',
+    '<length>': 'letter-spacing',
+    '<percentage>': 'left',
+    '<shadow>': 'box-shadow',
+  }[syntax];
+  const represented = representativeValue(resolved, syntax);
+  const match = csstree.lexer.matchProperty(property, csstree.parse(represented, { context: 'value' }));
+  if (!match.matched) throw new Error(`CSS projection does not match ${syntax}: ${match.error?.message ?? 'invalid value'}`);
+}
+
+function validateGeneratedStylesheet(css, entries) {
+  let ast;
+  try {
+    ast = csstree.parse(css, { context: 'stylesheet' });
+  } catch (error) {
+    throw new Error(`generated CSS cannot be parsed: ${error.message}`);
+  }
+  const nodes = [...ast.children];
+  if (nodes.length !== 1 || nodes[0].type !== 'Rule' || csstree.generate(nodes[0].prelude) !== ':root') {
+    throw new Error('generated CSS must contain exactly one :root rule');
+  }
+  const declarations = [...nodes[0].block.children];
+  const expected = entries.map((entry) => entry.token.$extensions['org.lamplight.css'].property);
+  if (declarations.length !== expected.length
+    || declarations.some((node, index) => node.type !== 'Declaration' || node.property !== expected[index])) {
+    throw new Error('generated CSS declaration shape does not match the canonical token inventory');
+  }
 }
 
 function assertTypedValue(entry, errors) {
@@ -92,6 +200,13 @@ export function validateTokenDocument(document) {
       errors.push(`${path}: only a pure alias may inherit its type`);
     }
   }
+  for (const entry of entries.filter(({ token }) => token.$type === 'string')) {
+    try {
+      validateCssStringProjection(entry, byPath);
+    } catch (error) {
+      errors.push(`${entry.path}: ${error.message}`);
+    }
+  }
 
   function resolveType(path, stack = []) {
     if (stack.includes(path)) {
@@ -128,10 +243,7 @@ export function formatTokenValue(entry, byPath) {
   const { token } = entry;
   const value = token.$value;
   if (typeof value === 'string') {
-    return value.replace(REFERENCE, (_, group, name) => {
-      const target = byPath.get(`${group}.${name}`);
-      return `var(${target.token.$extensions['org.lamplight.css'].property})`;
-    });
+    return replaceAliases(value, byPath);
   }
   switch (token.$type) {
     case 'color': return colourToHex(value);
@@ -160,5 +272,7 @@ export function formatTokenCss(document) {
     }
   }
   lines.push('}', '');
-  return lines.join('\n');
+  const css = lines.join('\n');
+  validateGeneratedStylesheet(css, entries);
+  return css;
 }

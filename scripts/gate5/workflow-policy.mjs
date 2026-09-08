@@ -1,3 +1,5 @@
+import { load as parseYaml } from 'js-yaml';
+
 export const approvedActions = new Map([
   ['actions/checkout', 'd23441a48e516b6c34aea4fa41551a30e30af803'],
   ['actions/setup-node', '249970729cb0ef3589644e2896645e5dc5ba9c38'],
@@ -31,6 +33,12 @@ function topLevelPermissions(source) {
 
 export function validateWorkflow(name, source) {
   const errors = [];
+  let workflow;
+  try {
+    workflow = parseYaml(source);
+  } catch (error) {
+    errors.push(`${name}: workflow YAML is invalid or ambiguous: ${error.message}`);
+  }
   for (const trigger of ['pull_request_target', 'workflow_run', 'repository_dispatch', 'issue_comment']) {
     if (new RegExp(`^\\s*${trigger}:`, 'm').test(source)) errors.push(`${name}: risky trigger ${trigger}`);
   }
@@ -79,6 +87,20 @@ export function validateWorkflow(name, source) {
     const family = actionFamily(reference);
     if (!family) errors.push(`${name}: ${reference} is not on the reviewed action allowlist`);
     else if (approvedActions.get(family) !== revision) errors.push(`${name}: ${reference} does not use its reviewed commit`);
+  }
+
+  for (const job of Object.values(workflow?.jobs ?? {})) {
+    const steps = Array.isArray(job?.steps) ? job.steps : [];
+    const runsGate5 = steps.some((step) => step?.run === 'npm run gate5:check');
+    for (const step of steps) {
+      if (typeof step?.uses !== 'string' || !step.uses.startsWith('actions/checkout@')) continue;
+      if (step.with?.['persist-credentials'] !== false) {
+        errors.push(`${name}: checkout must set persist-credentials: false`);
+      }
+      if (runsGate5 && step.with?.['fetch-depth'] !== 0) {
+        errors.push(`${name}: checkout for Gate 5 must set fetch-depth: 0`);
+      }
+    }
   }
 
   return errors;
