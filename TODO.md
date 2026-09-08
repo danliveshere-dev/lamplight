@@ -8,7 +8,7 @@ independent reviewer has returned no unresolved blocker.
 | --- | --- | --- | --- |
 | 1 | Clean-history, allowlisted extraction | passed | `docs/release/gate-1-evidence.md` |
 | 2 | Universal token and package architecture | passed | `docs/release/gate-2-evidence.md` |
-| 3 | Adoption documentation and examples | not started | pending |
+| 3 | Adoption documentation and examples | awaiting independent review | `docs/release/gate-3-evidence.md` |
 | 4 | Cross-consumer QA and reproducibility | not started | pending |
 | 5 | Security, licensing and public-repo controls | not started | pending |
 | 6 | Independent Claude first-commit review | held for maintainer | pending Emberline handoff |
@@ -52,6 +52,22 @@ independent reviewer has returned no unresolved blocker.
   plus the personal website as a canary consumer.
 - Gate 5: licence and notices, secret and dependency review, pinned CI,
   vulnerability reporting and a formal repository security scan.
+
+## Gate 3 checklist
+
+- [x] Explain Lamplight's thesis and honest portability boundary in plain language.
+- [x] Document packages, exports, opt-in fonts and living light.
+- [x] Document tokens, DTCG aliases and CSS-bound extension values.
+- [x] Classify components and recipes, including Presence, Orb and Focal Catch.
+- [x] Define accessibility, reduced-motion, keyboard and no-JavaScript contracts.
+- [x] State the supported-browser and evidence policy.
+- [x] Document migration from the Daius2 internal package.
+- [x] Define future adapter boundaries without making DAS or MLA core contracts.
+- [x] Add contribution, adoption and versioning guidance.
+- [x] Build synthetic plain HTML, Astro and React examples.
+- [x] Add documentation-link and example smoke tests.
+- [ ] Receive independent Gate 3 review.
+- [ ] Resolve every blocking finding and re-review.
 
 ## Held decisions
 
