@@ -6,7 +6,7 @@ independent reviewer has returned no unresolved blocker.
 
 | Gate | Outcome | Status | Evidence |
 | --- | --- | --- | --- |
-| 1 | Clean-history, allowlisted extraction | awaiting independent review | `docs/release/gate-1-evidence.md` |
+| 1 | Clean-history, allowlisted extraction | passed | `docs/release/gate-1-evidence.md` |
 | 2 | Universal token and package architecture | not started | pending |
 | 3 | Adoption documentation and examples | not started | pending |
 | 4 | Cross-consumer QA and reproducibility | not started | pending |
@@ -24,8 +24,8 @@ independent reviewer has returned no unresolved blocker.
 - [x] Add a repeatable privacy and private-address scan.
 - [x] Enforce a public-safe Git author and committer identity allowlist.
 - [x] Keep DAS and MLA outside the core pending defined adapter contracts.
-- [ ] Receive independent review against the Gate 1 evidence.
-- [ ] Resolve every blocking finding and re-review.
+- [x] Receive independent review against the Gate 1 evidence.
+- [x] Resolve every blocking finding and re-review.
 
 ## Gates 2 to 5 acceptance outline
 

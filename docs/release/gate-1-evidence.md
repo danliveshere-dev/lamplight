@@ -1,6 +1,6 @@
 # Gate 1 evidence: clean-history extraction
 
-Status: awaiting independent review.
+Status: passed.
 
 ## Boundary
 
@@ -49,6 +49,9 @@ locally and unchanged for audit. This release tree was recreated from the
 tracked working tree with a genuinely new Git database and public-safe local
 identity. No history was amended, deleted or rewritten.
 
+The preserved blocked repository is named `lamplight-gate1-private-history`
+and remains outside this release tree.
+
 The generated `packages/react/pkg`, generated component prompt documents and
 installed dependencies are ignored. This keeps the first commit limited to
 human-authored or explicitly extracted source plus the font assets.
@@ -63,3 +66,20 @@ human-authored or explicitly extracted source plus the font assets.
 5. Do all author and committer emails match the explicit public-safe identity
    allowlist?
 6. Has Gate 1 avoided silently making the Gate 2 architecture decisions?
+
+## Independent review outcome
+
+- Initial verdict: **BLOCKED**, with one P1 finding. Both extraction commits
+  exposed a personal author and committer email, while the privacy scanner did
+  not inspect Git metadata.
+- Remediation: preserved the blocked repository unchanged, recreated this
+  repository non-destructively from its tracked working tree, configured the
+  repository-local public-safe identity, and extended the scanner to validate
+  local configuration plus every reachable commit's author and committer
+  emails against an explicit allowlist.
+- Reviewed implementation commit:
+  `efec018bf36458d9c92c581aae59d2d738301124`.
+- Independent re-review verdict: **PASS**, with no findings.
+
+Gate 1 is closed. This close-out changes documentation only; the reviewed
+implementation commit above remains the evidence target.
