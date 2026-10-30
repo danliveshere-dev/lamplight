@@ -21,11 +21,12 @@ const body = livingLight.replace(iifeOpen, '').replace(iifeClose, '');
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
 copyFileSync(join(generated, 'tokens.css'), join(dist, 'tokens.css'));
+copyFileSync(join(generated, 'modes.css'), join(dist, 'modes.css'));
 copyFileSync(join(root, 'tokens', 'lamplight.tokens.json'), join(dist, 'lamplight.tokens.json'));
 copyFileSync(join(source, 'components.css'), join(dist, 'components.css'));
 writeFileSync(join(dist, 'lamplight.css'),
-  '/* Lamplight core: tokens then scoped components. Fonts and living light are opt-in. */\n'
-  + '@import "./tokens.css";\n@import "./components.css";\n');
+  '/* Lamplight core: tokens, scoped components, then modes. Fonts and living light are opt-in. */\n'
+  + '@import "./tokens.css";\n@import "./components.css";\n@import "./modes.css";\n');
 writeFileSync(join(dist, 'living-light.js'),
   '// Generated from packages/core/src/living-light.js.\n'
   + 'export function initLivingLight() {\n'

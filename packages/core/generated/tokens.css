@@ -22,6 +22,20 @@
   --lamp-ember: #eaa876;
   --lamp-hearth: #e39a9a;
   --lamp-ink: #241d12;
+  --lamp-paper: #f6ecd9;
+  --lamp-paper-bright: #fbf7ee;
+  --lamp-paper-white: #fffdf8;
+  --lamp-paper-deep: #efe3cb;
+  --lamp-ink-secondary: #4a4150;
+  --lamp-ink-muted: #6a5f6e;
+  --lamp-ink-tallow: #766238;
+  --lamp-ink-brass: #7e6020;
+  --lamp-ink-umber: #835e1a;
+  --lamp-ink-dusk: #5f5e9e;
+  --lamp-ink-phosphor: #446c65;
+  --lamp-ink-moss: #5a6952;
+  --lamp-ink-ember: #9a5204;
+  --lamp-ink-hearth: #a3474b;
 
   /* SEMANTIC */
   --lamp-surface-page: var(--lamp-soot-1);

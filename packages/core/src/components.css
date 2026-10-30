@@ -47,6 +47,8 @@ html.l-document :focus-visible {
   line-height: 1.55;
 }
 
+:where(.l-room, [data-mode="day"], [data-surface="folio"]) .l-room:not([data-mode]) { color-scheme: inherit; }
+
 .l-room button,
 .l-room input,
 .l-room select,

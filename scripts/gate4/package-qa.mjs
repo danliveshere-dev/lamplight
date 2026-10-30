@@ -31,8 +31,9 @@ const npmEnvironment = {
 
 const budgets = {
   tokens: { raw: 8 * 1024, gzip: 2.5 * 1024 },
+  modes: { raw: 16 * 1024, gzip: 3 * 1024 },
   components: { raw: 36 * 1024, gzip: 7 * 1024 },
-  combined: { raw: 45 * 1024, gzip: 10 * 1024 },
+  combined: { raw: 55 * 1024, gzip: 10 * 1024 },
   livingLight: { raw: 25 * 1024, gzip: 6 * 1024 },
   react: { raw: 25 * 1024, gzip: 7 * 1024 },
   coreTarball: { packed: 600 * 1024, unpacked: 700 * 1024 },
@@ -208,12 +209,14 @@ try {
 
   const tokens = readFileSync(join(root, 'packages/core/dist/tokens.css'));
   const components = readFileSync(join(root, 'packages/core/dist/components.css'));
+  const modes = readFileSync(join(root, 'packages/core/dist/modes.css'));
   const livingLight = readFileSync(join(root, 'packages/core/dist/living-light.js'));
   const react = readFileSync(join(root, 'packages/react/dist/index.js'));
   const sizes = {
     tokens: size('tokens.css', tokens, budgets.tokens),
     components: size('components.css', components, budgets.components),
-    combined: size('combined core CSS', Buffer.concat([tokens, Buffer.from('\n'), components]), budgets.combined),
+    modes: size('modes.css', modes, budgets.modes),
+    combined: size('combined core CSS', Buffer.concat([tokens, Buffer.from('\n'), components, Buffer.from('\n'), modes]), budgets.combined),
     livingLight: size('living-light.js', livingLight, budgets.livingLight),
     react: size('React adapter', react, budgets.react),
     coreTarball: { ...budgets.coreTarball, packed: firstCore.record.size, unpacked: firstCore.record.unpackedSize },

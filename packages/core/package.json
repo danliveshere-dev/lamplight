@@ -13,7 +13,8 @@
     "dist/lamplight.tokens.json",
     "dist/living-light.d.ts",
     "dist/living-light.js",
-    "dist/tokens.css"
+    "dist/tokens.css",
+    "dist/modes.css"
   ],
   "exports": {
     "./styles.css": "./dist/lamplight.css",
@@ -25,7 +26,8 @@
     "./living-light": {
       "types": "./dist/living-light.d.ts",
       "import": "./dist/living-light.js"
-    }
+    },
+    "./modes.css": "./dist/modes.css"
   },
   "sideEffects": [
     "**/*.css"

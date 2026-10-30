@@ -176,6 +176,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-candle"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.soot-1}"
         }
       }
     },
@@ -193,6 +196,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-tallow"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-tallow}"
         }
       }
     },
@@ -210,6 +216,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-brass"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-brass}"
         }
       }
     },
@@ -227,6 +236,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-umber"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-umber}"
         }
       }
     },
@@ -244,6 +256,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-dusk"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-dusk}"
         }
       }
     },
@@ -261,6 +276,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-phosphor"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-phosphor}"
         }
       }
     },
@@ -278,6 +296,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-moss"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-moss}"
         }
       }
     },
@@ -295,6 +316,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-ember"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-ember}"
         }
       }
     },
@@ -312,6 +336,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-hearth"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-hearth}"
         }
       }
     },
@@ -331,6 +358,244 @@
           "property": "--lamp-ink"
         }
       }
+    },
+    "paper": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647058823529412,
+          0.9254901960784314,
+          0.8509803921568627
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-paper"
+        }
+      }
+    },
+    "paper-bright": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.984313725490196,
+          0.9686274509803922,
+          0.9333333333333333
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-paper-bright"
+        }
+      }
+    },
+    "paper-white": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.9921568627450981,
+          0.9725490196078431
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-paper-white"
+        }
+      }
+    },
+    "paper-deep": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9372549019607843,
+          0.8901960784313725,
+          0.796078431372549
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-paper-deep"
+        }
+      }
+    },
+    "ink-secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2901960784313726,
+          0.2549019607843137,
+          0.3137254901960784
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-secondary"
+        }
+      }
+    },
+    "ink-muted": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.41568627450980394,
+          0.37254901960784315,
+          0.43137254901960786
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-muted"
+        }
+      }
+    },
+    "ink-tallow": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4627450980392157,
+          0.3843137254901961,
+          0.2196078431372549
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-tallow"
+        }
+      }
+    },
+    "ink-brass": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.49411764705882355,
+          0.3764705882352941,
+          0.12549019607843137
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-brass"
+        }
+      }
+    },
+    "ink-umber": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5137254901960784,
+          0.3686274509803922,
+          0.10196078431372549
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-umber"
+        }
+      }
+    },
+    "ink-dusk": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.37254901960784315,
+          0.3686274509803922,
+          0.6196078431372549
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-dusk"
+        }
+      }
+    },
+    "ink-phosphor": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.26666666666666666,
+          0.4235294117647059,
+          0.396078431372549
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-phosphor"
+        }
+      }
+    },
+    "ink-moss": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.35294117647058826,
+          0.4117647058823529,
+          0.3215686274509804
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-moss"
+        }
+      }
+    },
+    "ink-ember": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6039215686274509,
+          0.3215686274509804,
+          0.01568627450980392
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-ember"
+        }
+      }
+    },
+    "ink-hearth": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6392156862745098,
+          0.2784313725490196,
+          0.29411764705882354
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-ink-hearth"
+        }
+      }
     }
   },
   "semantic": {
@@ -340,6 +605,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-surface-page"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.paper}"
         }
       }
     },
@@ -348,6 +616,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-surface-panel"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.paper-bright}"
         }
       }
     },
@@ -356,6 +627,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-surface-raised"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.paper-white}"
         }
       }
     },
@@ -364,6 +638,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-surface-sunken"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.paper-deep}"
         }
       }
     },
@@ -372,6 +649,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-surface-reading"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.paper-bright}"
         }
       }
     },
@@ -380,6 +660,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-text"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.soot-1}"
         }
       }
     },
@@ -388,6 +671,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-text-secondary"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-secondary}"
         }
       }
     },
@@ -396,6 +682,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-text-muted"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.ink-muted}"
         }
       }
     },
@@ -404,6 +693,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-text-on-fill"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.paper}"
         }
       }
     },
@@ -420,6 +712,9 @@
       "$extensions": {
         "org.lamplight.css": {
           "property": "--lamp-accent-hover"
+        },
+        "org.lamplight.modes": {
+          "day": "{primitive.soot-3}"
         }
       }
     },
@@ -494,6 +789,9 @@
         "org.lamplight.css": {
           "property": "--lamp-glass-bg",
           "syntax": "<color>"
+        },
+        "org.lamplight.modes": {
+          "day": "rgba(251, 247, 238, 0.92)"
         }
       }
     },
@@ -504,6 +802,9 @@
         "org.lamplight.css": {
           "property": "--lamp-glass-hairline",
           "syntax": "<color>"
+        },
+        "org.lamplight.modes": {
+          "day": "rgba(20, 17, 24, 0.16)"
         }
       }
     },
@@ -533,6 +834,9 @@
         "org.lamplight.css": {
           "property": "--lamp-sheen-rest",
           "syntax": "<image>"
+        },
+        "org.lamplight.modes": {
+          "day": "linear-gradient(transparent, transparent)"
         }
       }
     },
@@ -543,6 +847,9 @@
         "org.lamplight.css": {
           "property": "--lamp-sheen-follow",
           "syntax": "<color>"
+        },
+        "org.lamplight.modes": {
+          "day": "rgba(20, 17, 24, 0.04)"
         }
       }
     },
@@ -553,6 +860,9 @@
         "org.lamplight.css": {
           "property": "--lamp-sheen-focus",
           "syntax": "<color>"
+        },
+        "org.lamplight.modes": {
+          "day": "rgba(20, 17, 24, 0.07)"
         }
       }
     },
@@ -575,6 +885,9 @@
         "org.lamplight.css": {
           "property": "--lamp-sheen-channel",
           "syntax": "<number>#"
+        },
+        "org.lamplight.modes": {
+          "day": "120, 98, 56"
         }
       }
     },
@@ -672,6 +985,9 @@
         "org.lamplight.css": {
           "property": "--lamp-bezel-face",
           "syntax": "<image>"
+        },
+        "org.lamplight.modes": {
+          "day": "linear-gradient(180deg, #fffdf8, #f2e7d1)"
         }
       }
     },
@@ -682,6 +998,9 @@
         "org.lamplight.css": {
           "property": "--lamp-bezel-edge",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "inset 0 1px 0 rgba(255, 253, 248, 0.9), 0 1px 2px rgba(20, 17, 24, 0.16)"
         }
       }
     },
@@ -692,6 +1011,9 @@
         "org.lamplight.css": {
           "property": "--lamp-bezel-well",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "inset 0 1px 3px rgba(20, 17, 24, 0.18), inset 0 -1px 0 rgba(255, 253, 248, 0.6)"
         }
       }
     },
@@ -702,6 +1024,9 @@
         "org.lamplight.css": {
           "property": "--lamp-wire-warm",
           "syntax": "<color>"
+        },
+        "org.lamplight.modes": {
+          "day": "rgba(20, 17, 24, 0.62)"
         }
       }
     },
@@ -712,6 +1037,9 @@
         "org.lamplight.css": {
           "property": "--lamp-wire-warm-halo",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 transparent"
         }
       }
     },
@@ -722,6 +1050,9 @@
         "org.lamplight.css": {
           "property": "--lamp-wire-live",
           "syntax": "<color>"
+        },
+        "org.lamplight.modes": {
+          "day": "rgba(68, 108, 101, 0.9)"
         }
       }
     },
@@ -732,6 +1063,9 @@
         "org.lamplight.css": {
           "property": "--lamp-wire-live-halo",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 transparent"
         }
       }
     },
@@ -742,6 +1076,9 @@
         "org.lamplight.css": {
           "property": "--lamp-wire-ember",
           "syntax": "<color>"
+        },
+        "org.lamplight.modes": {
+          "day": "rgba(154, 82, 4, 0.9)"
         }
       }
     },
@@ -752,6 +1089,9 @@
         "org.lamplight.css": {
           "property": "--lamp-wire-ember-halo",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 transparent"
         }
       }
     },
@@ -774,6 +1114,9 @@
         "org.lamplight.css": {
           "property": "--lamp-focal-pool",
           "syntax": "<image>"
+        },
+        "org.lamplight.modes": {
+          "day": "linear-gradient(transparent, transparent)"
         }
       }
     },
@@ -784,6 +1127,9 @@
         "org.lamplight.css": {
           "property": "--lamp-panel-inner-edge",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 transparent"
         }
       }
     },
@@ -794,6 +1140,9 @@
         "org.lamplight.css": {
           "property": "--lamp-focal-halo",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 transparent"
         }
       }
     },
@@ -804,6 +1153,9 @@
         "org.lamplight.css": {
           "property": "--lamp-focal-halo-hover",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 transparent"
         }
       }
     },
@@ -814,6 +1166,9 @@
         "org.lamplight.css": {
           "property": "--lamp-node-glow",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 1px rgba(20, 17, 24, 0.5)"
         }
       }
     },
@@ -824,6 +1179,9 @@
         "org.lamplight.css": {
           "property": "--lamp-node-glow-attention",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 1px rgba(154, 82, 4, 0.7)"
         }
       }
     },
@@ -888,6 +1246,9 @@
         "org.lamplight.css": {
           "property": "--lamp-focal-catch-settled-halo",
           "syntax": "<shadow>"
+        },
+        "org.lamplight.modes": {
+          "day": "0 0 0 transparent"
         }
       }
     },
@@ -1595,6 +1956,9 @@
         "org.lamplight.css": {
           "property": "--lamp-press-pool",
           "syntax": "<image>"
+        },
+        "org.lamplight.modes": {
+          "day": "radial-gradient(120px circle at var(--lx,50%) var(--ly,50%), rgba(20, 17, 24, 0.08), transparent 60%)"
         }
       }
     }
@@ -1793,6 +2157,9 @@
         "org.lamplight.css": {
           "property": "--lamp-skeleton-fill",
           "syntax": "<color>"
+        },
+        "org.lamplight.modes": {
+          "day": "rgba(20, 17, 24, 0.07)"
         }
       }
     }

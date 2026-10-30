@@ -38,8 +38,8 @@ test('package QA fixes install isolation and every published size budget', () =>
 
 test('exact package path allowlists reject missing and rogue generated files', () => {
   assert.deepEqual(validatePackageFileList('core', expectedPackagePaths.core, expectedPackagePaths.core), {
-    expected: 19,
-    actual: 19,
+    expected: 20,
+    actual: 20,
   });
   assert.equal(expectedPackagePaths.react.length, 5);
   for (const paths of [expectedPackagePaths.core, expectedPackagePaths.react]) {

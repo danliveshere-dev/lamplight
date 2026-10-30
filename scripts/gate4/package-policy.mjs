@@ -17,6 +17,7 @@ export const expectedPackagePaths = Object.freeze({
     'dist/lamplight.tokens.json',
     'dist/living-light.d.ts',
     'dist/living-light.js',
+    'dist/modes.css',
     'dist/tokens.css',
     'package.json',
   ]),

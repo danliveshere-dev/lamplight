@@ -1,19 +1,24 @@
 #!/usr/bin/env node
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { formatTokenCss, loadTokenDocument } from './token-tools.mjs';
+import { EXPECTED_TOKEN_COUNT, formatModesCss, formatTokenCss, loadTokenDocument } from './token-tools.mjs';
 
-const output = 'packages/core/generated/tokens.css';
-const css = formatTokenCss(loadTokenDocument());
+const document = loadTokenDocument();
+const outputs = new Map([
+  ['packages/core/generated/tokens.css', formatTokenCss(document)],
+  ['packages/core/generated/modes.css', formatModesCss(document)],
+]);
 
 if (process.argv.includes('--check')) {
-  if (!existsSync(output) || readFileSync(output, 'utf8') !== css) {
-    console.error(`${output} has drifted; run npm run tokens:build`);
-    process.exit(1);
+  for (const [path, css] of outputs) {
+    if (!existsSync(path) || readFileSync(path, 'utf8') !== css) {
+      console.error(`${path} has drifted; run npm run tokens:build`);
+      process.exit(1);
+    }
   }
-  console.log(`${output} is current (161 tokens).`);
+  console.log(`Generated CSS is current (${EXPECTED_TOKEN_COUNT} tokens).`);
 } else {
   mkdirSync('packages/core/generated', { recursive: true });
-  writeFileSync(output, css);
-  console.log(`Generated ${output} (161 tokens).`);
+  for (const [path, css] of outputs) writeFileSync(path, css);
+  console.log(`Generated tokens and modes (${EXPECTED_TOKEN_COUNT} tokens).`);
 }

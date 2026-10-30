@@ -3,7 +3,7 @@
 ## Authority
 
 `tokens/lamplight.tokens.json` is the only editable token source. It uses the
-DTCG 2025.10 format and organises 161 tokens into three groups:
+DTCG 2025.10 format and organises 175 tokens into three groups:
 
 - `primitive`: raw material values such as soot, parchment, candle and ember;
 - `semantic`: roles such as text, surface, focus, spacing and motion; and
@@ -59,3 +59,7 @@ workflow-specific state belongs in the consumer's extension stylesheet.
 A token removal or rename is a breaking change unless it was explicitly
 documented as experimental. The pull request must state migration guidance,
 regenerate CSS and pass property-parity tests.
+
+## Modes
+
+A token may carry a Day value in `$extensions["org.lamplight.modes"]`. Typed tokens take a compatible alias. CSS-bound strings also accept values matching their declared syntax. The build redeclares dependent aliases in `modes.css` so they resolve in the active scope. Set `data-mode="day"` on a Room or `l-document`.
