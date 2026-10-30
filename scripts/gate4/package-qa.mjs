@@ -34,7 +34,7 @@ const budgets = {
   surfaces: { raw: 8 * 1024, gzip: 2 * 1024 },
   modes: { raw: 16 * 1024, gzip: 3 * 1024 },
   components: { raw: 36 * 1024, gzip: 7 * 1024 },
-  combined: { raw: 55 * 1024, gzip: 10 * 1024 },
+  combined: { raw: 60 * 1024, gzip: 11 * 1024 },
   livingLight: { raw: 25 * 1024, gzip: 6 * 1024 },
   react: { raw: 25 * 1024, gzip: 7 * 1024 },
   coreTarball: { packed: 600 * 1024, unpacked: 700 * 1024 },

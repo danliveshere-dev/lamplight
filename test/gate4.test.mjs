@@ -31,7 +31,7 @@ test('package QA fixes install isolation and every published size budget', () =>
   for (const setting of ['npm_config_cache', 'npm_config_ignore_scripts', 'npm_config_audit', 'npm_config_fund']) {
     assert.match(source, new RegExp(setting));
   }
-  for (const threshold of ['8 * 1024', '2.5 * 1024', '36 * 1024', '7 * 1024', '55 * 1024', '10 * 1024', '25 * 1024', '6 * 1024', '600 * 1024', '700 * 1024', '20 * 1024', '60 * 1024']) {
+  for (const threshold of ['8 * 1024', '2.5 * 1024', '36 * 1024', '7 * 1024', '60 * 1024', '11 * 1024', '25 * 1024', '6 * 1024', '600 * 1024', '700 * 1024', '20 * 1024', '60 * 1024']) {
     assert.match(source, new RegExp(threshold.replace('*', '\\*')));
   }
 });

@@ -81,3 +81,63 @@ test('Ledger turns ambient light off, in either mode', async ({ page }) => {
   expect(await prop(room, '--lamp-sheen-follow')).toBe('transparent');
   await expect(room).toHaveCSS('color-scheme', 'light');
 });
+
+test('Folio is ink on plain paper', async ({ page }) => {
+  await open(page, { surface: 'folio' });
+  const room = page.locator('[data-testid="room"]');
+  expect(await prop(room, '--lamp-surface-page')).toBe('transparent');
+  await expect(room).toHaveCSS('color', 'rgb(20, 17, 24)');
+});
+
+test('printing any Room gives ink, even a Night one', async ({ page }) => {
+  await open(page);
+  await page.emulateMedia({ media: 'print' });
+  const room = page.locator('[data-testid="room"]');
+  await expect(room).toHaveCSS('color', 'rgb(20, 17, 24)');
+  expect(await prop(room, '--lamp-surface-page')).toBe('transparent');
+});
+
+test('print hides presence and keeps focal as a heavy rule', async ({ page }) => {
+  await open(page);
+  await page.locator('[data-testid="room"]').evaluate((room) => {
+    room.insertAdjacentHTML('beforeend',
+      '<div class="l-presence" id="p"></div><div class="l-panel" data-depth="focal" id="f">x</div>');
+  });
+  await page.emulateMedia({ media: 'print' });
+  await expect(page.locator('#p')).toBeHidden();
+  await expect(page.locator('#f')).toHaveCSS('border-top-width', '2px');
+});
+
+for (const attrs of [{ surface: 'ledger' }, { surface: 'ledger', mode: 'day' }, { surface: 'folio' }]) {
+  test(`${JSON.stringify(attrs)} has no serious accessibility findings`, async ({ page }) => {
+    await open(page, attrs);
+    const report = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    const serious = report.violations.filter((item) => ['serious', 'critical'].includes(item.impact));
+    expect(serious, serious.map((item) => `${item.id}: ${item.help}`).join('\n')).toEqual([]);
+  });
+}
+
+test('wide tables do not clip in print', async ({ page }) => {
+  await open(page);
+  await page.locator('[data-testid="room"]').evaluate(room => room.insertAdjacentHTML('beforeend', '<div class="l-table-wrap"><table class="l-table"><tr><td>Example</td></tr></table></div>'));
+  await page.emulateMedia({ media: 'print' });
+  await expect(page.locator('.l-table-wrap').first()).toHaveCSS('overflow-x', 'visible');
+});
+
+test('Folio overrides explicit Night and removes focal light', async ({ page }) => {
+  await open(page, { mode: 'night', surface: 'folio' });
+  const room = page.getByTestId('room');
+  await expect(room).toHaveCSS('color-scheme', 'light');
+  await expect(room).toHaveCSS('color', 'rgb(20, 17, 24)');
+  await expect(page.locator('.l-focal-source')).toBeHidden();
+  await expect(page.locator('.l-focal-subject')).toHaveCSS('border-top-width', '2px');
+  await expect(page.locator('.l-focal-subject')).toHaveCSS('background-image', 'none');
+});
+
+test('Folio chip states have distinct non-colour cues', async ({ page }) => {
+  await open(page, { surface: 'folio' });
+  await page.getByTestId('room').evaluate(room => room.insertAdjacentHTML('beforeend', '<span class="l-chip" data-state="live" id="live-chip">Live</span><span class="l-chip" data-state="attention" id="attention-chip">Attention</span>'));
+  const cue = id => page.locator(id).evaluate(el => getComputedStyle(el, '::before').content);
+  expect(await cue('#live-chip')).toContain('●');
+  expect(await cue('#attention-chip')).toContain('▲');
+});

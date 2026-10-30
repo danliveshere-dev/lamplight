@@ -24,7 +24,10 @@ copyFileSync(join(generated, 'tokens.css'), join(dist, 'tokens.css'));
 copyFileSync(join(generated, 'modes.css'), join(dist, 'modes.css'));
 copyFileSync(join(root, 'tokens', 'lamplight.tokens.json'), join(dist, 'lamplight.tokens.json'));
 copyFileSync(join(source, 'components.css'), join(dist, 'components.css'));
-writeFileSync(join(dist, 'surfaces.css'), readFileSync(join(source, 'ledger.css'), 'utf8'));
+const ledger = readFileSync(join(source, 'ledger.css'), 'utf8');
+const folio = readFileSync(join(source, 'folio.css'), 'utf8');
+const printFolio = folio.replaceAll('[data-surface="folio"]', ':is(.l-room, html.l-document)');
+writeFileSync(join(dist, 'surfaces.css'), `${ledger}\n${folio}\n@media print {\n@page { margin: 18mm 16mm; }\n${printFolio}\n:is(.l-room, html.l-document) { background: none; }\n}\n`);
 writeFileSync(join(dist, 'lamplight.css'),
   '/* Lamplight core: tokens, scoped components, then modes. Fonts and living light are opt-in. */\n'
   + '@import "./tokens.css";\n@import "./components.css";\n@import "./modes.css";\n@import "./surfaces.css";\n');

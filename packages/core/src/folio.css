@@ -1,0 +1,57 @@
+/* Folio: the sheet that leaves the room. The paper's own colour is the ground, and depth comes
+   from rule weight and type size. The build repeats these rules under @media print. */
+[data-surface="folio"] {
+  --lamp-surface-page: transparent;
+  --lamp-surface-panel: transparent;
+  --lamp-surface-raised: transparent;
+  --lamp-surface-sunken: transparent;
+  --lamp-surface-reading: transparent;
+  --lamp-glass-bg: transparent;
+  --lamp-grain-opacity: 0;
+  --lamp-row-height: 1.75rem;
+  background: var(--lamp-paper-white);
+  font-size: 10.5pt;
+  line-height: 1.45;
+  orphans: 3;
+  widows: 3;
+}
+
+[data-surface="folio"] .l-panel {
+  overflow: visible;
+  background: none;
+  border: 0;
+  border-block-start: 1px solid var(--lamp-text);
+  border-radius: 0;
+  box-shadow: none;
+  break-inside: avoid;
+}
+[data-surface="folio"] .l-panel::after { display: none; }
+[data-surface="folio"] .l-panel[data-depth="focal"] { border-block-start-width: 2px; }
+[data-surface="folio"] .l-chip { border-style: dashed; }
+[data-surface="folio"] .l-chip[data-state="live"] { border-style: solid; }
+[data-surface="folio"] .l-chip[data-state="live"]::before { content: "● "; white-space: pre; }
+[data-surface="folio"] .l-chip[data-state="attention"]::before { content: "▲ "; white-space: pre; }
+[data-surface="folio"] .l-presence,
+[data-surface="folio"] .l-orb,
+[data-surface="folio"] .l-toast { display: none; }
+[data-surface="folio"] .l-table-wrap { overflow-x: visible; }
+[data-surface="folio"] .l-table { font-size: 9pt; font-variant-numeric: tabular-nums; }
+[data-surface="folio"] .l-table thead { display: table-header-group; }
+[data-surface="folio"] .l-table tr { break-inside: avoid; }
+[data-surface="folio"] [data-folio-keep] { break-inside: avoid; }
+[data-surface="folio"] h1,
+[data-surface="folio"] h2,
+[data-surface="folio"] h3 { break-after: avoid; }
+[data-surface="folio"] .l-folio-state { font-family: var(--lamp-font-mono); font-size: 8.5pt; }
+[data-surface="folio"] a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8.5pt; }
+
+/* The focal catch becomes an ink rule instead of a lit panel. */
+[data-surface="folio"] .l-focal-source,
+[data-surface="folio"] .l-focal-subject::before { display: none; }
+[data-surface="folio"] .l-focal-catch .l-focal-subject {
+  min-height: 0; overflow: visible; border: 0; border-block-start: 2px solid var(--lamp-text);
+  border-radius: 0; padding: var(--lamp-space-3) 0; background: none; box-shadow: none;
+  break-inside: avoid;
+}
+[data-surface="folio"] .l-focal-label,
+[data-surface="folio"] .l-focal-state { color: var(--lamp-text); }
