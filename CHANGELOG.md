@@ -1,16 +1,10 @@
 # Changelog
 
-All notable public changes will be recorded here. Lamplight follows semantic
-versioning after its public package names are chosen.
+## 0.1.0-beta.1 (prepared, not released)
 
-## Unreleased
+- Prepared a free community beta as GitHub release files: core and React tarballs and a browser starter ZIP.
+- Added Night and Day modes, Ledger and Folio surfaces, and experimental automatic Folio print styling.
+- Prepared framework-neutral tokens and CSS, optional fonts and living light, structural React bindings and examples.
+- Real Safari, manual assistive technology and physical monochrome print remain unobserved. See the [beta notes](docs/release/beta-release-notes.md).
 
-- Added Night and Day modes, Ledger and Folio surfaces, and automatic Folio print output.
-
-- Prepared a clean-history, framework-neutral core and React adapter.
-- Added canonical DTCG 2025.10 tokens, synthetic examples and release QA.
-- Added accessibility, browser, packaging, privacy, licensing and security
-  contracts.
-
-There is no released version yet. The internal `0.0.0-private.0` version is not
-a registry promise and must not be presented as a public release.
+No version has been published. These package names do not claim an npm namespace.

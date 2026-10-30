@@ -20,14 +20,13 @@ experience.
 
 ## Reduced motion
 
-The core stylesheet disables ambient and transition motion under
+The core stylesheet is designed to suppress Lamplight ambient and transition motion under
 `prefers-reduced-motion: reduce`. Living light also checks the media preference
 at runtime. A Room may declare `data-motion="reduced"`; any reduced ancestor
 Room governs every nested Room. A nested full-motion declaration cannot
 override a reduced ancestor.
 
-Motion communicates physical continuity, not urgency. Nothing flashes, speeds
-up or pulses to demand attention.
+This applies to Lamplight styling and its optional enhancement, not arbitrary consumer animations or third-party content. Check the complete application. Motion should communicate physical continuity, not urgency.
 
 ## No-JavaScript behaviour
 
@@ -40,13 +39,8 @@ must render useful server markup before hydration.
 
 Parchment-4 is non-text material. Text must use the documented text semantic
 tokens and be checked against the surface where it actually renders. Controls
-have a 44px default minimum and a 48px coarse-pointer minimum. Do not use colour
-alone for a state that changes meaning; pair it with visible text or native
-semantics.
+have a 44px default minimum and a 48px coarse-pointer minimum. Do not use colour or motion alone for a state that changes meaning; pair it with a visible word or shape and appropriate native or ARIA semantics.
 
 ## Acceptance
 
-Before a public release, run automated accessibility checks in supported
-browsers, complete keyboard journeys, inspect zoom and responsive reflow, and
-manually review contrast and reduced-motion behaviour. A passing source test is
-not a manual accessibility acceptance.
+The beta is prepared, not released. Real Safari and manual assistive technology acceptance remain unobserved. Automated checks are not manual accessibility acceptance. Consumers should test keyboard journeys, zoom, reflow, contrast, reduced motion and assistive technology with their own content.

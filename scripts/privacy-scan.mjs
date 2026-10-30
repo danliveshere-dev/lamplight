@@ -83,6 +83,7 @@ const generatedPackageFiles = [
   ...filesWithin('packages/core/dist'),
   ...filesWithin('packages/react/dist'),
   ...filesWithin('packages/react/docs'),
+  ...filesWithin('examples/showcase/dist'),
 ];
 const publicControlFiles = [
   'LICENSE',

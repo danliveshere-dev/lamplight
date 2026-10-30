@@ -7,7 +7,7 @@ export interface RoomProps extends React.HTMLAttributes<HTMLDivElement> {
   'data-surface'?: 'ledger' | 'folio';
   children?: React.ReactNode;
 }
-/** The scoped Lamplight ground, ink and voice. Wrap the outermost Lamplight region in one; it does not restyle the host document or start optional motion. Import initLivingLight from lamplight-ui/living-light when the surface has earned pointer, dwell and press light. */
+/** The scoped Lamplight ground, ink and voice. Wrap the outermost Lamplight region in one; it does not restyle the host document or start optional motion. Import initLivingLight from @lamplight/core/living-light when the surface has earned pointer, dwell and press light. */
 export declare function Room(props: RoomProps): React.ReactElement;
 
 export interface FocalCatchProps extends React.HTMLAttributes<HTMLElement> {

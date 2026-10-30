@@ -2,8 +2,8 @@
 
 Lamplight is a pre-release design-system repository. It contains a
 framework-neutral CSS and browser core, an optional React adapter, token build
-tools, examples and repository automation. No package or public repository has
-been released yet.
+tools, examples and repository automation. A downloadable community beta is being prepared. No package or public repository
+has been released yet.
 
 ## Scope
 
@@ -107,6 +107,12 @@ materially amplifies a security impact:
   has no effect beyond that document.
 
 ## Current limitations
+
+Beta archives remain local until the hosted private reporting route has been
+verified and recorded above. A beta label does not relax privacy, package
+contents, dependency or workflow boundaries. See `docs/release/beta-readiness.md`
+for the separate downloadable-beta checks and outstanding release witnesses.
+
 
 The repository has local policy, package, privacy, browser and audit checks. A
 formal Codex Security scan and independent Gate 5 review were completed against

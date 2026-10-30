@@ -13,3 +13,7 @@ close an interaction when needed to protect the community. This code is not an
 operational public reporting promise until a separate privacy-preserving
 conduct route is verified and recorded here. Do not send sensitive conduct
 reports through a public issue or the vulnerability-reporting route.
+
+The downloadable beta preparation does not establish that reporting route. Before
+public launch the maintainer must verify a separate private conduct route and
+record it here, or withhold this operational policy until a route exists.

@@ -1,7 +1,9 @@
 # Release checklist
 
 This checklist applies after Gate 7 configuration is witnessed. It does not
-authorise a release.
+authorise a release. The downloadable community beta follows the separate
+[beta readiness contract](beta-readiness.md); it does not use an npm publish
+workflow or claim the stable package gate is satisfied.
 
 - [ ] Select an exact release commit and freeze compatibility changes.
 - [ ] Confirm `CHANGELOG.md`, versioning and migration notes are complete.

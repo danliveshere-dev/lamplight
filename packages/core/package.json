@@ -1,6 +1,6 @@
 {
-  "name": "@lamplight-internal/core",
-  "version": "0.0.0-private.0",
+  "name": "@lamplight/core",
+  "version": "0.1.0-beta.1",
   "private": true,
   "type": "module",
   "license": "Apache-2.0",

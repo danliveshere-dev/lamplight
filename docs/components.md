@@ -22,9 +22,7 @@ a view. In a Ledger, use `.l-lead` for one lead per region.
 
 The class and React contracts include Field, Input, Select, Textarea, Toggle,
 Check, Segmented, Menu, Tabs, Crumbs, Disclosure, Table, KeyValue, Status and
-Chip. Their generated React structures own required ARIA relationships and
-keyboard mechanics. A caller still owns truthful labels, useful error text and
-domain meaning.
+Chip. The React bindings provide the documented ARIA relationships and keyboard mechanics for interactive components. Plain HTML classes provide styling, not the JavaScript needed to implement an interactive menu or tabs. Use native elements where suitable or implement and test the necessary interaction. A caller owns truthful labels, useful error text and domain meaning.
 
 ## Instruments
 
@@ -53,3 +51,7 @@ move them to an optional recipe package.
 Use the smallest component that carries the meaning. A recipe combines stable
 components in consumer code. New application workflows, data fetches, AI
 states, navigation policy and copy do not belong in this repository.
+
+## State and keyboard meaning
+
+Pair meaningful state with a visible word or shape and suitable native or ARIA semantics. For example, a status labelled “Ready” remains understandable without its colour. Do not use motion alone to convey a change. The React Menu and Tabs bindings provide their documented arrow-key, Home and End behaviour; Menu also supports Escape. A styled HTML element does not acquire these behaviours from CSS. Test the whole interaction with a keyboard and assistive technology in the consuming application.

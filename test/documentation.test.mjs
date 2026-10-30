@@ -20,7 +20,7 @@ test('README links every required Gate 3 guide and runnable example', () => {
   const readme = readFileSync(join(repository, 'README.md'), 'utf8');
   const required = [
     'docs/tokens.md', 'docs/components.md', 'docs/accessibility.md',
-    'docs/browser-support.md', 'docs/migration-internal-package.md', 'docs/adapters.md',
+    'docs/browser-support.md', 'docs/release/beta-readiness.md', 'docs/adapters.md',
     'docs/adoption.md', 'docs/versioning.md', 'CONTRIBUTING.md',
     'examples/vanilla/index.html', 'examples/astro/src/pages/index.astro',
     'examples/react/src/page.mjs',
@@ -105,9 +105,9 @@ test('examples demonstrate core-only and adapter-assisted adoption', () => {
   const vanilla = readFileSync(join(repository, 'examples/vanilla/index.html'), 'utf8');
   const astro = readFileSync(join(repository, 'examples/astro/src/pages/index.astro'), 'utf8');
   const react = readFileSync(join(repository, 'examples/react/src/page.mjs'), 'utf8');
-  assert.match(vanilla, /packages\/core\/generated\/tokens\.css/);
-  assert.match(astro, /packages\/core\/generated\/tokens\.css/);
-  assert.match(react, /packages\/react\/dist\/index\.js/);
+  assert.match(vanilla, /packages\/core\/dist\/lamplight\.css/);
+  assert.match(astro, /@lamplight\/core\/styles\.css/);
+  assert.match(react, /@lamplight\/react/);
   assert.doesNotMatch(vanilla + astro, /packages\/react/);
 });
 
@@ -130,4 +130,18 @@ test('the docs state modes and surfaces, not dark-only', () => {
   }
   assert.match(room, /'data-mode'\?: 'night' \| 'day'/);
   assert.match(room, /'data-surface'\?: 'ledger' \| 'folio'/);
+});
+
+
+test('beta adoption names file distribution and outstanding evidence', () => {
+  const readme = readFileSync(join(repository, 'README.md'), 'utf8');
+  const adoption = readFileSync(join(repository, 'docs/adoption.md'), 'utf8');
+  const readiness = readFileSync(join(repository, 'docs/release/beta-readiness.md'), 'utf8');
+  for (const asset of ['lamplight-core-0.1.0-beta.1.tgz', 'lamplight-react-0.1.0-beta.1.tgz', 'lamplight-browser-0.1.0-beta.1.zip']) {
+    assert.ok(readiness.includes(asset), asset);
+  }
+  assert.match(readme, /not released/i);
+  assert.match(adoption, /core\/lamplight\.css/);
+  assert.match(readiness, /physical monochrome/i);
+  assert.match(readiness, /Gate 6 remains open/);
 });

@@ -13,3 +13,15 @@ Security concerns do not belong in a public issue. Follow `SECURITY.md`, which
 will name the verified private reporting route after the public repository is
 configured. Support is best-effort and has no guaranteed response or resolution
 time.
+
+## Community beta
+
+The first beta is distributed as downloadable archives rather than registry
+packages. Give the exact archive version and, where available, its SHA-256
+digest when reporting a problem. Beta feedback should focus on a reproducible
+installation, keyboard, rendering or documentation issue with a small synthetic
+example. Physical monochrome printing and manual assistive-technology coverage
+are declared limitations, not completed acceptance tests.
+
+No private reporting route is promised until it has been configured and checked
+on the hosted repository. The release checklist retains that boundary.

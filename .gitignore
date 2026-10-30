@@ -9,3 +9,9 @@ coverage/
 dist/
 playwright-report/
 test-results/
+
+# Generated local beta downloads and candidate verification output.
+.beta/
+
+# Local visual review evidence, never release assets.
+.impeccable/review/

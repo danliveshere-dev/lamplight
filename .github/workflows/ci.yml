@@ -42,6 +42,9 @@ jobs:
         run: npm run gate7:prepare
       - name: Check package size
         run: npm run qa:size
+      - name: Check downloadable beta
+        if: matrix.node == '24'
+        run: npm run beta:build
 
   node20-smoke:
     name: Node 20 packed consumer smoke
@@ -59,7 +62,7 @@ jobs:
       - name: Install without lifecycle scripts
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Build publishable workspaces only
-        run: npm run tokens:build && npm run build --workspace @lamplight-internal/core && npm run build --workspace @lamplight-internal/react
+        run: npm run tokens:build && npm run build --workspace @lamplight/core && npm run build --workspace @lamplight/react
       - name: Install and import packed packages
         run: node scripts/gate5/node20-consumer-smoke.mjs
 
@@ -105,6 +108,6 @@ jobs:
       - name: Install browser engine
         run: npm exec -- playwright install --with-deps ${{ matrix.browser }}
       - name: Build fixtures
-        run: npm run build
+        run: npm run build && npm run examples:showcase
       - name: Run browser contract
         run: npm exec -- playwright test --project=${{ matrix.browser }}

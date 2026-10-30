@@ -133,12 +133,12 @@ function vanillaConsumer(coreTarball) {
   const directory = join(work, 'consumer-vanilla');
   writeJson(join(directory, 'package.json'), {
     name: 'lamplight-packed-vanilla-check', private: true, type: 'module',
-    dependencies: { '@lamplight-internal/core': `file:${coreTarball}` },
+    dependencies: { '@lamplight/core': `file:${coreTarball}` },
   });
   writeFileSync(join(directory, 'smoke.mjs'), `
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-const css = readFileSync(fileURLToPath(import.meta.resolve('@lamplight-internal/core/styles.css')), 'utf8');
+const css = readFileSync(fileURLToPath(import.meta.resolve('@lamplight/core/styles.css')), 'utf8');
 if (!css.includes('./tokens.css') || !css.includes('./components.css')) throw new Error('core stylesheet exports are incomplete');
 `);
   installConsumer(directory);
@@ -150,11 +150,11 @@ function astroConsumer(coreTarball) {
   writeJson(join(directory, 'package.json'), {
     name: 'lamplight-packed-astro-check', private: true, type: 'module',
     scripts: { build: 'astro build' },
-    dependencies: { '@lamplight-internal/core': `file:${coreTarball}`, astro: '7.3.1' },
+    dependencies: { '@lamplight/core': `file:${coreTarball}`, astro: '7.3.1' },
   });
   writeFileSync(join(directory, 'astro.config.mjs'), `import { defineConfig } from 'astro/config';\nexport default defineConfig({ output: 'static' });\n`);
   mkdirSync(join(directory, 'src/pages'), { recursive: true });
-  writeFileSync(join(directory, 'src/pages/index.astro'), `---\nimport '@lamplight-internal/core/styles.css';\n---\n<html><body><main class="l-room"><article class="l-panel"><h1>Packed Astro room</h1></article></main></body></html>\n`);
+  writeFileSync(join(directory, 'src/pages/index.astro'), `---\nimport '@lamplight/core/styles.css';\n---\n<html><body><main class="l-room"><article class="l-panel"><h1>Packed Astro room</h1></article></main></body></html>\n`);
   installConsumer(directory);
   run('npm', ['run', 'build'], { cwd: directory, env: npmEnvironment, capture: false });
   expect(readFileSync(join(directory, 'dist/index.html'), 'utf8').includes('Packed Astro room'), 'Astro packed consumer output is missing');
@@ -165,8 +165,8 @@ function reactConsumer(coreTarball, reactTarball, version) {
   writeJson(join(directory, 'package.json'), {
     name: `lamplight-packed-react-${version.replaceAll('.', '-')}-check`, private: true, type: 'module',
     dependencies: {
-      '@lamplight-internal/core': `file:${coreTarball}`,
-      '@lamplight-internal/react': `file:${reactTarball}`,
+      '@lamplight/core': `file:${coreTarball}`,
+      '@lamplight/react': `file:${reactTarball}`,
       react: version,
       'react-dom': version,
     },
@@ -174,11 +174,11 @@ function reactConsumer(coreTarball, reactTarball, version) {
   writeFileSync(join(directory, 'smoke.mjs'), `
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Button, Panel, Room } from '@lamplight-internal/react';
+import { Button, Panel, Room } from '@lamplight/react';
 const html = renderToStaticMarkup(React.createElement(Room, null,
   React.createElement(Panel, { depth: 'focal' }, React.createElement(Button, { kind: 'primary' }, 'Keep note'))));
 if (!html.includes('l-room') || !html.includes('l-panel') || !html.includes('l-btn')) throw new Error('React adapter markup is incomplete');
-if (!import.meta.resolve('@lamplight-internal/core/styles.css').endsWith('/dist/lamplight.css')) throw new Error('core CSS export cannot be resolved');
+if (!import.meta.resolve('@lamplight/core/styles.css').endsWith('/dist/lamplight.css')) throw new Error('core CSS export cannot be resolved');
 `);
   installConsumer(directory);
   run('node', ['smoke.mjs'], { cwd: directory });
@@ -193,16 +193,16 @@ try {
     core: directoryDigest(join(root, 'packages/core/dist')),
     react: directoryDigest(join(root, 'packages/react/dist')),
   };
-  const firstCore = pack('@lamplight-internal/core', join(work, 'pack-first-core'), 'core', expectedPackagePaths.core);
-  const firstReact = pack('@lamplight-internal/react', join(work, 'pack-first-react'), 'React', expectedPackagePaths.react);
+  const firstCore = pack('@lamplight/core', join(work, 'pack-first-core'), 'core', expectedPackagePaths.core);
+  const firstReact = pack('@lamplight/react', join(work, 'pack-first-react'), 'React', expectedPackagePaths.react);
 
   run('npm', ['run', 'build'], { capture: false });
   const secondBuild = {
     core: directoryDigest(join(root, 'packages/core/dist')),
     react: directoryDigest(join(root, 'packages/react/dist')),
   };
-  const secondCore = pack('@lamplight-internal/core', join(work, 'pack-second-core'), 'core', expectedPackagePaths.core);
-  const secondReact = pack('@lamplight-internal/react', join(work, 'pack-second-react'), 'React', expectedPackagePaths.react);
+  const secondCore = pack('@lamplight/core', join(work, 'pack-second-core'), 'core', expectedPackagePaths.core);
+  const secondReact = pack('@lamplight/react', join(work, 'pack-second-react'), 'React', expectedPackagePaths.react);
 
   expect(JSON.stringify(firstBuild) === JSON.stringify(secondBuild), 'two clean builds produced different package content');
   expect(firstCore.contentDigest === secondCore.contentDigest, 'two core packs produced different extracted content');

@@ -38,13 +38,14 @@ test('package QA fixes install isolation and every published size budget', () =>
 
 test('exact package path allowlists reject missing and rogue generated files', () => {
   assert.deepEqual(validatePackageFileList('core', expectedPackagePaths.core, expectedPackagePaths.core), {
-    expected: 21,
-    actual: 21,
+    expected: 22,
+    actual: 22,
   });
-  assert.equal(expectedPackagePaths.react.length, 5);
+  assert.equal(expectedPackagePaths.react.length, 6);
   for (const paths of [expectedPackagePaths.core, expectedPackagePaths.react]) {
     assert.ok(paths.includes('LICENSE'));
     assert.ok(paths.includes('NOTICE'));
+    assert.ok(paths.includes('README.md'));
   }
   assert.throws(
     () => validatePackageFileList('core', [...expectedPackagePaths.core, 'dist/rogue-generated.js'], expectedPackagePaths.core),

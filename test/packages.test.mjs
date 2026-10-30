@@ -18,13 +18,13 @@ function filesWithin(rootPath) {
   return found;
 }
 
-test('private workspace has exactly two future publishable packages', () => {
+test('private workspace has exactly two private beta packages', () => {
   assert.equal(root.private, true);
   assert.deepEqual(root.workspaces, ['packages/core', 'packages/react']);
   for (const pkg of [core, react]) {
     assert.equal(pkg.private, true);
-    assert.equal(pkg.version, '0.0.0-private.0');
-    assert.match(pkg.name, /^@lamplight-internal\//);
+    assert.equal(pkg.version, '0.1.0-beta.1');
+    assert.match(pkg.name, /^@lamplight\//);
   }
 });
 

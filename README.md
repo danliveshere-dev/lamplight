@@ -1,76 +1,34 @@
 # Lamplight
 
-Lamplight is a quiet design system for interfaces that should feel present
-without becoming demanding. It uses honest materials, etched labels and
-restrained motion across modes and surfaces. In plain language, it gives a website a small set of
-shared visual ingredients and interaction patterns so each screen feels like
-the same place.
+Lamplight is a quiet design system for interfaces that should feel present without becoming demanding. It offers framework-neutral CSS, optional browser enhancement and structural React bindings for focused, readable surfaces.
 
-The useful idea is not the candlelit appearance alone. Lamplight keeps one
-foreground focus, leaves room around it, reports state without urgency theatre,
-and treats reduced motion and keyboard use as part of the design rather than a
-later repair.
+## Community beta status
 
-## Status
+Version **0.1.0-beta.1 is prepared locally, not released**. The intended free community beta is GitHub-first, distributed as downloadable files rather than through an npm registry. The package names `@lamplight/core` and `@lamplight/react` are import names for those files; they do not establish ownership or availability of an npm namespace. Both packages remain `private: true`.
 
-This is a clean-history, pre-release repository. Gates 1 through 5 have passed
-with independent reviews. Gate 6 is held for the maintainer's separate Claude
-review, and Gate 7 public hosting and release decisions remain open. The
-packages are private, use deliberately internal names and have not been
-published. See the [release programme](TODO.md), [Gate 5 evidence](docs/release/gate-5-evidence.md)
-and [Gate 7 readiness pack](docs/release/gate-7-readiness.md).
+The [beta readiness record](docs/release/beta-readiness.md) separates local preparation from the outstanding review and explicit publication decision. Earlier production gates are historical evidence, not beta acceptance. Real Safari, manual assistive technology and physical monochrome printing have not been observed; Folio print is experimental.
 
-## Honest portability boundary
+## Try the prepared beta
 
-The core is framework-neutral CSS plus an optional browser module. It works in
-plain HTML and can be imported by bundlers used with Astro, React and other
-frameworks. It does not reset a host page unless the host explicitly adds
-`l-document`, and component styling stays below an `l-room` boundary.
-
-Night is the default mode. Set `data-mode="day"` or `data-surface="ledger"` or
-`data-surface="folio"` on a Room. Printing gives Folio automatically. Modes and
-surfaces are separate choices: a Ledger can be Night or Day, while Folio is always
-ink. Lamplight expects modern CSS custom properties,
-`color-mix()`, gradients and standard accessibility media queries. Its optional
-living-light module uses contemporary DOM observers and pointer APIs. Browsers
-without those APIs still receive the CSS surface, but not every light effect.
-The React adapter declares a `react >=18` peer contract. Packed consumers have
-been observed against React 18.3.1 and 19.2.8. See the [browser policy](docs/browser-support.md)
-for the tested-versus-supported rule.
-
-## Quick start before public release
-
-There is no registry install command yet. The names below are internal and may
-change at Gate 7.
-
-From this repository, build and create local tarballs:
+Once release assets are available, download both tarballs into your application and install by file:
 
 ```sh
-npm ci
-npm run build
-mkdir -p .packs
-npm pack --workspace @lamplight-internal/core --pack-destination .packs
-npm pack --workspace @lamplight-internal/react --pack-destination .packs
+npm install ./lamplight-core-0.1.0-beta.1.tgz
+# For a React application with React installed:
+npm install ./lamplight-react-0.1.0-beta.1.tgz
 ```
 
-Then install the resulting `.tgz` files into a local consumer by filesystem
-path. For example, replace `PATH_TO_LAMPLIGHT` with this checkout's path:
+In a bundler-based application, import `@lamplight/core/styles.css`. Fonts are optional: import `@lamplight/core/fonts.css` separately to use the included IBM Plex faces. The browser download, `lamplight-browser-0.1.0-beta.1.zip`, contains a copyable starter with local assets; serve its extracted directory with a static web server. See [adoption](docs/adoption.md) for complete HTML and React recipes.
 
-```sh
-npm install PATH_TO_LAMPLIGHT/.packs/lamplight-internal-core-0.0.0-private.0.tgz
-npm install PATH_TO_LAMPLIGHT/.packs/lamplight-internal-react-0.0.0-private.0.tgz
-```
+Night and Study are defaults. Use `data-mode="day"` to select Day; use `data-surface="ledger"` or `data-surface="folio"` to select a surface. Mode and surface are separate choices: Ledger can be Night or Day, while Folio is ink. Print applies Folio styling automatically, subject to the experimental print limitation.
 
-These are local pre-release instructions, not a public package promise. The
-[plain HTML](examples/vanilla/index.html), [Astro](examples/astro/src/pages/index.astro)
-and [React](examples/react/src/page.mjs) examples are runnable from this
-checkout with `npm run examples:build`.
+The core stylesheet scopes component styling to `.l-room`; `l-document` opts a whole page into the document shell. Living light is optional and must be explicitly initialised. The React adapter declares a `react >=18` peer contract; packed consumers have been observed against React 18.3.1 and 19.2.8. These observations are not a guarantee for every version.
 
 ## Package and export map
 
-| Internal package | Export | What it provides |
+| Download package | Export | What it provides |
 | --- | --- | --- |
-| `@lamplight-internal/core` | `./styles.css` | Tokens and scoped components, with no font or JavaScript import |
+| `@lamplight/core` | `./styles.css` | Tokens and scoped components, with no font or JavaScript import |
 | core | `./tokens.json` | Canonical DTCG 2025.10 tokens for tools |
 | core | `./tokens.css` | Generated custom properties |
 | core | `./components.css` | Component class rules |
@@ -78,89 +36,26 @@ checkout with `npm run examples:build`.
 | core | `./surfaces.css` | Ledger, Folio and print adaptations |
 | core | `./fonts.css` and `./fonts/*` | Opt-in IBM Plex faces and files |
 | core | `./living-light` | Explicit, SSR-safe `initLivingLight()` browser enhancement |
-| `@lamplight-internal/react` | `.` | Typed structural React bindings only |
+| `@lamplight/react` | `.` | Typed structural React bindings only |
 
 The core has no dependencies. The React package has no bundled dependencies
 and declares React only as a peer.
 
-## The two boundaries
+## Guides
 
-Use `l-room` when Lamplight lives inside another product. It carries the local
-ground, typography, sizing and focus language without restyling the host page.
+- [Principles](docs/principles.md), [tokens](docs/tokens.md), [components](docs/components.md), [adoption](docs/adoption.md)
+- [Accessibility](docs/accessibility.md), [browser support](docs/browser-support.md), [versioning](docs/versioning.md), [adapters](docs/adapters.md)
+- [Plain HTML](examples/vanilla/index.html), [Astro](examples/astro/src/pages/index.astro), [React](examples/react/src/page.mjs)
+- [Contributing](CONTRIBUTING.md), [governance](GOVERNANCE.md), [support](SUPPORT.md), [conduct](CODE_OF_CONDUCT.md), [origin](docs/ORIGIN.md)
+- [Beta release notes](docs/release/beta-release-notes.md), [historical release programme](TODO.md)
 
-```html
-<link rel="stylesheet" href="CORE_PACKAGE/styles.css">
-<section class="l-room">
-  <article class="l-panel" data-depth="focal">...</article>
-</section>
-```
-
-Use `l-document` only when Lamplight owns the whole document. It opts the HTML
-page into the body, link, form and focus shell.
-
-```html
-<html class="l-document">
-  <body><main class="l-room">...</main></body>
-</html>
-```
-
-`CORE_PACKAGE` is a clearly labelled placeholder for the eventual public core
-package name. For local work, import the core tarball exports described above.
-
-## Optional fonts and living light
-
-Lamplight falls back to system faces unless the consumer separately imports
-`CORE_PACKAGE/fonts.css`. The OFL-licensed IBM Plex assets ship in the core
-tarball but the default stylesheet does not fetch or apply their face rules.
-
-Living light is progressive enhancement and never starts on import:
-
-```js
-import { initLivingLight } from 'CORE_PACKAGE/living-light';
-
-initLivingLight();
-```
-
-The call is safe during server rendering, installs at most once per document,
-waits for the body when necessary and honours reduced motion declared by any
-ancestor Room.
-
-## Documentation
-
-- [Principles, modes and surfaces](docs/principles.md)
-- [Tokens and DTCG](docs/tokens.md)
-- [Components and recipes](docs/components.md)
-- [Accessibility contract](docs/accessibility.md)
-- [Browser support](docs/browser-support.md)
-- [Migration from the internal source](docs/migration-internal-package.md)
-- [Adapter contract](docs/adapters.md)
-- [Adoption guide](docs/adoption.md)
-- [Versioning and compatibility](docs/versioning.md)
-- [Contributing](CONTRIBUTING.md)
-- [Governance](GOVERNANCE.md)
-- [Support](SUPPORT.md)
-- [Code of conduct](CODE_OF_CONDUCT.md)
-- [Origin](docs/ORIGIN.md)
-
-## Non-goals for 1.0
-
-Lamplight is not a full application framework, a dashboard template, a utility
-class library or a light/dark theme engine. It does not own data, routing,
-content, analytics, AI behaviour or application state. It will not absorb
-consumer-specific names or workflows to make one integration easier. Future
-framework adapters may translate the stable class and token contracts, but
-they must not fork the visual authority.
-
-## Repository development
+## Local development
 
 ```sh
 npm ci
-npm test
-npm run gate5:check
-npm run gate7:prepare
+npm run beta:check
+npm run beta:build
+node examples/showcase/build.mjs
 ```
 
-`npm test` builds both packages and all three synthetic examples, checks the
-token source and Style Dictionary compatibility, then runs architecture,
-documentation and React contract suites. Nothing in those commands publishes,
-creates a remote or tags a release.
+The showcase build creates `examples/showcase/dist/index.html`; serve that directory locally to explore it. These commands prepare and check files locally. They do not publish a release.

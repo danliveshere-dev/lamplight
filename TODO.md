@@ -1,4 +1,23 @@
-# Lamplight 1.0 release programme
+# Release programme
+
+The free community beta is a separate, GitHub-first preparation profile. Version 0.1.0-beta.1 is prepared locally, not released. See [beta readiness](docs/release/beta-readiness.md) for its acceptance and outstanding decision. This does not pass Gate 6 or replace the independent dual-provider review required for stable production.
+
+Gates 1 to 5 record earlier work and independent reviews. Their dated evidence describes the targets and limitations at the time, not a guarantee about this beta candidate:
+
+- [Gate 1: extraction](docs/release/gate-1-evidence.md)
+- [Gate 2: architecture](docs/release/gate-2-evidence.md)
+- [Gate 3: adoption](docs/release/gate-3-evidence.md)
+- [Gate 4: consumer QA](docs/release/gate-4-evidence.md) and [matrix](docs/release/gate-4-matrix.md)
+- [Gate 5: security and licensing](docs/release/gate-5-evidence.md)
+- [Gate 7: historical preparation evidence](docs/release/gate-7-preparation-evidence.md) and [readiness](docs/release/gate-7-readiness.md)
+
+Gate 6 remains open. Stable production requires its independent dual-provider review. Gate 7 and any public release remain subject to their applicable review and explicit authorisation. Do not treat a local build as a hosted or published release.
+
+## Existing stable release programme
+
+The following checklists retain their historical evidence targets. They are not
+a claim that the new beta candidate has passed those reviews.
+
 
 This is the task authority for the standalone Lamplight repository. A gate can
 move to `passed` only after its implementation evidence exists and an

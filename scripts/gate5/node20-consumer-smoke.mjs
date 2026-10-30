@@ -31,8 +31,8 @@ function pack(workspace, destination) {
 }
 
 try {
-  const core = pack('@lamplight-internal/core', join(work, 'core'));
-  const reactAdapter = pack('@lamplight-internal/react', join(work, 'react'));
+  const core = pack('@lamplight/core', join(work, 'core'));
+  const reactAdapter = pack('@lamplight/react', join(work, 'react'));
   const consumer = join(work, 'consumer');
   mkdirSync(consumer);
   writeFileSync(join(consumer, 'package.json'), `${JSON.stringify({
@@ -40,8 +40,8 @@ try {
     private: true,
     type: 'module',
     dependencies: {
-      '@lamplight-internal/core': `file:${core}`,
-      '@lamplight-internal/react': `file:${reactAdapter}`,
+      '@lamplight/core': `file:${core}`,
+      '@lamplight/react': `file:${reactAdapter}`,
       react: '18.3.1',
       'react-dom': '18.3.1',
     },
@@ -49,10 +49,10 @@ try {
   writeFileSync(join(consumer, 'smoke.mjs'), `
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Button, Room } from '@lamplight-internal/react';
+import { Button, Room } from '@lamplight/react';
 const markup = renderToStaticMarkup(React.createElement(Room, null, React.createElement(Button, null, 'Open')));
 if (!markup.includes('l-room') || !markup.includes('l-btn')) throw new Error('React adapter import failed');
-if (!import.meta.resolve('@lamplight-internal/core/styles.css').endsWith('/dist/lamplight.css')) throw new Error('core export import failed');
+if (!import.meta.resolve('@lamplight/core/styles.css').endsWith('/dist/lamplight.css')) throw new Error('core export import failed');
 `);
   run('npm', ['install'], consumer);
   run('node', ['smoke.mjs'], consumer);

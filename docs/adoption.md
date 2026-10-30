@@ -1,42 +1,71 @@
 # Adoption guide
 
-Start with one bounded surface. Import the core styles, wrap that surface in
-`.l-room`, and compose ordinary semantic HTML with Lamplight classes. Confirm
-that host typography, links and controls outside the Room do not change.
+Start with a bounded surface and semantic HTML. Wrap it in `.l-room`; use `l-document` only when Lamplight owns the whole page. Check that the host outside the Room remains unchanged.
 
-## Suggested sequence
+## Browser starter
 
-1. Use the framework-neutral core without fonts or living light.
-2. Check keyboard order, focus visibility, contrast and no-JavaScript reading.
-3. Add the React adapter only if typed structural bindings reduce duplication.
-4. Add font faces only when the download and licence fit the consumer.
-5. Add living light last, then verify reduced motion and lower-powered devices.
+The planned `lamplight-browser-0.1.0-beta.1.zip` contains a copyable starter and local assets. Extract it and serve the directory with a static web server. Use its relative stylesheet path and preserve the asset directory when copying it. No release is available yet.
 
-The synthetic examples demonstrate three integration shapes:
+```html
+<!doctype html>
+<html lang="en" class="l-document">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading room</title>
+  <link rel="stylesheet" href="./core/lamplight.css">
+</head>
+<body>
+  <main class="l-room" data-mode="day" data-surface="ledger">
+    <article class="l-panel" data-depth="focal">
+      <h1>Reading room</h1>
+      <p>One passage, held quietly.</p>
+      <button class="l-btn" data-kind="primary" type="button">Keep reading</button>
+    </article>
+  </main>
+</body>
+</html>
+```
 
-- [plain HTML](../examples/vanilla/index.html) links token and component CSS;
-- [Astro](../examples/astro/src/pages/index.astro) imports the same core through
-  a bundler; and
-- [React](../examples/react/src/page.mjs) renders adapter components while the
-  build separately supplies framework-neutral core CSS.
+The button is a native button. Connect its action in your application; CSS does not supply the action. The browser starter's own HTML is the authoritative copyable example for its asset paths.
 
-Run all three locally with `npm run examples:build`. Their generated `dist`
-directories are ignored and must not be treated as release artefacts.
+## React with a bundler
 
-## Modes and surfaces
+After the beta assets are released, install `lamplight-core-0.1.0-beta.1.tgz` and `lamplight-react-0.1.0-beta.1.tgz` by local file path. Install React separately; the adapter declares it as a peer. For example, in a JSX-capable React application:
 
-Night and Study are the defaults. Set `data-mode="day"` on a Room for Day, and
-`data-surface="ledger"` for a Ledger or `data-surface="folio"` for a Folio.
-Mode and surface are separate choices; Ledger can be Night or Day, while Folio
-is always ink. Printing applies Folio automatically. Import `modes.css` and
-`surfaces.css` when using the separate stylesheet exports.
+```jsx
+import React from 'react';
+import { Room, Panel, Button } from '@lamplight/react';
+import '@lamplight/core/styles.css';
+// Optional IBM Plex font faces:
+// import '@lamplight/core/fonts.css';
 
-## Consumer extensions
+export function ReadingRoom() {
+  return (
+    <Room data-mode="day" data-surface="ledger">
+      <Panel depth="focal">
+        <h1>Reading room</h1>
+        <p>One passage, held quietly.</p>
+        <Button kind="primary" onClick={() => console.log('Keep reading')}>
+          Keep reading
+        </Button>
+      </Panel>
+    </Room>
+  );
+}
+```
 
-Override semantic tokens on the consumer's `.l-room` or add consumer-owned
-classes in a separate stylesheet. Do not patch generated token CSS or copy the
-core source into an application. A useful extension remains explicit about
-which layer owns it.
+Replace the example handler with application behaviour. Fonts are opt-in; without the font stylesheet system faces are used. `styles.css` includes modes and surfaces. When importing individual CSS exports, include `tokens.css`, `components.css`, `modes.css` and `surfaces.css` in that order.
 
-Adoption is successful when the consumer can upgrade Lamplight without a
-manual source sync, and Lamplight can test its own package without the consumer.
+## Modes, surfaces and enhancement
+
+Night and Study are defaults. `data-mode="day"` selects Day; `data-surface="ledger"` and `data-surface="folio"` select surfaces independently. Ledger can be Night or Day; Folio is always ink. Printing applies Folio styling automatically but physical monochrome print has not been observed and remains experimental.
+
+Living light never starts on import. In a browser application, opt in with:
+
+```js
+import { initLivingLight } from '@lamplight/core/living-light';
+initLivingLight();
+```
+
+Check keyboard operation, visible focus, text contrast, reduced motion and no-JavaScript reading in your own composition. Pair state with a word or shape and appropriate semantics, never colour or motion alone. See [accessibility](accessibility.md) for limits. Override semantic tokens on your Room or add a consumer stylesheet instead of editing generated CSS.

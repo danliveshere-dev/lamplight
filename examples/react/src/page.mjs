@@ -1,5 +1,5 @@
 import React from 'react';
-import { Actions, Button, Etched, Panel, Reading, Room } from '../../../packages/react/dist/index.js';
+import { Actions, Button, Etched, Panel, Reading, Room } from '@lamplight/react';
 
 const h = React.createElement;
 

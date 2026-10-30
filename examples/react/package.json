@@ -5,5 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@lamplight/react": "file:../../packages/react",
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }

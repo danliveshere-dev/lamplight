@@ -1,0 +1,16 @@
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+.showcase { min-height: 100vh; padding: 0 clamp(1.25rem, 5vw, 5rem); }
+.showcase ::selection { background: var(--lamp-accent); color: var(--lamp-text-on-fill); }
+.masthead, footer { max-width: 76rem; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--lamp-glass-hairline); }
+.brand { font-weight: 600; text-decoration: none; } .brand span { margin-left: .5rem; color: var(--lamp-text-secondary); font-size: .8rem; font-weight: 400; }
+nav { display: flex; flex-wrap: wrap; gap: 1.4rem; } nav a { text-decoration-thickness: 1px; text-underline-offset: .25em; }
+main { max-width: 76rem; margin: auto; } section { padding: clamp(3rem, 7vw, 6rem) 0; border-bottom: 1px solid var(--lamp-glass-hairline); }
+h1, h2, h3, p { margin-top: 0; } h1, h2, h3 { text-wrap: balance; } h1 { max-width: 14ch; font-family: var(--lamp-font-serif); font-size: clamp(2.7rem, 6vw, 5rem); font-weight: 400; line-height: 1.05; letter-spacing: -.025em; } h2 { font-family: var(--lamp-font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; } h3 { font-size: 1.12rem; } p { max-width: 68ch; line-height: 1.65; } .intro > p { font-size: 1.15rem; } .intro .note, .sample-aside { color: var(--lamp-text-secondary); font-size: .9rem; }
+.controls { display: flex; flex-wrap: wrap; gap: 1rem 3rem; margin: 2rem 0; } fieldset { border: 0; padding: 0; margin: 0; } legend { font-weight: 600; margin-bottom: .5rem; } fieldset label { display: inline-flex; align-items: center; gap: .35rem; margin: 0 1rem .5rem 0; } input[type=radio] { accent-color: var(--lamp-accent); }
+.sample-grid, .start-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; } .sample-panel { padding: clamp(1.25rem, 3vw, 2rem); } .sample-panel .l-reading { margin: 1.5rem 0; } .sample-panel .l-actions { margin-top: 1.25rem; } #action-status { margin: 1rem 0 0; } .sample-list { padding-top: 1rem; } caption { text-align: left; margin-bottom: .8rem; font-weight: 600; } .sample-aside { margin-top: 1rem; }
+.recipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; } .recipe-grid article { padding-top: 1rem; border-top: 1px solid var(--lamp-glass-hairline); } code { font-family: var(--lamp-font-mono); font-size: .86em; overflow-wrap: anywhere; } pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 1rem; background: var(--lamp-surface-reading); color: var(--lamp-text-secondary); } footer { border: 0; color: var(--lamp-text-secondary); font-size: .9rem; }
+@media (max-width: 700px) { .masthead, footer { align-items: flex-start; flex-direction: column; } .sample-grid, .start-grid, .recipe-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.print-value { display: none; }
+@media print { .print-value { display: block; } #note { display: none; } .controls, nav, .l-actions { display: none; } .showcase { padding: 0; } section { padding: 1rem 0; break-inside: avoid; } }

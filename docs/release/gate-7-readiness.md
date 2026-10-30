@@ -10,6 +10,16 @@ are clean. Starting private delays community visibility and npm provenance, but
 it gives the first workflow run and repository settings a reversible staging
 point.
 
+## Downloadable beta route
+
+The community beta has a separate local preparation contract in
+[beta-readiness.md](beta-readiness.md). It prepares downloadable archives with
+`0.1.0-beta.1` versions, keeps registry publication disabled, and does not claim
+that the stable npm manifest gate or independent production review has passed.
+The route below remains the stable registry release programme. Public repository
+configuration, private reporting routes and the maintainer's final publication
+choice still have to be witnessed before the prepared beta is shared.
+
 ## Three choices the maintainer still owns
 
 | Choice | Recommendation | Alternative and trade-off |

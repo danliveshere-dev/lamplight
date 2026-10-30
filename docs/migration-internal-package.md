@@ -8,10 +8,10 @@ living light. The standalone architecture separates those responsibilities.
 
 | Old import | Pre-release standalone equivalent |
 | --- | --- |
-| `lamplight-ui` | `@lamplight-internal/react` |
-| `lamplight-ui/styles.css` | `@lamplight-internal/core/styles.css` |
-| implicit bundled font faces | explicit `@lamplight-internal/core/fonts.css` |
-| `lamplight-ui/living-light` | `@lamplight-internal/core/living-light` |
+| `lamplight-ui` | `@lamplight/react` |
+| `lamplight-ui/styles.css` | `@lamplight/core/styles.css` |
+| implicit bundled font faces | explicit `@lamplight/core/fonts.css` |
+| `lamplight-ui/living-light` | `@lamplight/core/living-light` |
 
 The names in the right column are local pre-release names and will be replaced
 only after Gate 7 chooses a public namespace.

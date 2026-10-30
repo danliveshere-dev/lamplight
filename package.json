@@ -1,6 +1,6 @@
 {
   "name": "lamplight-workspace",
-  "version": "0.0.0-private.0",
+  "version": "0.1.0-beta.1",
   "private": true,
   "type": "module",
   "license": "Apache-2.0",
@@ -12,10 +12,10 @@
     "tokens:build": "node scripts/build-tokens.mjs",
     "tokens:check": "node scripts/build-tokens.mjs --check",
     "tokens:ecosystem-check": "style-dictionary build --config style-dictionary.config.mjs",
-    "build": "npm run tokens:build && npm run build --workspace @lamplight-internal/core && npm run build --workspace @lamplight-internal/react",
+    "build": "npm run tokens:build && npm run build --workspace @lamplight/core && npm run build --workspace @lamplight/react",
     "examples:build": "npm run build && npm run examples:build:only",
-    "examples:build:only": "npm run build --prefix examples/vanilla && npm run build --prefix examples/astro && npm run build --prefix examples/react",
-    "test": "npm run build && npm run tokens:check && npm run tokens:ecosystem-check && npm run examples:build:only && node --test test/*.test.mjs && npm test --workspace @lamplight-internal/react",
+    "examples:build:only": "npm run build --prefix examples/vanilla && npm run build --prefix examples/astro && npm run build --prefix examples/react && npm run examples:showcase",
+    "test": "npm run build && npm run tokens:check && npm run tokens:ecosystem-check && npm run examples:build:only && node --test test/*.test.mjs && npm test --workspace @lamplight/react",
     "privacy": "node scripts/privacy-scan.mjs",
     "qa:size": "node scripts/gate4/package-qa.mjs --skip-consumers",
     "qa:packages": "node scripts/gate4/package-qa.mjs",
@@ -26,7 +26,10 @@
     "gate5:security": "node scripts/gate5/public-repo-check.mjs",
     "gate5:check": "npm run gate5:licence && npm run gate5:security && npm run privacy",
     "gate7:prepare": "node scripts/gate7/binary-policy.mjs",
-    "gate7:release": "node scripts/gate7/release-manifest-policy.mjs"
+    "gate7:release": "node scripts/gate7/release-manifest-policy.mjs",
+    "beta:check": "node scripts/beta/validate.mjs",
+    "beta:build": "node scripts/beta/build.mjs",
+    "examples:showcase": "node examples/showcase/build.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

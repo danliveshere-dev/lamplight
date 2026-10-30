@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Page } from './src/page.mjs';
 
@@ -13,13 +13,11 @@ writeFileSync(new URL('./index.html', output), `<!doctype html>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lamplight React reading room</title>
-    <link rel="stylesheet" href="./tokens.css">
-    <link rel="stylesheet" href="./components.css">
+    <link rel="stylesheet" href="./core/lamplight.css">
   </head>
   <body>${body}</body>
 </html>
 `);
-copyFileSync(new URL('../../packages/core/dist/tokens.css', import.meta.url), new URL('./tokens.css', output));
-copyFileSync(new URL('../../packages/core/dist/components.css', import.meta.url), new URL('./components.css', output));
+cpSync(new URL('../../packages/core/dist/', import.meta.url), new URL('./core/', output), { recursive: true });
 
 console.log('Built synthetic React example by static rendering the adapter.');

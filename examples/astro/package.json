@@ -5,5 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "astro build"
+  },
+  "dependencies": {
+    "@lamplight/core": "file:../../packages/core"
   }
 }
