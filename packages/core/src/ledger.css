@@ -1,0 +1,33 @@
+/* Ledger: the working desk, with papers spread out. For material people scan, compare and
+   return to. It holds in either mode. Calm comes from grouping and alignment here. */
+[data-surface="ledger"] {
+  --lamp-row-height: 2rem;
+  --lamp-sheen-follow: transparent;
+  --lamp-sheen-focus: transparent;
+  --lamp-sheen-rest: linear-gradient(transparent, transparent);
+  --lamp-wire-warm-halo: 0 0 0 transparent;
+  --lamp-wire-live-halo: 0 0 0 transparent;
+  --lamp-wire-ember-halo: 0 0 0 transparent;
+  font-size: var(--lamp-text-md);
+  line-height: 1.45;
+}
+
+[data-surface="ledger"] .l-table { font-size: var(--lamp-text-sm); font-variant-numeric: tabular-nums; }
+[data-surface="ledger"] .l-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding-block: var(--lamp-space-2);
+  background: var(--lamp-surface-panel);
+}
+[data-surface="ledger"] .l-table td { padding-block: var(--lamp-space-1); }
+[data-surface="ledger"] .l-table .l-state-cell { white-space: nowrap; }
+
+/* One lead per region. It's lighter than Focal Catch, which stays at one per view. */
+[data-surface="ledger"] .l-lead {
+  border-block-start: 2px solid var(--lamp-accent);
+  padding-block-start: var(--lamp-space-2);
+  font-weight: var(--lamp-weight-semibold);
+}
+
+[data-surface="ledger"] .l-panel::after { opacity: 0; }

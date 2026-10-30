@@ -14,7 +14,8 @@
     "dist/living-light.d.ts",
     "dist/living-light.js",
     "dist/tokens.css",
-    "dist/modes.css"
+    "dist/modes.css",
+    "dist/surfaces.css"
   ],
   "exports": {
     "./styles.css": "./dist/lamplight.css",
@@ -27,7 +28,8 @@
       "types": "./dist/living-light.d.ts",
       "import": "./dist/living-light.js"
     },
-    "./modes.css": "./dist/modes.css"
+    "./modes.css": "./dist/modes.css",
+    "./surfaces.css": "./dist/surfaces.css"
   },
   "sideEffects": [
     "**/*.css"

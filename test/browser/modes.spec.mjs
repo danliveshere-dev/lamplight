@@ -59,3 +59,25 @@ test('Day on the document reaches an embedded Room', async ({ page }) => {
   await expect(room).toHaveCSS('color-scheme', 'light');
   await expect(room).toHaveCSS('background-color', 'rgb(246, 236, 217)');
 });
+
+test('Ledger tightens rows and uses tabular numbers', async ({ page }) => {
+  await open(page, { surface: 'ledger' });
+  const room = page.locator('[data-testid="room"]');
+  expect(await prop(room, '--lamp-row-height')).toBe('2rem');
+  const table = await room.evaluate(() => {
+    const t = document.createElement('table');
+    t.className = 'l-table';
+    t.innerHTML = '<thead><tr><th>Name</th></tr></thead><tbody><tr><td>1</td></tr></tbody>';
+    document.querySelector('[data-testid="room"]').append(t);
+    const th = getComputedStyle(t.querySelector('th'));
+    return { numeric: getComputedStyle(t).fontVariantNumeric, position: th.position };
+  });
+  expect(table).toEqual({ numeric: 'tabular-nums', position: 'sticky' });
+});
+
+test('Ledger turns ambient light off, in either mode', async ({ page }) => {
+  await open(page, { surface: 'ledger', mode: 'day' });
+  const room = page.locator('[data-testid="room"]');
+  expect(await prop(room, '--lamp-sheen-follow')).toBe('transparent');
+  await expect(room).toHaveCSS('color-scheme', 'light');
+});
