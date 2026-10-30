@@ -1,6 +1,10 @@
 import type * as React from 'react';
 
 export interface RoomProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Night is the default. Use "day" for ink on parchment. */
+  'data-mode'?: 'night' | 'day';
+  /** Leave unset for Study. */
+  'data-surface'?: 'ledger' | 'folio';
   children?: React.ReactNode;
 }
 /** The scoped Lamplight ground, ink and voice. Wrap the outermost Lamplight region in one; it does not restyle the host document or start optional motion. Import initLivingLight from lamplight-ui/living-light when the surface has earned pointer, dwell and press light. */

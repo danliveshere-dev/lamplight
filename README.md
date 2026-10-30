@@ -1,8 +1,8 @@
 # Lamplight
 
 Lamplight is a quiet design system for interfaces that should feel present
-without becoming demanding. It uses dark material, warm light, etched labels
-and restrained motion. In plain language, it gives a website a small set of
+without becoming demanding. It uses honest materials, etched labels and
+restrained motion across modes and surfaces. In plain language, it gives a website a small set of
 shared visual ingredients and interaction patterns so each screen feels like
 the same place.
 
@@ -27,7 +27,10 @@ plain HTML and can be imported by bundlers used with Astro, React and other
 frameworks. It does not reset a host page unless the host explicitly adds
 `l-document`, and component styling stays below an `l-room` boundary.
 
-Lamplight is currently dark-only. It expects modern CSS custom properties,
+Night is the default mode. Set `data-mode="day"` or `data-surface="ledger"` or
+`data-surface="folio"` on a Room. Printing gives Folio automatically. Modes and
+surfaces are separate choices: a Ledger can be Night or Day, while Folio is always
+ink. Lamplight expects modern CSS custom properties,
 `color-mix()`, gradients and standard accessibility media queries. Its optional
 living-light module uses contemporary DOM observers and pointer APIs. Browsers
 without those APIs still receive the CSS surface, but not every light effect.
@@ -71,6 +74,8 @@ checkout with `npm run examples:build`.
 | core | `./tokens.json` | Canonical DTCG 2025.10 tokens for tools |
 | core | `./tokens.css` | Generated custom properties |
 | core | `./components.css` | Component class rules |
+| core | `./modes.css` | Mode adaptations |
+| core | `./surfaces.css` | Ledger, Folio and print adaptations |
 | core | `./fonts.css` and `./fonts/*` | Opt-in IBM Plex faces and files |
 | core | `./living-light` | Explicit, SSR-safe `initLivingLight()` browser enhancement |
 | `@lamplight-internal/react` | `.` | Typed structural React bindings only |
@@ -122,6 +127,7 @@ ancestor Room.
 
 ## Documentation
 
+- [Principles, modes and surfaces](docs/principles.md)
 - [Tokens and DTCG](docs/tokens.md)
 - [Components and recipes](docs/components.md)
 - [Accessibility contract](docs/accessibility.md)

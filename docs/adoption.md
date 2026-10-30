@@ -23,6 +23,14 @@ The synthetic examples demonstrate three integration shapes:
 Run all three locally with `npm run examples:build`. Their generated `dist`
 directories are ignored and must not be treated as release artefacts.
 
+## Modes and surfaces
+
+Night and Study are the defaults. Set `data-mode="day"` on a Room for Day, and
+`data-surface="ledger"` for a Ledger or `data-surface="folio"` for a Folio.
+Mode and surface are separate choices; Ledger can be Night or Day, while Folio
+is always ink. Printing applies Folio automatically. Import `modes.css` and
+`surfaces.css` when using the separate stylesheet exports.
+
 ## Consumer extensions
 
 Override semantic tokens on the consumer's `.l-room` or add consumer-owned

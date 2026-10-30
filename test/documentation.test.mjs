@@ -110,3 +110,24 @@ test('examples demonstrate core-only and adapter-assisted adoption', () => {
   assert.match(react, /packages\/react\/dist\/index\.js/);
   assert.doesNotMatch(vanilla + astro, /packages\/react/);
 });
+
+
+test('the docs state modes and surfaces, not dark-only', () => {
+  const readme = readFileSync(join(repository, 'README.md'), 'utf8');
+  const principles = readFileSync(join(repository, 'docs/principles.md'), 'utf8');
+  const adoption = readFileSync(join(repository, 'docs/adoption.md'), 'utf8');
+  const room = readFileSync(join(repository, 'packages/react/src/compound.d.ts'), 'utf8');
+  assert.doesNotMatch(readme, /dark-only/i);
+  for (const name of ['Honest materials', 'One thing at a time', 'Keep it calm',
+    'Tell the truth about state', 'Movement needs a reason', 'Everyone can read it', 'Talk like a person']) {
+    assert.match(principles, new RegExp(name));
+  }
+  for (const text of [readme, adoption]) {
+    assert.match(text, /data-mode="day"/);
+    assert.match(text, /data-surface="ledger"/);
+    assert.match(text, /data-surface="folio"/);
+    assert.match(text, /print/i);
+  }
+  assert.match(room, /'data-mode'\?: 'night' \| 'day'/);
+  assert.match(room, /'data-surface'\?: 'ledger' \| 'folio'/);
+});

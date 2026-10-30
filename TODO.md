@@ -11,8 +11,9 @@ independent reviewer has returned no unresolved blocker.
 | 3 | Adoption documentation and examples | passed | `docs/release/gate-3-evidence.md` |
 | 4 | Cross-consumer QA and reproducibility | passed | `docs/release/gate-4-evidence.md` |
 | 5 | Security, licensing and public-repo controls | passed | `docs/release/gate-5-evidence.md` |
+| 5a | Modes and surfaces | in progress | spec decision D34 in the consumer repo |
 | 6 | Independent Claude first-commit review | held for maintainer | Emberline handoff prepared |
-| 7 | GitHub and release-candidate readiness | local preparation ready; hosted work open | `docs/release/gate-7-preparation-evidence.md` |
+| 7 | GitHub and release-candidate readiness | held until modes and surfaces land; local preparation ready; hosted work open | `docs/release/gate-7-preparation-evidence.md` |
 
 ## Gate 1 checklist
 

@@ -15,8 +15,8 @@ templates.
 
 `Panel`, `Reading`, `Note`, `Toast` and `Skeleton` provide surfaces with
 different reading purposes. `Actions`, `Button`, `Ask` and `Outcome` support a
-small decision without turning the page into a queue. Use at most one focal
-panel in a view.
+small decision without turning the page into a queue. Use one focal panel in
+a view. In a Ledger, use `.l-lead` for one lead per region.
 
 ## Forms, navigation and data
 
