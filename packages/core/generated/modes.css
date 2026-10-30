@@ -88,6 +88,7 @@
 html.l-document[data-mode="day"],
 [data-surface="folio"],
 html.l-document[data-surface="folio"],
+:where([data-surface="folio"]) [data-mode],
 :where([data-surface="folio"]) .l-panel[data-depth="focal"],
 :where([data-surface="folio"]) .l-focal-catch,
 :where([data-surface="folio"]) .l-presence {
@@ -173,6 +174,7 @@ html.l-document[data-surface="folio"],
 
 @media print {
 :is(.l-room, html.l-document),
+:is(.l-room, html.l-document) [data-mode],
 :is(.l-room, html.l-document) .l-panel[data-depth="focal"],
 :is(.l-room, html.l-document) .l-focal-catch,
 :is(.l-room, html.l-document) .l-presence {

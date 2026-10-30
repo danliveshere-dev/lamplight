@@ -141,3 +141,25 @@ test('Folio chip states have distinct non-colour cues', async ({ page }) => {
   expect(await cue('#live-chip')).toContain('●');
   expect(await cue('#attention-chip')).toContain('▲');
 });
+
+
+for (const surface of ['folio', 'print']) {
+  test(`${surface} resets arbitrary nested Night islands to ink`, async ({ page }) => {
+    await open(page, surface === 'folio' ? { surface: 'folio', mode: 'day' } : { mode: 'day' });
+    await page.getByTestId('room').evaluate(room => room.insertAdjacentHTML('beforeend',
+      '<section data-mode="night" id="night-island" style="background:var(--lamp-glass-bg)">Nested island</section>'));
+    const island = page.locator('#night-island');
+    if (surface === 'print') await page.emulateMedia({ media: 'print' });
+    await expect(island).toHaveCSS('color', 'rgb(20, 17, 24)');
+    await expect(island).toHaveCSS('color-scheme', 'light');
+    expect(await prop(island, '--lamp-glass-bg')).toBe('transparent');
+  });
+}
+
+test('an arbitrary Night island remains Night on a Day screen', async ({ page }) => {
+  await open(page, { mode: 'day' });
+  await page.getByTestId('room').evaluate(room => room.insertAdjacentHTML('beforeend',
+    '<section data-mode="night" id="night-island">Nested island</section>'));
+  await expect(page.locator('#night-island')).toHaveCSS('color-scheme', 'dark');
+  await expect(page.locator('#night-island')).toHaveCSS('color', 'rgb(232, 220, 196)');
+});

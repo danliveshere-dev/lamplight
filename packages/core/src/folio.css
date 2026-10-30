@@ -1,6 +1,7 @@
 /* Folio: the sheet that leaves the room. The paper's own colour is the ground, and depth comes
    from rule weight and type size. The build repeats these rules under @media print. */
-[data-surface="folio"] {
+[data-surface="folio"],
+[data-surface="folio"] [data-mode] {
   --lamp-surface-page: transparent;
   --lamp-surface-panel: transparent;
   --lamp-surface-raised: transparent;
@@ -9,6 +10,9 @@
   --lamp-glass-bg: transparent;
   --lamp-grain-opacity: 0;
   --lamp-row-height: 1.75rem;
+}
+
+[data-surface="folio"] {
   background: var(--lamp-paper-white);
   font-size: 10.5pt;
   line-height: 1.45;
