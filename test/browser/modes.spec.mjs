@@ -163,3 +163,26 @@ test('an arbitrary Night island remains Night on a Day screen', async ({ page })
   await expect(page.locator('#night-island')).toHaveCSS('color-scheme', 'dark');
   await expect(page.locator('#night-island')).toHaveCSS('color', 'rgb(232, 220, 196)');
 });
+
+
+test('Folio makes controls plain and still immediately after leaving Night', async ({ page }) => {
+  await page.goto('/test/browser/fixture.html');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  const room = page.getByTestId('room');
+  const result = await room.evaluate(el => {
+    el.dataset.surface = 'folio';
+    const field = el.querySelector('.l-input');
+    const css = getComputedStyle(field);
+    return { background: css.backgroundColor, shadow: css.boxShadow, transition: css.transitionProperty };
+  });
+  expect(result).toEqual({ background: 'rgba(0, 0, 0, 0)', shadow: 'none', transition: 'none' });
+});
+
+test('Folio prevents opt-in living light even with full motion declared', async ({ page }) => {
+  await page.goto('/test/browser/fixture.html');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.getByTestId('room').evaluate(el => { el.dataset.surface = 'folio'; el.dataset.motion = 'full'; });
+  const button = page.locator('#qa-keep');
+  await button.dispatchEvent('pointerdown', { pointerId: 19, pointerType: 'mouse', button: 0 });
+  await expect(button).not.toHaveAttribute('data-press-phase');
+});

@@ -232,7 +232,6 @@ html.l-document :focus-visible {
   box-shadow: var(--lamp-bezel-well);
   transition:
     border-color var(--lamp-motion-cooling) var(--lamp-ease-in-out),
-    background var(--lamp-motion-cooling) var(--lamp-ease-in-out),
     box-shadow var(--lamp-motion-cooling) var(--lamp-ease-in-out);
 }
 .l-input[aria-invalid="true"],

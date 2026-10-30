@@ -59,6 +59,7 @@
   var WIRE_RADIUS = tokenNumber(computedTokens, "--lamp-wire-gleam-radius", 140);
 
   function motionIsReduced(node) {
+    if (node && node.closest && node.closest('[data-surface="folio"]')) return true;
     var bodyDeclared = document.body && document.body.dataset.motion;
     var room = node && node.closest ? node.closest(".l-room") : null;
     var declaredFull = bodyDeclared === "full";
@@ -571,7 +572,7 @@
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ["data-motion"]
+      attributeFilter: ["data-motion", "data-surface"]
     });
   }
   if (document.body && "ResizeObserver" in window) {
