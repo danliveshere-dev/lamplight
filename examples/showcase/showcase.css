@@ -18,3 +18,33 @@ main { max-width: 76rem; margin: auto; } section { padding: clamp(3rem, 7vw, 6re
 .l-table thead th { white-space: normal; }
 
 @media (max-width: 700px) { .l-table :is(th, td) { padding-inline: .5rem; } }
+
+.sample-grid, .recipe-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5vw, 5rem); }
+.sample-panel { padding: clamp(1.5rem, 3vw, 2rem); } .sample-panel .l-field { margin: 1.5rem 0; } .sample-aside { color: var(--lamp-text-secondary); } .recipe-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.example-toolbar { position: static; top: 0; z-index: 5; background: var(--lamp-surface-reading); color: var(--lamp-text); padding: .75rem 1rem; border: 1px solid var(--lamp-glass-hairline); } .example-toolbar > p { margin: 0; } #active-settings { margin-left: .5rem; } .example-toolbar .controls { margin: .5rem 0 0; gap: .5rem 2rem; } .example-toolbar legend { margin-bottom: .15rem; } .example-toolbar fieldset label { margin-bottom: 0; } .example-section { scroll-margin-top: calc(var(--example-toolbar-height, 0px) + 16px); } .example-section .example-heading { margin: 0 0 1.5rem; } .example-section .example-heading h2 { margin-bottom: .35rem; } .example-section .example-heading p { margin-bottom: .4rem; } .example-room { padding: clamp(1.25rem, 4vw, 3rem); } .example-room > :last-child { margin-bottom: 0; }
+@media (max-width: 700px) { .sample-grid, .recipe-grid { grid-template-columns: 1fr; } .example-toolbar { font-size: .875rem; padding: .5rem .75rem; } .example-toolbar .controls { gap: .25rem 1rem; } .example-toolbar fieldset label { margin-right: .5rem; }  }
+@media print { .example-toolbar { display:none !important; } .example-room { padding: 0; } .sample-panel input, #sample-action { display:none; } }
+/* Print the concise snapshot, whose values follow the dashboard selection. */
+@media print { body:has(.example-section) .masthead, body:has(.example-section) .intro, body:has(.example-section) .example-section:not(#print), body:has(.example-section) footer { display: none !important; } }
+
+.example-toolbar .active-summary { display: none; }
+[data-enhanced="true"] .example-toolbar { position: sticky; }
+[data-enhanced="true"] .example-toolbar .active-summary { display: block; }
+.example-room[data-surface="ledger"] .l-table thead th { top: var(--example-toolbar-height, 0px); }
+@media (max-width: 700px) {
+  .example-room { padding-inline: .5rem; }
+  .example-room .l-table :is(th, td) { padding-inline: .25rem; }
+}
+
+/* Page-scrolling reports keep headings below the display strip. Narrow tables
+   retain a keyboard-scrollable region with headings in normal flow. */
+.example-room .l-table-wrap { overflow: visible; }
+.table-hint { display: none; }
+@media (max-width: 700px) {
+  .example-room .l-table-wrap { overflow-x: auto; }
+  .example-room .l-table thead th { position: static; top: auto; }
+}
+@media (max-width: 389px) { .table-hint { display: block; } }
+@media print { .table-hint { display: none; } }
+
+@media print { .sample-panel .l-actions { display: none; } }

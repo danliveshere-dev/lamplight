@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0-beta.3 (prepared, not released)
+
+- Restored the compact Field notes landing and moved expanded Reading, Report and Dashboard compositions to a separate examples guide.
+- Added example presets, a lean print view and an active example mode and surface indicator.
+
 ## 0.1.0-beta.2 (prepared, not released)
 
 - Added Lead line and Thread patterns, including React bindings and HTML and React guidance.
