@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0-beta.2 (prepared, not released)
+
+- Added Lead line and Thread patterns, including React bindings and HTML and React guidance.
+- Expanded the showcase with reading, report and dashboard examples, plus component and principles reference pages.
+- Preserved Panel grain and focal backgrounds in compositions, kept Thread geometry in print, and limited sticky Ledger headings to column headers.
+
 ## 0.1.0-beta.1 (prepared, not released)
 
 - Prepared a free community beta as GitHub release files: core and React tarballs and a browser starter ZIP.

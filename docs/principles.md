@@ -49,6 +49,13 @@ emphasis, state, motion and density.
 - Ledger: Shorter labels in plain language.
 - Folio: It makes sense without you there to explain it.
 
+## Marks inside panels
+
+Coloured top or left border bars on rounded panels are not Lamplight. Use an
+internal straight Lead line to mark a region, or a Thread to connect a sequence.
+This guidance does not prohibit functional one-pixel boundaries that separate
+or identify controls and content.
+
 ## Fixed and flexible
 
 Three things are fixed everywhere, and only these are enforced by build checks:

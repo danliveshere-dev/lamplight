@@ -18,6 +18,26 @@ export const simple = [
     props: [],
   },
   {
+    name: 'LeadLine', group: 'Foundations', tag: 'div', cls: 'l-lead-line',
+    doc: 'An internal straight rule marking a card or region. Combine it with Etched to name the region; it is distinct from the full-width Ledger lead.',
+    props: [],
+  },
+  {
+    name: 'Thread', group: 'Foundations', tag: 'div', cls: 'l-thread',
+    doc: 'A quiet line connecting a sequence of proofs, steps or thoughts. Supply the meaning and any state words in the content.',
+    props: [
+      { name: 'state', attr: 'data-state', type: "'live'", doc: 'Adds the live treatment. Pair meaningful state with a visible word or shape.' },
+    ],
+  },
+  {
+    name: 'Knot', group: 'Foundations', tag: 'div', cls: 'l-knot',
+    doc: 'A point on a Thread. A lead knot is semibold and does not add another dot.',
+    props: [
+      { name: 'kind', attr: 'data-kind', type: "'lead'", doc: 'Marks the lead content in a Thread without an extra dot.' },
+      { name: 'state', attr: 'data-state', type: "'live'", doc: 'Adds the live treatment to this knot. Pair meaningful state with a visible word or shape.' },
+    ],
+  },
+  {
     name: 'Wire', group: 'Foundations', tag: 'span', cls: 'l-wire',
     doc: 'A lit hairline: one pixel of colour plus its halo. Tron by candlelight. Structure glows warm; live data glows phosphor; something needing you glows ember. A wire is never decoration - it carries a job.',
     props: [

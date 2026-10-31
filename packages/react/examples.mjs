@@ -18,6 +18,19 @@ export const compoundGroups = {
 export const examples = {
   Etched: `<Etched>Reading room · one decision</Etched>`,
 
+  LeadLine: `<LeadLine className="l-etched">Reading room · evidence</LeadLine>`,
+
+  Thread: `<Thread state="live">
+  <Knot kind="lead">Live · the current reading</Knot>
+  <Knot state="live">Live · first source witnessed</Knot>
+  <Knot>Second source witnessed</Knot>
+</Thread>`,
+
+  Knot: `<Thread>
+  <Knot kind="lead">Evidence collected</Knot>
+  <Knot>One source checked</Knot>
+</Thread>`,
+
   Wire: `<Wire />
 <Wire voice="live" />
 <Wire voice="attention" />`,

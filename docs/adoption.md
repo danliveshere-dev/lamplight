@@ -4,7 +4,7 @@ Start with a bounded surface and semantic HTML. Wrap it in `.l-room`; use `l-doc
 
 ## Browser starter
 
-The planned `lamplight-browser-0.1.0-beta.1.zip` contains a copyable starter and local assets. Extract it and serve the directory with a static web server. Use its relative stylesheet path and preserve the asset directory when copying it. No release is available yet.
+The planned `lamplight-browser-0.1.0-beta.2.zip` contains a copyable starter and local assets. Extract it and serve the directory with a static web server. Use its relative stylesheet path and preserve the asset directory when copying it. No release is available yet.
 
 ```html
 <!doctype html>
@@ -31,7 +31,7 @@ The button is a native button. Connect its action in your application; CSS does 
 
 ## React with a bundler
 
-After the beta assets are released, install `lamplight-core-0.1.0-beta.1.tgz` and `lamplight-react-0.1.0-beta.1.tgz` by local file path. Install React separately; the adapter declares it as a peer. For example, in a JSX-capable React application:
+After the beta assets are released, install `lamplight-core-0.1.0-beta.2.tgz` and `lamplight-react-0.1.0-beta.2.tgz` by local file path. Install React separately; the adapter declares it as a peer. For example, in a JSX-capable React application:
 
 ```jsx
 import React from 'react';

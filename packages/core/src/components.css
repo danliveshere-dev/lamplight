@@ -71,6 +71,8 @@ html.l-document :focus-visible {
   text-transform: uppercase;
 }
 
+
+
 .l-panel {
   position: relative;
   overflow: hidden;
@@ -95,6 +97,63 @@ html.l-document :focus-visible {
   background-image: var(--lamp-focal-pool);
   box-shadow: var(--lamp-panel-inner-edge), var(--lamp-focal-halo);
 }
+
+/* Internal composition marks. Use a Lead line inside a padded region; Thread owns
+   its inset so it can also be a Panel. Empty pseudos carry no state semantics. */
+.l-lead-line,
+.l-thread,
+.l-knot { --l-pattern-ink: var(--l-tone, var(--lamp-accent)); }
+.l-lead-line { display: block; }
+.l-lead-line::before {
+  content: "";
+  display: block;
+  inline-size: 75%;
+  block-size: 2px;
+  margin-block-end: var(--lamp-space-3);
+  background: var(--l-pattern-ink);
+  box-shadow: 0 0 var(--l-composition-blur, 10px) color-mix(in srgb, var(--l-pattern-ink) 45%, transparent);
+  pointer-events: none;
+}
+.l-thread,
+.l-panel.l-thread {
+  --l-thread-inset: var(--lamp-space-5);
+  --l-thread-pad: var(--lamp-space-4);
+  position: relative;
+  padding: var(--l-thread-pad) var(--l-thread-inset) var(--l-thread-pad) calc(var(--l-thread-inset) + 1.6rem);
+  --l-thread-rule: linear-gradient(color-mix(in srgb, var(--l-pattern-ink) 75%, transparent) 0 0);
+  background-image: var(--l-thread-rule), var(--l-thread-ground, linear-gradient(transparent, transparent));
+  background-size: 2px calc(100% - var(--l-thread-pad) * 2 - .7em), auto;
+  background-position: var(--l-thread-inset) calc(var(--l-thread-pad) + .7em), 0 0;
+  background-repeat: no-repeat;
+}
+.l-panel.l-thread[data-depth="focal"] { --l-thread-ground: var(--lamp-focal-pool); }
+.l-thread::before,
+.l-knot::before {
+  content: "";
+  position: absolute;
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: 50%;
+  background: var(--l-pattern-ink);
+  box-shadow: 0 0 var(--l-composition-blur, 10px) color-mix(in srgb, var(--l-pattern-ink) 45%, transparent);
+  pointer-events: none;
+}
+.l-thread::before {
+  inset-inline-start: calc(var(--l-thread-inset) - 3.5px);
+  inset-block-start: calc(var(--l-thread-pad) + .7em - 4.5px);
+}
+.l-knot { position: relative; margin: 0; padding-block: 0 var(--lamp-space-3); }
+.l-knot::before {
+  inline-size: 6px;
+  block-size: 6px;
+  inset-inline-start: calc(-1.6rem - 2px);
+  inset-block-start: calc(.7em - 3px);
+}
+.l-knot[data-kind="lead"] { font-weight: var(--lamp-weight-semibold); }
+.l-knot[data-kind="lead"]::before,
+.l-thread > .l-knot:first-child::before { display: none; }
+.l-thread[data-state="live"],
+.l-knot[data-state="live"] { --l-pattern-ink: var(--lamp-phosphor); }
 
 .l-sheen {
   --ldwell: 0;

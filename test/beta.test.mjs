@@ -7,7 +7,7 @@ test('beta profile accepts the actual manifests and rejects unsafe drift', () =>
   assert.deepEqual(validateBeta(source), []);
   for (const mutate of [
     x => { x.packages[0].manifest.private = false; },
-    x => { x.packages[0].manifest.version = '0.1.0-beta.2'; },
+    x => { x.packages[0].manifest.version = '0.1.0-beta.999'; },
     x => { x.packages[1].readme = ''; },
     x => { x.packages[0].manifest.dependencies = {bad: '1'}; },
     x => { x.packages[0].manifest.scripts.prepack = 'bad'; },

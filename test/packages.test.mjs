@@ -23,7 +23,7 @@ test('private workspace has exactly two private beta packages', () => {
   assert.deepEqual(root.workspaces, ['packages/core', 'packages/react']);
   for (const pkg of [core, react]) {
     assert.equal(pkg.private, true);
-    assert.equal(pkg.version, '0.1.0-beta.1');
+    assert.equal(pkg.version, '0.1.0-beta.2');
     assert.match(pkg.name, /^@lamplight\//);
   }
 });
@@ -94,4 +94,12 @@ test('DAS and MLA are not executable package contracts', () => {
     readFileSync(new URL('../packages/react/src/compound.js', import.meta.url), 'utf8'),
   ].join('\n');
   assert.doesNotMatch(executable, /\b(?:DAS|MLA)\b/);
+});
+
+
+test('distributed component CSS preserves the source syntax after comment removal', async () => {
+  const { parse, generate } = await import('css-tree');
+  const source = readFileSync(new URL('../packages/core/src/components.css', import.meta.url), 'utf8');
+  const dist = readFileSync(new URL('../packages/core/dist/components.css', import.meta.url), 'utf8');
+  assert.equal(generate(parse(dist)), generate(parse(source)));
 });

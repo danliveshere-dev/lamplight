@@ -13,14 +13,14 @@
 }
 
 [data-surface="ledger"] .l-table { font-size: var(--lamp-text-sm); font-variant-numeric: tabular-nums; }
-[data-surface="ledger"] .l-table th {
+[data-surface="ledger"] .l-table thead th {
   position: sticky;
   top: 0;
   z-index: 1;
   padding-block: var(--lamp-space-2);
   background: var(--lamp-surface-panel);
 }
-[data-surface="ledger"] .l-table td { padding-block: var(--lamp-space-1); }
+[data-surface="ledger"] .l-table :is(td, tbody th) { padding-block: var(--lamp-space-1); }
 [data-surface="ledger"] .l-table .l-state-cell { white-space: nowrap; }
 
 /* One lead per region. It's lighter than Focal Catch, which stays at one per view. */
@@ -31,3 +31,5 @@
 }
 
 [data-surface="ledger"] .l-panel::after { opacity: 0; }
+
+[data-surface="ledger"] :is(.l-lead-line, .l-thread, .l-knot) { --l-composition-blur: 0px; }

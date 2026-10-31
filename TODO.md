@@ -1,6 +1,6 @@
 # Release programme
 
-The free community beta is a separate, GitHub-first preparation profile. Version 0.1.0-beta.1 is prepared locally, not released. See [beta readiness](docs/release/beta-readiness.md) for its acceptance and outstanding decision. This does not pass Gate 6 or replace the independent dual-provider review required for stable production.
+The free community beta is a separate, GitHub-first preparation profile. Version 0.1.0-beta.2 is prepared locally, not released. See [beta readiness](docs/release/beta-readiness.md) for its acceptance and outstanding decision. This does not pass Gate 6 or replace the independent dual-provider review required for stable production.
 
 Gates 1 to 5 record earlier work and independent reviews. Their dated evidence describes the targets and limitations at the time, not a guarantee about this beta candidate:
 

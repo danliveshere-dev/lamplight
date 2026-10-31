@@ -1,5 +1,4 @@
-/* Folio: the sheet that leaves the room. The paper's own colour is the ground, and depth comes
-   from rule weight and type size. The build repeats these rules under @media print. */
+/* Folio, repeated for print. */
 [data-surface="folio"],
 [data-surface="folio"] [data-mode],
 [data-surface="folio"] .l-panel[data-depth="focal"],
@@ -24,7 +23,8 @@
 
 [data-surface="folio"] .l-panel {
   overflow: visible;
-  background: none;
+  background-color: transparent;
+  background-image: none;
   border: 0;
   border-block-start: 1px solid var(--lamp-text);
   border-radius: 0;
@@ -37,17 +37,13 @@
 [data-surface="folio"] .l-chip[data-state="live"] { border-style: solid; }
 [data-surface="folio"] .l-chip[data-state="live"]::before { content: "● "; white-space: pre; }
 [data-surface="folio"] .l-chip[data-state="attention"]::before { content: "▲ "; white-space: pre; }
-[data-surface="folio"] .l-presence,
-[data-surface="folio"] .l-orb,
-[data-surface="folio"] .l-toast { display: none; }
+[data-surface="folio"] :is(.l-presence, .l-orb, .l-toast) { display: none; }
 [data-surface="folio"] .l-table-wrap { overflow-x: visible; }
 [data-surface="folio"] .l-table { font-size: 9pt; font-variant-numeric: tabular-nums; }
 [data-surface="folio"] .l-table thead { display: table-header-group; }
 [data-surface="folio"] .l-table tr { break-inside: avoid; }
 [data-surface="folio"] [data-folio-keep] { break-inside: avoid; }
-[data-surface="folio"] h1,
-[data-surface="folio"] h2,
-[data-surface="folio"] h3 { break-after: avoid; }
+[data-surface="folio"] :is(h1, h2, h3) { break-after: avoid; }
 [data-surface="folio"] .l-folio-state { font-family: var(--lamp-font-mono); font-size: 8.5pt; }
 [data-surface="folio"] a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8.5pt; }
 
@@ -59,10 +55,9 @@
   border-radius: 0; padding: var(--lamp-space-3) 0; background: none; box-shadow: none;
   break-inside: avoid;
 }
-[data-surface="folio"] .l-focal-label,
-[data-surface="folio"] .l-focal-state { color: var(--lamp-text); }
+[data-surface="folio"] :is(.l-focal-label, .l-focal-state) { color: var(--lamp-text); }
 
-/* Paper never animates; mode changes must not leave ink on a fading dark control. */
+/* Paper stays still through mode changes. */
 [data-surface="folio"],
 [data-surface="folio"] *,
 [data-surface="folio"] *::before,
@@ -76,3 +71,10 @@
   box-shadow: none;
 }
 [data-surface="folio"] .l-table th { position: static; }
+
+[data-surface="folio"] :is(.l-lead-line, .l-thread, .l-knot) {
+  --l-pattern-ink: var(--lamp-text);
+  --l-composition-blur: 0px;
+}
+
+[data-surface="folio"] .l-panel.l-thread { background-image: var(--l-thread-rule); }

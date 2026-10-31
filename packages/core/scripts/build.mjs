@@ -23,7 +23,9 @@ mkdirSync(dist, { recursive: true });
 copyFileSync(join(generated, 'tokens.css'), join(dist, 'tokens.css'));
 copyFileSync(join(generated, 'modes.css'), join(dist, 'modes.css'));
 copyFileSync(join(root, 'tokens', 'lamplight.tokens.json'), join(dist, 'lamplight.tokens.json'));
-copyFileSync(join(source, 'components.css'), join(dist, 'components.css'));
+// Keep design commentary in source and guides, outside the delivered CSS budget.
+const components = readFileSync(join(source, 'components.css'), 'utf8');
+writeFileSync(join(dist, 'components.css'), components.replace(/\/\*[\s\S]*?\*\//g, ''));
 const ledger = readFileSync(join(source, 'ledger.css'), 'utf8');
 const folio = readFileSync(join(source, 'folio.css'), 'utf8');
 const printFolio = folio.replaceAll('[data-surface="folio"]', ':is(.l-room, html.l-document)');
