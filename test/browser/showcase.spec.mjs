@@ -72,11 +72,12 @@ test('no JavaScript keeps content legible and controls disabled', async ({ brows
   await expect(page.getByLabel('Show places')).toBeDisabled();
   await expect(page.getByLabel('Night', { exact: true })).toBeDisabled();
   await expect(page.locator('.active-summary')).toBeHidden();
+  await expect(page.locator('.example-toolbar')).toHaveCSS('position','static');
+  await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto(root + 'index.html#start');
   await page.locator('.ai-starters summary').first().click();
   await expect(page.locator('.copy-prompt').first()).toBeDisabled();
   await expect(page.locator('#prompt-common-coding-agent')).toBeVisible();
-  await expect(page.locator('.example-toolbar')).toHaveCSS('position','static');
   await context.close();
 });
 
