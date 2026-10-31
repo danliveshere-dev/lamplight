@@ -23,7 +23,21 @@
         "name": "desk",
         "value": "1024px"
       }
-    ]
+    ],
+    "typographyMeta": {
+      "showcase-display": {
+        "displayName": "Showcase display",
+        "purpose": "Fluid regular serif landing and page headings."
+      },
+      "showcase-heading": {
+        "displayName": "Showcase heading",
+        "purpose": "Fluid regular serif section headings."
+      },
+      "showcase-reading-heading": {
+        "displayName": "Showcase reading heading",
+        "purpose": "Fluid regular serif heading within the reading example."
+      }
+    }
   },
   "components": [
     {

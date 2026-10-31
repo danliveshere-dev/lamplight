@@ -29,6 +29,31 @@ typography:
     fontFamily: "IBM Plex Sans, -apple-system, BlinkMacSystemFont, Segoe UI, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
+  showcase-display:
+    fontFamily: "IBM Plex Serif, Iowan Old Style, Palatino, Georgia, serif"
+    fontSize: "clamp(2.7rem, 6vw, 5rem)"
+    fontWeight: 400
+    lineHeight: 1.05
+    letterSpacing: "-0.025em"
+  showcase-heading:
+    fontFamily: "IBM Plex Serif, Iowan Old Style, Palatino, Georgia, serif"
+    fontSize: "clamp(2rem, 4vw, 3rem)"
+    fontWeight: 400
+  showcase-reading-heading:
+    fontFamily: "IBM Plex Serif, Iowan Old Style, Palatino, Georgia, serif"
+    fontSize: "clamp(2.2rem, 5vw, 4rem)"
+    fontWeight: 400
+    lineHeight: 1.05
+  showcase-subheading:
+    fontSize: "1.12rem"
+  showcase-intro:
+    fontSize: "1.15rem"
+  showcase-note:
+    fontSize: "0.9rem"
+  showcase-brand-note:
+    fontSize: "0.8rem"
+  showcase-toolbar-narrow:
+    fontSize: "0.875rem"
   reading:
     fontFamily: "IBM Plex Serif, Iowan Old Style, Palatino, Georgia, serif"
     fontSize: "1.1875rem"
@@ -79,11 +104,11 @@ Night layers soot grounds with parchment text and tallow emphasis. Day uses pape
 
 ## Typography
 
-IBM Plex Sans carries interface text; IBM Plex Serif gives reading and headings a measured voice; the mono stack serves labels, tables and instruments. The showcase uses a large, regular serif heading and a comfortable reading measure. Tables use tabular figures. Existing etched labels are part of the vocabulary.
+IBM Plex Sans carries interface text; IBM Plex Serif gives reading and headings a measured voice; the mono stack serves labels, tables and instruments. The showcase uses regular serif headings that scale fluidly within the ranges in the frontmatter, and a comfortable reading measure. Its named showcase sizes describe the examples, not additional core tokens. Tables use tabular figures. Existing etched labels are part of the vocabulary.
 
 ## Layout
 
-Use generous spacing for reading and aligned, grouped rows for comparison. The showcase centres content within 76rem, uses responsive side padding and collapses its two-column examples at 700px. On narrow screens preserve readable headings and access to wide tables. Folio uses a clear page grid and adapts wide content to fit.
+Use generous spacing for reading and aligned, grouped rows for comparison. The showcase centres content within 76rem, uses responsive side padding and collapses its two-column examples at 700px. On narrow screens preserve readable headings and access to wide tables. Folio uses a clear page grid and adapts wide content to fit. In the examples, desktop report headings sit below the display toolbar; on narrow screens headings return to normal flow and the table remains keyboard-scrollable.
 
 ## Elevation & Depth
 
@@ -96,6 +121,8 @@ Panels and controls use the established rounded scale and fine boundaries. Use i
 ## Components
 
 Buttons include primary, quiet, ghost, danger and bezel treatments, with visible focus and disabled states. Fields have labels, a sunken ground and text errors. Chips and status marks pair colour with words. Real tables use headings and labelled state; navigation can use ordinary links and native disclosure.
+
+The compact landing sample introduces the system; a separate examples page presents Reading, Report, Dashboard and Print in individually scoped rooms. With JavaScript, its sticky toolbar reflects the visible example and changes only that room; without it, the examples retain their static defaults and controls are disabled. Print is a dated snapshot of the current dashboard selection.
 
 Lead lines, Threads and Knots are decorative marks around meaningful text, not controls or state labels. A Lead line is a straight 2px rule at 75% width. Threads connect a sequence; Knots mark its entries. Night permits their soft glow, Ledger removes halos, and Folio renders them in black. Preserve meaningful reading order.
 
