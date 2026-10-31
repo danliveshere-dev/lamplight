@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T01:24:36.337442+00:00",
+  "title": "Design System: Lamplight",
+  "extensions": {
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Interface state transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "600px"
+      },
+      {
+        "name": "tablet",
+        "value": "834px"
+      },
+      {
+        "name": "desk",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A clear primary action.",
+      "html": "<button class=\"ds-primary\">Continue</button>",
+      "css": ".ds-primary{min-height:var(--lamp-size-control,2.75rem);border:1px solid transparent;border-radius:var(--lamp-btn-radius,.75rem);padding:.5rem 1rem;background:var(--lamp-accent,#dfc99b);color:var(--lamp-text-on-fill,#241d12);font:600 1rem 'IBM Plex Sans',sans-serif;cursor:pointer}.ds-primary:hover{color:var(--lamp-candle,#f6ecd9)}.ds-primary:focus-visible{outline:2px solid var(--lamp-dusk,#a3a5d6);outline-offset:2px}.ds-primary:active{transform:translateY(1px)}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "description": "A labelled text field.",
+      "html": "<label class=\"ds-field\">Name<input class=\"ds-input\" type=\"text\"></label>",
+      "css": ".ds-field{display:grid;gap:.5rem;color:var(--lamp-text-secondary,#cbbfa6);font-family:'IBM Plex Sans',sans-serif}.ds-input{min-height:2.75rem;border:1px solid var(--lamp-glass-hairline,rgba(246,236,217,.07));border-radius:.75rem;padding:.5rem .75rem;background:var(--lamp-surface-sunken,#0f0d12);color:var(--lamp-text,#e8dcc4)}.ds-input:focus-visible{outline:2px solid var(--lamp-dusk,#a3a5d6);outline-offset:2px}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "description": "A compact labelled state.",
+      "html": "<span class=\"ds-chip\">Ready</span>",
+      "css": ".ds-chip{display:inline-flex;min-height:1.75rem;align-items:center;border:1px solid var(--lamp-glass-hairline,rgba(246,236,217,.07));border-radius:9999px;padding:0 .75rem;color:var(--lamp-text-secondary,#cbbfa6);font: .75rem 'IBM Plex Mono',monospace}"
+    }
+  ],
+  "narrative": {
+    "overview": "Lamplight is quiet and warm, designed for useful, readable things. Night and Day describe the light; Study, Ledger and Folio describe the work. These choices are independent. Study makes space for reading, Ledger supports scanning and comparison, and Folio prepares content for print.",
+    "keyCharacteristics": [
+      "Honest materials and a clear point of emphasis.",
+      "Readable hierarchy, labelled state and purposeful motion.",
+      "Plain language and room to focus."
+    ],
+    "dos": [
+      "Do keep one clear lead per region in Ledger and per page in Folio.",
+      "Do provide keyboard access, visible focus and readable contrast.",
+      "Do replace interactive controls with current values in print and date state where needed."
+    ],
+    "donts": [
+      "Don't rely on colour or motion alone to communicate state.",
+      "Don't use coloured top or left border bars on rounded panels as decorative emphasis.",
+      "Don't allow print content to clip or retain unnecessary motion."
+    ]
+  }
+}
