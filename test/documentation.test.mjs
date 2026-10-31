@@ -137,7 +137,7 @@ test('beta adoption names file distribution and outstanding evidence', () => {
   const readme = readFileSync(join(repository, 'README.md'), 'utf8');
   const adoption = readFileSync(join(repository, 'docs/adoption.md'), 'utf8');
   const readiness = readFileSync(join(repository, 'docs/release/beta-readiness.md'), 'utf8');
-  for (const asset of ['lamplight-core-0.1.0-beta.3.tgz', 'lamplight-react-0.1.0-beta.3.tgz', 'lamplight-browser-0.1.0-beta.3.zip']) {
+  for (const asset of ['lamplight-core-0.1.0-beta.4.tgz', 'lamplight-react-0.1.0-beta.4.tgz', 'lamplight-browser-0.1.0-beta.4.zip']) {
     assert.ok(readiness.includes(asset), asset);
   }
   assert.match(readme, /not released/i);

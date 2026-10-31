@@ -48,3 +48,12 @@ main { max-width: 76rem; margin: auto; } section { padding: clamp(3rem, 7vw, 6re
 @media print { .table-hint { display: none; } }
 
 @media print { .sample-panel .l-actions { display: none; } }
+
+.ai-starters { max-width: 52rem; margin-top: 2.5rem; }
+.ai-starters details { border-top: 1px solid var(--lamp-glass-hairline); padding: .75rem 0; }
+.ai-starters summary { cursor: pointer; font-weight: 600; }
+.ai-prompt { margin: 1.5rem 0; }
+.ai-prompt pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.copy-status { margin-left: .75rem; }
+
+@media print { .copy-prompt, .copy-status { display: none; } }

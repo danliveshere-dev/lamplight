@@ -87,3 +87,24 @@ if (reportScroll) reportScroll.addEventListener('keydown', event => {
     reportScroll.scrollBy({ left: direction * 48, behavior: 'auto' });
   }
 });
+
+// Copy is an enhancement; the text remains available for manual selection.
+document.querySelectorAll('.copy-prompt').forEach(button => {
+  button.disabled = false;
+  button.addEventListener('click', async () => {
+    const text = document.getElementById(button.dataset.copy);
+    const status = button.nextElementSibling;
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(text.textContent);
+      status.textContent = 'Copied.';
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(text);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      status.textContent = 'Text selected. Copy it using your keyboard or menu.';
+    }
+  });
+});

@@ -23,7 +23,7 @@ test('private workspace has exactly two private beta packages', () => {
   assert.deepEqual(root.workspaces, ['packages/core', 'packages/react']);
   for (const pkg of [core, react]) {
     assert.equal(pkg.private, true);
-    assert.equal(pkg.version, '0.1.0-beta.3');
+    assert.equal(pkg.version, '0.1.0-beta.4');
     assert.match(pkg.name, /^@lamplight\//);
   }
 });

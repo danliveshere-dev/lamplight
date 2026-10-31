@@ -14,7 +14,7 @@ point.
 
 The community beta has a separate local preparation contract in
 [beta-readiness.md](beta-readiness.md). It prepares downloadable archives with
-`0.1.0-beta.3` versions, keeps registry publication disabled, and does not claim
+`0.1.0-beta.4` versions, keeps registry publication disabled, and does not claim
 that the stable npm manifest gate or independent production review has passed.
 The route below remains the stable registry release programme. Public repository
 configuration, private reporting routes and the maintainer's final publication

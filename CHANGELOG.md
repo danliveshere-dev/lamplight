@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0-beta.4 (prepared, not released)
+
+- Clarified navigation between the examples, components and principles pages, with Get started on the landing page.
+- Added AI starter guidance for working with the local beta files.
+
 ## 0.1.0-beta.3 (prepared, not released)
 
 - Restored the compact Field notes landing and moved expanded Reading, Report and Dashboard compositions to a separate examples guide.
