@@ -61,6 +61,13 @@
       "description": "A compact labelled state.",
       "html": "<span class=\"ds-chip\">Ready</span>",
       "css": ".ds-chip{display:inline-flex;min-height:1.75rem;align-items:center;border:1px solid var(--lamp-glass-hairline,rgba(246,236,217,.07));border-radius:9999px;padding:0 .75rem;color:var(--lamp-text-secondary,#cbbfa6);font: .75rem 'IBM Plex Mono',monospace}"
+    },
+    {
+      "name": "Starter disclosure",
+      "kind": "custom",
+      "description": "An initially closed native disclosure for optional guidance.",
+      "html": "<details class=\"ds-disclosure\"><summary>Getting started</summary><p>Open the guidance when you need it.</p></details>",
+      "css": ".ds-disclosure{padding:1rem 0;color:var(--lamp-text,#e8dcc4);font-family:var(--lamp-font-sans, sans-serif)}.ds-disclosure summary{cursor:pointer;font-weight:600}.ds-disclosure summary:focus-visible{outline:2px solid var(--lamp-dusk,#a3a5d6);outline-offset:2px}"
     }
   ],
   "narrative": {
