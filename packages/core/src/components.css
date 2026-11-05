@@ -326,6 +326,22 @@ html.l-document :focus-visible {
 .l-segmented button { min-width: 4.5rem; color: var(--lamp-text-muted); }
 .l-segmented button[aria-pressed="true"] { background: var(--lamp-bezel-face); box-shadow: var(--lamp-bezel-edge); color: var(--lamp-candle); }
 
+.l-segmented[data-size="compact"] {
+  gap: calc(var(--lamp-space-1) / 2);
+  border-radius: var(--lamp-radius-full);
+  padding: calc(var(--lamp-space-1) / 2);
+}
+.l-segmented[data-size="compact"] button {
+  min-height: var(--lamp-space-8);
+  min-width: var(--lamp-size-control-touch);
+  border-radius: var(--lamp-radius-full);
+  padding: 0 var(--lamp-space-3);
+  font-family: var(--lamp-font-mono);
+  font-size: calc(var(--lamp-text-xs) * .9);
+  letter-spacing: calc(var(--lamp-tracking-etched) * .75);
+  text-transform: uppercase;
+}
+
 .l-disclosure { border-top: 1px solid var(--lamp-glass-hairline); }
 .l-disclosure:last-child { border-bottom: 1px solid var(--lamp-glass-hairline); }
 .l-disclosure summary { display: flex; min-height: var(--lamp-size-control); gap: var(--lamp-space-3); align-items: center; color: var(--lamp-text-secondary); cursor: pointer; list-style: none; }
@@ -609,6 +625,7 @@ html.l-document[data-motion="reduced"] { scroll-behavior: auto; }
 @media (pointer: coarse) {
   .l-btn,
   .l-segmented button,
+  .l-segmented[data-size="compact"] button,
   .l-menu-trigger,
   .l-menu [role="menuitem"],
   .l-input,

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added a compact pill size for segmented controls with an ink underline in Folio.
+- Documented and demonstrated a persistent Night, Day and Folio appearance switcher.
+
 ## 0.1.0-beta.4 (prepared, not released)
 
 - Clarified navigation between the examples, components and principles pages, with Get started on the landing page.

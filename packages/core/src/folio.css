@@ -70,6 +70,13 @@
   background: none;
   box-shadow: none;
 }
+[data-surface="folio"] .l-segmented[data-size="compact"] button[aria-pressed="true"] {
+  background: none;
+  box-shadow: none;
+  color: var(--lamp-text);
+  text-decoration: underline;
+  text-underline-offset: var(--lamp-space-1);
+}
 [data-surface="folio"] .l-table th { position: static; }
 
 [data-surface="folio"] :is(.l-lead-line, .l-thread, .l-knot) {

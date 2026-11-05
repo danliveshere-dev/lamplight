@@ -62,6 +62,85 @@ The class and React contracts include Field, Input, Select, Textarea, Toggle,
 Check, Segmented, Menu, Tabs, Crumbs, Disclosure, Table, KeyValue, Status and
 Chip. The React bindings provide the documented ARIA relationships and keyboard mechanics for interactive components. Plain HTML classes provide styling, not the JavaScript needed to implement an interactive menu or tabs. Use native elements where suitable or implement and test the necessary interaction. A caller owns truthful labels, useful error text and domain meaning.
 
+## Appearance switcher
+
+Use `.l-segmented[data-size="compact"]` for a short group of choices in a
+page header. The raised selection uses the current mode's bezel tokens. In
+Folio, the selection becomes an ink underline. The compact size keeps the
+standard focus ring, reduced-motion behaviour and larger targets on coarse
+pointers.
+
+Put the switcher in a labelled group. Native buttons support Tab, Enter and
+Space, and `aria-pressed` identifies the one current choice. The controls
+start disabled and become available when the script wires them up.
+
+```html
+<div class="l-segmented" data-size="compact" id="appearance-switcher" role="group" aria-label="Appearance">
+  <button type="button" data-appearance="night" aria-pressed="true" disabled>Night</button>
+  <button type="button" data-appearance="day" aria-pressed="false" disabled>Day</button>
+  <button type="button" data-appearance="folio" aria-pressed="false" disabled>Folio</button>
+</div>
+```
+
+Use `<html class="l-document">` and place this script in `<head>` before
+stylesheet links. It applies the saved choice before the first paint. Night
+and Day set `data-mode` and clear `data-surface` to return to the default
+Study surface. Folio sets `data-mode="day"` and `data-surface="folio"`.
+Keep the surrounding Room free of an explicit mode or surface if it should
+follow the page. An unknown saved choice falls back to Night, and blocked
+storage still allows switching for the current page.
+
+```html
+<script>
+(() => {
+  const root = document.documentElement;
+  const key = 'lamplight-appearance';
+  const choices = ['night', 'day', 'folio'];
+  let choice = 'night';
+
+  function apply(appearance) {
+    root.dataset.mode = appearance === 'night' ? 'night' : 'day';
+    if (appearance === 'folio') root.dataset.surface = 'folio';
+    else delete root.dataset.surface;
+  }
+
+  try {
+    const saved = localStorage.getItem(key);
+    if (choices.includes(saved)) choice = saved;
+  } catch {
+    // Storage can be unavailable. The switcher still works for this page.
+  }
+  apply(choice);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('#appearance-switcher button');
+    function syncPressed() {
+      for (const button of buttons) {
+        button.setAttribute('aria-pressed', String(button.dataset.appearance === choice));
+      }
+    }
+
+    syncPressed();
+    for (const button of buttons) {
+      button.disabled = false;
+      button.addEventListener('click', () => {
+        choice = button.dataset.appearance;
+        apply(choice);
+        syncPressed();
+        try {
+          localStorage.setItem(key, choice);
+        } catch {
+          // Keep the current appearance even when it cannot be saved.
+        }
+      });
+    }
+  }, { once: true });
+})();
+</script>
+```
+
+The same pattern runs in the [showcase component reference](../examples/showcase/components.html).
+
 ## Instruments
 
 Dial, ModeDial, Gauge and Runway describe world state. They must not score or
