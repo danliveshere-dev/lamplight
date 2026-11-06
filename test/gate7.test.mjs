@@ -188,3 +188,15 @@ test('public issue routing is structured and does not expose an unrestricted for
   assert.equal(proposal.name, 'Design-system proposal');
   assert.ok(proposal.body.some((item) => item.id === 'consumers'));
 });
+
+
+test('Linux WebKit baseline permits only its reviewed colour metadata', () => {
+  const path = 'test/browser/__screenshots__/linux/surface-390x844-webkit.png';
+  const body = readFileSync(new URL('../' + path, import.meta.url));
+  assert.deepEqual(pngProblems(path, body), []);
+  for (const type of ['sBIT', 'sRGB']) {
+    const changed = Buffer.from(body);
+    changed[changed.indexOf(Buffer.from(type)) + 4] ^= 1;
+    assert.ok(pngProblems(path, changed).some(problem => problem.includes('colour metadata')));
+  }
+});

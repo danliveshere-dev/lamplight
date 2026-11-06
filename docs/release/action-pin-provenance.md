@@ -28,7 +28,9 @@ The four Pages and artifact pins were resolved on 2026-11-06. The
 configure-pages pin is reviewed for future use but is not needed by the static
 candidate build. Pages deployment is separately gated by the workflow policy.
 
-CodeQL and dependency review are unavailable under the current private
-repository plan. Their jobs are explicitly skipped while the repository is
+CodeQL and dependency review are not enabled for the current private
+staging repository. Their jobs are explicitly skipped while the repository is
 private; they must run and be assessed after it becomes public. A skipped job
 is not evidence that a scan passed.
+
+CodeQL also supports a manual run so the first public candidate can be scanned before its prerelease is published.

@@ -281,3 +281,23 @@ test('Ledger suppresses light in nested mode islands', async ({ page }) => {
   expect(await prop(page.locator('#ledger-mode'), '--lamp-sheen-follow')).toBe('transparent');
   expect(await prop(page.locator('#ledger-mode'), '--lamp-wire-warm-halo')).toBe('0 0 0 transparent');
 });
+
+
+test('Ledger keeps Day focal islands and presence free of ambient light', async ({ page }) => {
+  await open(page, { surface: 'ledger', mode: 'day' });
+  const room = page.locator('[data-testid="room"]');
+  await room.evaluate(el => {
+    const panel = document.createElement('div');
+    panel.id = 'ledger-focal'; panel.className = 'l-panel'; panel.dataset.depth = 'focal';
+    const presence = document.createElement('div');
+    presence.id = 'ledger-presence'; presence.className = 'l-presence';
+    el.append(panel, presence);
+  });
+  for (const id of ['ledger-focal', 'ledger-presence']) {
+    const island = page.locator(`#${id}`);
+    expect(await prop(island, '--lamp-sheen-follow')).toBe('transparent');
+    expect(await prop(island, '--lamp-sheen-focus')).toBe('transparent');
+    expect(await prop(island, '--lamp-wire-warm-halo')).toBe('0 0 0 transparent');
+    expect(await prop(island, '--lamp-wire-live-halo')).toBe('0 0 0 transparent');
+  }
+});

@@ -134,6 +134,8 @@ export function pngProblems(path, body) {
   let offset = 8;
   let endedAt = -1;
   let exif;
+  let significantBits;
+  let srgbIntent;
   while (offset + 12 <= body.length) {
     const length = body.readUInt32BE(offset);
     const type = body.toString('ascii', offset + 4, offset + 8);
@@ -141,6 +143,8 @@ export function pngProblems(path, body) {
     if (next > body.length) return ['PNG contains a malformed chunk'];
     chunks.push(type);
     if (type === 'eXIf') exif = body.subarray(offset + 8, offset + 8 + length);
+    if (type === 'sBIT') significantBits = body.subarray(offset + 8, offset + 8 + length);
+    if (type === 'sRGB') srgbIntent = body.subarray(offset + 8, offset + 8 + length);
     offset = next;
     if (type === 'IEND') {
       endedAt = offset;
@@ -151,9 +155,14 @@ export function pngProblems(path, body) {
   if (chunks.some((type) => ['iTXt', 'tEXt', 'zTXt'].includes(type))) problems.push('PNG contains textual metadata');
   const engine = path.match(/-(chromium|firefox|webkit)\.png$/)?.[1];
   const unique = [...new Set(chunks)].join(',');
-  const expectedChunks = engine === 'webkit' ? 'IHDR,sRGB,eXIf,IDAT,IEND' : 'IHDR,IDAT,IEND';
+  const linuxWebKit = engine === 'webkit' && /(?:^|\/)linux\//.test(path);
+  const expectedChunks = linuxWebKit ? 'IHDR,sBIT,sRGB,IDAT,IEND'
+    : engine === 'webkit' ? 'IHDR,sRGB,eXIf,IDAT,IEND' : 'IHDR,IDAT,IEND';
   if (unique !== expectedChunks) problems.push('PNG chunk policy changed');
-  if (engine === 'webkit' && !isDimensionOnlyExif(exif, width, height)) {
+  if (linuxWebKit && (body[25] !== 6 || significantBits?.toString('hex') !== '08080808' || srgbIntent?.toString('hex') !== '00')) {
+    problems.push('Linux WebKit PNG colour metadata is not the reviewed RGBA format');
+  }
+  if (engine === 'webkit' && !linuxWebKit && !isDimensionOnlyExif(exif, width, height)) {
     problems.push('WebKit PNG EXIF is not limited to colour-space and pixel dimensions');
   }
   return problems;

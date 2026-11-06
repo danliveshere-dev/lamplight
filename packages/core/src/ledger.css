@@ -1,7 +1,7 @@
 /* Ledger: the working desk, with papers spread out. For material people scan, compare and
    return to. It holds in either mode. Calm comes from grouping and alignment here. */
 [data-surface="ledger"],
-:where([data-surface="ledger"]) [data-mode] {
+:where([data-surface="ledger"]) :is([data-mode], .l-panel[data-depth="focal"], .l-presence) {
   --lamp-row-height: 2rem;
   --lamp-sheen-follow: transparent;
   --lamp-sheen-focus: transparent;

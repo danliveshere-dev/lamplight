@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "reviewEvidence": "Gate 4 independent visual review and Gate 5 binary metadata review, 2026-09-08",
+  "reviewEvidence": "Gate 4 independent visual review and Gate 5 binary metadata review, 2026-09-08; 15 Linux baselines from private CI 42175111456 independently reviewed 2026-11-06",
   "fonts": [
     { "sha256": "33faf307fa6031fb4062276d7320a6d632de890cbb347576fd80cfa01077bc25", "bytes": 50400, "paths": ["packages/core/fonts/IBMPlexMono-Medium.woff2"], "historicalPaths": ["assets/fonts/IBMPlexMono-Medium.woff2"] },
     { "sha256": "ba204497f16b6d334cee9d1e963a831b73e3a56e1d6300a8489d18df7214b350", "bytes": 49248, "paths": ["packages/core/fonts/IBMPlexMono-Regular.woff2"], "historicalPaths": ["assets/fonts/IBMPlexMono-Regular.woff2"] },
@@ -26,6 +26,21 @@
     { "path": "test/browser/__screenshots__/surface-390x844-webkit.png", "sha256": "51fadedfa84317fe739c68162fca6e16e11cae36a42a0900dfe7e5f401620d0f", "bytes": 407141 },
     { "path": "test/browser/__screenshots__/surface-834x1112-chromium.png", "sha256": "5e7f289525fb70b12cf1e7a1bc20d6d1d18f84a229075cbd871da428b496d53a", "bytes": 301299 },
     { "path": "test/browser/__screenshots__/surface-834x1112-firefox.png", "sha256": "ac4bc9117749814ab16553a248167b6c6334dfbcb7af5848e515ddc069217bd8", "bytes": 338521 },
-    { "path": "test/browser/__screenshots__/surface-834x1112-webkit.png", "sha256": "9c0361279ce79fdd8544d770a4ec3abc29ac3ad120c7de97c344567e1ba2c32e", "bytes": 425878 }
+    { "path": "test/browser/__screenshots__/surface-834x1112-webkit.png", "sha256": "9c0361279ce79fdd8544d770a4ec3abc29ac3ad120c7de97c344567e1ba2c32e", "bytes": 425878 },
+    {"path": "test/browser/__screenshots__/linux/surface-1440x900-chromium.png", "sha256": "d8767511227df1b4ac61188d608911ce450394fc2f7d2027e363e9c0b3d02569", "bytes": 317306},
+    {"path": "test/browser/__screenshots__/linux/surface-2200x1200-chromium.png", "sha256": "f90c515e24404249703fa7491c077408b0e456a684817f683f1acf91fe3ef9ef", "bytes": 329236},
+    {"path": "test/browser/__screenshots__/linux/surface-320x568-chromium.png", "sha256": "89773a21b25003a399591f4a0168a86a35faf007f0cf4318379f691b05efd098", "bytes": 307986},
+    {"path": "test/browser/__screenshots__/linux/surface-390x844-chromium.png", "sha256": "8fad65cf071eace3cc46499116f88fad33f829a2bc692d5a36ad219663373cc9", "bytes": 305451},
+    {"path": "test/browser/__screenshots__/linux/surface-834x1112-chromium.png", "sha256": "1637206f54a01c340dcd35e89a33b21d01def5717c07953c5f9e481c3fe4c086", "bytes": 295911},
+    {"path": "test/browser/__screenshots__/linux/surface-1440x900-firefox.png", "sha256": "64c5258426bb611b04117d1087f21b02ca78ec5a0cffb2ca6f33a6674f293201", "bytes": 362520},
+    {"path": "test/browser/__screenshots__/linux/surface-2200x1200-firefox.png", "sha256": "3a4957f7508fe9a9c8422fbd35266fdfba518b633cfbb06fafd8092914f2674b", "bytes": 382314},
+    {"path": "test/browser/__screenshots__/linux/surface-320x568-firefox.png", "sha256": "5abe404c98808705c6cf70646c289c29779c43e558dcc1fb251f7d0f0cfc3c71", "bytes": 347702},
+    {"path": "test/browser/__screenshots__/linux/surface-390x844-firefox.png", "sha256": "b11cb3070ec55815b82f1d7e44a9c9d2b363980c20e9e1f2e649c4617d1b7b6c", "bytes": 350283},
+    {"path": "test/browser/__screenshots__/linux/surface-834x1112-firefox.png", "sha256": "972c959c1bfc323cdba19a1fb96fbde7cd9c0255f8d9ece7e4ec2b174ad76518", "bytes": 331136},
+    {"path": "test/browser/__screenshots__/linux/surface-1440x900-webkit.png", "sha256": "94e85c6281ed29944653f7897ddae7aff1e5b0e2f1d9dcb558ebe152dc8828c7", "bytes": 327616},
+    {"path": "test/browser/__screenshots__/linux/surface-2200x1200-webkit.png", "sha256": "a9f5fb6b4b8f431095e11b000e91e1648258d4fc1be5fd6362a619d0aa648e4e", "bytes": 343157},
+    {"path": "test/browser/__screenshots__/linux/surface-320x568-webkit.png", "sha256": "8819e128b518f51d816c35cd21c2d418b6b006b30582d02addbc2300a776121e", "bytes": 304884},
+    {"path": "test/browser/__screenshots__/linux/surface-390x844-webkit.png", "sha256": "64f5f2faad79820e42e4312933c4e2f202f890dc4502fa7c6cd9c66aeaede118", "bytes": 308826},
+    {"path": "test/browser/__screenshots__/linux/surface-834x1112-webkit.png", "sha256": "8169d29686a05e7ac0c3ff71f04ed93e66d87f6f838e645ba088064f94f8b0c4", "bytes": 306261}
   ]
 }

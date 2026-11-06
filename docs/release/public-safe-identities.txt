@@ -1,2 +1,5 @@
 # Public-safe Git author and committer email allowlist, one address per line.
 danliveshere-dev@users.noreply.github.com
+# GitHub dependency-update author and service committer, verified 2026-11-06.
+49699333+dependabot[bot]@users.noreply.github.com
+noreply@github.com
