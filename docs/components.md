@@ -245,6 +245,8 @@ stand independently:
 - `Orb` is a decorative warm point with optional attention colour, not a status
   light; and
 - `FocalCatch` joins one focal source, its state and one foreground subject.
+  In Day it uses paper and ink, with a crisp accent marker. Night supplies the
+  source halo and light pool through the mode-aware `--l-focal-light-strength` property.
 
 They remain core components because their contracts are understandable without
 the originating product. They are not requirements for every Lamplight page.

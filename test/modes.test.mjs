@@ -26,10 +26,12 @@ test('the night block restores the same properties', () => {
   assert.match(nightBlock, /--lamp-success: var\(--lamp-moss\);/);
 });
 
-test('focal and presence stay night in Day, but not in Folio', () => {
+test('focal catches inherit Day while focal panels and presence retain their own treatment', () => {
   const css = formatModesCss(loadTokenDocument());
   assert.match(css, /:where\(\[data-mode="day"\]:not\(\[data-surface="folio"\]\)\) \.l-panel\[data-depth="focal"\]/);
   assert.match(css, /:where\(\[data-mode="day"\]:not\(\[data-surface="folio"\]\)\) \.l-presence/);
+  assert.doesNotMatch(css, /:where\(\[data-mode="day"\]:not\(\[data-surface="folio"\]\)\) \.l-focal-catch/);
+  assert.match(css, /--l-focal-light-strength: 0;/);
 });
 
 test('print always gets Day values', () => {

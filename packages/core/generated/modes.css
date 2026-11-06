@@ -3,10 +3,10 @@
 [data-mode="night"] { --l-composition-blur: 10px; }
 [data-mode="night"],
 :where([data-mode="day"]:not([data-surface="folio"])) .l-panel[data-depth="focal"],
-:where([data-mode="day"]:not([data-surface="folio"])) .l-focal-catch,
 :where([data-mode="day"]:not([data-surface="folio"])) .l-presence {
   color-scheme: dark;
   color: var(--lamp-text);
+  --l-focal-light-strength: 1;
   --lamp-candle: #f6ecd9;
   --lamp-tallow: #dfc99b;
   --lamp-brass: #c9a86a;
@@ -92,11 +92,11 @@ html.l-document[data-mode="day"],
 html.l-document[data-surface="folio"],
 :where([data-surface="folio"]) [data-mode],
 :where([data-surface="folio"]) .l-panel[data-depth="focal"],
-:where([data-surface="folio"]) .l-focal-catch,
 :where([data-surface="folio"]) .l-presence {
   color-scheme: light;
   color: var(--lamp-text);
   --l-composition-blur: 0px;
+  --l-focal-light-strength: 0;
   --lamp-candle: var(--lamp-soot-1);
   --lamp-tallow: var(--lamp-ink-tallow);
   --lamp-brass: var(--lamp-ink-brass);
@@ -180,11 +180,11 @@ html.l-document[data-surface="folio"],
 :is(.l-room, html.l-document),
 :is(.l-room, html.l-document) [data-mode],
 :is(.l-room, html.l-document) .l-panel[data-depth="focal"],
-:is(.l-room, html.l-document) .l-focal-catch,
 :is(.l-room, html.l-document) .l-presence {
   color-scheme: light;
   color: var(--lamp-text);
   --l-composition-blur: 0px;
+  --l-focal-light-strength: 0;
   --lamp-candle: var(--lamp-soot-1);
   --lamp-tallow: var(--lamp-ink-tallow);
   --lamp-brass: var(--lamp-ink-brass);

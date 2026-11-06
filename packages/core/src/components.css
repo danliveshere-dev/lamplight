@@ -666,8 +666,8 @@ html.l-document kbd,
   background: var(--l-focal-source-corona);
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--l-focal-source-corona) 78%, var(--lamp-candle)),
-    0 0 20px 6px color-mix(in srgb, var(--l-focal-source-corona) 48%, transparent),
-    0 0 54px 22px color-mix(in srgb, var(--l-focal-source-corona) 16%, transparent);
+    0 0 calc(20px * var(--l-focal-light-strength, 1)) calc(6px * var(--l-focal-light-strength, 1)) color-mix(in srgb, var(--l-focal-source-corona) 48%, transparent),
+    0 0 calc(54px * var(--l-focal-light-strength, 1)) calc(22px * var(--l-focal-light-strength, 1)) color-mix(in srgb, var(--l-focal-source-corona) 16%, transparent);
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
@@ -676,7 +676,7 @@ html.l-document kbd,
   inset: 31%;
   border-radius: inherit;
   background: var(--lamp-presence-orb);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--lamp-candle) 46%, transparent);
+  box-shadow: 0 0 calc(6px * var(--l-focal-light-strength, 1)) color-mix(in srgb, var(--lamp-candle) 46%, transparent);
   content: "";
 }
 .l-focal-catch .l-focal-subject {
@@ -687,7 +687,7 @@ html.l-document kbd,
   border-radius: var(--lamp-card-radius);
   padding: var(--lamp-space-6);
   background:
-    radial-gradient(360px 240px at var(--l-focal-x) var(--l-focal-y), color-mix(in srgb, var(--l-focal-edge) 13%, transparent), transparent 70%),
+    radial-gradient(360px 240px at var(--l-focal-x) var(--l-focal-y), color-mix(in srgb, var(--l-focal-edge) calc(13% * var(--l-focal-light-strength, 1)), transparent), transparent 70%),
     var(--lamp-glass-bg);
   box-shadow: var(--lamp-panel-inner-edge), var(--lamp-focal-halo);
 }

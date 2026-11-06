@@ -64,3 +64,5 @@ main { max-width: 76rem; margin: auto; } section { padding: clamp(3rem, 7vw, 6re
 .chapter-demo .chapter-body > section { padding-block: var(--lamp-space-12); }
 .chapter-demo .chapter-body > .l-reading { max-inline-size: var(--lamp-chapter-measure); }
 @media print { .chapter-demo .masthead, .chapter-demo footer { display: none; } }
+
+.reference-overview { margin-block: var(--lamp-space-6); }

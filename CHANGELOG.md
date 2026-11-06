@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Corrected FocalCatch to follow Day paper and ink with a crisp source marker.
+- Added rendered Roman-numeral chapter openers and overview pills to the component reference.
+
 - Added Chapter rail, Chapter opener and Case overview components, with an opt-in scroll-tracking module.
 - Aligned rail dots, connecting rules, subsection labels and chapter arguments, with measured header offsets and responsive/print handling.
 

@@ -23,9 +23,20 @@ test('Day turns the Room to ink on parchment', async ({ page }) => {
   await expect(room).toHaveCSS('background-color', 'rgb(246, 236, 217)');
 });
 
-test('the focal subject stays a block of night in Day', async ({ page }) => {
+test('the focal catch follows Day paper and ink without the Night glow', async ({ page }) => {
   await open(page, { mode: 'day' });
-  await expect(page.locator('.l-focal-catch').first()).toHaveCSS('color', 'rgb(232, 220, 196)');
+  const focal = page.locator('.l-focal-catch').first();
+  await expect(focal).toHaveCSS('color', 'rgb(20, 17, 24)');
+  await expect(focal).toHaveCSS('color-scheme', 'light');
+  expect(await prop(focal, '--l-focal-light-strength')).toBe('0');
+  const shadows = await focal.locator('.l-focal-source').evaluate(node => [
+    getComputedStyle(node).boxShadow, getComputedStyle(node, '::before').boxShadow,
+  ]);
+  for (const shadow of shadows) expect(shadow).not.toMatch(/20px|54px|6px|22px/);
+  await expect(focal.locator('.l-focal-subject')).toHaveCSS('background-color', 'rgba(251, 247, 238, 0.92)');
+  await focal.evaluate(node => node.dataset.mode = 'night');
+  await expect(focal).toHaveCSS('color', 'rgb(232, 220, 196)');
+  expect(await prop(focal, '--l-focal-light-strength')).toBe('1');
 });
 
 test('Day has no serious accessibility findings', async ({ page }) => {
