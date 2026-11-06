@@ -177,7 +177,9 @@ test('static contents, observer fallback, cleanup and Folio print work', async (
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await expect(page.locator('.l-chapter-link').last()).toHaveAttribute('aria-current', 'location');
   const disposed = await page.evaluate(async () => {
-    const { initChapterRail } = await import('/examples/showcase/dist/core/chapter-rail.js');
+    const source = document.querySelector('script[type="module"]').textContent;
+    const modulePath = source.match(/from '([^']+)'/)[1];
+    const { initChapterRail } = await import(new URL(modulePath, location.href).href);
     const rail = document.querySelector('.l-chapter-rail');
     const dispose = initChapterRail(rail, { header: document.querySelector('.masthead') });
     dispose();

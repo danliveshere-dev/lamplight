@@ -27,7 +27,7 @@ try {
   run('npm', ['run', 'privacy'], {env, stdio: 'inherit'});
   const showcase = join(root, 'examples/showcase/dist');
   if (!existsSync(join(showcase, 'index.html'))) fail('standalone showcase is missing');
-  if (JSON.stringify(readdirSync(showcase).sort()) !== JSON.stringify(['ai-starters.md', 'chapters.html', 'components.html', 'core', 'examples.html', 'index.html', 'principles.html', 'showcase.css', 'showcase.js'])) fail('showcase contains unexpected files');
+  if (JSON.stringify(readdirSync(showcase).sort()) !== JSON.stringify(['ai-starters.md', 'chapters.html', 'components.html', 'core', 'examples.html', 'index.html', 'principles.html', 'showcase-core.css', 'showcase.css', 'showcase.js'])) fail('showcase contains unexpected files');
   const staged = join(work, 'out'); mkdirSync(staged);
   const filenames = [];
   for (const name of ['core', 'react']) {

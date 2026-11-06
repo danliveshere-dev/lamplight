@@ -114,3 +114,16 @@ test('chapter rail is explicitly exported and safe to import without a document'
   assert.equal(typeof dispose, 'function');
   assert.doesNotThrow(dispose);
 });
+
+
+test('showcase versions each CSS layer while preserving the core entry and adoption snippet', () => {
+  const html = readFileSync(new URL('../examples/showcase/dist/index.html', import.meta.url), 'utf8');
+  const version = html.match(/href="\.\/showcase-core\.css\?v=([a-f0-9]{12})"/)[1];
+  const css = readFileSync(new URL('../examples/showcase/dist/showcase-core.css', import.meta.url), 'utf8');
+  for (const layer of ['tokens', 'components', 'modes', 'surfaces']) {
+    assert.ok(css.includes(`./core/${layer}.css?v=${version}`));
+  }
+  assert.match(html, /&lt;link rel="stylesheet" href="\.\/core\/lamplight\.css"&gt;/);
+  const coreEntry = readFileSync(new URL('../packages/core/dist/lamplight.css', import.meta.url), 'utf8');
+  assert.doesNotMatch(coreEntry, /\?v=/);
+});
