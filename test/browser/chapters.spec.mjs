@@ -165,6 +165,23 @@ test('geometry follows a larger rail text size', async ({ page }, testInfo) => {
   await page.locator('.l-chapter-rail').screenshot({ path: join(evidence, `large-text-${testInfo.project.name}-rail.png`) });
 });
 
+for (const width of [1400, 390]) {
+  test(`native chapter links remain visible without JavaScript at ${width}px`, async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width, height: 844 }, reducedMotion: 'reduce' });
+    const page = await context.newPage();
+    await page.goto(example);
+    await expect(page.locator('.masthead')).toHaveCSS('position', 'static');
+    await expect(page.locator('.l-chapter-rail')).toHaveCSS('position', 'static');
+    await expect(page.locator('.l-chapter-rail-items a').first()).toBeVisible();
+    await page.locator('.l-case-overview a[href="#chapter-care"]').click();
+    await expect(page).toHaveURL(/#chapter-care$/);
+    const title = page.locator('#chapter-care .l-chapter-title');
+    await expect(title).toBeInViewport();
+    expect(await title.evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(0);
+    await context.close();
+  });
+}
+
 test('static contents, observer fallback, cleanup and Folio print work', async ({ browser, page }, testInfo) => {
   const staticContext = await browser.newContext({ javaScriptEnabled: false });
   const staticPage = await staticContext.newPage({ viewport: { width: 1400, height: 1000 } });

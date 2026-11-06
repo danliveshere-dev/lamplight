@@ -7,7 +7,8 @@ export default defineConfig({
   forbidOnly: true,
   retries: 0,
   reporter: 'line',
-  snapshotPathTemplate: '{testDir}/__screenshots__/{arg}-{projectName}{ext}',
+  // macOS and Linux rasterise text differently; each platform has reviewed baselines.
+  snapshotPathTemplate: `{testDir}/__screenshots__/${process.platform === 'darwin' ? '' : `${process.platform}/`}{arg}-{projectName}{ext}`,
   expect: {
     toHaveScreenshot: {
       animations: 'disabled',

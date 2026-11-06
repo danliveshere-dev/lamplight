@@ -26,6 +26,12 @@ const localQaAddressFiles = new Set([
 const productWords = ['Da' + 'ius', 'Gl' + 'im', 'Sker' + 'rick', 'Or' + 'rery',
   'd' + 'anliveshere', 'D' + 'an', 'Second' + ' Brain'];
 const caseSensitiveProductWords = ['Re' + 'ach'];
+// Remove only the approved project URL prefix before consumer-word checks.
+// Subpaths are still scanned, as are lookalike or unrelated hostnames.
+const approvedProjectUrls = [
+  new RegExp('https://github\\.com/' + 'd' + 'anliveshere-dev/lamplight(?=/|[?#]|$|[\\s"\'`<>\\)\\]])', 'g'),
+  new RegExp('https://' + 'd' + 'anliveshere-dev\\.github\\.io/lamplight/(?=$|[\\s"\'`<>\\)\\]])', 'g'),
+];
 const checks = [
   {
     name: 'private filesystem path',
@@ -100,10 +106,17 @@ const findings = [];
 
 assertCompleteGitHistory(process.cwd());
 
-const configuredEmail = execFileSync('git', ['config', '--local', '--get', 'user.email'], {
-  encoding: 'utf8',
-}).trim();
-if (!allowedIdentityEmails.has(configuredEmail)) {
+let configuredEmail;
+try {
+  configuredEmail = execFileSync('git', ['config', '--local', '--get', 'user.email'], {
+    encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
+  }).trim();
+} catch (error) {
+  // Git returns 1 with no stderr when the key is absent. Other failures must
+  // remain failures, including an inaccessible or malformed local config.
+  if (error.status !== 1 || error.stderr?.length) throw error;
+}
+if (configuredEmail !== undefined && !allowedIdentityEmails.has(configuredEmail)) {
   findings.push(`Git config: email is not on the public-safe identity allowlist`);
 }
 if (/@icloud\.com$/i.test(configuredEmail)) {
@@ -134,13 +147,14 @@ for (const file of files) {
     if (check.pattern.test(text)) findings.push(`${file}: ${check.name}`);
   }
   if (!provenanceFiles.has(file)) {
+    const consumerText = approvedProjectUrls.reduce((value, pattern) => value.replace(pattern, ''), text);
     for (const word of productWords) {
-      if (new RegExp(`\\b${word.replace(' ', '\\s+')}\\b`, 'i').test(text)) {
+      if (new RegExp(`\\b${word.replace(' ', '\\s+')}\\b`, 'i').test(consumerText)) {
         findings.push(`${file}: unclassified consumer reference ${word}`);
       }
     }
     for (const word of caseSensitiveProductWords) {
-      if (new RegExp(`\\b${word}\\b`).test(text)) {
+      if (new RegExp(`\\b${word}\\b`).test(consumerText)) {
         findings.push(`${file}: unclassified consumer reference ${word}`);
       }
     }

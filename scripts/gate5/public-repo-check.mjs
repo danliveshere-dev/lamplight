@@ -22,10 +22,10 @@ function record(condition, message) {
 
 const workflowDirectory = join(root, '.github/workflows');
 const workflows = readdirSync(workflowDirectory).filter((name) => /\.ya?ml$/.test(name)).sort();
-record(JSON.stringify(workflows) === JSON.stringify(['ci.yml', 'codeql.yml', 'dependency-review.yml']), `workflow set is not exact: ${workflows.join(', ')}`);
+record(JSON.stringify(workflows) === JSON.stringify(['ci.yml', 'codeql.yml', 'dependency-review.yml', 'pages.yml']), `workflow set is not exact: ${workflows.join(', ')}`);
 for (const name of workflows) findings.push(...validateWorkflow(name, read(`.github/workflows/${name}`)));
 const ciWorkflow = read('.github/workflows/ci.yml');
-record(/matrix:\s*\n\s+node: \["22\.12", "24"\]/.test(ciWorkflow), 'full source test matrix must remain Node 22.12 and 24');
+record(/matrix:\s*\n\s+node: \["22\.23\.4", "24"\]/.test(ciWorkflow), 'full source test matrix must remain Node 22.23.4 and 24');
 record(/node20-smoke:[\s\S]*node-version: "20"[\s\S]*node20-consumer-smoke\.mjs/.test(ciWorkflow), 'Node 20 must remain a packed-consumer-only smoke');
 record(!/node20-smoke:[\s\S]*?npm test/.test(ciWorkflow), 'Node 20 smoke must not run the Astro-dependent full source suite');
 
@@ -49,8 +49,8 @@ for (const [name, version] of Object.entries(rootManifest.devDependencies ?? {})
 
 const allowedInstallScripts = new Map([
   ['node_modules/esbuild', '0.28.2'],
-  ['node_modules/fsevents', '2.3.3'],
-  ['node_modules/playwright/node_modules/fsevents', '2.3.2'],
+  ['node_modules/fsevents', '2.3.2'],
+  ['node_modules/vite/node_modules/fsevents', '2.3.3'],
 ]);
 for (const [path, metadata] of Object.entries(lock.packages ?? {})) {
   if (!path || path === 'packages/core' || path === 'packages/react' || metadata.link) continue;

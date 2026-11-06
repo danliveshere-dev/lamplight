@@ -23,15 +23,15 @@ test('private workspace has exactly two private beta packages', () => {
   assert.deepEqual(root.workspaces, ['packages/core', 'packages/react']);
   for (const pkg of [core, react]) {
     assert.equal(pkg.private, true);
-    assert.equal(pkg.version, '0.1.0-beta.4');
+    assert.equal(pkg.version, '0.1.0-beta.5');
     assert.match(pkg.name, /^@lamplight\//);
   }
 });
 
 test('Style Dictionary is pinned for DTCG ecosystem compatibility', () => {
-  assert.equal(root.devDependencies['style-dictionary'], '5.5.2');
+  assert.equal(root.devDependencies['style-dictionary'], '5.7.1');
   const installed = json('../node_modules/style-dictionary/package.json');
-  assert.equal(installed.version, '5.5.2');
+  assert.equal(installed.version, '5.7.1');
   const config = readFileSync(new URL('../style-dictionary.config.mjs', import.meta.url), 'utf8');
   assert.match(config, /usesDtcg:\s*true/);
 });

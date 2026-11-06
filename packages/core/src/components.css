@@ -8,7 +8,7 @@ html.l-document *,
 html.l-document *::before,
 html.l-document *::after { box-sizing: border-box; }
 
-html.l-document { color-scheme: dark; scroll-behavior: smooth; }
+html.l-document { color-scheme: var(--l-mode-color-scheme, dark); scroll-behavior: smooth; }
 
 html.l-document body {
   margin: 0;
@@ -41,13 +41,11 @@ html.l-document :focus-visible {
   position: relative;
   background: var(--lamp-surface-page);
   color: var(--lamp-text);
-  color-scheme: dark;
+  color-scheme: var(--l-mode-color-scheme, dark);
   font-family: var(--lamp-font-sans);
   font-size: var(--lamp-text-base);
   line-height: 1.55;
 }
-
-:where(.l-room, [data-mode="day"], [data-surface="folio"]) .l-room:not([data-mode]) { color-scheme: inherit; }
 
 .l-room button,
 .l-room input,
@@ -361,13 +359,15 @@ html.l-document :focus-visible {
   --l-chapter-dot-size: var(--lamp-chapter-dot-size);
   --l-chapter-numeral-width: var(--lamp-space-6);
   --l-chapter-rail-gap: var(--lamp-space-3);
+  padding-block: var(--lamp-space-12) var(--lamp-space-6);
+  padding-inline: var(--lamp-space-3) var(--lamp-space-2);
+  font-family: var(--lamp-font-sans);
+}
+.l-chapter-rail[data-enhanced] {
   position: sticky;
   inset-block-start: var(--l-chapter-header-offset, 0px);
   max-block-size: calc(100dvh - var(--l-chapter-header-offset, 0px));
   overflow-y: auto;
-  padding-block: var(--lamp-space-12) var(--lamp-space-6);
-  padding-inline: var(--lamp-space-3) var(--lamp-space-2);
-  font-family: var(--lamp-font-sans);
 }
 .l-chapter-rail ol { list-style: none; margin: 0; padding: 0; }
 .l-chapter-rail .l-chapter-rail-chapters { display: grid; gap: var(--l-chapter-rail-gap); }
@@ -504,7 +504,7 @@ html.l-document :focus-visible {
   .l-chapter-rail .l-chapter-rail-chapters { display: flex; gap: var(--lamp-space-4); }
   .l-chapter-rail-item { flex: none; padding-inline-start: 0; white-space: nowrap; }
   .l-chapter-rail-item::before, .l-chapter-rail-item::after,
-  .l-chapter-rail .l-chapter-rail-items { display: none; }
+  .l-chapter-rail[data-enhanced] .l-chapter-rail-items { display: none; }
   .l-chapter-rail-item.is-active > .l-chapter-link { color: var(--lamp-accent); text-decoration: underline; text-underline-offset: var(--lamp-space-1); }
   .l-chapter { column-gap: var(--lamp-space-3); }
 }

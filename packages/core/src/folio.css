@@ -1,91 +1,93 @@
-/* Folio, repeated for print. */
-[data-surface="folio"],
-[data-surface="folio"] [data-mode],
-[data-surface="folio"] .l-panel[data-depth="focal"],
-[data-surface="folio"] .l-focal-catch {
-  --lamp-surface-page: transparent;
-  --lamp-surface-panel: transparent;
-  --lamp-surface-raised: transparent;
-  --lamp-surface-sunken: transparent;
-  --lamp-surface-reading: transparent;
-  --lamp-glass-bg: transparent;
-  --lamp-grain-opacity: 0;
-  --lamp-row-height: 1.75rem;
-}
+/* Folio is scoped to Lamplight; the build reuses this body for print. */
+:is(:is(.l-room, html.l-document)[data-surface="folio"], :is(.l-room, html.l-document) [data-surface="folio"], :where([data-surface="folio"]) .l-room) {
+  &,
+  & [data-mode],
+  & .l-panel[data-depth="focal"],
+  & .l-focal-catch {
+    --lamp-surface-page: transparent;
+    --lamp-surface-panel: transparent;
+    --lamp-surface-raised: transparent;
+    --lamp-surface-sunken: transparent;
+    --lamp-surface-reading: transparent;
+    --lamp-glass-bg: transparent;
+    --lamp-grain-opacity: 0;
+    --lamp-row-height: 1.75rem;
+  }
 
-[data-surface="folio"] {
-  background: var(--lamp-paper-white);
-  font-size: 10.5pt;
-  line-height: 1.45;
-  orphans: 3;
-  widows: 3;
-}
+  & {
+    background: var(--lamp-paper-white);
+    font-size: 10.5pt;
+    line-height: 1.45;
+    orphans: 3;
+    widows: 3;
+  }
 
-[data-surface="folio"] .l-panel {
-  overflow: visible;
-  background-color: transparent;
-  background-image: none;
-  border: 0;
-  border-block-start: 1px solid var(--lamp-text);
-  border-radius: 0;
-  box-shadow: none;
-  break-inside: avoid;
-}
-[data-surface="folio"] .l-panel::after { display: none; }
-[data-surface="folio"] .l-panel[data-depth="focal"] { border-block-start-width: 2px; }
-[data-surface="folio"] .l-chip { border-style: dashed; }
-[data-surface="folio"] .l-chip[data-state="live"] { border-style: solid; }
-[data-surface="folio"] .l-chip[data-state="live"]::before { content: "● "; white-space: pre; }
-[data-surface="folio"] .l-chip[data-state="attention"]::before { content: "▲ "; white-space: pre; }
-[data-surface="folio"] :is(.l-presence, .l-orb, .l-toast) { display: none; }
-[data-surface="folio"] .l-table-wrap { overflow-x: visible; }
-[data-surface="folio"] .l-table { font-size: 9pt; font-variant-numeric: tabular-nums; }
-[data-surface="folio"] .l-table thead { display: table-header-group; }
-[data-surface="folio"] .l-table tr { break-inside: avoid; }
-[data-surface="folio"] [data-folio-keep] { break-inside: avoid; }
-[data-surface="folio"] :is(h1, h2, h3) { break-after: avoid; }
-[data-surface="folio"] .l-folio-state { font-family: var(--lamp-font-mono); font-size: 8.5pt; }
-[data-surface="folio"] a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8.5pt; }
+  & .l-panel {
+    overflow: visible;
+    background-color: transparent;
+    background-image: none;
+    border: 0;
+    border-block-start: 1px solid var(--lamp-text);
+    border-radius: 0;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  & .l-panel::after { display: none; }
+  & .l-panel[data-depth="focal"] { border-block-start-width: 2px; }
+  & .l-chip { border-style: dashed; }
+  & .l-chip[data-state="live"] { border-style: solid; }
+  & .l-chip[data-state="live"]::before { content: "● "; white-space: pre; }
+  & .l-chip[data-state="attention"]::before { content: "▲ "; white-space: pre; }
+  & :is(.l-presence, .l-orb, .l-toast) { display: none; }
+  & .l-table-wrap { overflow-x: visible; }
+  & .l-table { font-size: 9pt; font-variant-numeric: tabular-nums; }
+  & .l-table thead { display: table-header-group; }
+  & .l-table tr { break-inside: avoid; }
+  & [data-folio-keep] { break-inside: avoid; }
+  & :is(h1, h2, h3) { break-after: avoid; }
+  & .l-folio-state { font-family: var(--lamp-font-mono); font-size: 8.5pt; }
+  & a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8.5pt; }
 
-/* The focal catch becomes an ink rule instead of a lit panel. */
-[data-surface="folio"] .l-focal-source,
-[data-surface="folio"] .l-focal-subject::before { display: none; }
-[data-surface="folio"] .l-focal-catch .l-focal-subject {
-  min-height: 0; overflow: visible; border: 0; border-block-start: 2px solid var(--lamp-text);
-  border-radius: 0; padding: var(--lamp-space-3) 0; background: none; box-shadow: none;
-  break-inside: avoid;
-}
-[data-surface="folio"] :is(.l-focal-label, .l-focal-state) { color: var(--lamp-text); }
+  /* The focal catch becomes an ink rule instead of a lit panel. */
+  & .l-focal-source,
+  & .l-focal-subject::before { display: none; }
+  & .l-focal-catch .l-focal-subject {
+    min-height: 0; overflow: visible; border: 0; border-block-start: 2px solid var(--lamp-text);
+    border-radius: 0; padding: var(--lamp-space-3) 0; background: none; box-shadow: none;
+    break-inside: avoid;
+  }
+  & :is(.l-focal-label, .l-focal-state) { color: var(--lamp-text); }
 
-[data-surface="folio"] .l-chapter-rail { display: none; }
-[data-surface="folio"] .l-chapter-layout { display: block; --l-chapter-strip-offset: 0px; }
-[data-surface="folio"] .l-chapter { break-before: page; break-after: avoid; }
+  & .l-chapter-rail { display: none; }
+  & .l-chapter-layout { display: block; --l-chapter-strip-offset: 0px; }
+  & .l-chapter { break-before: page; break-after: avoid; }
 
-/* Paper stays still through mode changes. */
-[data-surface="folio"],
-[data-surface="folio"] *,
-[data-surface="folio"] *::before,
-[data-surface="folio"] *::after {
-  animation: none !important;
-  transition: none !important;
-  scroll-behavior: auto !important;
-}
-[data-surface="folio"] :is(.l-input, .l-select, .l-textarea, .l-toggle-track, .l-tablist, .l-segmented) {
-  background: none;
-  box-shadow: none;
-}
-[data-surface="folio"] .l-segmented[data-size="compact"] button[aria-pressed="true"] {
-  background: none;
-  box-shadow: none;
-  color: var(--lamp-text);
-  text-decoration: underline;
-  text-underline-offset: var(--lamp-space-1);
-}
-[data-surface="folio"] .l-table th { position: static; }
+  /* Paper stays still through mode changes. */
+  &,
+  & *,
+  & *::before,
+  & *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  & :is(.l-input, .l-select, .l-textarea, .l-toggle-track, .l-tablist, .l-segmented) {
+    background: none;
+    box-shadow: none;
+  }
+  & .l-segmented[data-size="compact"] button[aria-pressed="true"] {
+    background: none;
+    box-shadow: none;
+    color: var(--lamp-text);
+    text-decoration: underline;
+    text-underline-offset: var(--lamp-space-1);
+  }
+  & .l-table th { position: static; }
 
-[data-surface="folio"] :is(.l-lead-line, .l-thread, .l-knot) {
-  --l-pattern-ink: var(--lamp-text);
-  --l-composition-blur: 0px;
-}
+  & :is(.l-lead-line, .l-thread, .l-knot) {
+    --l-pattern-ink: var(--lamp-text);
+    --l-composition-blur: 0px;
+  }
 
-[data-surface="folio"] .l-panel.l-thread { background-image: var(--l-thread-rule); }
+  & .l-panel.l-thread { background-image: var(--l-thread-rule); }
+}

@@ -71,7 +71,7 @@ test('workflow policy rejects persisted credentials and incomplete Gate 5 histor
 });
 
 test('checked-in workflows satisfy the exact action and permission policy', () => {
-  for (const name of ['ci.yml', 'codeql.yml', 'dependency-review.yml']) {
+  for (const name of ['ci.yml', 'codeql.yml', 'dependency-review.yml', 'pages.yml']) {
     const source = readFileSync(join(repository, '.github/workflows', name), 'utf8');
     assert.deepEqual(validateWorkflow(name, source), []);
   }
@@ -89,7 +89,7 @@ test('all checked-in checkouts disable credential persistence', () => {
 
 test('Node 20 is limited to the packed-consumer contract', () => {
   const ci = readFileSync(join(repository, '.github/workflows/ci.yml'), 'utf8');
-  assert.match(ci, /matrix:\s*\n\s+node: \["22\.12", "24"\]/);
+  assert.match(ci, /matrix:\s*\n\s+node: \["22\.23\.4", "24"\]/);
   assert.match(ci, /node20-smoke:[\s\S]*node-version: "20"[\s\S]*node20-consumer-smoke\.mjs/);
   assert.doesNotMatch(ci.match(/node20-smoke:[\s\S]*?(?=\n  \S|$)/)?.[0] ?? '', /npm test/);
   const smoke = readFileSync(join(repository, 'scripts/gate5/node20-consumer-smoke.mjs'), 'utf8');
@@ -107,4 +107,51 @@ test('licence boundary remains explicit in machine-readable and human-readable f
     assert.equal(readFileSync(join(repository, 'packages', packageDirectory, 'LICENSE'), 'utf8'), readFileSync(join(repository, 'LICENSE'), 'utf8'));
     assert.equal(readFileSync(join(repository, 'packages', packageDirectory, 'NOTICE'), 'utf8'), notice);
   }
+});
+
+test('Pages policy rejects weakened deployment gates, permissions and dependencies', () => {
+  const source = readFileSync(join(repository, '.github/workflows/pages.yml'), 'utf8');
+  const changes = [
+    ["github.event_name == 'workflow_dispatch' && ", ''],
+    ['inputs.publish == true && ', ''],
+    ["github.ref == 'refs/heads/main' && ", ''],
+    [' && github.event.repository.private == false', ''],
+    ['needs: build', 'needs: other'],
+    ['      pages: write', '      pages: write\n      contents: write'],
+    ['  contents: read', '  contents: write'],
+    ['  pull_request:', '  pull_request_target:'],
+    ['default: false', 'default: true'],
+    ['node scripts/beta/stage-site.mjs', 'echo unstaged'],
+    ['fetch-depth: 0', 'fetch-depth: 1'],
+    ['    runs-on: ubuntu-latest\n    steps:', '    runs-on: ubuntu-latest\n    permissions:\n      pages: write\n    steps:'],
+  ];
+  for (const [before, after] of changes) {
+    assert.ok(source.includes(before), `Missing mutation anchor: ${before}`);
+    assert.notDeepEqual(validateWorkflow('pages.yml', source.replace(before, after)), [], `Mutation accepted: ${before}`);
+  }
+});
+
+test('other workflows cannot acquire job write overrides or deploy Pages', () => {
+  const permissions = fixture({ extra: '    permissions:\n      pages: write\n' });
+  assert.ok(validateWorkflow('ci.yml', permissions).some((error) => error.includes('job-level permission')));
+  const deploy = fixture({ extra: `      - uses: actions/deploy-pages@${approvedActions.get('actions/deploy-pages')}\n` });
+  assert.ok(validateWorkflow('ci.yml', deploy).some((error) => error.includes('confined to pages.yml')));
+});
+
+test('private-repository security scans remain explicitly deferred', () => {
+  for (const [name, job] of [['codeql.yml', 'analyse'], ['dependency-review.yml', 'review']]) {
+    const source = readFileSync(join(repository, '.github/workflows', name), 'utf8');
+    assert.equal(parseYaml(source).jobs[job].if, 'github.event.repository.private == false');
+    assert.ok(validateWorkflow(name, source.replace('    if: github.event.repository.private == false\n', ''))
+      .some((error) => error.includes('explicitly deferred')));
+  }
+});
+
+
+test('event expressions are checked in shell scripts, not structured action inputs', () => {
+  const expression = '$' + '{{ github.event.pull_request.title }}';
+  const unsafe = fixture({ extra: `      - run: |\n          echo ${expression}\n` });
+  assert.ok(validateWorkflow('ci.yml', unsafe).some(error => error.includes('untrusted event expression')));
+  const safe = fixture({ checkoutWith: `        with:\n          ref: ${'$' + '{{ github.event.pull_request.head.sha || github.sha }}'}\n          persist-credentials: false\n`, extra: `      - run: echo safe\n` });
+  assert.deepEqual(validateWorkflow('ci.yml', safe), []);
 });

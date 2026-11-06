@@ -1,6 +1,6 @@
 {
   "name": "lamplight-workspace",
-  "version": "0.1.0-beta.4",
+  "version": "0.1.0-beta.5",
   "private": true,
   "type": "module",
   "license": "Apache-2.0",
@@ -35,11 +35,12 @@
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.62.1",
     "@types/react": "19.2.18",
-    "astro": "7.3.1",
+    "astro": "7.4.7",
     "css-tree": "3.2.1",
     "js-yaml": "4.3.2",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "style-dictionary": "5.5.2"
+    "style-dictionary": "5.7.1",
+    "esbuild": "0.28.2"
   }
 }

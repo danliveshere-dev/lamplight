@@ -197,3 +197,87 @@ test('Folio prevents opt-in living light even with full motion declared', async 
   await button.dispatchEvent('pointerdown', { pointerId: 19, pointerType: 'mouse', button: 0 });
   await expect(button).not.toHaveAttribute('data-press-phase');
 });
+
+
+test('host appearance attributes leave host styling alone while reaching embedded Rooms', async ({ page }) => {
+  await page.goto('/test/browser/fixture.html');
+  await page.evaluate(() => {
+    document.documentElement.classList.remove('l-document');
+    const host = document.createElement('section');
+    host.id = 'host-isolation';
+    host.innerHTML = '<div id="host-child" style="transition: opacity 2s"><a href="https://example.com">Host link</a></div><div class="l-room" id="embedded"><div data-mode="night" id="island">Island</div></div>';
+    document.body.append(host);
+  });
+  const host = page.locator('#host-isolation');
+  const child = page.locator('#host-child');
+  const hostBaseline = await host.evaluate(el => { const style = getComputedStyle(el); return [style.color, style.backgroundColor, style.fontSize, style.colorScheme]; });
+  const baseline = await child.evaluate(el => [getComputedStyle(el).transitionDuration, getComputedStyle(el.querySelector('a'), '::after').content]);
+  for (const attrs of [{ mode: 'day' }, { mode: 'night' }, { surface: 'folio' }, { surface: 'ledger' }]) {
+    await host.evaluate((el, values) => { delete el.dataset.mode; delete el.dataset.surface; Object.assign(el.dataset, values); }, attrs);
+    expect(await host.evaluate(el => { const style = getComputedStyle(el); return [style.color, style.backgroundColor, style.fontSize, style.colorScheme]; })).toEqual(hostBaseline);
+    expect(await child.evaluate(el => [getComputedStyle(el).transitionDuration, getComputedStyle(el.querySelector('a'), '::after').content])).toEqual(baseline);
+    const room = page.locator('#embedded');
+    await expect(room).toHaveCSS('color-scheme', attrs.mode === 'night' || attrs.surface === 'ledger' ? 'dark' : 'light');
+    await expect(page.locator('#island')).toHaveCSS('color-scheme', attrs.surface === 'folio' ? 'light' : 'dark');
+  }
+});
+
+test('nested Rooms honour their nearest explicit mode and Folio takes precedence', async ({ page }) => {
+  await page.goto('/test/browser/fixture.html');
+  await page.evaluate(() => {
+    document.documentElement.classList.remove('l-document');
+    const host = document.createElement('div');
+    host.dataset.mode = 'day';
+    host.innerHTML = '<div class="l-room" id="outer-mode"><div class="l-room" data-mode="night" id="inner-mode"><div class="l-room" id="inherited-mode"><div class="l-panel" data-depth="focal">Focal</div></div></div></div>';
+    document.body.append(host);
+  });
+  const outer = page.locator('#outer-mode');
+  const inner = page.locator('#inner-mode');
+  const inherited = page.locator('#inherited-mode');
+  await expect(outer).toHaveCSS('color-scheme', 'light');
+  await expect(inner).toHaveCSS('color-scheme', 'dark');
+  await expect(inherited).toHaveCSS('color-scheme', 'dark');
+  expect(await prop(inherited, '--lamp-surface-page')).toBe('#141118');
+  await outer.evaluate(el => { el.parentElement.dataset.mode = 'night'; el.dataset.mode = 'night'; });
+  await inner.evaluate(el => el.dataset.mode = 'day');
+  await expect(inner).toHaveCSS('color-scheme', 'light');
+  await expect(inherited).toHaveCSS('color-scheme', 'light');
+  await expect(inherited).toHaveCSS('background-color', 'rgb(246, 236, 217)');
+  await outer.evaluate(el => el.dataset.surface = 'folio');
+  await inner.evaluate(el => el.dataset.mode = 'night');
+  await expect(inner).toHaveCSS('color-scheme', 'light');
+  await expect(inherited).toHaveCSS('color-scheme', 'light');
+  expect(await prop(inherited, '--lamp-surface-page')).toBe('transparent');
+  await expect(inherited.locator('.l-panel')).toHaveCSS('border-top-width', '2px');
+});
+
+for (const [modes, expected] of [
+  [['day', 'night'], 'dark'],
+  [['night', 'day', 'night'], 'dark'],
+  [['day', 'night', 'day'], 'light'],
+]) {
+  test(`nearest host mode wins for ${modes.join(' > ')}`, async ({ page }) => {
+    await page.goto('/test/browser/fixture.html');
+    await page.evaluate(values => {
+      document.documentElement.classList.remove('l-document');
+      let parent = document.body;
+      for (const value of values) {
+        const node = document.createElement('div');
+        node.dataset.mode = value;
+        parent.append(node);
+        parent = node;
+      }
+      parent.insertAdjacentHTML('beforeend', '<div class="l-room" id="host-mode-room">Room</div>');
+    }, modes);
+    const room = page.locator('#host-mode-room');
+    await expect(room).toHaveCSS('color-scheme', expected);
+    await expect(room).toHaveCSS('background-color', expected === 'dark' ? 'rgb(20, 17, 24)' : 'rgb(246, 236, 217)');
+  });
+}
+
+test('Ledger suppresses light in nested mode islands', async ({ page }) => {
+  await open(page, { surface: 'ledger', mode: 'day' });
+  await page.getByTestId('room').evaluate(room => room.insertAdjacentHTML('beforeend', '<div data-mode="night" id="ledger-mode">Island</div>'));
+  expect(await prop(page.locator('#ledger-mode'), '--lamp-sheen-follow')).toBe('transparent');
+  expect(await prop(page.locator('#ledger-mode'), '--lamp-wire-warm-halo')).toBe('0 0 0 transparent');
+});

@@ -13,7 +13,7 @@ const day = (token, value) => {
 
 test('a mode override and everything aliasing it are redeclared', () => {
   const css = formatModesCss(withDay((d) => day(d.primitive.moss, '{primitive.soot-1}')));
-  const dayBlock = css.slice(css.lastIndexOf('[data-mode="day"],'));
+  const dayBlock = css.slice(css.indexOf('[data-mode="day"],\n'));
   assert.match(dayBlock, /--lamp-moss: var\(--lamp-soot-1\);/);
   assert.match(dayBlock, /--lamp-success: var\(--lamp-moss\);/);
   assert.match(dayBlock, /--lamp-focal-catch-settled: color-mix/);
@@ -79,7 +79,7 @@ test('every Day text ink is AA on every Day paper', () => {
 });
 
 test('Day redefines every light-bearing token', () => {
-  const css = readFileSync(new URL('../packages/core/generated/modes.css', import.meta.url), 'utf8');
+  const css = formatModesCss(loadTokenDocument());
   const dayBlock = css.slice(css.indexOf('[data-mode="day"],\n'), css.indexOf('@media print'));
   for (const property of ['--lamp-surface-page', '--lamp-text', '--lamp-candle', '--lamp-wire-warm-halo',
     '--lamp-focal-pool', '--lamp-bezel-face', '--lamp-node-glow', '--lamp-skeleton-fill']) {

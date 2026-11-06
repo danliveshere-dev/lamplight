@@ -1,6 +1,7 @@
 /* Ledger: the working desk, with papers spread out. For material people scan, compare and
    return to. It holds in either mode. Calm comes from grouping and alignment here. */
-[data-surface="ledger"] {
+[data-surface="ledger"],
+:where([data-surface="ledger"]) [data-mode] {
   --lamp-row-height: 2rem;
   --lamp-sheen-follow: transparent;
   --lamp-sheen-focus: transparent;
@@ -8,29 +9,36 @@
   --lamp-wire-warm-halo: 0 0 0 transparent;
   --lamp-wire-live-halo: 0 0 0 transparent;
   --lamp-wire-ember-halo: 0 0 0 transparent;
+}
+
+:is(:is(.l-room, html.l-document)[data-surface="ledger"], :is(.l-room, html.l-document) [data-surface="ledger"], :where([data-surface="ledger"]) .l-room) {
   font-size: var(--lamp-text-md);
   line-height: 1.45;
 }
 
-[data-surface="ledger"] .l-table { font-size: var(--lamp-text-sm); font-variant-numeric: tabular-nums; }
-[data-surface="ledger"] .l-table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  padding-block: var(--lamp-space-2);
-  background: var(--lamp-surface-panel);
+
+:is(:is(.l-room, html.l-document)[data-surface="ledger"], :is(.l-room, html.l-document) [data-surface="ledger"], :where([data-surface="ledger"]) .l-room) {
+  & .l-table { font-size: var(--lamp-text-sm); font-variant-numeric: tabular-nums; }
+  & .l-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding-block: var(--lamp-space-2);
+    background: var(--lamp-surface-panel);
+  }
+  & .l-table :is(td, tbody th) { padding-block: var(--lamp-space-1); }
+  & .l-table .l-state-cell { white-space: nowrap; }
+
+  /* One lead per region. It's lighter than Focal Catch, which stays at one per view. */
+  & .l-lead {
+    border-block-start: 2px solid var(--lamp-accent);
+    padding-block-start: var(--lamp-space-2);
+    font-weight: var(--lamp-weight-semibold);
+  }
+
+  & .l-panel::after { opacity: 0; }
+  & .l-chapter-rail-item.is-active::before { box-shadow: none; }
+
+  & :is(.l-lead-line, .l-thread, .l-knot) { --l-composition-blur: 0px; }
+
 }
-[data-surface="ledger"] .l-table :is(td, tbody th) { padding-block: var(--lamp-space-1); }
-[data-surface="ledger"] .l-table .l-state-cell { white-space: nowrap; }
-
-/* One lead per region. It's lighter than Focal Catch, which stays at one per view. */
-[data-surface="ledger"] .l-lead {
-  border-block-start: 2px solid var(--lamp-accent);
-  padding-block-start: var(--lamp-space-2);
-  font-weight: var(--lamp-weight-semibold);
-}
-
-[data-surface="ledger"] .l-panel::after { opacity: 0; }
-[data-surface="ledger"] .l-chapter-rail-item.is-active::before { box-shadow: none; }
-
-[data-surface="ledger"] :is(.l-lead-line, .l-thread, .l-knot) { --l-composition-blur: 0px; }

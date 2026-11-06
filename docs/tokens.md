@@ -44,7 +44,7 @@ classification, not an untyped escape hatch. The strict validator rejects a
 CSS-bound value without the extension, an unknown reference, duplicate
 property, invalid type shape or alias cycle.
 
-Style Dictionary 5.5.2 is pinned for DTCG ecosystem compatibility. It validates
+Style Dictionary 5.7.1 is pinned for DTCG ecosystem compatibility. It validates
 that the source can enter a standard token toolchain. Lamplight's formatter
 remains authoritative where a generic transform would flatten aliases or
 change browser-valid CSS.

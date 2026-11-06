@@ -4,21 +4,21 @@ Lamplight is a quiet design system for interfaces that should feel present witho
 
 ## Community beta status
 
-Version **0.1.0-beta.4 is prepared locally, not released**. The intended free community beta is GitHub-first, distributed as downloadable files rather than through an npm registry. The package names `@lamplight/core` and `@lamplight/react` are import names for those files; they do not establish ownership or availability of an npm namespace. Both packages remain `private: true`.
+Version **0.1.0-beta.5 is prepared locally, not released**. The intended free community beta is GitHub-first, distributed as downloadable files rather than through an npm registry. The package names `@lamplight/core` and `@lamplight/react` are import names for those files; they do not establish ownership or availability of an npm namespace. Both packages remain `private: true`.
 
 The [beta readiness record](docs/release/beta-readiness.md) separates local preparation from the outstanding review and explicit publication decision. Earlier production gates are historical evidence, not beta acceptance. Real Safari, manual assistive technology and physical monochrome printing have not been observed; Folio print is experimental.
 
 ## Try the prepared beta
 
-Once release assets are available, download both tarballs into your application and install by file:
+Once published, download the tarballs from the [beta.5 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) into your application and install by file:
 
 ```sh
-npm install ./lamplight-core-0.1.0-beta.4.tgz
+npm install ./lamplight-core-0.1.0-beta.5.tgz
 # For a React application with React installed:
-npm install ./lamplight-react-0.1.0-beta.4.tgz
+npm install ./lamplight-react-0.1.0-beta.5.tgz
 ```
 
-In a bundler-based application, import `@lamplight/core/styles.css`. Fonts are optional: import `@lamplight/core/fonts.css` separately to use the included IBM Plex faces. The browser download, `lamplight-browser-0.1.0-beta.4.zip`, contains a copyable starter with local assets; serve its extracted directory with a static web server. See [adoption](docs/adoption.md) for complete HTML and React recipes.
+In a bundler-based application, import `@lamplight/core/styles.css`. Fonts are optional: import `@lamplight/core/fonts.css` separately to use the included IBM Plex faces. The browser download, `lamplight-browser-0.1.0-beta.5.zip`, contains a copyable starter with local assets; serve its extracted directory with a static web server. See [adoption](docs/adoption.md) for complete HTML and React recipes.
 
 Lead lines mark card regions; Threads connect proofs, steps or thoughts. See [components](docs/components.md) for HTML and React examples.
 
@@ -26,7 +26,11 @@ Night and Study are defaults. Use `data-mode="day"` to select Day; use `data-sur
 
 The core stylesheet scopes component styling to `.l-room`; `l-document` opts a whole page into the document shell. Living light is optional and must be explicitly initialised. The React adapter declares a `react >=18` peer contract; packed consumers have been observed against React 18.3.1 and 19.2.8. These observations are not a guarantee for every version.
 
+Source and example development requires Node 22.23.4 or newer; the packed packages retain their separate consumer contract.
+
 ## Package and export map
+
+`@lamplight/core/chapter-rail` exports the opt-in `initChapterRail` browser enhancement and its TypeScript declarations. See the [component guide](docs/components.md) for markup and lifecycle handling.
 
 | Download package | Export | What it provides |
 | --- | --- | --- |
@@ -49,7 +53,7 @@ and declares React only as a peer.
 - [Accessibility](docs/accessibility.md), [browser support](docs/browser-support.md), [versioning](docs/versioning.md), [adapters](docs/adapters.md)
 - [Plain HTML](examples/vanilla/index.html), [Astro](examples/astro/src/pages/index.astro), [React](examples/react/src/page.mjs)
 - [Contributing](CONTRIBUTING.md), [governance](GOVERNANCE.md), [support](SUPPORT.md), [conduct](CODE_OF_CONDUCT.md), [origin](docs/ORIGIN.md)
-- [Beta release notes](docs/release/beta-release-notes.md), [historical release programme](TODO.md)
+- [Beta release notes](docs/release/beta-release-notes.md), [historical release program](TODO.md)
 
 ## Local development
 
@@ -57,7 +61,7 @@ and declares React only as a peer.
 npm ci
 npm run beta:check
 npm run beta:build
-node examples/showcase/build.mjs
+node scripts/beta/stage-site.mjs
 ```
 
-The showcase build creates `examples/showcase/dist/index.html`; serve that directory locally to explore it. Its [examples guide](examples/showcase/examples.html), [components reference](examples/showcase/components.html) and [principles reference](examples/showcase/principles.html) introduce the patterns and the full seven principles. The [AI starter guide](docs/ai-starters.md) describes working with the local beta files. These commands prepare and check files locally. They do not publish a release.
+The beta build creates the showcase and archives; the staging command checks the archives and adds them to the showcase downloads. Serve `examples/showcase/dist/` locally to explore the site and its download links. The beta build requires a clean committed checkout. Its [examples guide](examples/showcase/examples.html), [components reference](examples/showcase/components.html) and [principles reference](examples/showcase/principles.html) introduce the patterns and the full seven principles. The [AI starter guide](docs/ai-starters.md) describes working with the local beta files. These commands prepare and check files locally. They do not publish a release.

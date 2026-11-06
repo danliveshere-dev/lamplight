@@ -86,6 +86,11 @@ export function Menu({ trigger, items = [], open, defaultOpen = false, onOpenCha
       const requested = pendingFocus.current < 0 ? menuItems.length - 1 : pendingFocus.current;
       menuItems[Math.min(requested, menuItems.length - 1)]?.focus();
     });
+    return () => { active = false; };
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    if (!isOpen) return undefined;
     const closeAndRestore = () => {
       requestOpen(false);
       queueMicrotask(() => triggerRef.current?.focus());
@@ -99,7 +104,6 @@ export function Menu({ trigger, items = [], open, defaultOpen = false, onOpenCha
     document.addEventListener('pointerdown', away);
     document.addEventListener('keydown', key);
     return () => {
-      active = false;
       document.removeEventListener('pointerdown', away);
       document.removeEventListener('keydown', key);
     };

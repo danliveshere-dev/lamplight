@@ -25,10 +25,12 @@ copyFileSync(join(generated, 'modes.css'), join(dist, 'modes.css'));
 copyFileSync(join(root, 'tokens', 'lamplight.tokens.json'), join(dist, 'lamplight.tokens.json'));
 // Keep design commentary in source and guides, outside the delivered CSS budget.
 const components = readFileSync(join(source, 'components.css'), 'utf8');
-writeFileSync(join(dist, 'components.css'), components.replace(/\/\*[\s\S]*?\*\//g, ''));
+writeFileSync(join(dist, 'components.css'), components.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n[ \t]*\n/g, '\n'));
 const ledger = readFileSync(join(source, 'ledger.css'), 'utf8');
 const folio = readFileSync(join(source, 'folio.css'), 'utf8');
-const printFolio = folio.replaceAll('[data-surface="folio"]', ':is(.l-room, html.l-document)');
+const folioScope = ':is(:is(.l-room, html.l-document)[data-surface="folio"], :is(.l-room, html.l-document) [data-surface="folio"], :where([data-surface="folio"]) .l-room)';
+if (folio.split(folioScope).length !== 2) throw new Error('Folio must have exactly one scoped root');
+const printFolio = folio.replace(folioScope, ':is(.l-room, html.l-document)');
 const surfaces = `${ledger}\n${folio}\n@media print {\n@page { margin: 18mm 16mm; }\n${printFolio}\n:is(.l-room, html.l-document) { background: none; }\n}\n`;
 writeFileSync(join(dist, 'surfaces.css'), surfaces.replace(/\/\*[\s\S]*?\*\/\n/g, ''));
 writeFileSync(join(dist, 'lamplight.css'),

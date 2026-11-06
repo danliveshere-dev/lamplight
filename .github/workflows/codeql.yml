@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   analyse:
+    if: github.event.repository.private == false
     name: Analyse JavaScript and TypeScript
     runs-on: ubuntu-latest
     steps:

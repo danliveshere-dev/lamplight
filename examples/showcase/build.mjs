@@ -7,7 +7,9 @@ mkdirSync(output, { recursive: true });
 for (const file of ['index.html', 'examples.html', 'components.html', 'chapters.html', 'principles.html', 'showcase.css', 'showcase.js']) {
   cpSync(new URL(`./${file}`, import.meta.url), new URL(`./${file}`, output));
 }
-cpSync(new URL('../../docs/ai-starters.md', import.meta.url), new URL('./ai-starters.md', output));
+for (const file of ['ai-starters.md', 'principles.md']) {
+  cpSync(new URL(`../../docs/${file}`, import.meta.url), new URL(`./${file}`, output));
+}
 cpSync(new URL('../../packages/core/dist/', import.meta.url), new URL('./core/', output), { recursive: true });
 
 // Version every imported CSS layer so a cached entry sheet cannot retain old modes.

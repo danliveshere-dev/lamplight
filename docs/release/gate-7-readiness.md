@@ -14,9 +14,9 @@ point.
 
 The community beta has a separate local preparation contract in
 [beta-readiness.md](beta-readiness.md). It prepares downloadable archives with
-`0.1.0-beta.4` versions, keeps registry publication disabled, and does not claim
+`0.1.0-beta.5` versions, keeps registry publication disabled, and does not claim
 that the stable npm manifest gate or independent production review has passed.
-The route below remains the stable registry release programme. Public repository
+The route below remains the stable registry release program. Public repository
 configuration, private reporting routes and the maintainer's final publication
 choice still have to be witnessed before the prepared beta is shared.
 
@@ -76,7 +76,7 @@ the actual reviewed Lamplight repository before any package, tag or release
 action. If a required control is unavailable there, Gate 7 remains open.
 
 Candidate required checks, to confirm by observed hosted names, are the Node
-22.12 and 24 source cells, with Gate 5 running in both and Gate 7 history policy
+22.23.4 and 24 source cells, with Gate 5 running in both and Gate 7 history policy
 running once in Node 24; Node 20 packed-consumer smoke; packed packages and
 audit; Chromium, Firefox, WebKit, CodeQL and dependency review. Never configure
 required checks from this list without first witnessing their actual GitHub

@@ -27,7 +27,7 @@ try {
   run('npm', ['run', 'privacy'], {env, stdio: 'inherit'});
   const showcase = join(root, 'examples/showcase/dist');
   if (!existsSync(join(showcase, 'index.html'))) fail('standalone showcase is missing');
-  if (JSON.stringify(readdirSync(showcase).sort()) !== JSON.stringify(['ai-starters.md', 'chapters.html', 'components.html', 'core', 'examples.html', 'index.html', 'principles.html', 'showcase-core.css', 'showcase.css', 'showcase.js'])) fail('showcase contains unexpected files');
+  if (JSON.stringify(readdirSync(showcase).sort()) !== JSON.stringify(['ai-starters.md', 'chapters.html', 'components.html', 'core', 'examples.html', 'index.html', 'principles.html', 'principles.md', 'showcase-core.css', 'showcase.css', 'showcase.js'])) fail('showcase contains unexpected files');
   const staged = join(work, 'out'); mkdirSync(staged);
   const filenames = [];
   for (const name of ['core', 'react']) {
@@ -48,7 +48,10 @@ try {
     if (!readFileSync(join(browser,'core',path)).equals(readFileSync(join(root,'packages/core/dist',path)))) fail(`browser core differs: ${path}`);
   }
   for (const file of ['LICENSE','NOTICE']) copyFileSync(join(root,file),join(browser,file));
-  copyFileSync(join(root, 'docs/principles.md'), join(browser, 'principles.md'));
+  // The browser archive cannot contain itself. Its links point to the matching release.
+  const landing = join(browser, 'index.html');
+  const releaseUrl = `https://github.com/danliveshere-dev/lamplight/releases/download/v${version}/`;
+  writeFileSync(landing, readFileSync(landing, 'utf8').replaceAll('./downloads/', releaseUrl));
   writeFileSync(join(browser,'README.md'), `# Lamplight browser beta ${version}\n\nServe this directory with a static web server and open index.html for the Field notes landing and examples.html for the Reading, Report and Dashboard compositions and print view. Open chapters.html for the chapter rail and narrative example. Open components.html for the component reference and principles.html for the principles guide; principles.md contains the full source principles and ai-starters.md provides guidance for AI-assisted work with the beta files. To use the styles in another page, copy the core directory intact and link core/lamplight.css. The four CSS layers and token JSON remain available separately; fonts and living-light.js are opt-in. See LICENSE, NOTICE and core/fonts/OFL.txt.\n`);
   const zip = `lamplight-browser-${version}.zip`;
   run('python3', ['scripts/beta/archive.py', 'zip', browser, join(staged, zip)]);

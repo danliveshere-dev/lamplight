@@ -10,7 +10,7 @@ The historical Gate 4 matrix records exact versions observed on its own target; 
 ## Required platform features
 
 The CSS baseline relies on custom properties, `color-mix()`, modern gradients,
-`:focus-visible`, logical media queries and standard grid and flex layout. The
+`:focus-visible`, native CSS nesting, logical media queries and standard grid and flex layout. The
 optional living-light module may use Pointer Events, MutationObserver,
 ResizeObserver, `requestAnimationFrame`, `matchMedia` and `Symbol.for`.
 

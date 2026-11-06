@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.1.0-beta.5 (prepared, not released)
+
+- Scoped mode and Folio rules to Lamplight boundaries while retaining inherited and nested modes.
+- Preserved React menu keyboard focus across unrelated parent renders.
+- Kept chapter navigation and anchor targets readable without JavaScript.
+- Added checked release downloads and a manually gated GitHub Pages workflow.
+- Updated development dependencies, clean-checkout privacy checks and platform-specific browser baselines.
 
 - Corrected FocalCatch to follow Day paper and ink with a crisp source marker.
 - Added rendered Roman-numeral chapter openers and overview pills to the component reference.

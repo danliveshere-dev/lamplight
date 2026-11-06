@@ -12,8 +12,10 @@ alternative, the compatibility cost and how the result will be tested.
 
 ## Local checks
 
+Use Node 22.23.4 or newer for source development. CI also checks Node 20 as a packed-package consumer. Install development tools with lifecycle scripts disabled.
+
 ```sh
-npm ci
+npm ci --ignore-scripts
 npm test
 npm run gate5:check
 npm run gate7:prepare
