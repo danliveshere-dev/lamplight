@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0-beta.5 (prepared, not released)
+## 0.1.0-beta.5 (community beta, 2026-11-07)
 
 - Scoped mode and Folio rules to Lamplight boundaries while retaining inherited and nested modes.
 - Preserved React menu keyboard focus across unrelated parent renders.
@@ -41,4 +41,4 @@
 - Prepared framework-neutral tokens and CSS, optional fonts and living light, structural React bindings and examples.
 - Real Safari, manual assistive technology and physical monochrome print remain unobserved. See the [beta notes](docs/release/beta-release-notes.md).
 
-No version has been published. These package names do not claim an npm namespace.
+Beta.5 is distributed through GitHub release files. These package names do not claim an npm namespace.

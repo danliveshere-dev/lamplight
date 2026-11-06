@@ -1,17 +1,17 @@
 # Community beta readiness
 
-Status: **local preparation, not released**. The accepted direction is a free, GitHub-first community beta distributed as files. This record is a separate beta profile, not a change to the stable-production standard.
+Status: **0.1.0-beta.5 community beta prerelease**. The free, GitHub-first beta is distributed as files. This record is a separate beta profile, not a change to the stable-production standard.
 
-## Candidate contract
+## Beta contract
 
-- Candidate version: `0.1.0-beta.5`.
-- Planned assets: `lamplight-core-0.1.0-beta.5.tgz`, `lamplight-react-0.1.0-beta.5.tgz`, `lamplight-browser-0.1.0-beta.5.zip`.
+- Version: `0.1.0-beta.5`.
+- Release assets: `lamplight-core-0.1.0-beta.5.tgz`, `lamplight-react-0.1.0-beta.5.tgz`, `lamplight-browser-0.1.0-beta.5.zip`.
 - Imports: `@lamplight/core` and `@lamplight/react`. Both workspaces remain private; these names make no npm ownership or availability claim. The beta is file distribution, not registry publication.
-- The public site stages the same archives, checksums and manifest under `downloads/`; the browser ZIP links to the intended GitHub release rather than containing itself.
+- The public site stages the same archives, checksums and manifest under `downloads/`; the browser ZIP links to the GitHub release rather than containing itself.
 - The browser ZIP includes the Field notes landing, an examples guide with Reading, Report and Dashboard compositions and a lean print view, a component reference and a principles guide, plus the full source principles as `principles.md` and AI starter guidance as `ai-starters.md`. It includes the lead line, thread and knot patterns across Night and Day modes and Ledger and Folio surfaces.
 - The builder requires a clean committed checkout and verifies that source state does not change during the build. Rebuild and compare the candidate archives and checksums to verify reproducibility.
 - Run `npm run beta:check` and `npm run beta:build`, then `node scripts/beta/stage-site.mjs` to verify and stage the archives in the showcase. Inspect the resulting files and consumer paths, and record the actual results for the candidate. A command named here is a requirement, not a claim that it passed.
-- Review the exact candidate, including privacy and asset contents, and obtain explicit acceptance and publication authority before any public action. Local preparation does not authorise a remote, push, visibility change, tag or release.
+- The reviewed candidate required explicit acceptance and publication authority before public release.
 
 ## Known limitations
 
@@ -28,6 +28,6 @@ syntax equivalence is checked alongside package QA.
 
 Full source and example builds require Node 22.23.4 or newer, as required by the patched Astro development dependency. CI checks Node 22.23.4 and 24; Node 20 remains a packed-package consumer smoke test. Browser screenshot baselines are platform-specific so macOS and Linux rendering are compared with their own reviewed images.
 
-The private candidate runs source, browser, package, licence, privacy and dependency-audit checks. CodeQL and dependency review are explicitly deferred while the repository is private under its current feature availability; a skipped job is not a passing scan. They remain enabled for the public repository. The audit threshold is high severity; remaining lower-severity development-toolchain findings are recorded in candidate evidence.
+The private candidate ran source, browser, package, licence, privacy and dependency-audit checks. CodeQL and dependency review were skipped while the repository was private under its then-current feature availability; a skipped job is not a passing scan. The audit threshold is high severity; the candidate baseline recorded zero high or critical findings, four moderate and two low findings in development tooling.
 
-Pages builds only the showcase and its verified downloads. Publication requires a separate manual workflow dispatch with publish enabled, the public main branch and its build artefact. Pull requests cannot deploy. Before the first public release, update prepared/unreleased status to the actual release state, enable Pages with GitHub Actions as its source and witness the live site and each download.
+The [public site](https://danliveshere-dev.github.io/lamplight/) presents the showcase and downloads, and the [GitHub prerelease](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) provides the release files. Pages builds only the showcase and its verified downloads. Publication requires a separate manual workflow dispatch with publish enabled, the public main branch and its build artefact. Pull requests cannot deploy.

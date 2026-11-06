@@ -4,13 +4,13 @@ Lamplight is a quiet design system for interfaces that should feel present witho
 
 ## Community beta status
 
-Version **0.1.0-beta.5 is prepared locally, not released**. The intended free community beta is GitHub-first, distributed as downloadable files rather than through an npm registry. The package names `@lamplight/core` and `@lamplight/react` are import names for those files; they do not establish ownership or availability of an npm namespace. Both packages remain `private: true`.
+Version **0.1.0-beta.5 is a free community beta**, distributed through GitHub as downloadable files rather than through an npm registry. The package names `@lamplight/core` and `@lamplight/react` are import names for those files; they do not establish ownership or availability of an npm namespace. Both packages remain `private: true`.
 
-The [beta readiness record](docs/release/beta-readiness.md) separates local preparation from the outstanding review and explicit publication decision. Earlier production gates are historical evidence, not beta acceptance. Real Safari, manual assistive technology and physical monochrome printing have not been observed; Folio print is experimental.
+The [beta readiness record](docs/release/beta-readiness.md) describes the beta profile and its evidence limits. Earlier production gates are historical evidence, not beta acceptance. Real Safari, manual assistive technology and physical monochrome printing have not been observed; Folio print is experimental.
 
-## Try the prepared beta
+## Try the beta
 
-Once published, download the tarballs from the [beta.5 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) into your application and install by file:
+Explore the [Lamplight site](https://danliveshere-dev.github.io/lamplight/) or download the tarballs from the [beta.5 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) into your application and install by file:
 
 ```sh
 npm install ./lamplight-core-0.1.0-beta.5.tgz
