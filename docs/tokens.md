@@ -3,7 +3,7 @@
 ## Authority
 
 `tokens/lamplight.tokens.json` is the only editable token source. It uses the
-DTCG 2025.10 format and organises 175 tokens into three groups:
+DTCG 2025.10 format and organises 187 tokens into three groups:
 
 - `primitive`: raw material values such as soot, parchment, candle and ember;
 - `semantic`: roles such as text, surface, focus, spacing and motion; and

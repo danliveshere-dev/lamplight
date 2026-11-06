@@ -31,15 +31,15 @@ test('package QA fixes install isolation and every published size budget', () =>
   for (const setting of ['npm_config_cache', 'npm_config_ignore_scripts', 'npm_config_audit', 'npm_config_fund']) {
     assert.match(source, new RegExp(setting));
   }
-  for (const threshold of ['8 * 1024', '2.5 * 1024', '36 * 1024', '7 * 1024', '60 * 1024', '11 * 1024', '25 * 1024', '6 * 1024', '600 * 1024', '700 * 1024', '20 * 1024', '60 * 1024']) {
+  for (const threshold of ['8 * 1024', '2.5 * 1024', '40 * 1024', '7 * 1024', '68 * 1024', '12 * 1024', '25 * 1024', '6 * 1024', '600 * 1024', '700 * 1024', '20 * 1024', '60 * 1024']) {
     assert.match(source, new RegExp(threshold.replace('*', '\\*')));
   }
 });
 
 test('exact package path allowlists reject missing and rogue generated files', () => {
   assert.deepEqual(validatePackageFileList('core', expectedPackagePaths.core, expectedPackagePaths.core), {
-    expected: 22,
-    actual: 22,
+    expected: 24,
+    actual: 24,
   });
   assert.equal(expectedPackagePaths.react.length, 6);
   for (const paths of [expectedPackagePaths.core, expectedPackagePaths.react]) {

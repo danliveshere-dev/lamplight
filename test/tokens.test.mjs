@@ -7,20 +7,20 @@ const document = loadTokenDocument();
 const generatedCss = readFileSync(new URL('../packages/core/generated/tokens.css', import.meta.url), 'utf8');
 const componentsCss = readFileSync(new URL('../packages/core/src/components.css', import.meta.url), 'utf8');
 
-test('DTCG 2025.10 document accounts for all 175 tokens by tier', () => {
+test('DTCG 2025.10 document accounts for all 187 tokens by tier', () => {
   const { entries } = validateTokenDocument(document);
   const counts = Object.fromEntries(['primitive', 'semantic', 'component'].map((group) => [
     group, entries.filter((entry) => entry.group === group).length,
   ]));
-  assert.deepEqual(counts, { primitive: 33, semantic: 118, component: 24 });
-  assert.equal(entries.length, 175);
+  assert.deepEqual(counts, { primitive: 33, semantic: 118, component: 36 });
+  assert.equal(entries.length, 187);
 });
 
 test('generated CSS is deterministic and has not drifted', () => {
   assert.equal(generatedCss, formatTokenCss(document));
   const properties = [...generatedCss.matchAll(/(--lamp-[a-z0-9-]+)\s*:/g)].map((match) => match[1]);
-  assert.equal(properties.length, 175);
-  assert.equal(new Set(properties).size, 175);
+  assert.equal(properties.length, 187);
+  assert.equal(new Set(properties).size, 187);
 });
 
 test('aliases remain aliases instead of being flattened to raw values', () => {
@@ -77,7 +77,7 @@ test('validator rejects CSS breakout, at-rules, comments, remote URLs and syntax
 
 test('all current CSS strings have precise syntax and retain the reviewed inline image', () => {
   const strings = flattenTokens(document).filter(({ token }) => token.$type === 'string');
-  assert.equal(strings.length, 30);
+  assert.equal(strings.length, 36);
   assert.equal(strings.some(({ token }) => token.$extensions['org.lamplight.css'].syntax === '*'), false);
   assert.doesNotThrow(() => validateTokenDocument(document));
   assert.match(document.semantic['glass-grain'].$value, /^url\("data:image\/svg\+xml,/);

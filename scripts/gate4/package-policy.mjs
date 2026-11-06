@@ -3,6 +3,8 @@ export const expectedPackagePaths = Object.freeze({
     'LICENSE',
     'NOTICE',
     'README.md',
+    'dist/chapter-rail.d.ts',
+    'dist/chapter-rail.js',
     'dist/components.css',
     'dist/fonts/IBMPlexMono-Medium.woff2',
     'dist/fonts/IBMPlexMono-Regular.woff2',

@@ -57,6 +57,10 @@
 }
 [data-surface="folio"] :is(.l-focal-label, .l-focal-state) { color: var(--lamp-text); }
 
+[data-surface="folio"] .l-chapter-rail { display: none; }
+[data-surface="folio"] .l-chapter-layout { display: block; --l-chapter-strip-offset: 0px; }
+[data-surface="folio"] .l-chapter { break-before: page; break-after: avoid; }
+
 /* Paper stays still through mode changes. */
 [data-surface="folio"],
 [data-surface="folio"] *,

@@ -3,7 +3,7 @@ import * as csstree from 'css-tree';
 
 export const TOKEN_DOCUMENT = new URL('../tokens/lamplight.tokens.json', import.meta.url);
 export const GROUPS = ['primitive', 'semantic', 'component'];
-export const EXPECTED_TOKEN_COUNT = 175;
+export const EXPECTED_TOKEN_COUNT = 187;
 const ALLOWED_TYPES = new Set([
   'color', 'dimension', 'duration', 'cubicBezier', 'fontFamily', 'fontWeight', 'number', 'string',
 ]);

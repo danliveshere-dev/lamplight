@@ -2162,6 +2162,132 @@
           "day": "rgba(20, 17, 24, 0.07)"
         }
       }
+    },
+    "chapter-rail-width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 13.75,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-rail-width"
+        }
+      }
+    },
+    "chapter-layout-width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 87.5,
+        "unit": "rem"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-layout-width"
+        }
+      }
+    },
+    "chapter-dot-size": {
+      "$type": "dimension",
+      "$value": {
+        "value": 9,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-dot-size"
+        }
+      }
+    },
+    "chapter-rule-width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-rule-width"
+        }
+      }
+    },
+    "chapter-name-leading": {
+      "$type": "number",
+      "$value": 1.5,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-name-leading"
+        }
+      }
+    },
+    "chapter-title-leading": {
+      "$type": "number",
+      "$value": 1.05,
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-title-leading"
+        }
+      }
+    },
+    "chapter-number-size": {
+      "$type": "string",
+      "$value": "clamp(2.6rem, 5.6vw, 4.1rem)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-number-size",
+          "syntax": "<length>"
+        }
+      }
+    },
+    "chapter-title-size": {
+      "$type": "string",
+      "$value": "clamp(2.2rem, 5vw, 3.6rem)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-title-size",
+          "syntax": "<length>"
+        }
+      }
+    },
+    "chapter-argument-size": {
+      "$type": "string",
+      "$value": "clamp({semantic.text-lg}, 2vw, {semantic.text-xl})",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-argument-size",
+          "syntax": "<length>"
+        }
+      }
+    },
+    "chapter-title-tracking": {
+      "$type": "string",
+      "$value": "-0.02em",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-title-tracking",
+          "syntax": "<length>"
+        }
+      }
+    },
+    "chapter-measure": {
+      "$type": "string",
+      "$value": "58ch",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-measure",
+          "syntax": "<length>"
+        }
+      }
+    },
+    "chapter-dot-halo": {
+      "$type": "string",
+      "$value": "0 0 10px color-mix(in srgb, {semantic.accent} 70%, transparent)",
+      "$extensions": {
+        "org.lamplight.css": {
+          "property": "--lamp-chapter-dot-halo",
+          "syntax": "<shadow>"
+        }
+      }
     }
   }
 }

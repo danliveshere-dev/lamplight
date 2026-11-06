@@ -342,6 +342,173 @@ html.l-document :focus-visible {
   text-transform: uppercase;
 }
 
+/* Narrative chapters share their header offset with their scroll targets. */
+.l-chapter-layout {
+  --l-chapter-strip-offset: 0px;
+  display: grid;
+  grid-template-columns: var(--lamp-chapter-rail-width) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--lamp-space-10);
+  max-inline-size: var(--lamp-chapter-layout-width);
+  margin-inline: auto;
+}
+.l-chapter-layout > * { min-inline-size: 0; }
+.l-chapter-layout [id], .l-chapter {
+  scroll-margin-top: calc(var(--l-chapter-header-offset, 0px) + var(--l-chapter-strip-offset, 0px) + var(--lamp-space-4));
+}
+.l-chapter-rail {
+  display: block;
+  --l-chapter-dot-size: var(--lamp-chapter-dot-size);
+  --l-chapter-numeral-width: var(--lamp-space-6);
+  --l-chapter-rail-gap: var(--lamp-space-3);
+  position: sticky;
+  inset-block-start: var(--l-chapter-header-offset, 0px);
+  max-block-size: calc(100dvh - var(--l-chapter-header-offset, 0px));
+  overflow-y: auto;
+  padding-block: var(--lamp-space-12) var(--lamp-space-6);
+  padding-inline: var(--lamp-space-3) var(--lamp-space-2);
+  font-family: var(--lamp-font-sans);
+}
+.l-chapter-rail ol { list-style: none; margin: 0; padding: 0; }
+.l-chapter-rail .l-chapter-rail-chapters { display: grid; gap: var(--l-chapter-rail-gap); }
+.l-chapter-rail-item {
+  position: relative;
+  padding-inline-start: var(--lamp-space-6);
+  font-size: var(--lamp-text-md);
+  line-height: var(--lamp-chapter-name-leading);
+}
+.l-chapter-rail-item::before, .l-chapter-rail-item::after {
+  position: absolute;
+  box-sizing: border-box;
+  content: "";
+}
+.l-chapter-rail-item::before {
+  z-index: 1;
+  inset-inline-start: 0;
+  inset-block-start: calc((1lh - var(--l-chapter-dot-size)) / 2);
+  inline-size: var(--l-chapter-dot-size);
+  block-size: var(--l-chapter-dot-size);
+  border: var(--lamp-chapter-rule-width) solid var(--lamp-text-muted);
+  border-radius: var(--lamp-radius-full);
+  background: var(--lamp-surface-page);
+}
+/* Each segment reaches the next item's first-line centre, including expanded rows. */
+.l-chapter-rail-item:not(:last-child)::after {
+  inset-inline-start: calc((var(--l-chapter-dot-size) - var(--lamp-chapter-rule-width)) / 2);
+  inset-block-start: .5lh;
+  inset-block-end: calc(0px - var(--l-chapter-rail-gap) - .5lh);
+  inline-size: var(--lamp-chapter-rule-width);
+  background: var(--lamp-row-rule);
+}
+.l-chapter-rail-item.is-active::before {
+  border-color: var(--lamp-accent);
+  background: var(--lamp-accent);
+  box-shadow: var(--lamp-chapter-dot-halo);
+}
+.l-chapter-rail-item.is-done::before { background: var(--lamp-text-muted); }
+.l-chapter-rail .l-chapter-link {
+  display: grid;
+  grid-template-columns: var(--l-chapter-numeral-width) minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--lamp-space-2);
+  color: var(--lamp-text-secondary);
+  font-weight: var(--lamp-weight-medium);
+  text-decoration: none;
+}
+.l-chapter-rail-number {
+  min-inline-size: var(--l-chapter-numeral-width);
+  font-family: var(--lamp-font-mono);
+  font-size: var(--lamp-text-xs);
+  color: var(--lamp-text-muted);
+}
+.l-chapter-rail-item.is-active > .l-chapter-link { color: var(--lamp-text); }
+.l-chapter-rail .l-chapter-rail-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lamp-space-1);
+  margin-block-start: var(--lamp-space-2);
+  padding-inline-start: calc(var(--l-chapter-numeral-width) + var(--lamp-space-2));
+}
+.l-chapter-rail[data-enhanced] .l-chapter-rail-item:not(.is-active):not(:focus-within) .l-chapter-rail-items { display: none; }
+.l-chapter-rail .l-chapter-rail-items a {
+  display: block;
+  padding-block: calc(var(--lamp-space-1) / 2);
+  color: var(--lamp-text-muted);
+  font-size: var(--lamp-text-sm);
+  line-height: var(--lamp-chapter-name-leading);
+  text-decoration: none;
+}
+.l-chapter-rail-items a[aria-current]:not([aria-current="false"]) { color: var(--lamp-accent); }
+.l-chapter-rail a:hover { color: var(--lamp-text); }
+.l-chapter-rail a:focus-visible, .l-case-overview a:focus-visible {
+  outline: var(--lamp-focus-ring);
+  outline-offset: var(--lamp-focus-offset);
+}
+.l-chapter {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: var(--lamp-space-5);
+  row-gap: var(--lamp-space-4);
+  padding-block-start: var(--lamp-space-8);
+  border-block-start: var(--lamp-chapter-rule-width) solid var(--lamp-header-rule);
+}
+.l-chapter-number { grid-column: 1; grid-row: 1; font-family: var(--lamp-font-serif); font-size: var(--lamp-chapter-number-size); line-height: 1; color: var(--lamp-accent); }
+.l-chapter-title {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-family: var(--lamp-font-sans);
+  font-size: var(--lamp-chapter-title-size);
+  font-weight: var(--lamp-weight-medium);
+  line-height: var(--lamp-chapter-title-leading);
+  letter-spacing: var(--lamp-chapter-title-tracking);
+}
+.l-chapter-argument {
+  grid-column: 2;
+  margin: 0;
+  max-inline-size: var(--lamp-chapter-measure);
+  color: var(--lamp-text-secondary);
+  font-size: var(--lamp-chapter-argument-size);
+  line-height: var(--lamp-chapter-name-leading);
+}
+.l-case-overview { display: flex; flex-wrap: wrap; gap: var(--lamp-space-2); list-style: none; margin: 0; padding: 0; }
+.l-case-overview a[href] {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--lamp-space-2);
+  padding: var(--lamp-space-2) var(--lamp-space-3);
+  border: var(--lamp-chapter-rule-width) solid var(--lamp-glass-hairline);
+  border-radius: var(--lamp-radius-full);
+  color: var(--lamp-text-secondary);
+  font-size: var(--lamp-text-md);
+  text-decoration: none;
+}
+.l-case-overview-number { font-family: var(--lamp-font-serif); color: var(--lamp-accent); }
+.l-case-overview a:hover { border-color: var(--lamp-accent); color: var(--lamp-text); }
+/* The reference's 1100px breakpoint is inclusive. CSS media queries cannot read custom properties. */
+@media (width <= 68.75rem) {
+  .l-chapter-layout { display: block; --l-chapter-strip-offset: var(--l-chapter-rail-height, 0px); }
+  .l-chapter-rail {
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    max-inline-size: 100%;
+    max-block-size: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-block: var(--lamp-space-2);
+    background: var(--lamp-surface-page);
+  }
+  .l-chapter-rail > .l-etched { display: none; }
+  .l-chapter-rail .l-chapter-rail-chapters { display: flex; gap: var(--lamp-space-4); }
+  .l-chapter-rail-item { flex: none; padding-inline-start: 0; white-space: nowrap; }
+  .l-chapter-rail-item::before, .l-chapter-rail-item::after,
+  .l-chapter-rail .l-chapter-rail-items { display: none; }
+  .l-chapter-rail-item.is-active > .l-chapter-link { color: var(--lamp-accent); text-decoration: underline; text-underline-offset: var(--lamp-space-1); }
+  .l-chapter { column-gap: var(--lamp-space-3); }
+}
+
 .l-disclosure { border-top: 1px solid var(--lamp-glass-hairline); }
 .l-disclosure:last-child { border-bottom: 1px solid var(--lamp-glass-hairline); }
 .l-disclosure summary { display: flex; min-height: var(--lamp-size-control); gap: var(--lamp-space-3); align-items: center; color: var(--lamp-text-secondary); cursor: pointer; list-style: none; }

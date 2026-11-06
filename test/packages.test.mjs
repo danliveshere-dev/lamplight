@@ -103,3 +103,14 @@ test('distributed component CSS preserves the source syntax after comment remova
   const dist = readFileSync(new URL('../packages/core/dist/components.css', import.meta.url), 'utf8');
   assert.equal(generate(parse(dist)), generate(parse(source)));
 });
+
+
+test('chapter rail is explicitly exported and safe to import without a document', async () => {
+  assert.deepEqual(core.exports['./chapter-rail'], {
+    types: './dist/chapter-rail.d.ts', import: './dist/chapter-rail.js',
+  });
+  const { initChapterRail } = await import('../packages/core/dist/chapter-rail.js');
+  const dispose = initChapterRail(null);
+  assert.equal(typeof dispose, 'function');
+  assert.doesNotThrow(dispose);
+});

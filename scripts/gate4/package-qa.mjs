@@ -31,10 +31,11 @@ const npmEnvironment = {
 
 const budgets = {
   tokens: { raw: 8 * 1024, gzip: 2.5 * 1024 },
-  surfaces: { raw: 8 * 1024, gzip: 2 * 1024 },
+  surfaces: { raw: 9 * 1024, gzip: 2 * 1024 },
   modes: { raw: 16 * 1024, gzip: 3 * 1024 },
-  components: { raw: 36 * 1024, gzip: 7 * 1024 },
-  combined: { raw: 60 * 1024, gzip: 11 * 1024 },
+  components: { raw: 40 * 1024, gzip: 7 * 1024 },
+  combined: { raw: 68 * 1024, gzip: 12 * 1024 },
+  chapterRail: { raw: 8 * 1024, gzip: 3 * 1024 },
   livingLight: { raw: 25 * 1024, gzip: 6 * 1024 },
   react: { raw: 25 * 1024, gzip: 7 * 1024 },
   coreTarball: { packed: 600 * 1024, unpacked: 700 * 1024 },
@@ -114,6 +115,7 @@ function assertManifest(path, label) {
 function assertNoNetworkSideEffects() {
   const surfaces = [
     join(root, 'packages/core/dist/living-light.js'),
+    join(root, 'packages/core/dist/chapter-rail.js'),
     join(root, 'packages/react/dist/index.js'),
   ];
   const network = /\b(?:fetch|XMLHttpRequest|WebSocket|EventSource|sendBeacon|importScripts)\s*\(|https?:\/\//;
@@ -221,6 +223,7 @@ try {
     surfaces: size('surfaces.css', surfaces, budgets.surfaces),
     combined: size('combined core CSS', Buffer.concat([tokens, Buffer.from('\n'), components, Buffer.from('\n'), modes, Buffer.from('\n'), surfaces]), budgets.combined),
     livingLight: size('living-light.js', livingLight, budgets.livingLight),
+    chapterRail: size('chapter-rail.js', readFileSync(join(root, 'packages/core/dist/chapter-rail.js')), budgets.chapterRail),
     react: size('React adapter', react, budgets.react),
     coreTarball: { ...budgets.coreTarball, packed: firstCore.record.size, unpacked: firstCore.record.unpackedSize },
     reactTarball: { ...budgets.reactTarball, packed: firstReact.record.size, unpacked: firstReact.record.unpackedSize },

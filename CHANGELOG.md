@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added Chapter rail, Chapter opener and Case overview components, with an opt-in scroll-tracking module.
+- Aligned rail dots, connecting rules, subsection labels and chapter arguments, with measured header offsets and responsive/print handling.
+
 - Added a compact pill size for segmented controls with an ink underline in Folio.
 - Documented and demonstrated a persistent Night, Day and Folio appearance switcher.
 

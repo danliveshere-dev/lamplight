@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en-AU" class="l-document">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapters | Lamplight</title>
+<script>
+(() => {
+  const root = document.documentElement;
+  const key = 'lamplight-appearance';
+  const choices = ['night', 'day', 'folio'];
+  let choice = 'night';
+
+  function apply(appearance) {
+    root.dataset.mode = appearance === 'night' ? 'night' : 'day';
+    if (appearance === 'folio') root.dataset.surface = 'folio';
+    else delete root.dataset.surface;
+  }
+
+  try {
+    const saved = localStorage.getItem(key);
+    if (choices.includes(saved)) choice = saved;
+  } catch {
+    // Storage can be unavailable. The switcher still works for this page.
+  }
+  apply(choice);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('#appearance-switcher button');
+    function syncPressed() {
+      for (const button of buttons) {
+        button.setAttribute('aria-pressed', String(button.dataset.appearance === choice));
+      }
+    }
+
+    syncPressed();
+    for (const button of buttons) {
+      button.disabled = false;
+      button.addEventListener('click', () => {
+        choice = button.dataset.appearance;
+        apply(choice);
+        syncPressed();
+        try {
+          localStorage.setItem(key, choice);
+        } catch {
+          // Keep the current appearance even when it cannot be saved.
+        }
+      });
+    }
+  }, { once: true });
+})();
+</script>
+<link rel="stylesheet" href="./core/fonts/lamplight-fonts.css">
+<link rel="stylesheet" href="./core/lamplight.css">
+<link rel="stylesheet" href="./showcase.css">
+<script type="module">
+import { initChapterRail } from './core/chapter-rail.js';
+initChapterRail(document.querySelector('.l-chapter-rail'), {
+  header: document.querySelector('.masthead'),
+});
+</script>
+</head>
+<body class="chapter-demo"><div class="l-room showcase">
+<header class="masthead"><a class="brand" href="./index.html">Lamplight <span>community beta</span></a><nav aria-label="Main navigation"><a href="./examples.html">Examples</a><a href="./components.html">Components</a><a href="./principles.html">Principles</a><a href="./index.html#start">Get started</a></nav>
+<div class="l-segmented" data-size="compact" id="appearance-switcher" role="group" aria-label="Appearance">
+  <button type="button" data-appearance="night" aria-pressed="true" disabled>Night</button>
+  <button type="button" data-appearance="day" aria-pressed="false" disabled>Day</button>
+  <button type="button" data-appearance="folio" aria-pressed="false" disabled>Folio</button>
+</div>
+</header>
+<main class="l-chapter-layout" id="top">
+<nav class="l-chapter-rail" aria-label="Chapter contents"><p class="l-etched">The garden record</p><ol class="l-chapter-rail-chapters">
+<li class="l-chapter-rail-item"><a class="l-chapter-link" href="#chapter-purpose"><span class="l-chapter-rail-number" aria-hidden="true">I</span><span class="l-chapter-name">A shared purpose</span></a><ol class="l-chapter-rail-items">
+<li><a href="#purpose-people">People and places</a></li>
+<li><a href="#purpose-record">What to record</a></li>
+</ol></li>
+<li class="l-chapter-rail-item"><a class="l-chapter-link" href="#chapter-season"><span class="l-chapter-rail-number" aria-hidden="true">II</span><span class="l-chapter-name">A season of observations</span></a><ol class="l-chapter-rail-items">
+<li><a href="#season-weather">Changing conditions</a></li>
+<li><a href="#season-patterns">Finding a pattern</a></li>
+</ol></li>
+<li class="l-chapter-rail-item"><a class="l-chapter-link" href="#chapter-care"><span class="l-chapter-rail-number" aria-hidden="true">III</span><span class="l-chapter-name">Care in practice</span></a><ol class="l-chapter-rail-items">
+<li><a href="#care-tasks">A bounded task</a></li>
+<li><a href="#care-handover">A useful handover</a></li>
+</ol></li>
+<li class="l-chapter-rail-item"><a class="l-chapter-link" href="#chapter-evidence"><span class="l-chapter-rail-number" aria-hidden="true">IV</span><span class="l-chapter-name">What the records show</span></a><ol class="l-chapter-rail-items">
+<li><a href="#evidence-compare">Compare like with like</a></li>
+<li><a href="#evidence-limits">Keep the limits visible</a></li>
+</ol></li>
+<li class="l-chapter-rail-item"><a class="l-chapter-link" href="#chapter-visit"><span class="l-chapter-rail-number" aria-hidden="true">V</span><span class="l-chapter-name">The next visit</span></a><ol class="l-chapter-rail-items">
+<li><a href="#visit-choose">Choose the next place</a></li>
+<li><a href="#visit-return">A quiet return</a></li>
+</ol></li>
+</ol></nav>
+<article class="chapter-body">
+<section class="intro"><h1>A garden, held in notes.</h1><p>A fictional record in five chapters. Scroll to follow the contents, or choose a chapter to begin there.</p><ol class="l-case-overview" aria-label="Chapter overview">
+<li><a href="#chapter-purpose"><span class="l-case-overview-number" aria-hidden="true">I</span>A shared purpose</a></li>
+<li><a href="#chapter-season"><span class="l-case-overview-number" aria-hidden="true">II</span>A season of observations</a></li>
+<li><a href="#chapter-care"><span class="l-case-overview-number" aria-hidden="true">III</span>Care in practice</a></li>
+<li><a href="#chapter-evidence"><span class="l-case-overview-number" aria-hidden="true">IV</span>What the records show</a></li>
+<li><a href="#chapter-visit"><span class="l-case-overview-number" aria-hidden="true">V</span>The next visit</a></li>
+</ol></section>
+<header class="l-chapter" id="chapter-purpose"><span class="l-chapter-number" aria-hidden="true">I</span><h2 class="l-chapter-title">The shared garden</h2><p class="l-chapter-argument">A useful record starts with a shared purpose.</p></header>
+<section id="purpose-people" class="l-reading"><h3>People and places</h3><p>Neighbours tend the beds, paths and places to pause. A shared note helps the next person understand what needs care.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<section id="purpose-record" class="l-reading"><h3>What to record</h3><p>Name the place, describe what changed and leave one practical next step. Keep the observation close to the work.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<header class="l-chapter" id="chapter-season"><span class="l-chapter-number" aria-hidden="true">II</span><h2 class="l-chapter-title">A season of observations</h2><p class="l-chapter-argument">Small changes become visible when notes stay connected.</p></header>
+<section id="season-weather" class="l-reading"><h3>Changing conditions</h3><p>Rainfall and light change what can be done. Date the observation so the next volunteer can judge how much still applies.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<section id="season-patterns" class="l-reading"><h3>Finding a pattern</h3><p>A single note is a useful starting point. Several dated observations help people notice a pattern and decide what to check next.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<header class="l-chapter" id="chapter-care"><span class="l-chapter-number" aria-hidden="true">III</span><h2 class="l-chapter-title">Care in practice</h2><p class="l-chapter-argument">Clear choices make a short visit worthwhile.</p></header>
+<section id="care-tasks" class="l-reading"><h3>A bounded task</h3><p>Choose one place and a task that fits the time available. Leave a simple account of what was finished and what still needs attention.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<section id="care-handover" class="l-reading"><h3>A useful handover</h3><p>Write enough for someone else to begin. Keep uncertainty visible and avoid turning a small observation into a larger claim.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<header class="l-chapter" id="chapter-evidence"><span class="l-chapter-number" aria-hidden="true">IV</span><h2 class="l-chapter-title">What the records show</h2><p class="l-chapter-argument">The record should explain the state of the garden.</p></header>
+<section id="evidence-compare" class="l-reading"><h3>Compare like with like</h3><p>Use the same names and units when comparing visits. Changes in the way a note is recorded can resemble changes in the place itself.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<section id="evidence-limits" class="l-reading"><h3>Keep the limits visible</h3><p>Some places have more observations than others. A gap in the record is a reason to look again, rather than assume that nothing changed.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<header class="l-chapter" id="chapter-visit"><span class="l-chapter-number" aria-hidden="true">V</span><h2 class="l-chapter-title">The next visit</h2><p class="l-chapter-argument">Leave one clear place to begin.</p></header>
+<section id="visit-choose" class="l-reading"><h3>Choose the next place</h3><p>Start with the observation that needs a fresh pair of eyes. A small, specific question gives the next visit a useful purpose.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+<section id="visit-return" class="l-reading"><h3>A quiet return</h3><p>The record is here when it is needed. Read the latest note, check what is still true and leave the next person a clear point of return.</p><p>This fictional example shows how chapters and observations can sit together in a longer document. The rail follows the section in view, while the overview links offer a direct route to each chapter.</p></section>
+</article>
+</main>
+<footer><span>Lamplight community beta</span><span>Made for useful, readable things.</span></footer>
+</div></body></html>

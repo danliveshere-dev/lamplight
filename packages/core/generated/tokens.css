@@ -182,4 +182,16 @@
   --lamp-running-node: var(--lamp-wire-live);
   --lamp-kbd-face: var(--lamp-bezel-face);
   --lamp-skeleton-fill: rgba(246,236,217,0.06);
+  --lamp-chapter-rail-width: 13.75rem;
+  --lamp-chapter-layout-width: 87.5rem;
+  --lamp-chapter-dot-size: 9px;
+  --lamp-chapter-rule-width: 1px;
+  --lamp-chapter-name-leading: 1.5;
+  --lamp-chapter-title-leading: 1.05;
+  --lamp-chapter-number-size: clamp(2.6rem, 5.6vw, 4.1rem);
+  --lamp-chapter-title-size: clamp(2.2rem, 5vw, 3.6rem);
+  --lamp-chapter-argument-size: clamp(var(--lamp-text-lg), 2vw, var(--lamp-text-xl));
+  --lamp-chapter-title-tracking: -0.02em;
+  --lamp-chapter-measure: 58ch;
+  --lamp-chapter-dot-halo: 0 0 10px color-mix(in srgb, var(--lamp-accent) 70%, transparent);
 }

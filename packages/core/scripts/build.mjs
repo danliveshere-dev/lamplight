@@ -41,6 +41,8 @@ writeFileSync(join(dist, 'living-light.js'),
   + body.replace(/^/gm, '  ').replace(/^\s+$/gm, '')
   + '}\n');
 copyFileSync(join(source, 'living-light.d.ts'), join(dist, 'living-light.d.ts'));
+copyFileSync(join(source, 'chapter-rail.js'), join(dist, 'chapter-rail.js'));
+copyFileSync(join(source, 'chapter-rail.d.ts'), join(dist, 'chapter-rail.d.ts'));
 cpSync(join(core, 'fonts'), join(dist, 'fonts'), { recursive: true });
 
 console.log('Built Lamplight core: CSS, opt-in fonts and explicit living-light export.');

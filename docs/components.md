@@ -141,6 +141,95 @@ storage still allows switching for the current page.
 
 The same pattern runs in the [showcase component reference](../examples/showcase/components.html).
 
+## Chapter rail, chapter opener and case overview
+
+Use a **Chapter rail** beside a longer reading column, a **Chapter opener**
+for each part's title and argument, and a **Case overview** for direct chapter
+links near the introduction. The [chapter example](../examples/showcase/chapters.html)
+shows all three with fictional garden observations.
+
+```html
+<div class="l-chapter-layout">
+  <nav class="l-chapter-rail" aria-label="Chapter contents">
+    <ol class="l-chapter-rail-chapters">
+      <li class="l-chapter-rail-item">
+        <a class="l-chapter-link" href="#chapter-purpose">
+          <span class="l-chapter-rail-number" aria-hidden="true">I</span>
+          <span class="l-chapter-name">A shared purpose</span>
+        </a>
+        <ol class="l-chapter-rail-items">
+          <li><a href="#people">People and places</a></li>
+        </ol>
+      </li>
+      <!-- Add the remaining chapters in document order. -->
+    </ol>
+  </nav>
+  <article>
+    <ol class="l-case-overview" aria-label="Chapter overview">
+      <li><a href="#chapter-purpose"><span class="l-case-overview-number"
+        aria-hidden="true">I</span>A shared purpose</a></li>
+    </ol>
+    <header class="l-chapter" id="chapter-purpose">
+      <span class="l-chapter-number" aria-hidden="true">I</span>
+      <h2 class="l-chapter-title">The shared garden</h2>
+      <p class="l-chapter-argument">A useful record starts with a shared purpose.</p>
+    </header>
+    <section id="people"><h3>People and places</h3>...</section>
+  </article>
+</div>
+```
+
+The opener's two-column grid aligns the numeral and title on their first
+alphabetic baseline. The argument occupies the title column, including when
+the title or argument wraps. Use the heading level appropriate to the document.
+Give overview numerals `l-case-overview-number` for serif type. Rail numerals
+use mono type, with medium sans chapter names and small muted subsection links.
+
+Import the optional module explicitly after the markup is available. In the
+browser starter, import from `./core/chapter-rail.js` instead.
+
+```js
+import { initChapterRail } from '@lamplight/core/chapter-rail';
+
+const dispose = initChapterRail(document.querySelector('.l-chapter-rail'), {
+  header: document.querySelector('.page-header'),
+});
+// Call dispose() when removing this view.
+```
+
+The rail uses native anchor links in document order. The module adds
+`aria-current="location"` to the active chapter and subsection, expands that
+chapter's sub-items and fills earlier dots. Earlier dots describe scroll
+position. A keyboard-focused subsection stays available while scrolling.
+Without JavaScript, the vertical contents retains all subsection links. Missing
+IntersectionObserver falls back to passive scroll tracking. Initialising again
+replaces the earlier enhancement, and disposal restores the static navigation.
+Missing targets and links to other documents are ignored.
+
+Set `--l-chapter-header-offset` on the layout when providing your own fixed
+header. Passing `header` measures its actual height and watches for changes.
+Keep any safe-area padding inside that header so the measurement includes it.
+The same offset positions the sticky rail and clears chapter and subsection
+anchors. At widths up to **1100px**, the rail becomes a horizontal strip. Its
+measured height also clears scroll targets. The strip scrolls within its own
+width and reveals the active chapter without moving keyboard focus. The
+1100px breakpoint is projected as `68.75rem` in the media query because CSS
+custom properties cannot be used there.
+
+Geometry uses `--l-chapter-dot-size` (the `--lamp-chapter-dot-size` token by
+default), with the line centred at `(dot size - rule width) / 2`. Each line
+segment starts at one dot's centre and ends at the next, including expanded
+subsections. Dot tops derive from the name's first line height. Both the
+numeral column and subsection indent use `--l-chapter-numeral-width`, with the
+same column gap. This keeps subsection labels aligned with chapter names.
+Fluid opener typography, line height, rule width and reading measure are
+component tokens in `tokens/lamplight.tokens.json`.
+
+Folio hides the rail and places chapter openers on new printed pages. Ledger
+removes the active dot's halo. Links retain a visible focus ring. The module
+uses immediate horizontal reveals and follows the host's reduced-motion
+scroll behaviour.
+
 ## Instruments
 
 Dial, ModeDial, Gauge and Runway describe world state. They must not score or

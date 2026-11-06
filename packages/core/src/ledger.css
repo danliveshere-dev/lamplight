@@ -31,5 +31,6 @@
 }
 
 [data-surface="ledger"] .l-panel::after { opacity: 0; }
+[data-surface="ledger"] .l-chapter-rail-item.is-active::before { box-shadow: none; }
 
 [data-surface="ledger"] :is(.l-lead-line, .l-thread, .l-knot) { --l-composition-blur: 0px; }

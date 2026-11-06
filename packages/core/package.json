@@ -15,7 +15,9 @@
     "dist/living-light.js",
     "dist/tokens.css",
     "dist/modes.css",
-    "dist/surfaces.css"
+    "dist/surfaces.css",
+    "dist/chapter-rail.js",
+    "dist/chapter-rail.d.ts"
   ],
   "exports": {
     "./styles.css": "./dist/lamplight.css",
@@ -29,7 +31,11 @@
       "import": "./dist/living-light.js"
     },
     "./modes.css": "./dist/modes.css",
-    "./surfaces.css": "./dist/surfaces.css"
+    "./surfaces.css": "./dist/surfaces.css",
+    "./chapter-rail": {
+      "types": "./dist/chapter-rail.d.ts",
+      "import": "./dist/chapter-rail.js"
+    }
   },
   "sideEffects": [
     "**/*.css"

@@ -58,3 +58,9 @@ main { max-width: 76rem; margin: auto; } section { padding: clamp(3rem, 7vw, 6re
 .copy-status { margin-left: .75rem; }
 
 @media print { .copy-prompt, .copy-status { display: none; } }
+
+.chapter-demo .masthead { position: sticky; top: 0; z-index: 2; max-inline-size: var(--lamp-chapter-layout-width); padding-block-start: calc(var(--lamp-space-6) + env(safe-area-inset-top, 0px)); background: var(--lamp-surface-page); }
+.chapter-demo main { max-inline-size: var(--lamp-chapter-layout-width); }
+.chapter-demo .chapter-body > section { padding-block: var(--lamp-space-12); }
+.chapter-demo .chapter-body > .l-reading { max-inline-size: var(--lamp-chapter-measure); }
+@media print { .chapter-demo .masthead, .chapter-demo footer { display: none; } }
