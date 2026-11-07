@@ -27,7 +27,7 @@ Download `lamplight-browser-0.1.0-beta.5.zip` from the [beta.5 GitHub release](h
 </html>
 ```
 
-The button is a native button. Connect its action in your application; CSS does not supply the action. Use the browser starter's HTML as the reference for its asset paths.
+Connect the button to an action in your application; CSS does not supply one. Use the browser starter's HTML as the reference for its asset paths.
 
 ## React with a bundler
 

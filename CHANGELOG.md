@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Brought a warmer voice to the site and replaced repeated chapter filler with distinct garden notes.
+- Kept published downloads fixed during site-only updates, with tag and checksum verification.
+
 - Updated documentation and tool messages to reflect the public beta, with a publication record and clear labels on historical gate evidence.
 - Clarified file downloads, current support and security reporting, and the remaining manual and stable-release work.
 - Simplified support and adoption guidance and package introductions while preserving technical contracts and evidence limits.

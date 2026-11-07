@@ -1,8 +1,5 @@
 # Migration from the Daius2 internal package
 
-This is the only migration document that intentionally names the originating
-consumer. It is provenance and transition guidance, not a runtime dependency.
-
 The old internal `lamplight-ui` package combined React bindings, CSS, fonts and
 living light. The standalone architecture separates those responsibilities.
 

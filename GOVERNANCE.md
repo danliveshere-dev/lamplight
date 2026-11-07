@@ -24,5 +24,4 @@ the repository licence and are expected to use synthetic fixtures, protect
 private information and keep changes within Lamplight's documented boundaries.
 
 There is no promised response time or release cadence. Quiet periods do not
-mean the project is abandoned. The support policy explains where different
-kinds of reports belong.
+mean the project is abandoned. See the [support policy](SUPPORT.md) for where to take a report.

@@ -31,3 +31,7 @@ Full source and example builds require Node 22.23.4 or newer, as required by the
 The released source passed source, browser, package, licence, privacy and dependency-audit checks. Public CodeQL and dependency review also passed. Earlier private-staging runs of those two scans were skipped; they are retained as historical evidence, not passes. The audit threshold is high severity. The launch audit recorded zero high or critical findings, four moderate and two low findings in development tooling.
 
 The [public site](https://danliveshere-dev.github.io/lamplight/) presents the showcase and downloads, and the [GitHub prerelease](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) provides the release files. Pages builds only the showcase and its verified downloads. To update the live site, a maintainer must run the Pages workflow manually with `publish` enabled on public `main`. It deploys that run's build artefact. Pull requests cannot deploy.
+
+Site-only updates keep the existing release downloads. The publishing workflow stages them with `--released`, which verifies the checksums and the source commit recorded by the annotated release tag. The site can change while the versioned beta archives stay fixed.
+
+The released manifest digest is pinned in the staging script from the publication evidence. A consistently replaced set of release files is rejected even if its checksums agree with one another. A new version needs a separately reviewed manifest pin.

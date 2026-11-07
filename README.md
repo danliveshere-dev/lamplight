@@ -65,3 +65,7 @@ node scripts/beta/stage-site.mjs
 ```
 
 The beta build creates the example site and archives. The staging command checks the archives and adds them to the site's downloads. Serve `examples/showcase/dist/` locally to explore the site and its download links. The beta build requires a clean committed checkout. Its [examples guide](examples/showcase/examples.html), [components reference](examples/showcase/components.html) and [principles reference](examples/showcase/principles.html) introduce the patterns and the full seven principles. The [AI starter guide](docs/ai-starters.md) explains how to use the downloaded files. These commands build and check a local copy; publishing a release is a separate step.
+
+When publishing a site-only update, Pages runs `node scripts/beta/stage-site.mjs --released`. It keeps the versioned downloads from the existing GitHub release, checks their hashes and source against the annotated release tag, then stages them with the updated site. A copy edit does not replace a released archive.
+
+The released manifest digest is pinned in the staging script from the publication evidence. A consistently replaced set of release files is rejected even if its checksums agree with one another. A new version needs a separately reviewed manifest pin.
