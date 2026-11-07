@@ -2,7 +2,7 @@
 
 Use [GitHub Issues](https://github.com/danliveshere-dev/lamplight/issues) for reproducible defects and documentation questions. Choose the closest issue template. GitHub Discussions is not enabled.
 
-Support is best-effort. There is no guaranteed response or resolution time.
+Support is best-effort. There is no guaranteed response or resolution time, but I'll do my best!
 
 ## Reporting a problem
 
