@@ -1,7 +1,6 @@
-# Release checklist
+# Stable registry-release checklist
 
-This checklist applies after Gate 7 configuration is witnessed. It does not
-authorise a release. The downloadable community beta follows the separate
+The community beta is already public; see the [publication record](beta-publication.md). This reusable checklist is for a future stable npm release after Gate 7 configuration is verified. Its unchecked boxes do not describe the shipped beta, and the checklist does not authorise publication. The downloadable community beta follows the separate
 [beta readiness contract](beta-readiness.md); it does not use an npm publish
 workflow or claim the stable package gate is satisfied.
 

@@ -1,5 +1,7 @@
 # Gate 4 compatibility matrix
 
+Historical record. This describes the extraction or review target at the time, including its then-pending work. See the [beta.5 publication record](beta-publication.md) for the released source and current launch evidence.
+
 This matrix separates declared coverage from evidence actually observed on the
 Gate 4 review target. A row marked **not run** is not a pass.
 

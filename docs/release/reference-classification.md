@@ -1,5 +1,7 @@
 # Gate 1 public-reference classification
 
+Historical record. This describes the extraction or review target at the time, including its then-pending work. See the [beta.5 publication record](beta-publication.md) for the released source and current launch evidence.
+
 References were classified by meaning rather than removed blindly.
 
 | Reference | Decision | Rationale |

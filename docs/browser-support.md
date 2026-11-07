@@ -30,6 +30,5 @@ browser globals into the core.
 
 The community beta is a prerelease. Real Safari and manual assistive technology have not been observed. Defects in the policy range remain relevant, but this beta does not claim all policy cells have been tested. Folio print is experimental and physical monochrome printing is unobserved.
 
-Gate 4's currently observed engines, viewports and explicitly unrun cells are
-listed in the [compatibility matrix](release/gate-4-matrix.md). Playwright
+The [beta.5 publication record](release/beta-publication.md) lists the checks completed for the released source. The earlier [Gate 4 compatibility matrix](release/gate-4-matrix.md) retains its original versions, viewports and unrun cells as historical evidence. Playwright
 WebKit evidence must never be described as Safari evidence.

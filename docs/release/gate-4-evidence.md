@@ -1,5 +1,7 @@
 # Gate 4 evidence: cross-consumer QA and reproducibility
 
+Historical record. This describes the extraction or review target at the time, including its then-pending work. See the [beta.5 publication record](beta-publication.md) for the released source and current launch evidence.
+
 Status: passed.
 
 Base: `6df41fe637b80f28a37956fc3c483120afd3c856`.

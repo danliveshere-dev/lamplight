@@ -113,8 +113,8 @@ const security = read('SECURITY.md');
 for (const heading of ['Scope', 'System and trust boundaries', 'Security invariants', 'What to report', 'Reporting route', 'Exclusions', 'Current limitations']) {
   record(security.includes(`## ${heading}`), `SECURITY.md is missing ${heading}`);
 }
-record(security.includes('private vulnerability reporting'), 'SECURITY.md does not reserve the future private reporting route');
-record(security.includes('Do not infer or invent a security email address or URL'), 'SECURITY.md invents or fails to forbid a pre-release endpoint');
+record(security.includes('private vulnerability reporting'), 'SECURITY.md does not identify private vulnerability reporting');
+record(security.includes('Do not infer or invent a security email address or URL'), 'SECURITY.md does not forbid inventing a security email address or URL');
 
 if (findings.length) {
   console.error('Lamplight public-repository security check failed:');

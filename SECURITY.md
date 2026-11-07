@@ -16,7 +16,7 @@ Security review covers:
 - examples and browser fixtures when they demonstrate a Lamplight security
   property;
 - dependency lock data and GitHub workflow configuration; and
-- the contents and metadata of future package archives.
+- the contents and metadata of package archives.
 
 Documentation mistakes, licence-boundary errors and accidental private data in
 public artefacts are also in scope for responsible reporting, even when they do
@@ -104,7 +104,7 @@ materially amplifies a security impact:
 
 The community beta is distributed as downloadable files. A beta label does not
 relax privacy, package contents, dependency or workflow boundaries. See `docs/release/beta-readiness.md`
-for the separate downloadable-beta checks and outstanding release witnesses.
+for the downloadable-beta checks and remaining manual acceptance work.
 
 
 The repository has local policy, package, privacy, browser and audit checks. A

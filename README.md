@@ -6,7 +6,7 @@ Lamplight is a quiet design system for interfaces that should feel present witho
 
 Version **0.1.0-beta.5 is a free community beta**, distributed through GitHub as downloadable files rather than through an npm registry. The package names `@lamplight/core` and `@lamplight/react` are import names for those files; they do not establish ownership or availability of an npm namespace. Both packages remain `private: true`.
 
-The [beta readiness record](docs/release/beta-readiness.md) describes the beta profile and its evidence limits. Earlier production gates are historical evidence, not beta acceptance. Real Safari, manual assistive technology and physical monochrome printing have not been observed; Folio print is experimental.
+The [publication record](docs/release/beta-publication.md) lists the released source and passing hosted checks. The [beta readiness record](docs/release/beta-readiness.md) describes the beta profile and its evidence limits. Earlier production gates are historical evidence, not beta acceptance. Real Safari, manual assistive technology and physical monochrome printing have not been observed; Folio print is experimental.
 
 ## Try the beta
 

@@ -1,5 +1,7 @@
 # Gate 1 source allowlist
 
+Historical record. This describes the extraction or review target at the time, including its then-pending work. See the [beta.5 publication record](beta-publication.md) for the released source and current launch evidence.
+
 Source snapshot: `daius2` commit `018c5ac83c96795d1cfc8d0e39431d2c9bdf5415`.
 
 Only the following source families were admitted to the clean repository:

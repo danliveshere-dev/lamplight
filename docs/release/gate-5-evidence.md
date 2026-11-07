@@ -1,5 +1,7 @@
 # Gate 5 evidence: security, licensing and public-repository controls
 
+Historical record. This describes the extraction or review target at the time, including its then-pending work. See the [beta.5 publication record](beta-publication.md) for the released source and current launch evidence.
+
 Status: passed locally. Public hosting and publication remain separately held.
 
 Base: `23a1f9528e8e3e114a07191923744d4b781eec64`.

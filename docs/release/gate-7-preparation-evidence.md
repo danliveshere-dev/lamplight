@@ -1,5 +1,7 @@
 # Gate 7 preparation evidence
 
+Historical record. This describes the extraction or review target at the time, including its then-pending work. See the [beta.5 publication record](beta-publication.md) for the released source and current launch evidence.
+
 Status: local preparation pack reviewed and ready. Gate 7 remains open.
 
 Base: Gate 5 closure `259c5afd9c26dbda62e3dbeb45b0a64402c9adf3`.

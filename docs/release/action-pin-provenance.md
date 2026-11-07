@@ -28,11 +28,8 @@ The four Pages and artifact pins were resolved on 2026-11-06. The
 configure-pages pin is reviewed for future use but is not needed by the static
 candidate build. Pages deployment is separately gated by the workflow policy.
 
-CodeQL and dependency review are not enabled for the current private
-staging repository. Their jobs are explicitly skipped while the repository is
-private; they must run and be assessed after it becomes public. A skipped job
-is not evidence that a scan passed.
+CodeQL and dependency review passed for the public beta.5 release on 7 November 2026. The [publication record](beta-publication.md) links the hosted results. Their earlier private-staging runs were skipped, not passing scans.
 
-CodeQL also supports a manual run so the first public candidate can be scanned before its prerelease is published.
+CodeQL supports manual runs as well as its configured push and pull-request checks.
 
 Dependency review was re-resolved to the official v5.0.0 commit on 7 November 2026 after the earlier revision became unavailable. Its Node 24 runtime is compatible with the hosted runner, and its contents-read permission and moderate-severity gate remain unchanged.

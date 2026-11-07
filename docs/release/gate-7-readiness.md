@@ -1,7 +1,8 @@
-# Gate 7 readiness: GitHub and first release
+# Gate 7: historical hosting plan and stable release work
 
-Status: local preparation only. No remote, push, tag, GitHub release or npm
-publication is authorised or claimed.
+The public beta.5 repository, tag, GitHub release and Pages site launched on 7 November 2026. See the [publication record](beta-publication.md) for the completed work. No npm registry release has been made; the stable registry gate remains open.
+
+The hosting plan and acceptance list below are retained as historical preparation evidence. They describe the choices and outstanding work at that review point, not the current status of the public beta. The npm sequence is a plan for a separate future registry release, subject to its own review and authorisation.
 
 Gate 7 turns a reviewed local candidate into a hosted project. The safest low-
 touch route is to initialise an empty private GitHub repository, witness the

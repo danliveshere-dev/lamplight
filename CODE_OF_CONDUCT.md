@@ -9,11 +9,7 @@ publication of another person's private information are not acceptable. Do not
 use project channels to pressure, shame or mobilise people against an individual.
 
 The maintainer may edit or remove harmful contributions, limit participation or
-close an interaction when needed to protect the community. This code is not an
-operational public reporting promise until a separate privacy-preserving
-conduct route is verified and recorded here. Do not send sensitive conduct
+close an interaction when needed to protect the community. A separate private conduct-reporting route has not been verified and recorded here. Do not send sensitive conduct
 reports through a public issue or the vulnerability-reporting route.
 
-The downloadable beta preparation does not establish that reporting route. Before
-public launch the maintainer must verify a separate private conduct route and
-record it here, or withhold this operational policy until a route exists.
+This policy sets expectations for public participation. It does not offer a confidential conduct-reporting service. A private route will be listed here if one is verified.

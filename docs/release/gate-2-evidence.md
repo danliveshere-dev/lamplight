@@ -1,5 +1,7 @@
 # Gate 2 evidence: universal token and package architecture
 
+Historical record. This describes the extraction or review target at the time, including its then-pending work. See the [beta.5 publication record](beta-publication.md) for the released source and current launch evidence.
+
 Status: passed.
 
 Base: `a00b7a545f0fb08a14634b8af658ae4da56d8ae7`.

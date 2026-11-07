@@ -1,8 +1,8 @@
-# Release programme
+# Release program
 
-The free community beta is a separate, GitHub-first preparation profile. Version 0.1.0-beta.4 is prepared locally, not released. See [beta readiness](docs/release/beta-readiness.md) for its acceptance and outstanding decision. This does not pass Gate 6 or replace the independent dual-provider review required for stable production.
+The free community beta **0.1.0-beta.5 is public**, released on 7 November 2026. The [site](https://danliveshere-dev.github.io/lamplight/) and [GitHub release downloads](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) are live. See the [publication record](docs/release/beta-publication.md) for the released source and completed checks, and [beta readiness](docs/release/beta-readiness.md) for the contract and remaining limits. No npm registry release has been made.
 
-Gates 1 to 5 record earlier work and independent reviews. Their dated evidence describes the targets and limitations at the time, not a guarantee about this beta candidate:
+Gates 1 to 5 record earlier work and independent reviews. Their dated evidence describes the targets and limitations at the time, not a guarantee about the current release:
 
 - [Gate 1: extraction](docs/release/gate-1-evidence.md)
 - [Gate 2: architecture](docs/release/gate-2-evidence.md)
@@ -11,12 +11,11 @@ Gates 1 to 5 record earlier work and independent reviews. Their dated evidence d
 - [Gate 5: security and licensing](docs/release/gate-5-evidence.md)
 - [Gate 7: historical preparation evidence](docs/release/gate-7-preparation-evidence.md) and [readiness](docs/release/gate-7-readiness.md)
 
-Gate 6 remains open. Stable production requires its independent dual-provider review. Gate 7 and any public release remain subject to their applicable review and explicit authorisation. Do not treat a local build as a hosted or published release.
+Gate 6 remains open. Stable production requires its independent dual-provider review. The public beta does not close the stable registry-release gate. Future releases still need their own review and maintainer authorisation.
 
-## Existing stable release programme
+## Stable release program
 
-The following checklists retain their historical evidence targets. They are not
-a claim that the new beta candidate has passed those reviews.
+The following checklists retain their historical evidence targets. They describe the review targets at the time. Later beta checks are recorded separately.
 
 
 This is the task authority for the standalone Lamplight repository. A gate can
@@ -30,9 +29,9 @@ independent reviewer has returned no unresolved blocker.
 | 3 | Adoption documentation and examples | passed | `docs/release/gate-3-evidence.md` |
 | 4 | Cross-consumer QA and reproducibility | passed | `docs/release/gate-4-evidence.md` |
 | 5 | Security, licensing and public-repo controls | passed | `docs/release/gate-5-evidence.md` |
-| 5a | Modes and surfaces | in progress | spec decision D34 in the consumer repo |
+| 5a | Modes and surfaces | shipped in the community beta | `docs/release/beta-publication.md` |
 | 6 | Independent Claude first-commit review | held for maintainer | Emberline handoff prepared |
-| 7 | GitHub and release-candidate readiness | held until modes and surfaces land; local preparation ready; hosted work open | `docs/release/gate-7-preparation-evidence.md` |
+| 7 | Stable registry-release readiness | public beta shipped; stable registry work remains open | `docs/release/beta-publication.md`, `docs/release/gate-7-readiness.md` |
 
 ## Gate 1 checklist
 
@@ -91,11 +90,10 @@ independent reviewer has returned no unresolved blocker.
 
 ## Held decisions
 
-- Public package namespace and GitHub owner remain Gate 7 decisions.
+- The public repository is `danliveshere-dev/lamplight`. An npm namespace and registry package names remain undecided.
 - DAS and MLA are future consumers or adapters. They do not define Lamplight's
   core API until their contracts are separately specified and reviewed.
-- Creating a remote, pushing, publishing a package, tagging a public release or
-  changing the personal website remains explicitly unauthorised.
+- The community beta source, tag, downloads and Pages deployment were authorised and published. An npm release and changes to the personal website remain separate decisions.
 
 ## Gate 4 checklist
 
@@ -141,10 +139,12 @@ independent reviewer has returned no unresolved blocker.
       reporting.
 - [x] Receive independent review of the Gate 7 preparation pack.
 - [ ] Complete the Gate 6 Claude review.
-- [ ] Choose and verify GitHub owner/name, visibility and npm namespace.
-- [ ] Initialise the GitHub repository and witness hosted checks.
+- [x] Choose the GitHub owner/name and publish the authorised community beta.
+- [x] Initialise the public repository and witness hosted checks.
+- [ ] Choose and verify an npm namespace for a registry release.
 - [ ] Configure and verify branch, tag and security settings.
 - [ ] Rename packages, run the final release matrix and receive maintainer-held
       acceptance.
-- [ ] Obtain explicit authority for every public push, visibility change, tag,
-      package publication and GitHub release.
+- [x] Obtain explicit authority for the beta source, public visibility, tag,
+      GitHub prerelease and Pages deployment.
+- [ ] Obtain maintainer acceptance and publication authority for a stable registry release.

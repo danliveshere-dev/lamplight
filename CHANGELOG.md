@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Updated documentation and tool messages to reflect the public beta, with a publication record and clear labels on historical gate evidence.
+- Clarified file downloads, current support and security reporting, and the remaining manual and stable-release work.
+
 ## 0.1.0-beta.5 (community beta, 2026-11-07)
 
 - Removed ambiguous numeric-token parsing and clarified test-pattern escaping after public code scanning.

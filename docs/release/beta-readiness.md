@@ -1,6 +1,6 @@
 # Community beta readiness
 
-Status: **0.1.0-beta.5 community beta prerelease**. The free, GitHub-first beta is distributed as files. This record is a separate beta profile, not a change to the stable-production standard.
+Status: **0.1.0-beta.5 is public**, released on 7 November 2026. The [publication record](beta-publication.md) links the exact source, downloads, deployment and passing hosted checks. The free, GitHub-first beta is distributed as files. This record is a separate beta profile, not a change to the stable-production standard.
 
 ## Beta contract
 
@@ -19,15 +19,15 @@ Playwright WebKit is not Safari. Real Safari and manual assistive technology acc
 
 Gate 6 remains open. The separate independent dual-provider review remains required for stable production. This beta profile neither passes Gate 6 nor claims stable production acceptance. The [historical program](../../TODO.md) links prior gate evidence; those records describe their own review targets.
 
-The candidate build omits implementation comments from distributed component CSS while retaining
+The package build omits implementation comments from distributed component CSS while retaining
 them in the editable source. The existing 68 KiB raw and 12 KiB gzip combined CSS ceilings,
 individual layer budgets and archive budgets remain unchanged. Source-to-distribution CSS
 syntax equivalence is checked alongside package QA.
 
-## Candidate tooling
+## Build and release checks
 
 Full source and example builds require Node 22.23.4 or newer, as required by the patched Astro development dependency. CI checks Node 22.23.4 and 24; Node 20 remains a packed-package consumer smoke test. Browser screenshot baselines are platform-specific so macOS and Linux rendering are compared with their own reviewed images.
 
-The private candidate ran source, browser, package, licence, privacy and dependency-audit checks. CodeQL and dependency review were skipped while the repository was private under its then-current feature availability; a skipped job is not a passing scan. The audit threshold is high severity; the candidate baseline recorded zero high or critical findings, four moderate and two low findings in development tooling.
+The released source passed source, browser, package, licence, privacy and dependency-audit checks. Public CodeQL and dependency review also passed. Earlier private-staging runs of those two scans were skipped; they are retained as historical evidence, not passes. The audit threshold is high severity. The launch audit recorded zero high or critical findings, four moderate and two low findings in development tooling.
 
 The [public site](https://danliveshere-dev.github.io/lamplight/) presents the showcase and downloads, and the [GitHub prerelease](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) provides the release files. Pages builds only the showcase and its verified downloads. Publication requires a separate manual workflow dispatch with publish enabled, the public main branch and its build artefact. Pull requests cannot deploy.

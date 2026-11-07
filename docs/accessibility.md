@@ -43,4 +43,4 @@ have a 44px default minimum and a 48px coarse-pointer minimum. Do not use colour
 
 ## Acceptance
 
-The beta is prepared, not released. Real Safari and manual assistive technology acceptance remain unobserved. Automated checks are not manual accessibility acceptance. Consumers should test keyboard journeys, zoom, reflow, contrast, reduced motion and assistive technology with their own content.
+The community beta is public. Real Safari and manual assistive technology acceptance remain unobserved. Automated checks are not manual accessibility acceptance. Consumers should test keyboard journeys, zoom, reflow, contrast, reduced motion and assistive technology with their own content.

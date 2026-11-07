@@ -1,5 +1,7 @@
 # Gate 1 evidence: clean-history extraction
 
+Historical record. This describes the extraction or review target at the time, including its then-pending work. See the [beta.5 publication record](beta-publication.md) for the released source and current launch evidence.
+
 Status: passed.
 
 ## Boundary
