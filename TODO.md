@@ -90,7 +90,7 @@ independent reviewer has returned no unresolved blocker.
 
 ## Held decisions
 
-- The public repository is `danliveshere-dev/lamplight`. An npm namespace and registry package names remain undecided.
+- The [public repository](https://github.com/danliveshere-dev/lamplight) is live. An npm namespace and registry package names remain undecided.
 - DAS and MLA are future consumers or adapters. They do not define Lamplight's
   core API until their contracts are separately specified and reviewed.
 - The community beta source, tag, downloads and Pages deployment were authorised and published. An npm release and changes to the personal website remain separate decisions.

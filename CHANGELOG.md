@@ -4,6 +4,7 @@
 
 - Updated documentation and tool messages to reflect the public beta, with a publication record and clear labels on historical gate evidence.
 - Clarified file downloads, current support and security reporting, and the remaining manual and stable-release work.
+- Simplified support and adoption guidance and package introductions while preserving technical contracts and evidence limits.
 
 ## 0.1.0-beta.5 (community beta, 2026-11-07)
 

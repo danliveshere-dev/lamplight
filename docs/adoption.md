@@ -1,6 +1,6 @@
 # Adoption guide
 
-Start with a bounded surface and semantic HTML. Wrap it in `.l-room`; use `l-document` only when Lamplight owns the whole page. Check that the host outside the Room remains unchanged.
+Start with one small part of the page and semantic HTML. Wrap it in `.l-room`; use `l-document` only when Lamplight owns the whole page. Check that the host outside the Room remains unchanged.
 
 ## Browser starter
 
@@ -27,7 +27,7 @@ Download `lamplight-browser-0.1.0-beta.5.zip` from the [beta.5 GitHub release](h
 </html>
 ```
 
-The button is a native button. Connect its action in your application; CSS does not supply the action. The browser starter's own HTML is the authoritative copyable example for its asset paths.
+The button is a native button. Connect its action in your application; CSS does not supply the action. Use the browser starter's HTML as the reference for its asset paths.
 
 ## React with a bundler
 
@@ -59,7 +59,7 @@ Replace the example handler with application behaviour. Fonts are opt-in; withou
 
 ## Modes, surfaces and enhancement
 
-Night and Study are defaults. `data-mode="day"` selects Day; `data-surface="ledger"` and `data-surface="folio"` select surfaces independently. Ledger can be Night or Day; Folio is always ink. Printing applies Folio styling automatically but physical monochrome print has not been observed and remains experimental.
+Night and Study are defaults. `data-mode="day"` selects Day; `data-surface="ledger"` and `data-surface="folio"` select surfaces independently. Ledger can be Night or Day. Folio prepares content for print in either mode and takes precedence over mode styling. Printing applies its styles automatically. Physical monochrome printing has not been checked; Folio remains experimental.
 
 Living light never starts on import. In a browser application, opt in with:
 

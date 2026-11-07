@@ -1,21 +1,21 @@
 # Community beta readiness
 
-Status: **0.1.0-beta.5 is public**, released on 7 November 2026. The [publication record](beta-publication.md) links the exact source, downloads, deployment and passing hosted checks. The free, GitHub-first beta is distributed as files. This record is a separate beta profile, not a change to the stable-production standard.
+Status: **0.1.0-beta.5 is public**, released on 7 November 2026. The [publication record](beta-publication.md) links the exact source, downloads, deployment and passing hosted checks. The beta is distributed as files through GitHub. It has its own acceptance checks; the stable-production standard remains unchanged.
 
 ## Beta contract
 
 - Version: `0.1.0-beta.5`.
 - Release assets: `lamplight-core-0.1.0-beta.5.tgz`, `lamplight-react-0.1.0-beta.5.tgz`, `lamplight-browser-0.1.0-beta.5.zip`.
 - Imports: `@lamplight/core` and `@lamplight/react`. Both workspaces remain private; these names make no npm ownership or availability claim. The beta is file distribution, not registry publication.
-- The public site stages the same archives, checksums and manifest under `downloads/`; the browser ZIP links to the GitHub release rather than containing itself.
+- The public site serves the same archives, checksums and manifest under `downloads/`. The browser ZIP links to the GitHub release so it does not contain another copy of itself.
 - The browser ZIP includes the Field notes landing, an examples guide with Reading, Report and Dashboard compositions and a lean print view, a component reference and a principles guide, plus the full source principles as `principles.md` and AI starter guidance as `ai-starters.md`. It includes the lead line, thread and knot patterns across Night and Day modes and Ledger and Folio surfaces.
 - The builder requires a clean committed checkout and verifies that source state does not change during the build. Rebuild and compare the candidate archives and checksums to verify reproducibility.
-- Run `npm run beta:check` and `npm run beta:build`, then `node scripts/beta/stage-site.mjs` to verify and stage the archives in the showcase. Inspect the resulting files and consumer paths, and record the actual results for the candidate. A command named here is a requirement, not a claim that it passed.
-- The reviewed candidate required explicit acceptance and publication authority before public release.
+- Run `npm run beta:check` and `npm run beta:build`, then `node scripts/beta/stage-site.mjs` to verify and stage the archives in the showcase. Inspect the resulting files and consumer paths. Record what actually ran and what passed.
+- The maintainer accepted and authorised beta.5 before publication. Future releases need their own acceptance and publication authority.
 
 ## Known limitations
 
-Playwright WebKit is not Safari. Real Safari and manual assistive technology acceptance remain unobserved. Folio print is experimental; physical monochrome printing remains unobserved. Automated checks and prior evidence are useful but do not establish universal accessibility or production suitability. See the [browser matrix](gate-4-matrix.md) for earlier observed versions.
+Real Safari, manual assistive technology and physical monochrome printing have not been checked. Folio remains experimental. Playwright WebKit checks do not establish Safari acceptance. Automated checks help, but the complete interface still needs manual acceptance. See the [browser matrix](gate-4-matrix.md) for earlier observed versions.
 
 Gate 6 remains open. The separate independent dual-provider review remains required for stable production. This beta profile neither passes Gate 6 nor claims stable production acceptance. The [historical program](../../TODO.md) links prior gate evidence; those records describe their own review targets.
 
@@ -30,4 +30,4 @@ Full source and example builds require Node 22.23.4 or newer, as required by the
 
 The released source passed source, browser, package, licence, privacy and dependency-audit checks. Public CodeQL and dependency review also passed. Earlier private-staging runs of those two scans were skipped; they are retained as historical evidence, not passes. The audit threshold is high severity. The launch audit recorded zero high or critical findings, four moderate and two low findings in development tooling.
 
-The [public site](https://danliveshere-dev.github.io/lamplight/) presents the showcase and downloads, and the [GitHub prerelease](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) provides the release files. Pages builds only the showcase and its verified downloads. Publication requires a separate manual workflow dispatch with publish enabled, the public main branch and its build artefact. Pull requests cannot deploy.
+The [public site](https://danliveshere-dev.github.io/lamplight/) presents the showcase and downloads, and the [GitHub prerelease](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) provides the release files. Pages builds only the showcase and its verified downloads. To update the live site, a maintainer must run the Pages workflow manually with `publish` enabled on public `main`. It deploys that run's build artefact. Pull requests cannot deploy.
