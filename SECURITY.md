@@ -1,9 +1,9 @@
 # Security policy
 
-Lamplight is a pre-release design-system repository. It contains a
+Lamplight is a community-beta design-system repository. It contains a
 framework-neutral CSS and browser core, an optional React adapter, token build
-tools, examples and repository automation. A downloadable community beta is being prepared. No package or public repository
-has been released yet.
+tools, examples and repository automation. The beta is distributed as files;
+the packages are not published to an npm registry.
 
 ## Scope
 
@@ -82,15 +82,9 @@ private third-party information in a public issue.
 
 ## Reporting route
 
-There is no public security-reporting endpoint while this repository remains
-local and pre-release. Do not infer or invent a security email address or URL.
-If code has been shared privately before release, use the same private channel
-to flag a concern without sending exploit details more widely.
+Use [GitHub private vulnerability reporting](https://github.com/danliveshere-dev/lamplight/security/advisories/new) for undisclosed security reports. This repository-owned route was enabled and verified on 7 November 2026. You may need to sign in to GitHub to submit a report.
 
-At Gate 7, after a GitHub repository exists, the intended route is GitHub's
-private vulnerability reporting feature. This document must be updated with
-the actual repository-owned route only after that feature is enabled and
-verified. Public issues should not contain undisclosed vulnerability details.
+Do not infer or invent a security email address or URL. Public issues should not contain undisclosed vulnerability details, secrets or private third-party information.
 
 ## Exclusions
 
@@ -108,19 +102,18 @@ materially amplifies a security impact:
 
 ## Current limitations
 
-Beta archives remain local until the hosted private reporting route has been
-verified and recorded above. A beta label does not relax privacy, package
-contents, dependency or workflow boundaries. See `docs/release/beta-readiness.md`
+The community beta is distributed as downloadable files. A beta label does not
+relax privacy, package contents, dependency or workflow boundaries. See `docs/release/beta-readiness.md`
 for the separate downloadable-beta checks and outstanding release witnesses.
 
 
 The repository has local policy, package, privacy, browser and audit checks. A
 formal Codex Security scan and independent Gate 5 review were completed against
 the clean-history candidate, and every accepted finding was remediated and
-re-reviewed. Hosted GitHub workflows cannot be exercised before a remote exists.
-The current QA record also leaves unrun Node 20, Node 22.12, Safari,
-assistive-technology and maintainer-held acceptance cells open. Playwright
+re-reviewed. Hosted CI has exercised Node 22.23.4 and 24, Node 20 packed
+consumers, Chromium, Firefox and WebKit. Real Safari, manual assistive
+technology and physical monochrome printing remain unobserved. Playwright
 WebKit evidence is not Safari acceptance.
 
-No published-version support window exists yet. Until the first release, a
-commit hash is the only precise identifier for a report.
+No stable-version support window is promised for this prerelease. Include the
+beta version and source commit hash when reporting a concern.

@@ -2,6 +2,8 @@
 
 ## 0.1.0-beta.5 (community beta, 2026-11-07)
 
+- Removed ambiguous numeric-token parsing and clarified test-pattern escaping after public code scanning.
+
 - Scoped mode and Folio rules to Lamplight boundaries while retaining inherited and nested modes.
 - Preserved React menu keyboard focus across unrelated parent renders.
 - Kept chapter navigation and anchor targets readable without JavaScript.

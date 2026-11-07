@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { flattenTokens, formatTokenCss, loadTokenDocument, validateTokenDocument } from '../scripts/token-tools.mjs';
@@ -119,4 +120,18 @@ test('consumer contracts do not enter the token namespace', () => {
   const names = flattenTokens(document).map(({ name }) => name);
   const forbidden = ['domain-', 'da' + 'ius', 'd' + 'anliveshere', 'das', 'mla'];
   assert.equal(names.some((name) => forbidden.some((part) => name.includes(part))), false);
+});
+
+
+test('number-list validation rejects long invalid input without unbounded backtracking', () => {
+  const script = `
+    import assert from 'node:assert/strict';
+    import { loadTokenDocument, validateTokenDocument } from './scripts/token-tools.mjs';
+    const document = loadTokenDocument();
+    document.semantic['sheen-channel'].$value = '.9,' + '99,'.repeat(400);
+    assert.throws(() => validateTokenDocument(document), /does not match <number>#/);
+  `;
+  execFileSync(process.execPath, ['--input-type=module', '-e', script], {
+    cwd: new URL('..', import.meta.url), timeout: 5000, stdio: 'pipe',
+  });
 });

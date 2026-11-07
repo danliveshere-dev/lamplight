@@ -32,7 +32,7 @@ test('package QA fixes install isolation and every published size budget', () =>
     assert.match(source, new RegExp(setting));
   }
   for (const threshold of ['8 * 1024', '2.5 * 1024', '40 * 1024', '7 * 1024', '68 * 1024', '12 * 1024', '25 * 1024', '6 * 1024', '600 * 1024', '700 * 1024', '20 * 1024', '60 * 1024']) {
-    assert.match(source, new RegExp(threshold.replace('*', '\\*')));
+    assert.match(source, new RegExp(threshold.replaceAll('*', '\\*')));
   }
 });
 

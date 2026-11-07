@@ -94,7 +94,7 @@ function validateCssStringProjection(entry, byPath) {
   }
 
   if (syntax === '<number>#') {
-    if (!/^[-+]?(?:\d+\.?\d*|\.\d+)(?:\s*,\s*[-+]?(?:\d+\.?\d*|\.\d+))+$/.test(resolved)) {
+    if (!/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:\s*,\s*[-+]?(?:\d+(?:\.\d*)?|\.\d+))+$/.test(resolved)) {
       throw new Error('CSS projection does not match <number>#');
     }
     return;
