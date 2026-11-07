@@ -5,7 +5,7 @@ export const approvedActions = new Map([
   ['actions/checkout', 'd23441a48e516b6c34aea4fa41551a30e30af803'],
   ['actions/setup-node', '249970729cb0ef3589644e2896645e5dc5ba9c38'],
   ['github/codeql-action', 'fddeee1a7ece751b577e409a89057319e3172939'],
-  ['actions/dependency-review-action', 'cdf488f595d80d6e07e03d4674febd5ab45fa938'],
+  ['actions/dependency-review-action', 'a1d282b36b6f3519aa1f3fc636f609c47dddb294'],
   ['actions/configure-pages', '983d7736d9b0ae728b81ab479565c72886d7745b'],
   ['actions/upload-pages-artifact', '7b1f4a764d45c48632c6b24a0339c27f5614fb0b'],
   ['actions/deploy-pages', 'd6db90164ac5ed86f2b6aed7e0febac5b3c0c03e'],
