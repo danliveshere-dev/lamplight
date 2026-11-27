@@ -1,4 +1,16 @@
-# Beta.5 publication record
+# Beta publication record
+
+## Beta.6
+
+Lamplight **0.1.0-beta.6 was released on 28 November 2026** as a free public community beta. It brings Folio to the screen at reading size, keeping print sizing, link addresses and page breaks for print.
+
+- [Download the beta](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.6).
+- [View the released source](https://github.com/danliveshere-dev/lamplight/tree/d9db66e3c780cee0a3738b712c743623b0e3542a), tagged `v0.1.0-beta.6`.
+- Manifest SHA-256 `69abf220b6b416a0e4759334358058c39914254fb5525e656c3301289d69efa2`, pinned in the site staging script.
+
+The source passed the hosted checks on its pull request, including Node 22.23.4 and 24, the Node 20 packed-consumer smoke, package QA and audit, Chromium, Firefox and WebKit browser checks, CodeQL and dependency review. Two local builds from the tagged source produced identical archives. The GitHub release files were downloaded and matched `SHA256SUMS`, and the downloaded manifest matched the local build byte for byte. Folio was checked in native Safari at desktop and phone widths and as an A4 PDF. Physical printing, a physical phone and manual assistive technology were not checked.
+
+## Beta.5
 
 Lamplight **0.1.0-beta.5 was released on 7 November 2026** as a free public community beta.
 

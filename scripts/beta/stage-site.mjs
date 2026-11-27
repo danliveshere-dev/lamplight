@@ -16,6 +16,7 @@ const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 // Reviewed publication evidence pins the original release manifest, not just its claims.
 const releasedManifestHashes = new Map([
   ['0.1.0-beta.5', '4cafbcb5f550b69d2c8ac275e925de986cf3308150e50930d1f1ae8e5212e93c'],
+  ['0.1.0-beta.6', '69abf220b6b416a0e4759334358058c39914254fb5525e656c3301289d69efa2'],
 ]);
 
 // Validate bytes before touching the existing staged downloads.
