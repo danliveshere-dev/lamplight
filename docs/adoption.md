@@ -4,7 +4,7 @@ Start with one small part of the page and semantic HTML. Wrap it in `.l-room`; u
 
 ## Browser starter
 
-Download `lamplight-browser-0.1.0-beta.5.zip` from the [beta.5 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5). It contains a copyable starter and local assets. Extract it and serve the directory with a static web server. Use its relative stylesheet path and preserve the asset directory when copying it.
+Download `lamplight-browser-0.1.0-beta.6.zip` from the [beta.6 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.6). It contains a copyable starter and local assets. Extract it and serve the directory with a static web server. Use its relative stylesheet path and preserve the asset directory when copying it.
 
 ```html
 <!doctype html>
@@ -31,7 +31,7 @@ Connect the button to an action in your application; CSS does not supply one. Us
 
 ## React with a bundler
 
-Download `lamplight-core-0.1.0-beta.5.tgz` and `lamplight-react-0.1.0-beta.5.tgz` from the [beta.5 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) and install them by local file path. Install React separately; the adapter declares it as a peer. For example, in a JSX-capable React application:
+Download `lamplight-core-0.1.0-beta.6.tgz` and `lamplight-react-0.1.0-beta.6.tgz` from the [beta.6 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.6) and install them by local file path. Install React separately; the adapter declares it as a peer. For example, in a JSX-capable React application:
 
 ```jsx
 import React from 'react';
