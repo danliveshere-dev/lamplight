@@ -137,12 +137,12 @@ test('beta adoption names file distribution and outstanding evidence', () => {
   const readme = readFileSync(join(repository, 'README.md'), 'utf8');
   const adoption = readFileSync(join(repository, 'docs/adoption.md'), 'utf8');
   const readiness = readFileSync(join(repository, 'docs/release/beta-readiness.md'), 'utf8');
-  for (const asset of ['lamplight-core-0.1.0-beta.5.tgz', 'lamplight-react-0.1.0-beta.5.tgz', 'lamplight-browser-0.1.0-beta.5.zip']) {
+  for (const asset of ['lamplight-core-0.1.0-beta.6.tgz', 'lamplight-react-0.1.0-beta.6.tgz', 'lamplight-browser-0.1.0-beta.6.zip']) {
     assert.ok(readiness.includes(asset), asset);
   }
-  assert.match(readme, /0\.1\.0-beta\.5 is a free community beta/i);
+  assert.match(readme, /0\.1\.0-beta\.6 is a free community beta/i);
   assert.match(readme, /github\.io\/lamplight\//);
-  assert.match(readme, /releases\/tag\/v0\.1\.0-beta\.5/);
+  assert.match(readme, /releases\/tag\/v0\.1\.0-beta\.6/);
   assert.match(adoption, /core\/lamplight\.css/);
   assert.match(readiness, /physical monochrome/i);
   assert.match(readiness, /Gate 6 remains open/);

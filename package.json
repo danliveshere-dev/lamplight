@@ -1,6 +1,6 @@
 {
   "name": "lamplight-workspace",
-  "version": "0.1.0-beta.5",
+  "version": "0.1.0-beta.6",
   "private": true,
   "type": "module",
   "license": "Apache-2.0",
@@ -42,5 +42,9 @@
     "react-dom": "19.2.8",
     "style-dictionary": "5.7.1",
     "esbuild": "0.28.2"
+  },
+  "overrides": {
+    "glob": "14.0.6",
+    "minimatch": "11.0.9"
   }
 }

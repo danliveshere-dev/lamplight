@@ -1,0 +1,16 @@
+/* Print only. The build places this inside @media print, after the shared Folio body. */
+:is(.l-room, html.l-document) {
+  & {
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+  & .l-table { font-size: 9pt; }
+  & a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    overflow-wrap: anywhere;
+  }
+  & .l-chapter-rail { display: none; }
+  & .l-chapter-layout { display: block; --l-chapter-strip-offset: 0px; }
+  & .l-chapter { break-before: page; }
+}

@@ -1,9 +1,41 @@
-# 0.1.0-beta.5 community beta notes
+# 0.1.0-beta.6 community beta notes
 
-**Community beta prerelease.** Lamplight is a free design system for calm interfaces, with framework-neutral CSS and optional React bindings.
+**Community beta prerelease.** Lamplight is a free design system for calm interfaces, with
+framework-neutral CSS and optional React bindings.
 
-The [GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) contains `lamplight-core-0.1.0-beta.5.tgz`, `lamplight-react-0.1.0-beta.5.tgz`, `lamplight-browser-0.1.0-beta.5.zip`, `SHA256SUMS` and `manifest.json`. Install tarballs from local files or serve the extracted browser starter. See the [adoption guide](../adoption.md). Package imports use `@lamplight/core` and `@lamplight/react`; packages remain private and no npm registry ownership or availability is claimed.
+The [GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.6) contains `lamplight-core-0.1.0-beta.6.tgz`, `lamplight-react-0.1.0-beta.6.tgz`,
+`lamplight-browser-0.1.0-beta.6.zip`, `SHA256SUMS` and `manifest.json`. Install the tarballs from
+local files or serve the extracted browser starter. See the [adoption guide](../adoption.md).
 
-The browser guide includes the Field notes landing, an examples page with Reading, Report and Dashboard compositions and a lean print view, a component reference and a principles guide, with the full source principles included as `principles.md` and AI starter guidance as `ai-starters.md`. The beta adds a compact appearance switcher, chapter rail, Roman-numeral chapter openers and case overview links, with scoped modes, persistent menu focus and a readable no-JavaScript chapter layout. The beta includes Night and Day modes, Study, Ledger and Folio surfaces, lead line, thread and knot patterns, opt-in IBM Plex font faces and optional living-light enhancement. It is a prerelease: documented contracts may change in response to feedback. Real Safari and manual assistive technology have not been observed. Folio print is experimental and physical monochrome print has not been observed. Consumers must check their own content and interactions.
+## What changed
 
-Explore the [Lamplight site](https://danliveshere-dev.github.io/lamplight/) and see [readiness](beta-readiness.md) for the beta profile and its limits.
+- **Folio reads well on screen.** Folio now has its own on-screen paper and ink, at the normal
+  reading size and with chapter navigation in place. Small type, printed link addresses, hidden
+  navigation and chapter page breaks apply only when printing.
+- **Browser starter links.** The browser download's landing page links to its own release files.
+
+No React API, token, export path or dependency changes. Diagrams is not part of this release and
+keeps its own version.
+
+## Moving from beta.5
+
+1. Replace the core and React tarballs with the beta.6 files and update the lockfile.
+2. If you serve a generated theme from the core tarball, regenerate it and check it matches the
+   new pin.
+3. Leave a separately pinned Diagrams stylesheet as it is.
+4. Open one Folio page and one Night or Day control to confirm they look right with your content.
+
+Pages that used Folio only for print see no change in print. On screen they now show Folio's
+paper and ink at reading size instead of print sizing.
+
+## Limits
+
+Folio has been checked in native Safari at desktop and phone widths and as an A4 PDF. Physical
+printing, a physical phone and manual assistive technology have not been checked. This is a
+prerelease and documented contracts may change in response to feedback.
+
+## After release
+
+Check once from the published files: the GitHub release and the site's `downloads/` match these
+checksums, the browser starter's download links resolve, and a pinned consumer's theme, rebuilt from
+the beta.6 core, renders a Folio page and the mode switch where its users see it.

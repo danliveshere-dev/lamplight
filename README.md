@@ -4,25 +4,25 @@ Lamplight is a quiet design system for interfaces that should feel present witho
 
 ## Community beta status
 
-Version **0.1.0-beta.5 is a free community beta**, distributed through GitHub as downloadable files rather than through an npm registry. The package names `@lamplight/core` and `@lamplight/react` are import names for those files; they do not establish ownership or availability of an npm namespace. Both packages keep `private: true` to prevent accidental npm publication. The downloads are public.
+Version **0.1.0-beta.6 is a free community beta**, distributed through GitHub as downloadable files rather than through an npm registry. The package names `@lamplight/core` and `@lamplight/react` are import names for those files; they do not establish ownership or availability of an npm namespace. Both packages keep `private: true` to prevent accidental npm publication. The downloads are public.
 
 The [publication record](docs/release/beta-publication.md) lists the released source and passing hosted checks. The [beta readiness record](docs/release/beta-readiness.md) describes the beta profile and its evidence limits. Earlier production gates are historical evidence, not beta acceptance. Real Safari, manual assistive technology and physical monochrome printing have not been observed; Folio print is experimental.
 
 ## Try the beta
 
-Explore the [Lamplight site](https://danliveshere-dev.github.io/lamplight/) or download the tarballs from the [beta.5 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) into your application and install by file:
+Explore the [Lamplight site](https://danliveshere-dev.github.io/lamplight/) or download the tarballs from the [beta.6 GitHub release](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.6) into your application and install by file:
 
 ```sh
-npm install ./lamplight-core-0.1.0-beta.5.tgz
+npm install ./lamplight-core-0.1.0-beta.6.tgz
 # For a React application with React installed:
-npm install ./lamplight-react-0.1.0-beta.5.tgz
+npm install ./lamplight-react-0.1.0-beta.6.tgz
 ```
 
-In a bundler-based application, import `@lamplight/core/styles.css`. Fonts are optional: import `@lamplight/core/fonts.css` separately to use the included IBM Plex faces. The browser download, `lamplight-browser-0.1.0-beta.5.zip`, contains a copyable starter with local assets; serve its extracted directory with a static web server. See [adoption](docs/adoption.md) for complete HTML and React recipes.
+In a bundler-based application, import `@lamplight/core/styles.css`. Fonts are optional: import `@lamplight/core/fonts.css` separately to use the included IBM Plex faces. The browser download, `lamplight-browser-0.1.0-beta.6.zip`, contains a copyable starter with local assets; serve its extracted directory with a static web server. See [adoption](docs/adoption.md) for complete HTML and React recipes.
 
 Lead lines mark card regions; Threads connect proofs, steps or thoughts. See [components](docs/components.md) for HTML and React examples.
 
-Night and Study are defaults. Use `data-mode="day"` to select Day; use `data-surface="ledger"` or `data-surface="folio"` to select a surface. Mode and surface are separate choices: Ledger can be Night or Day. Folio prepares content for print in either mode and takes precedence over mode styling. Its print styling applies automatically. Folio remains experimental.
+Night and Study are defaults. Use `data-mode="day"` to select Day; use `data-surface="ledger"` or `data-surface="folio"` to select a surface. Mode and surface are separate choices: Ledger can be Night or Day. Folio takes precedence over mode styling. On screen it keeps the reading size and chapter navigation. Print-only sizes, link addresses and chapter page breaks apply only when printing. Its print styling applies automatically. Folio remains experimental.
 
 The core stylesheet scopes component styling to `.l-room`; `l-document` opts a whole page into the document shell. Living light is optional and must be explicitly initialised. The React adapter declares a `react >=18` peer contract; packed consumers have been observed against React 18.3.1 and 19.2.8. These observations are not a guarantee for every version.
 

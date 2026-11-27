@@ -301,3 +301,34 @@ test('Ledger keeps Day focal islands and presence free of ambient light', async 
     expect(await prop(island, '--lamp-wire-live-halo')).toBe('0 0 0 transparent');
   }
 });
+
+
+test('Folio on screen keeps the reading scale and prints link addresses only on paper', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await open(page, { mode: 'day' });
+  const room = page.getByTestId('room');
+  const daySize = await room.evaluate(el => getComputedStyle(el).fontSize);
+  await room.evaluate(el => {
+    el.dataset.surface = 'folio';
+    el.insertAdjacentHTML('beforeend', '<p id="long-link"><a href="https://example.com/a/very/long/path/that/would/never/fit/on/a/phone/without/breaking/anywhere">Source</a></p>');
+  });
+  expect(await room.evaluate(el => getComputedStyle(el).fontSize)).toBe(daySize);
+  expect(await page.locator('#long-link a').evaluate(el => getComputedStyle(el, '::after').content)).toBe('none');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  await page.emulateMedia({ media: 'print' });
+  expect(await page.locator('#long-link a').evaluate(el => getComputedStyle(el, '::after').content)).toMatch(/example\.com|attr\(href\)/);
+  expect(await room.evaluate(el => getComputedStyle(el).fontSize)).toBe('14px');
+});
+
+test('Folio focal panel is a proof box on screen and a heavy rule in print', async ({ page }) => {
+  await open(page, { surface: 'folio' });
+  await page.getByTestId('room').evaluate(room => room.insertAdjacentHTML('beforeend', '<div class="l-panel" data-depth="focal" id="proof">Proof</div>'));
+  const proof = page.locator('#proof');
+  // 1.5px snaps to whole device pixels, so a 1x screen shows 1px.
+  expect(parseFloat(await proof.evaluate(el => getComputedStyle(el).borderLeftWidth))).toBeGreaterThanOrEqual(1);
+  expect(await proof.evaluate(el => getComputedStyle(el).boxShadow)).toMatch(/4px 4px 0px 0px/);
+  await page.emulateMedia({ media: 'print' });
+  await expect(proof).toHaveCSS('border-top-width', '2px');
+  await expect(proof).toHaveCSS('border-left-width', '0px');
+  await expect(proof).toHaveCSS('box-shadow', 'none');
+});

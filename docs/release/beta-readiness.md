@@ -1,28 +1,30 @@
 # Community beta readiness
 
-Status: **0.1.0-beta.5 is public**, released on 7 November 2026. The [publication record](beta-publication.md) links the exact source, downloads, deployment and passing hosted checks. The beta is distributed as files through GitHub. It has its own acceptance checks; the stable-production standard remains unchanged.
+Status: **0.1.0-beta.6 is public**, released on 28 November 2026. The [publication record](beta-publication.md) links the exact source, downloads, deployment and passing hosted checks. The beta is distributed as files through GitHub. It has its own acceptance checks; the stable-production standard remains unchanged.
 
 ## Beta contract
 
-- Version: `0.1.0-beta.5`.
-- Release assets: `lamplight-core-0.1.0-beta.5.tgz`, `lamplight-react-0.1.0-beta.5.tgz`, `lamplight-browser-0.1.0-beta.5.zip`.
+- Version: `0.1.0-beta.6`.
+- Release assets: `lamplight-core-0.1.0-beta.6.tgz`, `lamplight-react-0.1.0-beta.6.tgz`, `lamplight-browser-0.1.0-beta.6.zip`.
 - Imports: `@lamplight/core` and `@lamplight/react`. Both workspaces remain private; these names make no npm ownership or availability claim. The beta is file distribution, not registry publication.
 - The public site serves the same archives, checksums and manifest under `downloads/`. The browser ZIP links to the GitHub release so it does not contain another copy of itself.
 - The browser ZIP includes the Field notes landing, an examples guide with Reading, Report and Dashboard compositions and a lean print view, a component reference and a principles guide, plus the full source principles as `principles.md` and AI starter guidance as `ai-starters.md`. It includes the lead line, thread and knot patterns across Night and Day modes and Ledger and Folio surfaces.
 - The builder requires a clean committed checkout and verifies that source state does not change during the build. Rebuild and compare the candidate archives and checksums to verify reproducibility.
 - Run `npm run beta:check` and `npm run beta:build`, then `node scripts/beta/stage-site.mjs` to verify and stage the archives in the showcase. Inspect the resulting files and consumer paths. Record what actually ran and what passed.
-- The maintainer accepted and authorised beta.5 before publication. Future releases need their own acceptance and publication authority.
+- The maintainer accepted and authorised beta.6 before publication, as with beta.5. Future releases need their own acceptance and publication authority.
 
 ## Known limitations
 
-Real Safari, manual assistive technology and physical monochrome printing have not been checked. Folio remains experimental. Playwright WebKit checks do not establish Safari acceptance. Automated checks help, but the complete interface still needs manual acceptance. See the [browser matrix](gate-4-matrix.md) for earlier observed versions.
+Folio was checked in native Safari at desktop and phone widths and as an A4 PDF for beta.6. Manual assistive technology, a physical phone and physical monochrome printing have not been checked. Folio remains experimental. Playwright WebKit checks do not establish Safari acceptance. Automated checks help, but the complete interface still needs manual acceptance. See the [browser matrix](gate-4-matrix.md) for earlier observed versions.
 
 Gate 6 remains open. The separate independent dual-provider review remains required for stable production. This beta profile neither passes Gate 6 nor claims stable production acceptance. The [historical program](../../TODO.md) links prior gate evidence; those records describe their own review targets.
 
 The package build omits implementation comments from distributed component CSS while retaining
-them in the editable source. The existing 68 KiB raw and 12 KiB gzip combined CSS ceilings,
-individual layer budgets and archive budgets remain unchanged. Source-to-distribution CSS
-syntax equivalence is checked alongside package QA.
+them in the editable source. Package QA keeps size limits for each layer, the combined CSS and
+the archives so that accidental growth is caught. When a deliberate change outgrows a limit, raise
+it in the same change and say why; it is not a separate decision. Beta.6 raised the surfaces
+limit to 13 KiB and the combined CSS to 74 KiB raw and 12.5 KiB gzip for the on-screen Folio.
+Source-to-distribution CSS syntax equivalence is checked alongside package QA.
 
 ## Build and release checks
 
@@ -30,7 +32,7 @@ Full source and example builds require Node 22.23.4 or newer, as required by the
 
 The released source passed source, browser, package, licence, privacy and dependency-audit checks. Public CodeQL and dependency review also passed. Earlier private-staging runs of those two scans were skipped; they are retained as historical evidence, not passes. The audit threshold is high severity. The launch audit recorded zero high or critical findings, four moderate and two low findings in development tooling.
 
-The [public site](https://danliveshere-dev.github.io/lamplight/) presents the showcase and downloads, and the [GitHub prerelease](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) provides the release files. Pages builds only the showcase and its verified downloads. To update the live site, a maintainer must run the Pages workflow manually with `publish` enabled on public `main`. It deploys that run's build artefact. Pull requests cannot deploy.
+The [public site](https://danliveshere-dev.github.io/lamplight/) presents the showcase and downloads, and the [GitHub prerelease](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.6) provides the release files. Pages builds only the showcase and its verified downloads. To update the live site, a maintainer must run the Pages workflow manually with `publish` enabled on public `main`. It deploys that run's build artefact. Pull requests cannot deploy.
 
 Site-only updates keep the existing release downloads. The publishing workflow stages them with `--released`, which verifies the checksums and the source commit recorded by the annotated release tag. The site can change while the versioned beta archives stay fixed.
 

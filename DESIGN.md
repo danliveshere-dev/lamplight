@@ -108,11 +108,11 @@ IBM Plex Sans carries interface text; IBM Plex Serif gives reading and headings 
 
 ## Layout
 
-Use generous spacing for reading and aligned, grouped rows for comparison. The showcase centres content within 76rem, uses responsive side padding and collapses its two-column examples at 700px. On narrow screens preserve readable headings and access to wide tables. Folio uses a clear page grid and adapts wide content to fit. In the examples, desktop report headings sit below the display toolbar; on narrow screens headings return to normal flow and the table remains keyboard-scrollable.
+Use generous spacing for reading and aligned, grouped rows for comparison. The showcase centres content within 76rem, uses responsive side padding and collapses its two-column examples at 700px. On narrow screens preserve readable headings and access to wide tables. Folio keeps the screen layout of Night and Day, including chapter navigation, and print gives it a clear page grid and adapts wide content to fit. In the examples, desktop report headings sit below the display toolbar; on narrow screens headings return to normal flow and the table remains keyboard-scrollable.
 
 ## Elevation & Depth
 
-Night can use subtle sheen, inner edges and light to suggest depth; Day relies on paper tone and rules. Ledger favours alignment and rules. Folio uses type and rule weight on plain paper. Motion needs a reason, respects reduced-motion preferences and is absent from Folio.
+Night can use subtle sheen, inner edges and light to suggest depth; Day relies on paper tone and rules. Ledger favours alignment and rules. Folio uses type and rule weight on plain paper, with square corners and one ink. On screen its focal panel is a proof box, a ruled box with a solid offset shadow, and it prints as a heavy rule. Motion needs a reason, respects reduced-motion preferences and is absent from Folio.
 
 ## Shapes
 

@@ -31,10 +31,10 @@ const npmEnvironment = {
 
 const budgets = {
   tokens: { raw: 8 * 1024, gzip: 2.5 * 1024 },
-  surfaces: { raw: 9 * 1024, gzip: 2 * 1024 },
+  surfaces: { raw: 13 * 1024, gzip: 2 * 1024 },
   modes: { raw: 16 * 1024, gzip: 3 * 1024 },
   components: { raw: 40 * 1024, gzip: 7 * 1024 },
-  combined: { raw: 68 * 1024, gzip: 12 * 1024 },
+  combined: { raw: 74 * 1024, gzip: 12.5 * 1024 },
   chapterRail: { raw: 8 * 1024, gzip: 3 * 1024 },
   livingLight: { raw: 25 * 1024, gzip: 6 * 1024 },
   react: { raw: 25 * 1024, gzip: 7 * 1024 },

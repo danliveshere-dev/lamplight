@@ -1,6 +1,6 @@
 # Release program
 
-The free community beta **0.1.0-beta.5 is public**, released on 7 November 2026. The [site](https://danliveshere-dev.github.io/lamplight/) and [GitHub release downloads](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.5) are live. See the [publication record](docs/release/beta-publication.md) for the released source and completed checks, and [beta readiness](docs/release/beta-readiness.md) for the contract and remaining limits. No npm registry release has been made.
+The free community beta **0.1.0-beta.6 is public**, released on 28 November 2026. The [site](https://danliveshere-dev.github.io/lamplight/) and [GitHub release downloads](https://github.com/danliveshere-dev/lamplight/releases/tag/v0.1.0-beta.6) are live. See the [publication record](docs/release/beta-publication.md) for the released source and completed checks, and [beta readiness](docs/release/beta-readiness.md) for the contract and remaining limits. No npm registry release has been made.
 
 Gates 1 to 5 record earlier work and independent reviews. Their dated evidence describes the targets and limitations at the time, not a guarantee about the current release:
 

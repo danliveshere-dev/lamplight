@@ -66,7 +66,7 @@ Chip. The React bindings provide the documented ARIA relationships and keyboard 
 
 Use `.l-segmented[data-size="compact"]` for a short group of choices in a
 page header. The raised selection uses the current mode's bezel tokens. In
-Folio, the selection becomes an ink underline. The compact size keeps the
+Folio, the group becomes a ruled box and the selection prints in reverse, ink ground and paper text, so the control keeps its shape in every appearance. In print it falls back to an ink underline. The compact size keeps the
 standard focus ring, reduced-motion behaviour and larger targets on coarse
 pointers.
 
@@ -225,7 +225,7 @@ same column gap. This keeps subsection labels aligned with chapter names.
 Fluid opener typography, line height, rule width and reading measure are
 component tokens in `tokens/lamplight.tokens.json`.
 
-Folio hides the rail and places chapter openers on new printed pages. Ledger
+On screen, Folio keeps the rail and layout, with square ink knots and a filled knot for the current chapter. Print hides the rail and places chapter openers on new pages. Ledger
 removes the active dot's halo. Links retain a visible focus ring. The module
 uses immediate horizontal reveals and follows the host's reduced-motion
 scroll behaviour.

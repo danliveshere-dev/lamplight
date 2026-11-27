@@ -90,11 +90,11 @@ Ledger leads are lighter than Focal Catch and separate from it. Focal Catch stay
 
 ### Folio
 
-The sheet that leaves the room. It serves print and PDF, and is always ink.
+The sheet that leaves the room. It serves print and PDF, and is always ink. On screen it keeps the same layout and navigation as Night and Day, so switching changes the material, never the geometry.
 
 | Question | Answer |
 |---|---|
-| Depth | Rule weight and type size; no printed ground |
+| Depth | Rule weight and type size; on screen, one proof box with a solid offset shadow, which prints as a heavy rule |
 | Emphasis | One lead per page, carried by the heaviest rule or largest type |
 | State | Dated, with no live claims |
 | Motion | None |

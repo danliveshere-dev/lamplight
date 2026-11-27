@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.1.0-beta.6 (community beta, 2026-11-28)
+
+- Fixed the browser download landing so its links name its own release files.
+
+- Gave Folio its own on-screen paper and ink treatment without changing the reading size or hiding chapter navigation. Smaller sizes, printed link addresses and chapter page breaks now apply only in print.
 
 - Brought a warmer voice to the site and replaced repeated chapter filler with distinct garden notes.
 - Kept published downloads fixed during site-only updates, with tag and checksum verification.

@@ -31,7 +31,8 @@ const folio = readFileSync(join(source, 'folio.css'), 'utf8');
 const folioScope = ':is(:is(.l-room, html.l-document)[data-surface="folio"], :is(.l-room, html.l-document) [data-surface="folio"], :where([data-surface="folio"]) .l-room)';
 if (folio.split(folioScope).length !== 2) throw new Error('Folio must have exactly one scoped root');
 const printFolio = folio.replace(folioScope, ':is(.l-room, html.l-document)');
-const surfaces = `${ledger}\n${folio}\n@media print {\n@page { margin: 18mm 16mm; }\n${printFolio}\n:is(.l-room, html.l-document) { background: none; }\n}\n`;
+const folioPrint = readFileSync(join(source, 'folio-print.css'), 'utf8');
+const surfaces = `${ledger}\n${folio}\n@media print {\n@page { margin: 18mm 16mm; }\n${printFolio}\n${folioPrint}\n:is(.l-room, html.l-document) { background: none; }\n}\n`;
 writeFileSync(join(dist, 'surfaces.css'), surfaces.replace(/\/\*[\s\S]*?\*\/\n/g, ''));
 writeFileSync(join(dist, 'lamplight.css'),
   '/* Lamplight core: tokens, scoped components, then modes. Fonts and living light are opt-in. */\n'

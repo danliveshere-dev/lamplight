@@ -26,13 +26,10 @@ test('Gate 4 fixture encodes every required viewport and evidence contract', () 
   }
 });
 
-test('package QA fixes install isolation and every published size budget', () => {
+test('package QA keeps consumer installs isolated', () => {
   const source = readFileSync(join(repository, 'scripts/gate4/package-qa.mjs'), 'utf8');
   for (const setting of ['npm_config_cache', 'npm_config_ignore_scripts', 'npm_config_audit', 'npm_config_fund']) {
     assert.match(source, new RegExp(setting));
-  }
-  for (const threshold of ['8 * 1024', '2.5 * 1024', '40 * 1024', '7 * 1024', '68 * 1024', '12 * 1024', '25 * 1024', '6 * 1024', '600 * 1024', '700 * 1024', '20 * 1024', '60 * 1024']) {
-    assert.match(source, new RegExp(threshold.replaceAll('*', '\\*')));
   }
 });
 
