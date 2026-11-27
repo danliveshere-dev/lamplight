@@ -20,9 +20,11 @@ Real Safari, manual assistive technology and physical monochrome printing have n
 Gate 6 remains open. The separate independent dual-provider review remains required for stable production. This beta profile neither passes Gate 6 nor claims stable production acceptance. The [historical program](../../TODO.md) links prior gate evidence; those records describe their own review targets.
 
 The package build omits implementation comments from distributed component CSS while retaining
-them in the editable source. The existing 68 KiB raw and 12 KiB gzip combined CSS ceilings,
-individual layer budgets and archive budgets remain unchanged. Source-to-distribution CSS
-syntax equivalence is checked alongside package QA.
+them in the editable source. Package QA keeps size limits for each layer, the combined CSS and
+the archives so that accidental growth is caught. When a deliberate change outgrows a limit, raise
+it in the same change and say why; it is not a separate decision. Beta.6 raised the surfaces
+limit to 13 KiB and the combined CSS to 74 KiB raw and 12.5 KiB gzip for the on-screen Folio.
+Source-to-distribution CSS syntax equivalence is checked alongside package QA.
 
 ## Build and release checks
 
