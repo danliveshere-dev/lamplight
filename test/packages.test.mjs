@@ -5,6 +5,7 @@ import test from 'node:test';
 
 const json = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const root = json('../package.json');
+const lock = json('../package-lock.json');
 const core = json('../packages/core/package.json');
 const react = json('../packages/react/package.json');
 
@@ -21,10 +22,14 @@ function filesWithin(rootPath) {
 test('private workspace has exactly two private beta packages', () => {
   assert.equal(root.private, true);
   assert.deepEqual(root.workspaces, ['packages/core', 'packages/react']);
-  for (const pkg of [core, react]) {
+  assert.match(root.version, /^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)-beta\.(?:0|[1-9]\d*)$/);
+  assert.equal(lock.version, root.version);
+  assert.equal(lock.packages[''].version, root.version);
+  for (const [path, pkg, name] of [['packages/core', core, '@lamplight/core'], ['packages/react', react, '@lamplight/react']]) {
     assert.equal(pkg.private, true);
-    assert.equal(pkg.version, '0.1.0-beta.5');
-    assert.match(pkg.name, /^@lamplight\//);
+    assert.equal(pkg.version, root.version);
+    assert.equal(lock.packages[path].version, root.version);
+    assert.equal(pkg.name, name);
   }
 });
 
