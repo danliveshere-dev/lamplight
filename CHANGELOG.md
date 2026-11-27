@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Gave Folio its own on-screen paper and ink treatment without changing the reading size or hiding chapter navigation. Smaller sizes, printed link addresses and chapter page breaks now apply only in print.
+
 - Brought a warmer voice to the site and replaced repeated chapter filler with distinct garden notes.
 - Kept published downloads fixed during site-only updates, with tag and checksum verification.
 

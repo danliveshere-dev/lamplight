@@ -22,7 +22,7 @@ In a bundler-based application, import `@lamplight/core/styles.css`. Fonts are o
 
 Lead lines mark card regions; Threads connect proofs, steps or thoughts. See [components](docs/components.md) for HTML and React examples.
 
-Night and Study are defaults. Use `data-mode="day"` to select Day; use `data-surface="ledger"` or `data-surface="folio"` to select a surface. Mode and surface are separate choices: Ledger can be Night or Day. Folio prepares content for print in either mode and takes precedence over mode styling. Its print styling applies automatically. Folio remains experimental.
+Night and Study are defaults. Use `data-mode="day"` to select Day; use `data-surface="ledger"` or `data-surface="folio"` to select a surface. Mode and surface are separate choices: Ledger can be Night or Day. Folio takes precedence over mode styling. On screen it keeps the reading size and chapter navigation. Print-only sizes, link addresses and chapter page breaks apply only when printing. Its print styling applies automatically. Folio remains experimental.
 
 The core stylesheet scopes component styling to `.l-room`; `l-document` opts a whole page into the document shell. Living light is optional and must be explicitly initialised. The React adapter declares a `react >=18` peer contract; packed consumers have been observed against React 18.3.1 and 19.2.8. These observations are not a guarantee for every version.
 

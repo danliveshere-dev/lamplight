@@ -59,7 +59,7 @@ Replace the example handler with application behaviour. Fonts are opt-in; withou
 
 ## Modes, surfaces and enhancement
 
-Night and Study are defaults. `data-mode="day"` selects Day; `data-surface="ledger"` and `data-surface="folio"` select surfaces independently. Ledger can be Night or Day. Folio prepares content for print in either mode and takes precedence over mode styling. Printing applies its styles automatically. Physical monochrome printing has not been checked; Folio remains experimental.
+Night and Study are defaults. `data-mode="day"` selects Day; `data-surface="ledger"` and `data-surface="folio"` select surfaces independently. Ledger can be Night or Day. Folio takes precedence over mode styling. On screen it keeps the reading size and chapter navigation. Print-only sizes, link addresses and chapter page breaks apply only when printing. Printing applies its styles automatically. Physical monochrome printing has not been checked; Folio remains experimental.
 
 Living light never starts on import. In a browser application, opt in with:
 

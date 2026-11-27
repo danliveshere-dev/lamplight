@@ -12,12 +12,22 @@
     --lamp-glass-bg: transparent;
     --lamp-grain-opacity: 0;
     --lamp-row-height: 1.75rem;
+    /* Paper corners are square and the words are one ink, on screen and in print. */
+    --lamp-link: var(--lamp-text);
+    --lamp-focus-ring: 2px solid var(--lamp-text);
+    --lamp-radius-xs: 0;
+    --lamp-radius-sm: 0;
+    --lamp-radius-md: 0;
+    --lamp-radius-lg: 0;
+    --lamp-radius-xl: 0;
+    --lamp-radius-full: 0;
+    --lamp-btn-radius: 0;
+    --lamp-card-radius: 0;
+    --lamp-chapter-dot-halo: none;
   }
 
   & {
     background: var(--lamp-paper-white);
-    font-size: 10.5pt;
-    line-height: 1.45;
     orphans: 3;
     widows: 3;
   }
@@ -40,13 +50,12 @@
   & .l-chip[data-state="attention"]::before { content: "▲ "; white-space: pre; }
   & :is(.l-presence, .l-orb, .l-toast) { display: none; }
   & .l-table-wrap { overflow-x: visible; }
-  & .l-table { font-size: 9pt; font-variant-numeric: tabular-nums; }
+  & .l-table { font-variant-numeric: tabular-nums; }
   & .l-table thead { display: table-header-group; }
   & .l-table tr { break-inside: avoid; }
   & [data-folio-keep] { break-inside: avoid; }
   & :is(h1, h2, h3) { break-after: avoid; }
   & .l-folio-state { font-family: var(--lamp-font-mono); font-size: 8.5pt; }
-  & a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8.5pt; }
 
   /* The focal catch becomes an ink rule instead of a lit panel. */
   & .l-focal-source,
@@ -58,9 +67,7 @@
   }
   & :is(.l-focal-label, .l-focal-state) { color: var(--lamp-text); }
 
-  & .l-chapter-rail { display: none; }
-  & .l-chapter-layout { display: block; --l-chapter-strip-offset: 0px; }
-  & .l-chapter { break-before: page; break-after: avoid; }
+  & .l-chapter { break-after: avoid; }
 
   /* Paper stays still through mode changes. */
   &,
@@ -90,4 +97,57 @@
   }
 
   & .l-panel.l-thread { background-image: var(--l-thread-rule); }
+
+  /* On screen, Folio is a sheet of its own: same geometry as Night and Day,
+     a proof box, ink knots and a reversed switch. Print never sees this. */
+  @media screen {
+    & {
+      --l-folio-ink: var(--lamp-text);
+      --l-folio-sheet: var(--lamp-paper-white);
+      --l-folio-offset: 4px;
+    }
+    & ::selection { background: var(--l-folio-ink); color: var(--l-folio-sheet); }
+    & a:not([class]) { text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+    & a:not([class]):hover { text-decoration-thickness: 2px; }
+
+    /* The proof box: the one raised thing on the sheet, a ruled box with a solid offset shadow. */
+    & .l-panel[data-depth="focal"] {
+      border: 1.5px solid var(--l-folio-ink);
+      border-block-start-width: 2px;
+      box-shadow: var(--l-folio-offset) var(--l-folio-offset) 0 0 var(--l-folio-ink);
+      background-color: var(--l-folio-sheet);
+    }
+
+    /* Navigation stays where it was. Knots become square, the active one filled with ink. */
+    & .l-chapter-rail-item::before { border-color: var(--l-folio-ink); background: var(--l-folio-sheet); }
+    & .l-chapter-rail-item.is-done::before { background: var(--lamp-text-muted); border-color: var(--lamp-text-muted); }
+    & .l-chapter-rail-item.is-active::before { background: var(--l-folio-ink); border-color: var(--l-folio-ink); }
+    & .l-chapter-rail-item:not(:last-child)::after { background: var(--l-folio-ink); }
+    & .l-chapter-rail-items a[aria-current]:not([aria-current="false"]) { color: var(--l-folio-ink); text-decoration: underline; text-underline-offset: 0.2em; }
+
+    & .l-chapter-rail { background: var(--l-folio-sheet); }
+    @media (width <= 68.75rem) {
+      & .l-chapter-rail { border-block-end: 1px solid var(--l-folio-ink); }
+      & .l-chapter-rail-item.is-active > .l-chapter-link { color: var(--l-folio-ink); }
+    }
+
+    /* Tags read as typeset labels in a ruled box. */
+    & .l-case-overview a[href] { border-color: var(--l-folio-ink); }
+    & .l-case-overview a:hover { background: var(--l-folio-ink); color: var(--l-folio-sheet); }
+    & .l-case-overview a:hover .l-case-overview-number { color: inherit; }
+
+    /* Switches keep their shape: a ruled box, the chosen option printed in reverse. */
+    & .l-segmented,
+    & .l-segmented[data-size="compact"] {
+      border: 1px solid var(--l-folio-ink);
+      padding: calc(var(--lamp-space-1) - 1px);
+    }
+    & .l-segmented button[aria-pressed="true"],
+    & .l-segmented[data-size="compact"] button[aria-pressed="true"] {
+      background: var(--l-folio-ink);
+      box-shadow: none;
+      color: var(--l-folio-sheet);
+      text-decoration: none;
+    }
+  }
 }

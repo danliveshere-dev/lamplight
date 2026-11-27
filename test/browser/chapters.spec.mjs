@@ -48,22 +48,19 @@ for (const width of [1400, 1100, 834, 390]) {
       const first = page.locator('.l-chapter').first();
       const stem = `${width}-${appearance.toLowerCase()}-${testInfo.project.name}`;
       // Capture the rail before the anchor jump so sticky positioning cannot move the crop.
-      if (appearance !== 'Folio') {
-        await page.screenshot({ path: join(evidence, `${stem}-rail.png`), clip: await rail.boundingBox() });
-      }
+      // Folio keeps the rail on screen, so every appearance shares one geometry.
+      await page.screenshot({ path: join(evidence, `${stem}-rail.png`), clip: await rail.boundingBox() });
       await page.locator('.l-case-overview').screenshot({ path: join(evidence, `${stem}-overview.png`) });
       await page.locator('.l-case-overview a').first().click();
       await expect(page.locator('#chapter-purpose')).toBeInViewport();
-      if (width > 1100 && appearance !== 'Folio') {
+      if (width > 1100) {
         const muted = await rail.locator('.l-chapter-rail-number').first().evaluate(node => getComputedStyle(node).color);
         await expect(rail.locator('.l-chapter-rail-items a').first()).toHaveCSS('color', muted);
       }
       const secondary = await first.locator('.l-chapter-argument').evaluate(node => getComputedStyle(node).color);
       await expect(page.locator('.l-case-overview a').first()).toHaveCSS('color', secondary);
-      if (appearance === 'Folio') {
-        await expect(rail).toBeHidden();
-        await expect(first).toHaveCSS('break-before', 'page');
-      } else {
+      if (appearance === 'Folio') await expect(first).toHaveCSS('break-before', 'auto');
+      {
         await expect(rail).toBeVisible();
         if (width > 1100) {
           await expect(rail).toHaveCSS('display', 'block');
